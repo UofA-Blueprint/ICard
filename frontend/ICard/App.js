@@ -9,19 +9,30 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 
+const Intro = () => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.welcome}>Hello Mom!</Text>
+    </View>
+  );
+};
+
 const App = () => {
   return (
     <SafeAreaView>
-      <View>
-        <Text style={styles.welcome}>Home Page</Text>
-      </View>
+      <Intro />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   welcome: {
-    color: 'aquamarine',
+    color: 'violet',
+  },
+  container: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100%',
   },
 });
 

@@ -24,6 +24,13 @@ Type in another terminal with an open emulator (or connected device)
 npm run android
 ```
 
+After the first run, need to clean the android folder before rerun the application
+
+```bash
+cd android &&./gradlew clean
+cd .. && npm run android
+```
+
 ### iOS
 
 Type in another terminal with an open emulator (or connected device)

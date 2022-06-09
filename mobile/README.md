@@ -13,7 +13,7 @@ npm install
 Type in terminal to start Metro
 
 ```bash
-npx react-native start
+npm start
 ```
 
 ### Android
@@ -21,7 +21,15 @@ npx react-native start
 Type in another terminal with an open emulator (or connected device)
 
 ```bash
-npx react-native run-android
+npm run android
+```
+
+### iOS
+
+Type in another terminal with an open emulator (or connected device)
+
+```bash
+npm run ios
 ```
 
 ## Testing
@@ -29,3 +37,9 @@ npx react-native run-android
 Write snapshot test inside `__tests__` folder
 
 Update the snapshot every time expected UI changes happens
+
+Type in terminal to test
+
+```bash
+npm test
+```

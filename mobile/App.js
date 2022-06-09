@@ -8,32 +8,14 @@
 
 import React from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-
-const Intro = () => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>Hello Mom!</Text>
-    </View>
-  );
-};
+import Home from './src/views/Home';
 
 const App = () => {
   return (
     <SafeAreaView>
-      <Intro />
+      <Home />
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  welcome: {
-    color: 'violet',
-  },
-  container: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100%',
-  },
-});
 
 export default App;

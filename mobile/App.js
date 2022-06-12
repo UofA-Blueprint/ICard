@@ -8,12 +8,12 @@
 
 import React from 'react';
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import Home from './src/views/Home';
+import Scanner from './src/views/Scanner';
 
 const App = () => {
   return (
     <SafeAreaView>
-      <Home />
+      <Scanner />
     </SafeAreaView>
   );
 };

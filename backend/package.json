@@ -1,0 +1,41 @@
+{
+    "name": "icard",
+    "version": "1.0.0",
+    "description": "backend for ICard",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon index.js",
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/UofA-Blueprint/ICard.git"
+    },
+    "author": "ArmaanKatyal",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/UofA-Blueprint/ICard/issues"
+    },
+    "homepage": "https://github.com/UofA-Blueprint/ICard#readme",
+    "devDependencies": {
+        "@shelf/jest-mongodb": "^3.0.1",
+        "cross-env": "^7.0.3",
+        "eslint": "^8.17.0",
+        "jest": "^28.1.1",
+        "supertest": "^6.2.3"
+    },
+    "dependencies": {
+        "dotenv": "^16.0.1",
+        "express": "^4.18.1",
+        "mongodb": "^4.7.0",
+        "nodemon": "^2.0.16",
+        "prettier": "^2.6.2"
+    },
+    "jest": {
+        "testEnvironment": "node",
+        "coveragePathIgnorePatterns": [
+            "/node_modules/"
+        ],
+        "preset": "@shelf/jest-mongodb"
+    }
+}

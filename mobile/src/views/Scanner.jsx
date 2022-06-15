@@ -1,6 +1,7 @@
 'use strict';
 
 import React, {Component} from 'react';
+import CaptureMarker from '../components/CaptureMarker';
 
 import {
   AppRegistry,
@@ -8,6 +9,7 @@ import {
   Text,
   TouchableOpacity,
   Linking,
+  View,
 } from 'react-native';
 
 import QRCodeScanner from 'react-native-qrcode-scanner';
@@ -24,6 +26,7 @@ class Scanner extends Component {
         onRead={this.onSuccess}
         flashMode={RNCamera.Constants.FlashMode.auto}
         showMarker={true}
+        customMarker={<CaptureMarker />}
       />
     );
   }

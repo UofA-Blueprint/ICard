@@ -16,7 +16,7 @@ describe('test db connection', () => {
         // disconnect from mongoDB
         await mongoose.connection.close()
     })
-
+    jest.setTimeout(20000) // added a timeout to avoid the test to fail as the MongoDB connection is slow
     test('should return 1', async () => {
         // test db connection
         const response = await request(app).get('/')

@@ -7,11 +7,16 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+
 import Scanner from './src/views/Scanner';
 
 const App = () => {
-  return <Scanner />;
+  return (
+    <SafeAreaProvider>
+      <Scanner />
+    </SafeAreaProvider>
+  );
 };
 
 export default App;

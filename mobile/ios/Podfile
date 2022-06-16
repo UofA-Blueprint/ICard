@@ -24,6 +24,10 @@ target 'ICard' do
   pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
   pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
 
+  pod 'react-native-safe-area-context', :path => '../node_modules/react-native-safe-area-context'
+
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'ICardTests' do
     inherit! :complete
     # Pods for testing

@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 10,
   },
   bottomLeftEdge: {
-    position: 'absolute',
     top: 50,
     left: -100,
     borderLeftWidth: 3,
@@ -36,7 +35,6 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 10,
   },
   topRightEdge: {
-    position: 'absolute',
     top: -100,
     left: 50,
     borderRightWidth: 3,
@@ -44,7 +42,6 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 10,
   },
   bottomRightEdge: {
-    position: 'absolute',
     top: 50,
     left: 50,
     borderRightWidth: 3,

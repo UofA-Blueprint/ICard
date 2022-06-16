@@ -1,11 +1,12 @@
 {
     "name": "icard-backend",
     "version": "1.0.0",
-    "description": "serve the iCard backend",
-    "main": "app.js",
+    "description": "serve the ICard backend",
+    "main": "src/server.js",
     "scripts": {
         "start": "nodemon src/server.js",
-        "test": "jest"
+        "test": "jest",
+        "lint": "eslint --fix --ext .js,.jsx ."
     },
     "repository": {
         "type": "git",
@@ -18,13 +19,13 @@
     },
     "homepage": "https://github.com/UofA-Blueprint/ICard#readme",
     "devDependencies": {
-        "@shelf/jest-mongodb": "^3.0.1",
         "cross-env": "^7.0.3",
         "eslint": "^8.17.0",
+        "eslint-config-google": "^0.14.0",
         "jest": "^28.1.1",
-        "supertest": "^6.2.3",
         "nodemon": "^2.0.16",
-        "prettier": "^2.6.2"
+        "prettier": "^2.6.2",
+        "supertest": "^6.2.3"
     },
     "dependencies": {
         "dotenv": "^16.0.1",

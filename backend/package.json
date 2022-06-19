@@ -1,0 +1,42 @@
+{
+    "name": "icard-backend",
+    "version": "1.0.0",
+    "description": "serve the ICard backend",
+    "main": "src/server.js",
+    "scripts": {
+        "start": "nodemon src/server.js",
+        "test": "jest",
+        "lint": "eslint --fix --ext .js,.jsx ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/UofA-Blueprint/ICard.git"
+    },
+    "author": "UofA Blueprint",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/UofA-Blueprint/ICard/issues"
+    },
+    "homepage": "https://github.com/UofA-Blueprint/ICard#readme",
+    "devDependencies": {
+        "cross-env": "^7.0.3",
+        "eslint": "^8.17.0",
+        "eslint-config-google": "^0.14.0",
+        "jest": "^28.1.1",
+        "nodemon": "^2.0.16",
+        "prettier": "^2.6.2",
+        "supertest": "^6.2.3"
+    },
+    "dependencies": {
+        "dotenv": "^16.0.1",
+        "eslint-plugin-jest": "^26.5.3",
+        "express": "^4.18.1",
+        "mongoose": "^6.3.6"
+    },
+    "jest": {
+        "testEnvironment": "node",
+        "coveragePathIgnorePatterns": [
+            "/node_modules/"
+        ]
+    }
+}

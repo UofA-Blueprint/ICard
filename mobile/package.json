@@ -35,9 +35,12 @@
   },
   "jest": {
     "preset": "react-native",
-    "verbose": true,
+    "testEnvironment": "node",
+    "transform": {
+      "node_modules/variables/.+\\.(j|t)sx?$": "react-native"
+    },
     "transformIgnorePatterns": [
-      "<rootDir>/node_modules/(react-clone-referenced-element|@react-native-community|react-navigation|@react-navigation/.*|@unimodules/.*|native-base|react-native-code-push)"
+      "node_modules/(?!@react-native|react-native/.*)"
     ]
   }
 }

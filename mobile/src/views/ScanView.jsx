@@ -7,7 +7,7 @@ import CustomBottomSheet from '../components/CustomBottomSheet';
 
 const HOC = gestureHandlerRootHOC(() => <CustomBottomSheet />);
 
-const Scan = () => {
+const ScanView = () => {
   return (
     <View style={styles.container}>
       <HOC />
@@ -21,4 +21,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Scan;
+export default ScanView;

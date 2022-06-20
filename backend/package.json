@@ -28,9 +28,12 @@
         "supertest": "^6.2.3"
     },
     "dependencies": {
+        "bcryptjs": "^2.4.3",
         "dotenv": "^16.0.1",
         "eslint-plugin-jest": "^26.5.3",
         "express": "^4.18.1",
+        "joi": "^17.6.0",
+        "jsonwebtoken": "^8.5.1",
         "mongoose": "^6.3.6"
     },
     "jest": {

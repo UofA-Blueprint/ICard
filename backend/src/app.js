@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
+var cors = require('cors')
 
 const studentsRouter = require('./routes/Students')
 const authRouter = require('./routes/Auth')
@@ -16,6 +17,8 @@ mongoose.connect(process.env.MONGO_URI, {
 
 var db = mongoose.connection // get the connection
 db.on('error', console.error.bind(console, 'connection error:'))
+
+app.use(cors())
 
 app.use(express.json()) // for parsing application/json
 

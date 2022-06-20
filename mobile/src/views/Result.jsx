@@ -1,7 +1,7 @@
 import {Text} from 'react-native';
 
-const Result = displayText => {
-  return <Text>{displayText}</Text>;
+const Result = props => {
+  return <Text>{props.displayText}</Text>;
 };
 
 export default Result;

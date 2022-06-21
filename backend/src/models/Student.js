@@ -30,7 +30,7 @@ const StudentSchema = new mongoose.Schema(
             required: true,
         },
     },
-    { collection: 'temp' }
+    { collection: 'temp',  versionKey: false }
 ) // set the collection name to temp, this is just for testing
 
 module.exports = mongoose.model('Student', StudentSchema)

@@ -17,4 +17,3 @@ run the following in the terminal to run test suites
 
 ```
 npm test
-```

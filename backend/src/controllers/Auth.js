@@ -28,12 +28,32 @@ module.exports = {
                 .status(400)
                 .json({ message: 'Incorrect username or password' }) // if password is incorrect, return 400 with error message
 
+        // If the student exists and the password is correct, fetch the student data from the database
+        // and send it back to the client with a auth token
+        const studentDetails = await Student.findOne({ email: req.body.email })
+        if (!studentDetails)
+            return res.status(400).json({ message: 'Student not found' })
+
         // Create token
+
+        //! Token doesn't have an expiration date and time
+
         const token = jwt.sign(
             { _id: checkStudent._id },
             process.env.JWT_SECRET
         )
-        res.header('auth-token', token).json({ token: token }) // return token
+        res.header('auth-token', token).json({
+            // structure the response
+            token: token,
+            user: {
+                _id: studentDetails._id,
+                name: studentDetails.name,
+                email: studentDetails.email,
+                icard_number: studentDetails.icard_number,
+                active: studentDetails.active,
+                isaf_paying_status: studentDetails.isaf_paying_status,
+            },
+        })
     },
     register: async (req, res) => {
         const { error } = validateRegister(req.body) // validate the data

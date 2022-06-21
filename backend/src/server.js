@@ -1,5 +1,5 @@
 const app = require('./app')
+require('dotenv').config()
+// const port = 8080
 
-const port = 8080
-
-app.listen(port) // start the server
+app.listen(process.env.PORT || 8080) // start the server

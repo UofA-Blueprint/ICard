@@ -14,15 +14,14 @@ module.exports = {
         const { error } = validateStudent(req.body) // validate the data
         if (error)
             return res.status(400).json({ message: error.details[0].message }) // if error, return 400 with error message
-
         // Check if student already exists
         const checkStudent = await Student.findOne({ email: req.body.email })
         if (checkStudent)
             return res.status(400).json({ message: 'Student already exists' }) // if student already exists, return 400 with error message
 
-        new Student(req.body) // create a new student
+        const student = new Student(req.body) // create a new student
         try {
-            const newStudent = await Student.save() // save the student
+            const newStudent = await Student.create(student) // create the student
             res.json(newStudent) // return the student
         } catch (err) {
             res.status(500).json({ message: err }) // if error, send 500 status
@@ -38,17 +37,10 @@ module.exports = {
 
         try {
             // Update the student
-            await Student.findByIdAndUpdate(
+            const updatedStudent = await Student.findByIdAndUpdate(
                 req.params.studentId,
-                req.body,
-                (err, student) => {
-                    if (err) {
-                        res.status(500).json({ message: err }) // if error, send 500 status
-                    } else {
-                        res.json(student)
-                    }
-                }
-            )
+                req.body)
+            res.json(updatedStudent) // return the student
         } catch (err) {
             res.status(500).json({ message: err }) // if error, send 500 status
         }

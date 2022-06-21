@@ -24,7 +24,7 @@ app.use(express.json()) // for parsing application/json
 
 app.get('/', (req, res) => {
     // test db connection
-    res.json({ status: db.readyState })
+    res.json({ status: db.readyState, database: db.name })
 })
 
 app.use('/api/auth', authRouter)

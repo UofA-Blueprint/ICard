@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema(
             maxlength: 1024,
         },
     },
-    { collection: 'auth' }
+    { collection: 'auth', versionKey: false }
 )
 
 module.exports = mongoose.model('User', userSchema)

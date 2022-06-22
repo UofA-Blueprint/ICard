@@ -1,7 +1,9 @@
 import React from 'react';
 
-import {Dimensions, StyleSheet, View} from 'react-native';
+import {Dimensions, StyleSheet, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+
+import CustomScanIcon from './CustomScanIcon';
 
 const CaptureMarker = () => {
   return (
@@ -15,10 +17,8 @@ const CaptureMarker = () => {
           iconStyle={styles.backButton}
           style={styles.iconContainer}></Icon.Button>
       </View>
-      <Icon
-        name="expand"
-        size={Dimensions.get('window').width * 0.6}
-        color="#2E6933"></Icon>
+      <Text style={styles.instruction}>Scan an ICard barcode</Text>
+      <CustomScanIcon styles={styles.marker} />
     </View>
   );
 };

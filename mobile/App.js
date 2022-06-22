@@ -7,14 +7,14 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import Home from './src/views/Home';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import ScanView from './src/views/ScanView';
 
 const App = () => {
   return (
-    <SafeAreaView>
-      <Home />
-    </SafeAreaView>
+    <SafeAreaProvider>
+      <ScanView></ScanView>
+    </SafeAreaProvider>
   );
 };
 

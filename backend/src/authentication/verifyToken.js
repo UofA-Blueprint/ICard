@@ -20,4 +20,21 @@ function verifyToken(req, res, next) {
     }
 }
 
-module.exports = verifyToken
+function verifyApiKey(req, res, next) {
+    const apiKey = req.header('api-key')
+    if (!apiKey)
+        return res
+            .status(401)
+            .json({ message: 'Access denied. No api-key provided.' })
+
+    if (apiKey !== process.env.API_KEY) {
+        return res.status(401).json({ message: 'Invalid api-key.' })
+    } else {
+        next()
+    }
+}
+
+module.exports = {
+    verifyToken: verifyToken,
+    verifyApiKey: verifyApiKey,
+}

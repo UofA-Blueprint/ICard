@@ -8,12 +8,12 @@
 
 import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import ScanView from './src/views/ScanView';
+import HomeView from './src/views/HomeView';
 
 const App = () => {
   return (
     <SafeAreaProvider>
-      <ScanView></ScanView>
+      <HomeView></HomeView>
     </SafeAreaProvider>
   );
 };

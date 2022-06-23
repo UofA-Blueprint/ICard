@@ -3,7 +3,7 @@ import {StyleSheet, View, FlatList} from 'react-native';
 import Header from '../components/Header';
 import VendorCard from '../components/VendorCard';
 
-import vendorData from '../helpers/vendorMockData';
+import vendorData from '../data/vendorMockData';
 
 const HomeView = () => {
   const renderItem = ({item}) => (

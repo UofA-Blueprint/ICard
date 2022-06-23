@@ -17,20 +17,22 @@ if (process.env.NODE_ENV === 'test') {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
-} else if (process.env.VERSION === 'production') {
-    mongoose.connect(process.env.MONGO_URI, {
+} else {
+    if (process.env.VERSION === 'production') {
         // if we are in production mode, we use the production database
-        // connect to mongoDB
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
-} else if (process.env.VERSION === 'staging') {
-    mongoose.connect(process.env.MONGO_URI_STAGING, {
+        mongoose.connect(process.env.MONGO_URI_PROD, {
+            // connect to mongoDB
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        })
+    } else if (process.env.VERSION === 'staging') {
         // if we are in staging mode, we use the staging database
-        // connect to mongoDB
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
+        mongoose.connect(process.env.MONGO_URI_STAG, {
+            // connect to mongoDB
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        })
+    }
 }
 
 var db = mongoose.connection // get the connection

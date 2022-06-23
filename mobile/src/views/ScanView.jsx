@@ -3,7 +3,7 @@ import {View, StyleSheet} from 'react-native';
 
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
-import CustomBottomSheet from '../components/CustomBottomSheet';
+import CustomBottomSheet from '../components/scan/CustomBottomSheet';
 
 const HOC = gestureHandlerRootHOC(() => <CustomBottomSheet />);
 

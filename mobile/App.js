@@ -9,7 +9,6 @@
 import React, {useState} from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import HomeView from './src/views/HomeView';
-<<<<<<< HEAD
 import ScanView from './src/views/ScanView';
 import RegistrationView from './src/views/RegistrationView';
 import {NavigationContainer} from '@react-navigation/native';
@@ -17,13 +16,10 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Tab = createBottomTabNavigator();
-=======
->>>>>>> develop
 
 const App = () => {
   return (
     <SafeAreaProvider>
-<<<<<<< HEAD
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={({route}) => ({
@@ -59,9 +55,6 @@ const App = () => {
           <Tab.Screen name="My ICard" component={RegistrationView} />
         </Tab.Navigator>
       </NavigationContainer>
-=======
-      <HomeView></HomeView>
->>>>>>> develop
     </SafeAreaProvider>
   );
 };

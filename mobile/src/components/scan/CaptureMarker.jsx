@@ -4,7 +4,7 @@ import {StyleSheet, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useNavigation} from '@react-navigation/native';
 
-import CustomScanIcon from '../CustomScanIcon';
+import CustomScanIcon from './CustomScanIcon';
 
 const CaptureMarker = () => {
   const navigation = useNavigation();

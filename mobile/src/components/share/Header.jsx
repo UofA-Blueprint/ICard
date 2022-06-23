@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../../assets/ISA-logo.png')}
+        source={require('../../../assets/ISA-logo.png')}
         style={styles.logo}
       />
     </View>

@@ -2,7 +2,7 @@ import React, {useCallback, useMemo, useRef, useState} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {BottomSheetModal, BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import QRCodeScanner from 'react-native-qrcode-scanner';
-import CaptureMarker from '../components/CaptureMarker';
+import CaptureMarker from './CaptureMarker';
 
 const CustomBottomSheet = () => {
   // result Text

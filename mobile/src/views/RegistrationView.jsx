@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-import Header from '../components/Header';
+import Header from '../components/share/Header';
 
 const RegistrationView = () => {
   return (

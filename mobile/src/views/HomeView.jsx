@@ -26,9 +26,6 @@ const HomeView = () => {
   );
 };
 const styles = StyleSheet.create({
-  welcome: {
-    color: 'violet',
-  },
   container: {
     alignItems: 'center',
     justifyContent: 'center',

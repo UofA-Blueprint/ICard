@@ -9,12 +9,16 @@
 import React from 'react';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import HomeView from './src/views/HomeView';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 const App = () => {
   return (
-    <SafeAreaProvider>
-      <HomeView></HomeView>
-    </SafeAreaProvider>
+    <NavigationContainer>
+      <SafeAreaProvider>
+        <HomeView></HomeView>
+      </SafeAreaProvider>
+    </NavigationContainer>
   );
 };
 

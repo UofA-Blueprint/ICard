@@ -1,18 +1,20 @@
 import React from 'react';
 
-import {Dimensions, StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import {useNavigation} from '@react-navigation/native';
 
 import CustomScanIcon from './CustomScanIcon';
 
 const CaptureMarker = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.backButtonContainer}>
         <Icon.Button
           name="arrow-left"
           backgroundColor="transparent"
-          onPress={() => console.log('Back')}
+          onPress={() => navigation.goBack()}
           size={30}
           iconStyle={styles.backButton}
           style={styles.iconContainer}></Icon.Button>

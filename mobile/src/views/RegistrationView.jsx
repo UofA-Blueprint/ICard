@@ -2,12 +2,13 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
 import Header from '../components/share/Header';
+import {globalStyleSheet} from '../components/share/Theme';
 
 const RegistrationView = () => {
   return (
-    <View style={styles.container}>
+    <View style={globalStyleSheet.container}>
       <Header />
-      <View style={styles.bodyContainer}>
+      <View style={[styles.bodyContainer]}>
         <Text>My ICard</Text>
       </View>
     </View>
@@ -15,11 +16,6 @@ const RegistrationView = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    alignItems: 'center',
-    height: '100%',
-    backgroundColor: 'white',
-  },
   bodyContainer: {
     justifyContent: 'center',
   },

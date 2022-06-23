@@ -1,8 +1,9 @@
 import React, {useCallback, useMemo, useRef, useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text} from 'react-native';
 import {BottomSheetModal, BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import CaptureMarker from './CaptureMarker';
+import {globalStyleSheet} from '../share/Theme';
 
 const CustomBottomSheet = () => {
   // result Text
@@ -30,11 +31,11 @@ const CustomBottomSheet = () => {
   // renders
   return (
     <BottomSheetModalProvider>
-      <View style={styles.container}>
+      <View style={globalStyleSheet.fullScreen}>
         <QRCodeScanner
-          containerStyle={styles.scannerContainer}
-          cameraContainerStyle={styles.cameraContainer}
-          cameraStyle={styles.camera}
+          containerStyle={globalStyleSheet.fullScreen}
+          cameraContainerStyle={globalStyleSheet.fullScreen}
+          cameraStyle={globalStyleSheet.fullScreen}
           ref={scannerRef}
           onRead={onSuccess}
           showMarker
@@ -46,7 +47,7 @@ const CustomBottomSheet = () => {
           snapPoints={snapPoints}
           onDismiss={onCloseModal}
           onChange={handleSheetChanges}>
-          <View style={styles.contentContainer}>
+          <View style={globalStyleSheet.container}>
             <Text>{result}</Text>
           </View>
         </BottomSheetModal>
@@ -54,27 +55,5 @@ const CustomBottomSheet = () => {
     </BottomSheetModalProvider>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  contentContainer: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  scannerContainer: {
-    flex: 1,
-    alignItems: 'center',
-    height: '100%',
-  },
-  cameraContainer: {
-    height: '100%',
-  },
-  camera: {
-    height: '100%',
-  },
-});
 
 export default CustomBottomSheet;

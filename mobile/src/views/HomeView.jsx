@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, View, FlatList} from 'react-native';
 import Header from '../components/share/Header';
 import VendorCard from '../components/home/VendorCard';
+import {globalStyleSheet} from '../components/share/Theme';
 
 import vendorData from '../data/vendorMockData';
 
@@ -21,23 +22,18 @@ const HomeView = () => {
         renderItem={renderItem}
         keyExtractor={item => item.id}
         style={styles.vendorList}
-        contentContainerStyle={{
-          marginBottom: 20,
-          paddingVertical: 40,
-        }}
+        contentContainerStyle={globalStyleSheet.listContentContainer}
       />
     </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'white',
+    ...globalStyleSheet.container,
+    ...globalStyleSheet.flexibleContainer,
   },
   vendorList: {
-    flex: 1,
+    ...globalStyleSheet.flexibleContainer,
     paddingHorizontal: 20,
   },
 });

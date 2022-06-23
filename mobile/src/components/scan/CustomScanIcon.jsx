@@ -1,6 +1,8 @@
 import React from 'react';
 
-import {Dimensions, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+
+import {colors} from '../share/Theme';
 
 const CustomScanIcon = () => {
   return (
@@ -20,7 +22,7 @@ const styles = StyleSheet.create({
   },
   borderBox: {
     position: 'absolute',
-    borderColor: '#2E6933',
+    borderColor: colors.primary,
     width: 40,
     height: 40,
   },

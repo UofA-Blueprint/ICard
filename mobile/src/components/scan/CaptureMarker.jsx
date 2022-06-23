@@ -3,7 +3,7 @@ import React from 'react';
 import {Dimensions, StyleSheet, View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import CustomScanIcon from './CustomScanIcon';
+import CustomScanIcon from '../CustomScanIcon';
 
 const CaptureMarker = () => {
   return (

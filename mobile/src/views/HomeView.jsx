@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, FlatList} from 'react-native';
-import Header from '../components/Header';
-import VendorCard from '../components/VendorCard';
+import Header from '../components/share/Header';
+import VendorCard from '../components/home/VendorCard';
 
 import vendorData from '../data/vendorMockData';
 

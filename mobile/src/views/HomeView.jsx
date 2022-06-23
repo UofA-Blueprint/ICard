@@ -21,20 +21,24 @@ const HomeView = () => {
         renderItem={renderItem}
         keyExtractor={item => item.id}
         style={styles.vendorList}
+        contentContainerStyle={{
+          marginBottom: 20,
+          backgroundColor: 'blue',
+          paddingBottom: 20,
+        }}
       />
     </View>
   );
 };
 const styles = StyleSheet.create({
-  welcome: {
-    color: 'violet',
-  },
   container: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    height: '100%',
+    backgroundColor: 'white',
   },
   vendorList: {
+    flex: 1,
     paddingVertical: 30,
     paddingHorizontal: 20,
   },

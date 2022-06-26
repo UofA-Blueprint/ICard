@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 
 const StudentSchema = new mongoose.Schema(
     {
-        // create a new schema for the student
         name: {
             type: String,
             required: true,
@@ -31,6 +30,6 @@ const StudentSchema = new mongoose.Schema(
         },
     },
     { collection: 'students', versionKey: false }
-) // set the collection name to temp, this is just for testing
+)
 
 module.exports = mongoose.model('Student', StudentSchema)

@@ -5,7 +5,7 @@
     "main": "src/server.js",
     "scripts": {
         "start": "nodemon src/server.js",
-        "test": "jest",
+        "test": "jest --runInBand",
         "lint": "eslint --fix --ext .js,.jsx ."
     },
     "repository": {

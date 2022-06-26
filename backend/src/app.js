@@ -5,7 +5,6 @@ const dotenv = require('dotenv')
 var cors = require('cors')
 
 const studentsRouter = require('./routes/Students')
-const authRouter = require('./routes/Auth')
 
 const app = express()
 dotenv.config()
@@ -47,7 +46,6 @@ app.get('/test_db_conn', (req, res) => {
     res.json({ status: db.readyState, database: db.name })
 })
 
-app.use('/api/auth', authRouter) // auth routes
 app.use('/api/students', studentsRouter) // student routes
 
 module.exports = app // export the app for testing

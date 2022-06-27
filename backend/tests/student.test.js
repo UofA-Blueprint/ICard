@@ -15,7 +15,6 @@ describe('test student routes', () => {
     afterAll(async () => {
         // disconnect from mongoDB
         var db = mongoose.connection
-        await db.collection('auth').deleteMany({})
         await db.collection('students').deleteMany({})
         await mongoose.connection.close()
     })
@@ -23,6 +22,7 @@ describe('test student routes', () => {
 
     const api_key = process.env.API_KEY
     var userId = ''
+    var icard_number = ''
 
     test('POST /api/students/ -> should return status 201', async () => {
         const response = await request(app)
@@ -38,16 +38,28 @@ describe('test student routes', () => {
             })
         expect(response.statusCode).toBe(201)
         userId = response.body._id // save the new userId to use in the following tests
+        icard_number = response.body.icard_number // save the new icard_number to use in the following tests
     })
 
-    test('GET /api/students/:student -> status code should be 200 and userId should match', async () => {
-        // login to get the token and userId such that we can use it in the following tests
-
-        // get the student
-        const response2 = await request(app)
+    test('GET /api/students/:studentId -> status code should be 200', async () => {
+        const response = await request(app)
             .get('/api/students/' + userId)
             .set('api-key', api_key) // set the token in the header
-        expect(response2.statusCode).toBe(200)
+        expect(response.statusCode).toBe(200)
+    })
+
+    test('GET /api/students/icard/:icard_number -> status code should be 200', async () => {
+        const response = await request(app)
+            .get('/api/students/icard/' + icard_number)
+            .set('api-key', api_key)
+        expect(response.statusCode).toBe(200)
+    })
+
+    test('GET /api/students/all -> status code should be 200', async () => {
+        const response = await request(app)
+            .get('/api/students/all')
+            .set('api-key', api_key)
+        expect(response.statusCode).toBe(200)
     })
 
     test('PUT /api/students/:studentId -> should return status 200 with updated student info', async () => {

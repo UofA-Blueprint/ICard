@@ -1,4 +1,7 @@
 {
   "name": "ICard",
-  "displayName": "ICard"
+  "expo": {
+    "name": "ICard",
+    "slug": "icard"
+  }
 }

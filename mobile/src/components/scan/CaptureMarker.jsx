@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useNavigation} from '@react-navigation/native';
 
 import CustomScanIcon from './CustomScanIcon';
-import {globalStyleSheet, colors} from '../share/Theme';
+import {globalStyleSheet, colors} from '../shared/Theme';
 
 const CaptureMarker = () => {
   const navigation = useNavigation();

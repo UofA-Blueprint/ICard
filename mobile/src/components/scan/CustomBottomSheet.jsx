@@ -3,7 +3,7 @@ import {View, Text} from 'react-native';
 import {BottomSheetModal, BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import CaptureMarker from './CaptureMarker';
-import {globalStyleSheet} from '../share/Theme';
+import {globalStyleSheet} from '../shared/Theme';
 
 const CustomBottomSheet = () => {
   // result Text

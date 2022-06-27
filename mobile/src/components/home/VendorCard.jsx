@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import {colors, globalStyleSheet} from '../share/Theme';
+import {colors, globalStyleSheet} from '../shared/Theme';
 
 const VendorCard = ({vendorName, address, description}) => {
   return (

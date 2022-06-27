@@ -2,7 +2,7 @@ import React from 'react';
 
 import {StyleSheet, View} from 'react-native';
 
-import {colors} from '../share/Theme';
+import {colors} from '../shared/Theme';
 
 const CustomScanIcon = () => {
   return (

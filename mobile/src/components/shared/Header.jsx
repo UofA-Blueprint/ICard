@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Image, StyleSheet} from 'react-native';
-import {colors, globalStyleSheet} from '../share/Theme';
+import {colors, globalStyleSheet} from './Theme';
 
 const Header = () => {
   return (

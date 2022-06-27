@@ -1,8 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-import Header from '../components/share/Header';
-import {globalStyleSheet} from '../components/share/Theme';
+import Header from '../components/shared/Header';
+import {globalStyleSheet} from '../components/shared/Theme';
 
 const RegistrationView = () => {
   return (

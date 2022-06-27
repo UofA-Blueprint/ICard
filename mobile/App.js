@@ -13,8 +13,8 @@ import ScanView from './src/views/ScanView';
 import RegistrationView from './src/views/RegistrationView';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import ScreenOption from './src/components/share/ScreenOption';
-import {globalStyleSheet} from './src/components/share/Theme';
+import ScreenOption from './src/components/shared/ScreenOption';
+import {globalStyleSheet} from './src/components/shared/Theme';
 
 const Tab = createBottomTabNavigator();
 

@@ -18,6 +18,14 @@ module.exports = {
             res.status(500).json({ message: err })
         }
     },
+    getStudentByIcard: async (req, res) => {
+        try {
+            const student = await Student.find({ icard_number: req.params.icard_number })
+            res.json(student)
+        } catch (err) {
+            res.status(500).json({ message: err })
+        }
+    },
     create: async (req, res) => {
         const { error } = validateStudent(req.body) // validate the data
         if (error)

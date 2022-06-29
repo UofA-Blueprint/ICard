@@ -1,17 +1,19 @@
 # ICard Backend
 
-## Run
+-   make sure Node.js v16.13.2 is installed on your machine
+-   run the following in the terminal to install all the required node modules
 
-Start the server
-
-```bash
-  npm start
+```
+npm install
 ```
 
-## Tests
+run the following in the terminal to start local server
 
-To run tests, run the following command
-
-```bash
-  npm test
 ```
+npm start
+```
+
+run the following in the terminal to run test suites
+
+```
+npm test

@@ -4,7 +4,7 @@
     "description": "serve the ICard backend",
     "main": "src/server.js",
     "scripts": {
-        "start": "nodemon src/server.js",
+        "start": "node src/server.js",
         "test": "jest --runInBand",
         "lint": "eslint --fix --ext .js,.jsx ."
     },

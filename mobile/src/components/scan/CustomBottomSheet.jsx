@@ -2,7 +2,7 @@ import React, {useCallback, useMemo, useRef, useState, useEffect} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {BottomSheetModal, BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import {BarCodeScanner} from 'expo-barcode-scanner';
-import CaptureMarker from './CaptureMarker';
+import CaptureMarker from './ScannerForeground';
 
 import {globalStyleSheet} from '../../utilites/Theme';
 

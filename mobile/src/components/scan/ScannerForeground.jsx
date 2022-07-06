@@ -7,7 +7,13 @@ import {useNavigation} from '@react-navigation/native';
 import CustomScanIcon from './CustomScanIcon';
 import {colors} from '../../utilites/Theme';
 
-const CaptureMarker = () => {
+const ScannerForeground = () => {
+  /*
+  The foreground elements of the scan page:
+  - The back button
+  - The instruction label
+  - The capture marker
+  */
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
@@ -53,4 +59,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CaptureMarker;
+export default ScannerForeground;

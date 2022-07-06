@@ -1,4 +1,4 @@
-package com.icard.newarchitecture;
+package com.llamoss0501.icard.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.icard.BuildConfig;
-import com.icard.newarchitecture.components.MainComponentsRegistry;
-import com.icard.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.llamoss0501.icard.BuildConfig;
+import com.llamoss0501.icard.newarchitecture.components.MainComponentsRegistry;
+import com.llamoss0501.icard.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

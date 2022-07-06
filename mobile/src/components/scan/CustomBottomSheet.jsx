@@ -1,52 +1,63 @@
-import React, {useCallback, useMemo, useRef, useState} from 'react';
-import {View, Text} from 'react-native';
+import React, {useCallback, useMemo, useRef, useState, useEffect} from 'react';
+import {View, Text, StyleSheet} from 'react-native';
 import {BottomSheetModal, BottomSheetModalProvider} from '@gorhom/bottom-sheet';
-import QRCodeScanner from 'react-native-qrcode-scanner';
+import {BarCodeScanner} from 'expo-barcode-scanner';
 import CaptureMarker from './CaptureMarker';
-import {globalStyleSheet} from '../shared/Theme';
+
+import {globalStyleSheet} from '../../utilites/Theme';
 
 const CustomBottomSheet = () => {
-  // result Text
-  const [result, setResult] = useState('');
-
-  // ref
+  // Bottom Sheet Ref
   const bottomSheetModalRef = useRef(null);
 
-  // variables
+  // Snapping Points for Bottom Sheet
   const snapPoints = useMemo(() => ['25%', '50%'], []);
 
-  const scannerRef = useRef(null);
-  // callbacks
-  const onSuccess = useCallback(e => {
-    setResult(e.data);
-    bottomSheetModalRef.current?.present();
-  }, []);
-  const handleSheetChanges = useCallback(index => {
-    console.log('handleSheetChanges', index);
-  }, []);
-  const onCloseModal = useCallback(() => {
-    scannerRef.current?.reactivate();
+  // Scan Result
+  const [result, setResult] = useState('');
+
+  const [hasPermission, setHasPermission] = useState(null);
+  const [scanned, setScanned] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      const {status} = await BarCodeScanner.requestPermissionsAsync();
+      setHasPermission(status === 'granted');
+    })();
   }, []);
 
+  const handleBarCodeScanned = ({type, data}) => {
+    setScanned(true);
+    setResult(data);
+    bottomSheetModalRef.current?.present();
+  };
+
+  // Dismiss Bottom Sheet
+  const onCloseModal = useCallback(() => {
+    setScanned(false);
+  }, []);
+
+  if (hasPermission === null) {
+    return <View />;
+  }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
   // renders
   return (
     <BottomSheetModalProvider>
-      <View style={globalStyleSheet.fullScreen}>
-        <QRCodeScanner
-          containerStyle={globalStyleSheet.fullScreen}
-          cameraContainerStyle={globalStyleSheet.fullScreen}
-          cameraStyle={globalStyleSheet.fullScreen}
-          ref={scannerRef}
-          onRead={onSuccess}
-          showMarker
-          customMarker={<CaptureMarker />}
+      <View style={styles.container}>
+        <BarCodeScanner
+          onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+          style={StyleSheet.absoluteFillObject}
         />
+        <CaptureMarker style={styles.marker} />
         <BottomSheetModal
           ref={bottomSheetModalRef}
           index={1}
           snapPoints={snapPoints}
           onDismiss={onCloseModal}
-          onChange={handleSheetChanges}>
+          onChange={() => {}}>
           <View style={globalStyleSheet.container}>
             <Text>{result}</Text>
           </View>
@@ -55,5 +66,15 @@ const CustomBottomSheet = () => {
     </BottomSheetModalProvider>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  marker: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+});
 
 export default CustomBottomSheet;

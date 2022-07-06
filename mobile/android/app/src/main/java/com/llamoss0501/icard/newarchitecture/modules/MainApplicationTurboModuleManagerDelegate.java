@@ -1,4 +1,4 @@
-package com.icard.newarchitecture.modules;
+package com.llamoss0501.icard.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

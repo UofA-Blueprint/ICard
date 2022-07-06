@@ -1,5 +1,5 @@
 import expo.modules.ReactActivityDelegateWrapper;
-package com.icard;
+package com.llamoss0501.icard;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

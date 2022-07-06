@@ -1,6 +1,6 @@
 'use strict';
 import React from 'react';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import {colors, globalStyleSheet} from './Theme';
 
 const ScreenOption = ({route}) => ({
@@ -16,7 +16,7 @@ const ScreenOption = ({route}) => ({
       iconName = focused ? 'credit-card' : 'credit-card-outline';
     }
     // You can return any component that you like here!
-    return <Icon name={iconName} size={size} color={color} />;
+    return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
   },
   tabBarActiveTintColor: colors.primary,
   tabBarInactiveTintColor: colors.gray,

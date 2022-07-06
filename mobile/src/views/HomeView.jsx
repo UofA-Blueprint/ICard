@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View, FlatList} from 'react-native';
 import Header from '../components/shared/Header';
 import VendorCard from '../components/home/VendorCard';
-import {globalStyleSheet} from '../components/shared/Theme';
+import {globalStyleSheet} from '../utilites/Theme';
 
 import vendorData from '../data/vendorMockData';
 

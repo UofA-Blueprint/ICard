@@ -7,20 +7,20 @@
  */
 
 import React from 'react';
-import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import HomeView from './src/views/HomeView';
 import ScanView from './src/views/ScanView';
 import RegistrationView from './src/views/RegistrationView';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import ScreenOption from './src/components/shared/ScreenOption';
-import {globalStyleSheet} from './src/components/shared/Theme';
+import ScreenOption from './src/utilites/ScreenOption';
+import {globalStyleSheet} from './src/utilites/Theme';
 
 const Tab = createBottomTabNavigator();
 
 const App = () => {
   return (
-    <SafeAreaProvider>
+    <SafeAreaView style={{flex: 1}}>
       <NavigationContainer>
         <Tab.Navigator screenOptions={ScreenOption}>
           <Tab.Screen name="Home" component={HomeView} />
@@ -32,7 +32,7 @@ const App = () => {
           <Tab.Screen name="My ICard" component={RegistrationView} />
         </Tab.Navigator>
       </NavigationContainer>
-    </SafeAreaProvider>
+    </SafeAreaView>
   );
 };
 

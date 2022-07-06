@@ -31,12 +31,12 @@ const globalStyleSheet = StyleSheet.create({
     borderTopColor: colors.primary,
     justifyContent: 'center',
     height: 60,
-    padding: 12,
+    padding: 8,
   },
   tabBarHidden: {display: 'none'},
   tabBarLabel: {
     fontSize: 8,
-    flex: 1,
+    padding: 8,
   },
   listContentContainer: {marginBottom: 20, paddingVertical: 40},
 });

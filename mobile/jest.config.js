@@ -1,5 +1,5 @@
 module.exports = {
-  preset: 'react-native',
+  preset: 'jest-expo',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   transformIgnorePatterns: [
     'node_modules/(?!(@react-native' +
@@ -14,9 +14,15 @@ module.exports = {
       '|react-native-camera' +
       '|react-native-vector-icons' +
       '|react-native-vision-camera' +
+      '|@react-navigation' +
       '|expo-barcode-scanner' +
       '|@expo' +
       '|expo' +
+      '|expo-modules-core' +
+      '|expo-font' +
+      '|jest-runtime' +
+      '|expo-asset' +
+      '|expo-constants' +
       ')/)',
   ],
   transform: {

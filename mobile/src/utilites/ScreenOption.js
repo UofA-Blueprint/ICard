@@ -6,6 +6,7 @@ import {colors, globalStyleSheet} from './Theme';
 const ScreenOption = ({route}) => ({
   headerShown: false,
   tabBarStyle: globalStyleSheet.tabBar,
+  tabBarLabelStyle: globalStyleSheet.tabBarLabel,
   tabBarIcon: ({focused, color, size}) => {
     let iconName;
     if (route.name === 'Home') {
@@ -15,7 +16,7 @@ const ScreenOption = ({route}) => ({
     } else if (route.name === 'My ICard') {
       iconName = focused ? 'credit-card' : 'credit-card-outline';
     }
-    // You can return any component that you like here!
+
     return <MaterialCommunityIcons name={iconName} size={size} color={color} />;
   },
   tabBarActiveTintColor: colors.primary,

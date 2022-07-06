@@ -7,7 +7,13 @@ import CaptureMarker from './CaptureMarker';
 import {globalStyleSheet} from '../../utilites/Theme';
 
 const CustomBottomSheet = () => {
-  // Bottom Sheet Ref
+  /*
+  Create an Bottom Sheet that encompass a Bar Code Scanner View.
+  The Bottom Sheet wraps around a Camera View, a Custom Marker that 
+  is absolutely positioned, and a Modal which display the result of the scan.
+  */
+
+  // Declare a Bottom Sheet Ref
   const bottomSheetModalRef = useRef(null);
 
   // Snapping Points for Bottom Sheet
@@ -16,9 +22,13 @@ const CustomBottomSheet = () => {
   // Scan Result
   const [result, setResult] = useState('');
 
+  // Permission to use Camera
   const [hasPermission, setHasPermission] = useState(null);
+
+  // State of the scan
   const [scanned, setScanned] = useState(false);
 
+  // Ask for permission
   useEffect(() => {
     (async () => {
       const {status} = await BarCodeScanner.requestPermissionsAsync();
@@ -26,6 +36,7 @@ const CustomBottomSheet = () => {
     })();
   }, []);
 
+  // On successful scan
   const handleBarCodeScanned = ({type, data}) => {
     setScanned(true);
     setResult(data);
@@ -37,12 +48,15 @@ const CustomBottomSheet = () => {
     setScanned(false);
   }, []);
 
+  // If no permission is given, display a blank screen
+
   if (hasPermission === null) {
     return <View />;
   }
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
   }
+
   // renders
   return (
     <BottomSheetModalProvider>
@@ -51,7 +65,7 @@ const CustomBottomSheet = () => {
           onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
           style={StyleSheet.absoluteFillObject}
         />
-        <CaptureMarker style={styles.marker} />
+        <CaptureMarker />
         <BottomSheetModal
           ref={bottomSheetModalRef}
           index={1}
@@ -70,10 +84,6 @@ const CustomBottomSheet = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  marker: {
-    flex: 1,
-    backgroundColor: 'white',
   },
 });
 

@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'flex-start',
     top: 40,
+    left: 10,
   },
   instruction: {
     backgroundColor: colors.primary,

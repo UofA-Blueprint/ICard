@@ -10,10 +10,10 @@ module.exports = {
       '|react-native-reanimated' +
       '|react-native-gesture-handler' +
       '|react-native-redash' +
-      '|react-native-qrcode-scanner' +
       '|react-native-permissions' +
       '|react-native-camera' +
       '|react-native-vector-icons' +
+      '|react-native-vision-camera' +
       ')/)',
   ],
   transform: {

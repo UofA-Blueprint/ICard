@@ -15,6 +15,8 @@ module.exports = {
       '|react-native-vector-icons' +
       '|react-native-vision-camera' +
       '|expo-barcode-scanner' +
+      '|@expo' +
+      '|expo' +
       ')/)',
   ],
   transform: {

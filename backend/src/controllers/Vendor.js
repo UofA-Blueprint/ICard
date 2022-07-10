@@ -52,13 +52,15 @@ module.exports = {
         }
     },
     delete: async (req, res) => {
-        const vendor = await Vendor.findByIdAndDelete(req.params.vendorId)
-        if (!vendor)
+        const checkStudent = await Vendor.findOne({ _id: req.params.vendorId })
+        if (!checkStudent)
             return res.status(400).json({ message: 'Vendor does not exist' })
 
         try {
-            const deletedVendor = await Vendor.findById(req.params.vendorId)
-            res.status(200).json(deletedVendor)
+            const deletedStudent = await Vendor.findByIdAndDelete(
+                req.params.vendorId
+            )
+            res.status(200).json(deletedStudent)
         } catch (err) {
             res.status(500).json({ message: err })
         }

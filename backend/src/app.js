@@ -5,6 +5,7 @@ const dotenv = require('dotenv')
 var cors = require('cors')
 
 const studentsRouter = require('./routes/Students')
+const vendorsRouter = require('./routes/Vendors')
 
 const app = express()
 dotenv.config()
@@ -47,5 +48,6 @@ app.get('/test_db_conn', (req, res) => {
 })
 
 app.use('/api/students', studentsRouter) // student routes
+app.use('/api/vendors', vendorsRouter) // vendor routes
 
 module.exports = app // export the app for testing

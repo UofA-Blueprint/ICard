@@ -21,7 +21,7 @@ function verifyToken(req, res, next) {
 }
 
 function verifyApiKey(req, res, next) {
-    const apiKey = req.header('api-key')
+    const apiKey = req.header('x-api-key')
     if (!apiKey)
         return res
             .status(401)

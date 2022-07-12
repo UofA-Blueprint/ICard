@@ -1,0 +1,10 @@
+{
+  "expoServerPort": 19000,
+  "packagerPort": 19000,
+  "expoServerNgrokUrl": "https://qt-r2h.llamoss1805.mobile.exp.direct",
+  "packagerNgrokUrl": "https://qt-r2h.llamoss1805.mobile.exp.direct",
+  "ngrokPid": 22664,
+  "devToolsPort": 19002,
+  "packagerPid": null,
+  "webpackServerPort": null
+}

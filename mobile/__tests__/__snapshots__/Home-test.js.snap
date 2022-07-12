@@ -5,7 +5,7 @@ exports[`renders correctly 1`] = `
   style={
     Object {
       "alignItems": "center",
-      "height": "100%",
+      "backgroundColor": "#FFFFFF",
       "justifyContent": "center",
     }
   }
@@ -14,20 +14,17 @@ exports[`renders correctly 1`] = `
     style={
       Object {
         "alignItems": "center",
+        "backgroundColor": "#FFFFFF",
         "borderBottomWidth": 1,
         "borderColor": "#2E6933",
-        "height": 80,
+        "height": 70,
         "justifyContent": "center",
         "width": "100%",
       }
     }
   >
     <Image
-      source={
-        Object {
-          "testUri": "../../../assets/ISA-logo.png",
-        }
-      }
+      source={1}
       style={
         Object {
           "height": "100%",
@@ -38,6 +35,12 @@ exports[`renders correctly 1`] = `
     />
   </View>
   <RCTScrollView
+    contentContainerStyle={
+      Object {
+        "marginBottom": 20,
+        "paddingVertical": 40,
+      }
+    }
     data={
       Array [
         Object {
@@ -95,7 +98,6 @@ exports[`renders correctly 1`] = `
     style={
       Object {
         "paddingHorizontal": 20,
-        "paddingVertical": 30,
       }
     }
     viewabilityConfigCallbackPairs={Array []}
@@ -121,7 +123,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "black",
+                  "color": "#000000",
                 },
                 Object {
                   "fontSize": 20,
@@ -136,7 +138,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "black",
+                  "color": "#000000",
                 },
               ]
             }
@@ -147,7 +149,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "black",
+                  "color": "#000000",
                 },
                 Object {
                   "paddingTop": 10,
@@ -179,7 +181,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "black",
+                  "color": "#000000",
                 },
                 Object {
                   "fontSize": 20,
@@ -194,7 +196,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "black",
+                  "color": "#000000",
                 },
               ]
             }
@@ -205,7 +207,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "black",
+                  "color": "#000000",
                 },
                 Object {
                   "paddingTop": 10,
@@ -237,7 +239,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "black",
+                  "color": "#000000",
                 },
                 Object {
                   "fontSize": 20,
@@ -252,7 +254,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "black",
+                  "color": "#000000",
                 },
               ]
             }
@@ -263,7 +265,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "black",
+                  "color": "#000000",
                 },
                 Object {
                   "paddingTop": 10,
@@ -295,7 +297,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "black",
+                  "color": "#000000",
                 },
                 Object {
                   "fontSize": 20,
@@ -310,7 +312,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "black",
+                  "color": "#000000",
                 },
               ]
             }
@@ -321,7 +323,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "black",
+                  "color": "#000000",
                 },
                 Object {
                   "paddingTop": 10,
@@ -353,7 +355,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "black",
+                  "color": "#000000",
                 },
                 Object {
                   "fontSize": 20,
@@ -368,7 +370,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "black",
+                  "color": "#000000",
                 },
               ]
             }
@@ -379,7 +381,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "black",
+                  "color": "#000000",
                 },
                 Object {
                   "paddingTop": 10,
@@ -411,7 +413,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "black",
+                  "color": "#000000",
                 },
                 Object {
                   "fontSize": 20,
@@ -426,7 +428,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "black",
+                  "color": "#000000",
                 },
               ]
             }
@@ -437,7 +439,7 @@ exports[`renders correctly 1`] = `
             style={
               Array [
                 Object {
-                  "color": "black",
+                  "color": "#000000",
                 },
                 Object {
                   "paddingTop": 10,

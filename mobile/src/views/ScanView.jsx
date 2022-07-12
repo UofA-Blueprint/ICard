@@ -1,24 +1,20 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
 
 import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 
-import CustomBottomSheet from '../components/CustomBottomSheet';
+import CustomBottomSheet from '../components/scan/CustomBottomSheet';
+
+import {globalStyleSheet} from '../utilites/Theme';
 
 const HOC = gestureHandlerRootHOC(() => <CustomBottomSheet />);
 
 const ScanView = () => {
   return (
-    <View style={styles.container}>
+    <View style={{...globalStyleSheet.fullScreen}}>
       <HOC />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default ScanView;

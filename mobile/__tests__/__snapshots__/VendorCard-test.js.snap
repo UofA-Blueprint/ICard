@@ -17,7 +17,7 @@ exports[`renders correctly 1`] = `
     style={
       Array [
         Object {
-          "color": "black",
+          "color": "#000000",
         },
         Object {
           "fontSize": 20,
@@ -30,7 +30,7 @@ exports[`renders correctly 1`] = `
     style={
       Array [
         Object {
-          "color": "black",
+          "color": "#000000",
         },
       ]
     }
@@ -39,7 +39,7 @@ exports[`renders correctly 1`] = `
     style={
       Array [
         Object {
-          "color": "black",
+          "color": "#000000",
         },
         Object {
           "paddingTop": 10,

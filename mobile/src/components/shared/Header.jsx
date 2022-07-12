@@ -1,11 +1,12 @@
 import React from 'react';
 import {View, Image, StyleSheet} from 'react-native';
+import {colors, globalStyleSheet} from '../../utilites/Theme';
 
 const Header = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../../assets/ISA-logo.png')}
+        source={require('../../../assets/ISA-logo.png')}
         style={styles.logo}
       />
     </View>
@@ -14,12 +15,11 @@ const Header = () => {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    ...globalStyleSheet.container,
     width: '100%',
     height: 70,
     borderBottomWidth: 1,
-    borderColor: '#2E6933',
+    borderColor: colors.primary,
   },
   logo: {
     width: '10%',

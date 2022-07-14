@@ -31,7 +31,7 @@ jobs:
         MONGO_URI_TEST: ${{ secrets.MONGO_URI_TEST }}
         API_KEY: ${{ secrets.API_KEY }}
     - run: |
-        touch .env
+        touch ./backend/.env
         echo API_KEY=${{ secrets.API_KEY }}
         echo MONGO_URI_TEST=${{ secrets.MONGO_URI_TEST }} >> .env
         cat .env

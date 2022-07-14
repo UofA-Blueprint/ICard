@@ -28,7 +28,6 @@ jobs:
         cache: 'npm'
         cache-dependency-path: "./backend/package-lock.json"
     - run:
-        echo $MONGO_URI_TEST
         npm install
       working-directory: ./backend
       env:

@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
-// const dotenv = require('dotenv')
+const dotenv = require('dotenv')
 
 var cors = require('cors')
 
@@ -8,7 +8,7 @@ const studentsRouter = require('./routes/Students')
 const vendorsRouter = require('./routes/Vendors')
 
 const app = express()
-// dotenv.config()
+dotenv.config()
 
 if (process.env.NODE_ENV === 'test') {
     // if we are in test mode, we use the test database

@@ -1,8 +1,8 @@
 const request = require('supertest')
 const mongoose = require('mongoose')
-const dotenv = require('dotenv')
+// const dotenv = require('dotenv')
 const app = require('../src/app')
-dotenv.config()
+// dotenv.config()
 
 
 describe('test db connection', () => {

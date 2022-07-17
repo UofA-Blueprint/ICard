@@ -23,16 +23,23 @@
         "eslint": "^8.17.0",
         "eslint-config-google": "^0.14.0",
         "jest": "^28.1.1",
+        "mongodb-memory-server": "^8.7.2",
         "nodemon": "^2.0.16",
         "prettier": "^2.6.2",
         "supertest": "^6.2.3"
     },
     "dependencies": {
+        "@adminjs/express": "^5.0.0",
+        "@adminjs/mongoose": "^3.0.0",
+        "adminjs": "^6.0.0",
+        "bcrypt": "^5.0.1",
         "bcryptjs": "^2.4.3",
+        "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",
         "dotenv": "^16.0.1",
         "eslint-plugin-jest": "^26.5.3",
         "express": "^4.18.1",
+        "express-session": "^1.17.3",
         "joi": "^17.6.0",
         "jsonwebtoken": "^8.5.1",
         "mongoose": "^6.3.6"

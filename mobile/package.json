@@ -5,7 +5,7 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
-    "start": "expo start --dev-client",
+    "start": "expo start",
     "start-tunnel": "expo start --tunnel",
     "test": "jest",
     "lint": "eslint ."

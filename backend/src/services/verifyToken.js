@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-require('dotenv').config()
+// require('dotenv').config()
 
 function verifyToken(req, res, next) {
     // Verifies the auth-token passed in the request header and returns the user if valid

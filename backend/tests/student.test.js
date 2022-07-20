@@ -27,7 +27,7 @@ describe('test student routes', () => {
     test('POST /api/students/ -> should return status 201', async () => {
         const response = await request(app)
             .post('/api/students/')
-            .set('api-key', api_key) // set the token in the header
+            .set('x-api-key', api_key) // set the token in the header
             .send({
                 // send the student data
                 name: 'Demo User2',
@@ -44,28 +44,28 @@ describe('test student routes', () => {
     test('GET /api/students/:studentId -> status code should be 200', async () => {
         const response = await request(app)
             .get('/api/students/' + userId)
-            .set('api-key', api_key) // set the token in the header
+            .set('x-api-key', api_key) // set the token in the header
         expect(response.statusCode).toBe(200)
     })
 
     test('GET /api/students/icard/:icard_number -> status code should be 200', async () => {
         const response = await request(app)
             .get('/api/students/icard/' + icard_number)
-            .set('api-key', api_key)
+            .set('x-api-key', api_key)
         expect(response.statusCode).toBe(200)
     })
 
     test('GET /api/students/all -> status code should be 200', async () => {
         const response = await request(app)
             .get('/api/students/all')
-            .set('api-key', api_key)
+            .set('x-api-key', api_key)
         expect(response.statusCode).toBe(200)
     })
 
     test('PUT /api/students/:studentId -> should return status 200 with updated student info', async () => {
         const response = await request(app)
             .put('/api/students/' + userId)
-            .set('api-key', api_key) // set the token in the header
+            .set('x-api-key', api_key) // set the token in the header
             .send({
                 // send the student data
                 name: 'Demo User2',
@@ -82,7 +82,7 @@ describe('test student routes', () => {
     test('DELETE /api/students/:studentId -> should return status 200', async () => {
         const response = await request(app)
             .delete('/api/students/' + userId)
-            .set('api-key', api_key) // set the token in the header
+            .set('x-api-key', api_key) // set the token in the header
         expect(response.statusCode).toBe(200)
     })
 })

@@ -6,34 +6,39 @@ var cors = require('cors')
 
 const studentsRouter = require('./routes/Students')
 const vendorsRouter = require('./routes/Vendors')
+const adminRouter = require('./routes/Admin')
 
 const app = express()
 dotenv.config()
 
-if (process.env.NODE_ENV === 'test') {
-    // if we are in test mode, we use the test database
-    mongoose.connect(process.env.MONGO_URI_TEST, {
-        // connect to mongoDB
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
-} else {
-    if (process.env.VERSION === 'production') {
-        // if we are in production mode, we use the production database
-        mongoose.connect(process.env.MONGO_URI_PROD, {
+const run = async () => {
+    if (process.env.NODE_ENV === 'test') {
+        // if we are in test mode, we use the test database
+        await mongoose.connect(process.env.MONGO_URI_TEST, {
             // connect to mongoDB
             useNewUrlParser: true,
             useUnifiedTopology: true,
         })
-    } else if (process.env.VERSION === 'staging') {
-        // if we are in staging mode, we use the staging database
-        mongoose.connect(process.env.MONGO_URI_STAG, {
-            // connect to mongoDB
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        })
+    } else {
+        if (process.env.VERSION === 'production') {
+            // if we are in production mode, we use the production database
+            await mongoose.connect(process.env.MONGO_URI_PROD, {
+                // connect to mongoDB
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+            })
+        } else if (process.env.VERSION === 'staging') {
+            // if we are in staging mode, we use the staging database
+            await mongoose.connect(process.env.MONGO_URI_STAG, {
+                // connect to mongoDB
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+            })
+        }
     }
 }
+
+run()
 
 var db = mongoose.connection // get the connection
 db.on('error', console.error.bind(console, 'connection error:'))
@@ -47,6 +52,7 @@ app.get('/test_db_conn', (req, res) => {
     res.json({ status: db.readyState, database: db.name })
 })
 
+app.use('/admin', adminRouter)
 app.use('/api/students', studentsRouter) // student routes
 app.use('/api/vendors', vendorsRouter) // vendor routes
 

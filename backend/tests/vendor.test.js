@@ -20,7 +20,7 @@ describe('Test Vendor Routes', ()=>{
     jest.setTimeout(20000) // added a timeout to avoid the test to fail as the MongoDB connection is slow
 
 
-    test('GET /api/vendors/ -> without api-key should return 401', async()=>{
+    test('GET /api/vendors/ -> without x-api-key should return 401', async()=>{
         const res = await request(app).get('/api/vendors/')
         expect(res.statusCode).toBe(401)
     })
@@ -31,14 +31,14 @@ describe('Test Vendor Routes', ()=>{
     test('GET /api/vendors/ -> should return 200 with all vendors', async () => {
         const response = await request(app)
             .get('/api/vendors/')
-            .set('api-key', api_key)
+            .set('x-api-key', api_key)
         expect(response.statusCode).toBe(200)
     })
 
     test('POST /api/vendors/ -> should return 201 with new vendor', async () => {
         const response = await request(app)
             .post('/api/vendors/')
-            .set('api-key', api_key)
+            .set('x-api-key', api_key)
             .send({
                 name: 'Demo Vendor',
                 address: '123 Main St',
@@ -52,7 +52,7 @@ describe('Test Vendor Routes', ()=>{
     test('PUT /api/vendors/:vendorId -> should return 200 with updated vendor', async () => {
         const response = await request(app)
             .put('/api/vendors/' + vendorId)
-            .set('api-key', api_key)
+            .set('x-api-key', api_key)
             .send({
                 name: 'Demo Vendor Updated',
                 address: '123 Main St Updated',
@@ -65,7 +65,7 @@ describe('Test Vendor Routes', ()=>{
     test('DELETE /api/vendors/:vendorId -> should return 200 with deleted vendor', async () => {
         const response = await request(app)
             .delete('/api/vendors/' + vendorId)
-            .set('api-key', api_key)
+            .set('x-api-key', api_key)
         expect(response.statusCode).toBe(200)
     })
 })

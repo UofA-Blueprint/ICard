@@ -1,56 +1,26 @@
-// const AdminBro = require('admin-bro');
-// const AdminBroExpress = require('admin-bro-expressjs');
-// const AdminBroMongoose = require('admin-bro-mongoose')
-
-// const mongoose = require('mongoose')
-
-// AdminBro.registerAdapter(AdminBroMongoose)
-
-// const adminBro = new AdminBro({
-//     databases: [mongoose],
-//     rootPath: '/admin',
-// });
-
-// const ADMIN = {
-//     email: process.env.ADMIN_EMAIL || 'admin@example.com',
-//     password: process.env.ADMIN_PASSWORD || 'admin',
-// }
-
-// const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
-//     cookieName: process.env.ADMIN_COOKIE_NAME || 'admin-bro',
-//     cookiePassword: process.env.ADMIN_COOKIE_PASSWORD || 'super-secret-password',
-//     authenticate: async (email, password) => {
-//         if (email === ADMIN.email && password === ADMIN.password) {
-//             return ADMIN
-//         }
-//         return false
-//     }
-// });
-
-// module.exports = router;
-
 const AdminBro = require('admin-bro')
 const AdminBroExpress = require('admin-bro-expressjs')
 const AdminBroMongoose = require('admin-bro-mongoose')
 const User = require('../models/User')
 const bcrypt = require('bcrypt')
 const mongoose = require('mongoose')
+require('dotenv').config()
 
-AdminBro.registerAdapter(AdminBroMongoose)
+// Check if the current user is an admin
+const canModifyUsers = ({ currentAdmin }) =>
+    currentAdmin && currentAdmin.role === 'admin'
 
-// const User = mongoose.model('User', {
-//     email: { type: String, required: true },
-//     encryptedPassword: { type: String, required: true },
-//     role: { type: String, enum: ['admin', 'restricted'], required: true },
-//   })
+AdminBro.registerAdapter(AdminBroMongoose) // register mongoose adapter such that AdminBro can use it
 
 const adminBro = new AdminBro({
-    databases: [mongoose],
+    databases: [mongoose], // register mongoose database
     rootPath: '/admin',
     resources: [
+        // register resources
         {
             resource: User,
             options: {
+                // register options for the resource
                 properties: {
                     encryptedPassword: {
                         isVisible: false,
@@ -67,13 +37,16 @@ const adminBro = new AdminBro({
                 },
                 actions: {
                     new: {
+                        // new action called when creating a new user, which encrypts the password and adds it to the database
                         before: async (request) => {
-                            if (request.payload.record.password) {
-                                request.payload.record = {
-                                    ...request.payload.record,
+                            if (request.payload.password) {
+                                request.payload = {
+                                    ...request.payload,
                                     encryptedPassword: await bcrypt.hash(
-                                        request.payload.record.password,
-                                        10
+                                        request.payload.password,
+                                        Integer.parseInt(
+                                            process.env.SALT_ROUNDS
+                                        )
                                     ),
                                     password: undefined,
                                 }
@@ -81,6 +54,10 @@ const adminBro = new AdminBro({
                             return request
                         },
                     },
+                    // set permissions for the actions based on the current user role
+                    edit: { isAccessible: canModifyUsers },
+                    delete: { isAccessible: canModifyUsers },
+                    new: { isAccessible: canModifyUsers },
                 },
             },
         },
@@ -88,10 +65,10 @@ const adminBro = new AdminBro({
 })
 
 const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
-    cookieName: process.env.ADMIN_COOKIE_NAME || 'admin-bro',
+    cookieName: process.env.ADMIN_COOKIE_NAME || 'admin-bro',   // name of the cookie used to store the admin session
     cookiePassword:
-        process.env.ADMIN_COOKIE_PASSWORD || 'super-secret-password',
-    authenticate: async (email, password) => {
+        process.env.ADMIN_COOKIE_PASSWORD || 'super-secret-password',      // password used to encrypt the cookie
+    authenticate: async (email, password) => {      // function used to authenticate the signing in user
         const user = await User.findOne({ email: email })
         if (user) {
             const matched = await bcrypt.compare(
@@ -103,10 +80,6 @@ const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
             }
         }
         return null
-        // if (email === ADMIN.email && password === ADMIN.password) {
-        //     return ADMIN
-        // }
-        // return false
     },
 })
 

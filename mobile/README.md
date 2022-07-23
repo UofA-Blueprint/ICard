@@ -10,33 +10,22 @@ npm install
 
 ## Running Application
 
-Type in terminal to start Metro
+Type in terminal to start Metro Bundler
 
 ```bash
 npm start
 ```
 
-### Android
+### Expo Go
 
-Type in another terminal with an open emulator (or connected device)
+Make sure to download the Expo Go App (Android).
 
-```bash
-npm run android
-```
+Open Expo Go and scan the QR Code on the screen (Android) or use the Camera app (iOS).
 
-After the first run, need to clean the android folder before rerun the application
+If the screen display with "Something went wrong", try starting the Metro Bundler again with
 
 ```bash
-cd android &&./gradlew clean
-cd .. && npm run android
-```
-
-### iOS
-
-Type in another terminal with an open emulator (or connected device)
-
-```bash
-npm run ios
+npm run start-tunnel
 ```
 
 ## Testing

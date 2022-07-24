@@ -1,7 +1,7 @@
 import android.content.res.Configuration;
 import expo.modules.ApplicationLifecycleDispatcher;
 import expo.modules.ReactNativeHostWrapper;
-package com.llamoss0501.icard;
+package org.uofablueprint.icard;
 
 import android.app.Application;
 import android.content.Context;
@@ -21,7 +21,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.config.ReactFeatureFlags;
 import com.facebook.soloader.SoLoader;
-import com.llamoss0501.icard.newarchitecture.MainApplicationReactNativeHost;
+import org.uofablueprint.icard.newarchitecture.MainApplicationReactNativeHost;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 

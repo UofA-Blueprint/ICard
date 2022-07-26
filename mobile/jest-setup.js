@@ -15,8 +15,3 @@ jest.mock('@gorhom/bottom-sheet', () => {
     },
   };
 });
-
-jest.mock(
-  'react-native-qrcode-scanner/node_modules/react-native-permissions',
-  () => require('react-native-permissions/mock'),
-);

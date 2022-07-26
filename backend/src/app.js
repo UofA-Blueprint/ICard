@@ -1,6 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
+const bodyParser = require('body-parser')
+const swaggerUi = require('swagger-ui-express')
+const swaggerJsDoc = require('swagger-jsdoc')
 
 var cors = require('cors')
 
@@ -42,6 +45,26 @@ run()
 
 var db = mongoose.connection // get the connection
 db.on('error', console.error.bind(console, 'connection error:'))
+
+const options = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'ICard',
+            version: '1.0.0',
+        },
+        servers: [
+            {
+                url: 'http://localhost:3000/api/',
+            }
+        ]
+    },
+    apis: ['./src/routes/Students.js', './src/routes/Vendors.js'],
+}
+
+const specs = swaggerJsDoc(options)
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))
 
 app.use(cors()) // enable CORS
 

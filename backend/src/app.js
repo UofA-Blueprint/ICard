@@ -1,6 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
+const bodyParser = require('body-parser')
+const swaggerUi = require('swagger-ui-express')
+const swaggerJsDoc = require('swagger-jsdoc')
 
 var cors = require('cors')
 
@@ -10,33 +13,57 @@ const vendorsRouter = require('./routes/Vendors')
 const app = express()
 dotenv.config()
 
-if (process.env.NODE_ENV === 'test') {
-    // if we are in test mode, we use the test database
-    mongoose.connect(process.env.MONGO_URI_TEST, {
-        // connect to mongoDB
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
-} else {
-    if (process.env.VERSION === 'production') {
-        // if we are in production mode, we use the production database
-        mongoose.connect(process.env.MONGO_URI_PROD, {
+const run = async () => {
+    if (process.env.NODE_ENV === 'test') {
+        // if we are in test mode, we use the test database
+        await mongoose.connect(process.env.MONGO_URI_TEST, {
             // connect to mongoDB
             useNewUrlParser: true,
             useUnifiedTopology: true,
         })
-    } else if (process.env.VERSION === 'staging') {
-        // if we are in staging mode, we use the staging database
-        mongoose.connect(process.env.MONGO_URI_STAG, {
-            // connect to mongoDB
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        })
+    } else {
+        if (process.env.VERSION === 'production') {
+            // if we are in production mode, we use the production database
+            await mongoose.connect(process.env.MONGO_URI_PROD, {
+                // connect to mongoDB
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+            })
+        } else if (process.env.VERSION === 'staging') {
+            // if we are in staging mode, we use the staging database
+            await mongoose.connect(process.env.MONGO_URI_STAG, {
+                // connect to mongoDB
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+            })
+        }
     }
 }
 
+run()
+
 var db = mongoose.connection // get the connection
 db.on('error', console.error.bind(console, 'connection error:'))
+
+const options = {   // swagger options
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'ICard',
+            version: '1.0.0',
+        },
+        servers: [
+            {
+                url: 'http://localhost:3000/api/',  // url of the server
+            }
+        ]
+    },
+    apis: ['./src/routes/Students.js', './src/routes/Vendors.js'],  // path to the API docs
+}
+
+const specs = swaggerJsDoc(options) // create the swagger docs
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))   // setup the swagger docs route
 
 app.use(cors()) // enable CORS
 

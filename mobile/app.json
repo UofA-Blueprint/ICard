@@ -6,14 +6,6 @@
     "android": {
       "permissions": ["CAMERA", "android.permission.CAMERA"],
       "package": "com.llamoss0501.icard"
-    },
-    "plugins": [
-      [
-        "react-native-vision-camera",
-        {
-          "cameraPermissionText": "$(PRODUCT_NAME) needs access to your Camera."
-        }
-      ]
-    ]
+    }
   }
 }

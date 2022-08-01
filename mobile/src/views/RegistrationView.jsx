@@ -14,40 +14,54 @@ const RegistrationView = () => {
   const [accessToken, setAccessToken] = useState();
   const [userInfo, setUserInfo] = useState();
 
+  // Google Use Auth Request Hook
+
   const [request, response, promptAsync] = Google.useAuthRequest({
     expoClientId:
-      '274455879293-j240h2dtj0n2n90f8l8hsdngnct4iqk5.apps.googleusercontent.com',
+      '71633949714-fdu0efehl8ouvbih6eosrgfla2b2mk0u.apps.googleusercontent.com',
   });
 
-  async function getUserData() {
-    let userData = await fetch(
-      'https://www.googleapis.com/oauth2/v2/userinfo',
-      {
-        headers: {Authorization: 'Bearer ' + accessToken},
-      },
-    );
-    userData.json().then(data => setUserInfo(data));
-  }
-
+  // Effect Hook to save the access token and then fetch user data
   React.useEffect(() => {
     if (response?.type === 'success') {
-      const {authentication} = response; // storing our authentication data (JSON) into this authentication variable
-      setAccessToken(authentication.accessToken);
-      getUserData();
+      const fetchData = async () => {
+        const {authentication} = response; // storing our authentication data (JSON) into this authentication variable
+        setAccessToken(authentication.accessToken);
+        let userData = await fetch(
+          'https://www.googleapis.com/oauth2/v2/userinfo',
+          {
+            headers: {Authorization: 'Bearer ' + authentication.accessToken},
+          },
+        );
+        let data = await userData.json();
+        setUserInfo(data);
+      };
+      fetchData();
     }
   }, [response]);
+
+  /*
+  Render a Google Sign In Button
+  If the access token is granted, render a "Loading" text
+  until the app finally fetch the User Info.
+  If the user info is obtained, render their name and profile pic.
+  */
 
   return (
     <View style={globalStyleSheet.container}>
       <Header />
       <View style={[styles.bodyContainer]}>
-        {userInfo ? (
-          <View style={styles.loggedIn}>
-            <Text>Logged In</Text>
-            <Image
-              source={{uri: userInfo['picture']}}
-              style={styles.avatar}></Image>
-          </View>
+        {accessToken ? (
+          userInfo ? (
+            <View style={styles.loggedIn}>
+              <Text>{userInfo.name}</Text>
+              <Image
+                source={{uri: userInfo.picture}}
+                style={styles.avatar}></Image>
+            </View>
+          ) : (
+            <Text>Loading...</Text>
+          )
         ) : (
           <TouchableOpacity
             disabled={!request}
@@ -66,7 +80,7 @@ const RegistrationView = () => {
 
 const styles = StyleSheet.create({
   bodyContainer: {
-    ...globalStyleSheet.fullScreen,
+    flex: 1,
     justifyContent: 'center',
   },
   signInButton: {
@@ -91,6 +105,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 25,
+    marginVertical: 24,
   },
 });
 

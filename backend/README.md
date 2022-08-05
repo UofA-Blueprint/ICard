@@ -1,3 +1,24 @@
+# ICard Backend
+
+-   make sure Node.js v16.13.2 is installed on your machine
+-   run the following in the terminal to install all the required node modules
+
+```
+npm install
+```
+
+run the following in the terminal to start local server
+
+```
+npm start
+```
+
+run the following in the terminal to run test suites
+
+```
+npm test
+```
+
 # Swagger API Docs
 
 To view the swagger api docs go to route '/api-docs'
@@ -87,7 +108,6 @@ Also add the tag to the swagger api docs as follows:
 
 Still if you are confused on how to write api-docs then you can have a look at the already written api-docs in student and vendor files.
 
-
 ## Adding Route to Swagger API Docs
 
-Add the path to the route file in options.apis array which is present in the app.js file 
+Add the path to the route file in options.apis array which is present in the app.js file

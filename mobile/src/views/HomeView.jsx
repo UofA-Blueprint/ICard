@@ -30,10 +30,8 @@ const HomeView = () => {
 const styles = StyleSheet.create({
   container: {
     ...globalStyleSheet.container,
-    ...globalStyleSheet.flexibleContainer,
   },
   vendorList: {
-    ...globalStyleSheet.flexibleContainer,
     paddingHorizontal: 20,
   },
 });

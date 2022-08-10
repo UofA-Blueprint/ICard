@@ -15,13 +15,12 @@ const Header = () => {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    ...globalStyleSheet.container,
+    flex: 0,
     width: '100%',
     height: 70,
     borderBottomWidth: 1,
     borderColor: colors.primary,
-    elevation: 20,
     zIndex: 999,
   },
   logo: {

@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Image, StyleSheet, Text} from 'react-native';
+import {View, Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
+
 import Header from '../components/shared/Header';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
 
@@ -11,7 +12,16 @@ import {
 
 import {colors, globalStyleSheet} from '../utilites/Theme';
 
-const MyICardView = props => {
+import user from '../data/userMockData';
+
+const statusColors = {
+  active: colors.lightGreen,
+  inactive: colors.red,
+  stale: colors.darkGray,
+  pending: colors.yellow,
+};
+
+const MyICardView = () => {
   let [fontsLoaded] = useFonts({
     Poppins_600SemiBold,
     Poppins_700Bold,
@@ -19,44 +29,62 @@ const MyICardView = props => {
   if (!fontsLoaded) {
     return <Text>Loading...</Text>;
   }
+
   return (
     <View style={styles.container}>
+      <Image
+        source={
+          user.status == 'active'
+            ? require('../../assets/squiggly-lines-light.png')
+            : require('../../assets/squiggly-lines.png')
+        }
+        style={styles.linesTop}
+      />
       <Header />
       <View style={styles.bodyContainer}>
         <Image
-          source={require('../../assets/squiggly-lines.png')}
+          source={
+            user.status == 'active'
+              ? require('../../assets/squiggly-lines-light.png')
+              : require('../../assets/squiggly-lines.png')
+          }
           style={styles.lines}
         />
-        <MaterialCommunityIcons.Button
-          name="refresh"
-          backgroundColor="#3b5998"></MaterialCommunityIcons.Button>
+
         <View style={styles.card}>
-          <Image
-            source={require('../../assets/avatar-unknown.png')}
-            style={styles.avatar}
-          />
-          <Text style={[styles.userName, styles.subHeader]}>Name</Text>
+          <TouchableOpacity>
+            <MaterialCommunityIcons
+              name="refresh"
+              size={36}
+              color={colors.darkGray}
+              style={styles.refreshButton}
+            />
+          </TouchableOpacity>
+          <Image source={{uri: user.profilePic}} style={styles.avatar} />
+          <Text style={[styles.userName, styles.subHeader]}>{user.name}</Text>
           <View style={styles.statusView}>
-            <Text>ISAF Status</Text>
-            <Text style={styles.subHeader}>Status</Text>
+            <Text style={styles.statusHeader}>ISAF Status</Text>
+            <Text style={[styles.subHeader, styles.ISAFStatus]}>
+              {user.status}
+            </Text>
           </View>
         </View>
-        <View style={styles.flexText}>
-          <Text style={styles.baseText}>Last Updated: 3 years ago</Text>
-          <Text style={[styles.refreshPrompt, styles.baseText]}>
-            Click
-            <MaterialCommunityIcons name="refresh" size={24} color="black" />
-            for more updated info.
-          </Text>
-        </View>
+        {user.status != 'active' && user.status != 'inactive' ? (
+          <View style={styles.flexText}>
+            <Text style={styles.baseText}>Last Updated: 3 years ago</Text>
+            <Text style={styles.baseText}>
+              Click
+              <MaterialCommunityIcons name="refresh" size={24} color="black" />
+              for more updated info.
+            </Text>
+          </View>
+        ) : (
+          <></>
+        )}
       </View>
       <Image
         source={require('../../assets/ISA-logo.png')}
         style={styles.logo}
-      />
-      <Image
-        source={require('../../assets/squiggly-lines.png')}
-        style={styles.linesTop}
       />
     </View>
   );
@@ -72,16 +100,20 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     ...globalStyleSheet.container,
+    justifyContent: 'flex-start',
     paddingTop: 96,
   },
   card: {
     ...globalStyleSheet.container,
+    flex: 0,
+    height: '50%',
+    backgroundColor: user.status == 'active' ? colors.primary : colors.white,
     borderWidth: 1,
     width: '105%',
     borderRadius: 30,
-    flex: 4,
-    paddingVertical: 24,
+    paddingTop: 48,
     elevation: 10,
+    zIndex: 1,
   },
   avatar: {
     width: 128,
@@ -91,7 +123,6 @@ const styles = StyleSheet.create({
     borderRadius: 64,
     position: 'absolute',
     top: -64,
-    zIndex: 100,
   },
   subHeader: {
     fontSize: 26,
@@ -111,10 +142,13 @@ const styles = StyleSheet.create({
   },
   statusView: {
     ...globalStyleSheet.container,
+    backgroundColor: user.status == 'active' ? colors.primary : colors.white,
+    zIndex: 10,
   },
   userName: {
     flex: 1,
     textAlignVertical: 'center',
+    color: user.status == 'active' ? colors.lightGreen : colors.black,
   },
   logo: {
     position: 'absolute',
@@ -124,14 +158,36 @@ const styles = StyleSheet.create({
   },
   lines: {
     position: 'absolute',
-    bottom: 0,
+    bottom: -64,
     opacity: 1,
+    zIndex: user.status == 'active' ? 2 : 1,
   },
   linesTop: {
     position: 'absolute',
     top: -100,
     left: -20,
     opacity: 1,
+    zIndex: 1,
+  },
+  refreshButton: {
+    position: 'absolute',
+    padding: 4,
+    backgroundColor: colors.lightGray,
+    borderWidth: 1,
+    borderColor: colors.darkGray,
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    borderRadius: 36,
+    zIndex: 999,
+    bottom: 80,
+    left: 80,
+  },
+  ISAFStatus: {
+    textTransform: 'uppercase',
+    color: statusColors[user.status],
+  },
+  statusHeader: {
+    color: user.status == 'active' ? colors.lightGray : colors.black,
   },
 });
 

@@ -20,6 +20,8 @@ const styles = StyleSheet.create({
     height: 70,
     borderBottomWidth: 1,
     borderColor: colors.primary,
+    elevation: 20,
+    zIndex: 999,
   },
   logo: {
     width: '10%',

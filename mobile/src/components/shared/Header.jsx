@@ -15,7 +15,8 @@ const Header = () => {
 
 const styles = StyleSheet.create({
   container: {
-    ...globalStyleSheet.container,
+    justifyContent: 'center',
+    alignItems: 'center',
     width: '100%',
     height: 70,
     borderBottomWidth: 1,

@@ -3,9 +3,11 @@
   "expo": {
     "name": "ICard",
     "slug": "icard",
+    "owner": "uofa-blueprint",
+    "scheme": "icard",
     "android": {
       "permissions": ["CAMERA", "android.permission.CAMERA"],
-      "package": "com.llamoss0501.icard"
+      "package": "org.uofablueprint.icard"
     }
   }
 }

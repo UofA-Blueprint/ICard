@@ -22,6 +22,7 @@ const statusColors = {
 };
 
 const MyICardView = () => {
+  let count = 0;
   let [fontsLoaded] = useFonts({
     Poppins_600SemiBold,
     Poppins_700Bold,
@@ -40,6 +41,18 @@ const MyICardView = () => {
         }
         style={styles.linesTop}
       />
+      <TouchableOpacity
+        style={styles.refreshButton}
+        onPress={() => {
+          count = count + 1;
+          console.log('Pressed Lmao!', count);
+        }}>
+        <MaterialCommunityIcons
+          name="refresh"
+          size={36}
+          color={colors.darkGray}
+        />
+      </TouchableOpacity>
       <Header />
       <View style={styles.bodyContainer}>
         <Image
@@ -52,14 +65,6 @@ const MyICardView = () => {
         />
 
         <View style={styles.card}>
-          <TouchableOpacity>
-            <MaterialCommunityIcons
-              name="refresh"
-              size={36}
-              color={colors.darkGray}
-              style={styles.refreshButton}
-            />
-          </TouchableOpacity>
           <Image source={{uri: user.profilePic}} style={styles.avatar} />
           <Text style={[styles.userName, styles.subHeader]}>{user.name}</Text>
           <View style={styles.statusView}>
@@ -166,11 +171,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: -100,
     left: -20,
-    opacity: 1,
     zIndex: 1,
   },
   refreshButton: {
-    position: 'absolute',
     padding: 4,
     backgroundColor: colors.lightGray,
     borderWidth: 1,
@@ -178,9 +181,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     textAlignVertical: 'center',
     borderRadius: 36,
-    zIndex: 999,
-    bottom: 80,
-    left: 80,
+    zIndex: 15,
+    position: 'absolute',
+    top: 100,
+    right: 50,
   },
   ISAFStatus: {
     textTransform: 'uppercase',

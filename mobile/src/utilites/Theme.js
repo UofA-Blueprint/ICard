@@ -12,6 +12,7 @@ const colors = {
 
 const globalStyleSheet = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: colors.white,
     alignItems: 'center',
     justifyContent: 'center',

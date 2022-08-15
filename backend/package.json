@@ -46,8 +46,8 @@
         "joi": "^17.6.0",
         "jsonwebtoken": "^8.5.1",
         "mongoose": "^6.3.6",
-        "react": "^16.13.1",
-        "react-dom": "^16.13.1",
+        "react": "=16.13.1",
+        "react-dom": "=16.13.1",
         "swagger-jsdoc": "^6.2.1",
         "swagger-ui-express": "^4.5.0"
     },

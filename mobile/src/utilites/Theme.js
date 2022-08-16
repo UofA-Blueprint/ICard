@@ -6,8 +6,10 @@ const colors = {
   lightGreen: '#D9FFDC',
   white: '#FFFFFF',
   lightGray: '#F8F8F8',
-  gray: '#737373',
+  darkGray: '#737373',
   black: '#000000',
+  red: '#AF0000',
+  yellow: '#C4C81E',
 };
 
 const globalStyleSheet = StyleSheet.create({

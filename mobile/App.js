@@ -15,7 +15,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ScreenOption from './src/utilites/ScreenOption';
 import {globalStyleSheet} from './src/utilites/Theme';
-import MyICardView from './src/views/MyICardView';
+// import MyICardView from './src/views/MyICardView';
 
 const Tab = createBottomTabNavigator();
 
@@ -30,7 +30,7 @@ const App = () => {
             component={ScanView}
             options={{tabBarStyle: globalStyleSheet.tabBarHidden}}
           />
-          <Tab.Screen name="My ICard" component={MyICardView} />
+          <Tab.Screen name="My ICard" component={RegistrationView} />
         </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaView>

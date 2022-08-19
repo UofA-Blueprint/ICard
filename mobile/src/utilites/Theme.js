@@ -33,7 +33,7 @@ const globalStyleSheet = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: colors.primary,
     justifyContent: 'center',
-    height: 60,
+    height: 100,
     padding: 8,
   },
   tabBarHidden: {display: 'none'},

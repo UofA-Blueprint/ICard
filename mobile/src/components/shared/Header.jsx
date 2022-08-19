@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     ...globalStyleSheet.container,
     flex: 0,
     width: '100%',
-    height: 70,
+    height: 120,
     borderBottomWidth: 1,
     borderColor: colors.primary,
     zIndex: 999,

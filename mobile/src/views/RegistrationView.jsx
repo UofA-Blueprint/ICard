@@ -17,8 +17,10 @@ const RegistrationView = () => {
   // Google Use Auth Request Hook
 
   const [request, response, promptAsync] = Google.useAuthRequest({
+    responseType: 'id_token',
     expoClientId:
       '71633949714-fdu0efehl8ouvbih6eosrgfla2b2mk0u.apps.googleusercontent.com',
+    scopes: ['email', 'profile'],
   });
 
   // Effect Hook to save the access token and then fetch user data
@@ -26,15 +28,16 @@ const RegistrationView = () => {
     if (response?.type === 'success') {
       const fetchData = async () => {
         const {authentication} = response; // storing our authentication data (JSON) into this authentication variable
-        setAccessToken(authentication.accessToken);
-        let userData = await fetch(
-          'https://www.googleapis.com/oauth2/v2/userinfo',
-          {
-            headers: {Authorization: 'Bearer ' + authentication.accessToken},
-          },
-        );
-        let data = await userData.json();
-        setUserInfo(data);
+        console.log(response.params.id_token);
+        // setAccessToken(authentication.accessToken);
+        // let userData = await fetch(
+        //   'https://www.googleapis.com/oauth2/v2/userinfo',
+        //   {
+        //     headers: {Authorization: 'Bearer ' + authentication.accessToken},
+        //   },
+        // );
+        // let data = await userData.json();
+        // setUserInfo(data);
       };
       fetchData();
     }

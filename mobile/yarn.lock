@@ -9932,7 +9932,7 @@
     "which-module" "^2.0.0"
     "y18n" "^4.0.0"
     "yargs-parser" "^18.1.2"
-
+ 
 "yarn@^2.0.0":
   "integrity" "sha512-HQ8VJL8v1Tlq+VVzcohmYw7dHtZ6VUB4/b2oHRGQc6Xv00AQjVk4C6cyqu4iHRI4esfgIi8S9doOm1d3Z3MlPA=="
   "resolved" "https://registry.npmjs.org/yarn/-/yarn-2.4.3.tgz"

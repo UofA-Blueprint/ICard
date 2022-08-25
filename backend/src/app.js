@@ -1,7 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
-const bodyParser = require('body-parser')
 const swaggerUi = require('swagger-ui-express')
 const swaggerJsDoc = require('swagger-jsdoc')
 
@@ -9,6 +8,8 @@ var cors = require('cors')
 
 const studentsRouter = require('./routes/Students')
 const vendorsRouter = require('./routes/Vendors')
+const adminRouter = require('./routes/Admin')
+const authRouter = require('./routes/Auth')
 
 const app = express()
 dotenv.config()
@@ -74,7 +75,9 @@ app.get('/test_db_conn', (req, res) => {
     res.json({ status: db.readyState, database: db.name })
 })
 
+app.use('/admin', adminRouter)  // route for admin-bro 
 app.use('/api/students', studentsRouter) // student routes
 app.use('/api/vendors', vendorsRouter) // vendor routes
+app.use('/api/auth', authRouter) // auth routes
 
 module.exports = app // export the app for testing

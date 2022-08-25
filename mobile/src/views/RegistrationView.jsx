@@ -27,17 +27,7 @@ const RegistrationView = () => {
   React.useEffect(() => {
     if (response?.type === 'success') {
       const fetchData = async () => {
-        const {authentication} = response; // storing our authentication data (JSON) into this authentication variable
         console.log(response.params.id_token);
-        // setAccessToken(authentication.accessToken);
-        // let userData = await fetch(
-        //   'https://www.googleapis.com/oauth2/v2/userinfo',
-        //   {
-        //     headers: {Authorization: 'Bearer ' + authentication.accessToken},
-        //   },
-        // );
-        // let data = await userData.json();
-        // setUserInfo(data);
       };
       fetchData();
     }
@@ -45,37 +35,21 @@ const RegistrationView = () => {
 
   /*
   Render a Google Sign In Button
-  If the access token is granted, render a "Loading" text
-  until the app finally fetch the User Info.
-  If the user info is obtained, render their name and profile pic.
   */
 
   return (
     <View style={globalStyleSheet.container}>
       <Header />
       <View style={[styles.bodyContainer]}>
-        {accessToken ? (
-          userInfo ? (
-            <View style={styles.loggedIn}>
-              <Text>{userInfo.name}</Text>
-              <Image
-                source={{uri: userInfo.picture}}
-                style={styles.avatar}></Image>
-            </View>
-          ) : (
-            <Text>Loading...</Text>
-          )
-        ) : (
-          <TouchableOpacity
-            disabled={!request}
-            onPress={() => {
-              promptAsync();
-            }}
-            style={styles.signInButton}>
-            <FontAwesome5 name="google" size={16} color={colors.primary} />
-            <Text style={styles.promptMessage}>Sign In with Google</Text>
-          </TouchableOpacity>
-        )}
+        <TouchableOpacity
+          disabled={!request}
+          onPress={() => {
+            promptAsync();
+          }}
+          style={styles.signInButton}>
+          <FontAwesome5 name="google" size={16} color={colors.primary} />
+          <Text style={styles.promptMessage}>Sign In with Google</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

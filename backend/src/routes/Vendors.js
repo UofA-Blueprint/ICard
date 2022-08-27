@@ -84,7 +84,7 @@ router.get('/', verifyApiKey, vendorController.getAll)
  *          500:
  *              description: Some server error
  */
-router.post('/', verifyApiKey, vendorController.create)
+// router.post('/', verifyApiKey, vendorController.create)
 
 /**
  * @swagger
@@ -123,7 +123,7 @@ router.post('/', verifyApiKey, vendorController.create)
  *                  description: Some Server Error
  *          
  */
-router.put('/:vendorId', verifyApiKey, vendorController.update)
+// router.put('/:vendorId', verifyApiKey, vendorController.update)
 
 /**
  * @swagger
@@ -148,6 +148,6 @@ router.put('/:vendorId', verifyApiKey, vendorController.update)
  *              404:
  *                  description: The student was not found
  */
-router.delete('/:vendorId', verifyApiKey, vendorController.delete)
+// router.delete('/:vendorId', verifyApiKey, vendorController.delete)
 
 module.exports = router

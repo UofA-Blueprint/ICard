@@ -10,14 +10,14 @@ const VendorCard = ({vendorName, location, description, vendorImage, cardDesc, d
     
     return (
         <View>
-            <Modal visible={popupOpen} transparent={true} animationType='fade'>
-                <View style={{
+            <Modal visible={popupOpen} transparent={true} animationType='slide' onRequestClose={() => setPopupOpen(false)}>
+                <Pressable onPress={() => setPopupOpen(false)} style={{
                     flex: 1,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    backgroundColor: '#00000088'
+                    backgroundColor: '#00000000'
                 }}>
-                    <View style={styles.modalView}>
+                    <Pressable onPress={() => {}} style={styles.modalView}>
                         <View style={{
                                 display: 'flex',
                                 flexDirection: 'row',
@@ -54,21 +54,8 @@ const VendorCard = ({vendorName, location, description, vendorImage, cardDesc, d
                             Contact: {contact}
                         </Text>
 
-                        <Pressable
-                        style={{
-                            borderRadius: 20,
-                            padding: 5,
-                            marginVertical: 10,
-                            backgroundColor: colors.primary
-                        }}
-                        onPress={() => setPopupOpen(false)}
-                        >
-                            <Text style={{
-                                color: 'white'
-                            }}>Close</Text>
-                        </Pressable>
-                      </View>
-                </View>
+                      </Pressable>
+                </Pressable>
             </Modal>
 
             <Pressable style={styles.container} onPress={() => setPopupOpen(true)}>
@@ -166,7 +153,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderColor: colors.primary,
         borderRadius: 20,
-        borderWidth: 1
+        borderWidth: 1,
+        paddingHorizontal: 20,
+        paddingBottom: 20,
+        paddingTop: 5
     }
 });
 

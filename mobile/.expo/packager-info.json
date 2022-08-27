@@ -1,10 +1,10 @@
 {
-  "expoServerPort": 19000,
+  "expoServerPort": null,
   "packagerPort": 19000,
   "expoServerNgrokUrl": "https://qt-r2h.anonymous.mobile.exp.direct",
   "packagerNgrokUrl": "https://qt-r2h.anonymous.mobile.exp.direct",
   "ngrokPid": 9452,
   "devToolsPort": 19002,
   "packagerPid": null,
-  "webpackServerPort": null
+  "webpackServerPort": 19006
 }

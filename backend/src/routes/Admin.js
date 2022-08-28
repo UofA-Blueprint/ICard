@@ -1,7 +1,9 @@
 const AdminBro = require('admin-bro')
 const AdminBroExpress = require('admin-bro-expressjs')
 const AdminBroMongoose = require('admin-bro-mongoose')
-const User = require('../models/User')
+const User = require('../models/AdminUser')
+const Student = require('../models/Student')
+const Vendor = require('../models/Vendor')
 const bcrypt = require('bcrypt')
 const mongoose = require('mongoose')
 require('dotenv').config()
@@ -15,8 +17,48 @@ AdminBro.registerAdapter(AdminBroMongoose) // register mongoose adapter such tha
 const adminBro = new AdminBro({
     databases: [mongoose], // register mongoose database
     rootPath: '/admin',
+    branding: {
+        companyName: 'ISA',
+        logo: 'https://static.ucraft.net/fs/ucraft/userFiles/uaisa/images/small-logo.png?v=1628056458',
+        softwareBrothers: false,
+        favicon:
+            'https://static.ucraft.net/fs/ucraft/userFiles/uaisa/images/small-logo.png?v=1628056458',
+    },
+    locale: {
+        translations: {
+            messages: {
+                loginWelcome: '',
+            },
+            labels: {
+                loginWelcome: 'ICARD Admin Panel',
+            },
+        },
+    },
     resources: [
         // register resources
+        {
+            resource: Student,
+            options: {
+                properties: {
+                    picture: {
+                        isVisible: false,
+                    },
+                    _id: {
+                        isVisible: false,
+                    },
+                },
+            },
+        },
+        {
+            resource: Vendor,
+            options: {
+                properties: {
+                    _id: {
+                        isVisible: false,
+                    },
+                },
+            },
+        },
         {
             resource: User,
             options: {
@@ -34,6 +76,9 @@ const adminBro = new AdminBro({
                             show: false,
                         },
                     },
+                    _id: {
+                        isVisible: false,
+                    },
                 },
                 actions: {
                     new: {
@@ -44,20 +89,18 @@ const adminBro = new AdminBro({
                                     ...request.payload,
                                     encryptedPassword: await bcrypt.hash(
                                         request.payload.password,
-                                        Integer.parseInt(
-                                            process.env.SALT_ROUNDS
-                                        )
+                                        parseInt(process.env.SALT_ROUNDS)
                                     ),
                                     password: undefined,
                                 }
                             }
                             return request
                         },
+                        isAccessible: canModifyUsers,
                     },
                     // set permissions for the actions based on the current user role
                     edit: { isAccessible: canModifyUsers },
                     delete: { isAccessible: canModifyUsers },
-                    new: { isAccessible: canModifyUsers },
                 },
             },
         },

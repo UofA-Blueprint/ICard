@@ -19,4 +19,4 @@ const userSchema = new mongoose.Schema(
     { collection: 'auth', versionKey: false }
 )
 
-module.exports = mongoose.model('User', userSchema)
+module.exports = mongoose.model('Admin', userSchema)

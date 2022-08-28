@@ -10,6 +10,7 @@ const studentsRouter = require('./routes/Students')
 const vendorsRouter = require('./routes/Vendors')
 const adminRouter = require('./routes/Admin')
 const authRouter = require('./routes/Auth')
+const imageRouter = require('./routes/Image')
 
 const app = express()
 dotenv.config()
@@ -64,7 +65,9 @@ const options = {   // swagger options
 
 const specs = swaggerJsDoc(options) // create the swagger docs
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))   // setup the swagger docs route
+if (process.env.VERSION === 'staging') {
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))   // setup the swagger docs route
+}
 
 app.use(cors()) // enable CORS
 
@@ -79,5 +82,6 @@ app.use('/admin', adminRouter)  // route for admin-bro
 app.use('/api/students', studentsRouter) // student routes
 app.use('/api/vendors', vendorsRouter) // vendor routes
 app.use('/api/auth', authRouter) // auth routes
+app.use('/api/images', imageRouter) // image routes
 
 module.exports = app // export the app for testing

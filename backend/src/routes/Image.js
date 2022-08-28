@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Multer = require('multer');
 const imgUpload = require('../services/ImgUpload');
-const Student = require('../models/Student');
+const imageController = require('../controllers/Image');
 const { verifyApiKey, checkAuthenticated } = require('../services/verifyToken');
 // Handles the mulitpart/form-data
 // Adds a .file key to the req object
@@ -15,17 +15,6 @@ const multer = Multer({
 
 // multer accessing the key 'image', as defined in the 'FormData' object on the frontend
 // Passing the uploadToGCS function as middleware to handle the uploading of req.file
-router.post('/upload', verifyApiKey, checkAuthenticated, multer.single('image'), imgUpload.uploadToGCS, async(req, res, next) => {
-    const data = req.body;
-    if (req.file && req.file.cloudStoragePublicUrl) {
-        data.imageUrl = req.file.cloudStoragePublicUrl;
-    }
+router.post('/upload', verifyApiKey, checkAuthenticated, multer.single('image'), imgUpload.uploadToGCS, imageController.upload);
 
-    await Student.updateOne({ email: req.user.email }, { $set: { verification_image: data.imageUrl } });
-
-    res.json({
-        message: 'Image uploaded successfully',
-    });
-});
-
-module.exports = router;
+module.exports = router

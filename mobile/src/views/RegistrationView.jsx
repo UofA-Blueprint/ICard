@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {FontAwesome5} from '@expo/vector-icons';
 
@@ -8,26 +8,41 @@ import {colors, globalStyleSheet} from '../utilites/Theme';
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
 
+import AuthContext from '../context/AuthContext';
+
 WebBrowser.maybeCompleteAuthSession();
 
+const expoClientId =
+  '71633949714-fdu0efehl8ouvbih6eosrgfla2b2mk0u.apps.googleusercontent.com';
+
+const authRoute = 'http://192.168.1.78:3000/api/auth/login';
+
 const RegistrationView = () => {
-  const [accessToken, setAccessToken] = useState();
-  const [userInfo, setUserInfo] = useState();
+  const {_, setUser} = useContext(AuthContext);
 
   // Google Use Auth Request Hook
 
   const [request, response, promptAsync] = Google.useAuthRequest({
     responseType: 'id_token',
-    expoClientId:
-      '71633949714-fdu0efehl8ouvbih6eosrgfla2b2mk0u.apps.googleusercontent.com',
+    expoClientId: expoClientId,
     scopes: ['email', 'profile'],
   });
 
   // Effect Hook to save the access token and then fetch user data
   React.useEffect(() => {
     if (response?.type === 'success') {
+      const token = response.params.id_token;
       const fetchData = async () => {
-        console.log(response.params.id_token);
+        fetch(authRoute, {
+          method: 'POST',
+          headers: {'session-token': token},
+        })
+          .then(result => {
+            return result.json();
+          })
+          .then(data => {
+            setUser(data);
+          });
       };
       fetchData();
     }

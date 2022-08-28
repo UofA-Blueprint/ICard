@@ -2,10 +2,11 @@
 const Cloud = require('@google-cloud/storage');
 const fs = require('fs');
 const Student = require('../models/Student');
+require('dotenv').config();
 const { Storage } = Cloud;
 const gcs = new Storage({
     projectId: 'isa-icard',
-    keyFilename: './isa-icard-2261fd0e0b9a.json'
+    credentials: JSON.parse(process.env.GOOGLE_CLOUD_STORAGE_JSON)
 });
 
 const bucketName = 'isa-icard';

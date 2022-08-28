@@ -21,7 +21,8 @@ const adminBro = new AdminBro({
         companyName: 'ISA',
         logo: 'https://static.ucraft.net/fs/ucraft/userFiles/uaisa/images/small-logo.png?v=1628056458',
         softwareBrothers: false,
-        favicon: 'https://static.ucraft.net/fs/ucraft/userFiles/uaisa/images/small-logo.png?v=1628056458',
+        favicon:
+            'https://static.ucraft.net/fs/ucraft/userFiles/uaisa/images/small-logo.png?v=1628056458',
     },
     locale: {
         translations: {
@@ -44,7 +45,7 @@ const adminBro = new AdminBro({
                     },
                     _id: {
                         isVisible: false,
-                    }
+                    },
                 },
             },
         },
@@ -54,7 +55,7 @@ const adminBro = new AdminBro({
                 properties: {
                     _id: {
                         isVisible: false,
-                    }
+                    },
                 },
             },
         },
@@ -88,9 +89,7 @@ const adminBro = new AdminBro({
                                     ...request.payload,
                                     encryptedPassword: await bcrypt.hash(
                                         request.payload.password,
-                                        parseInt(
-                                            process.env.SALT_ROUNDS
-                                        )
+                                        parseInt(process.env.SALT_ROUNDS)
                                     ),
                                     password: undefined,
                                 }

@@ -1,13 +1,12 @@
 'use strict';
 const Cloud = require('@google-cloud/storage');
-const fs = require('fs');
 const Student = require('../models/Student');
 require('dotenv').config();
 const { Storage } = Cloud;
 const gcs = new Storage({
     projectId: 'isa-icard',
-    credentials: JSON.parse(process.env.GOOGLE_CLOUD_STORAGE_JSON)
-});
+    credentials: JSON.parse(process.env.GOOGLE_CLOUD_STORAGE_JSON),
+})
 
 const bucketName = 'isa-icard';
 // get a reference to the bucket that we want to upload to

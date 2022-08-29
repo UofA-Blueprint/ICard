@@ -12,10 +12,11 @@ import AuthContext from '../context/AuthContext';
 
 WebBrowser.maybeCompleteAuthSession();
 
-const expoClientId =
-  '71633949714-fdu0efehl8ouvbih6eosrgfla2b2mk0u.apps.googleusercontent.com';
+import {CLIENT_ID, API_ROUTE, API_KEY} from '@env';
 
-const authRoute = 'http://192.168.1.78:3000/api/auth/login';
+const expoClientId = CLIENT_ID;
+const authRoute = API_ROUTE;
+const apiKey = API_KEY;
 
 const RegistrationView = () => {
   const {_, setUser} = useContext(AuthContext);
@@ -33,9 +34,9 @@ const RegistrationView = () => {
     if (response?.type === 'success') {
       const token = response.params.id_token;
       const fetchData = async () => {
-        fetch(authRoute, {
+        fetch(authRoute + 'api/auth/login', {
           method: 'POST',
-          headers: {'session-token': token},
+          headers: {'session-token': token, 'x-api-key': apiKey},
         })
           .then(result => {
             return result.json();

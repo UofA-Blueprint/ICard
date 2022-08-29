@@ -1,104 +1,32 @@
-const User = require('../models/User')
 const Student = require('../models/Student')
-const { validateLogin, validateRegister } = require('../validation/Auth')
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
 module.exports = {
+    // Returns Student if exists or creates new Student
     login: async (req, res) => {
-        const { error } = validateLogin(req.body) // validate the data
-        if (error)
-            return res.status(400).json({ message: error.details[0].message }) // if error, return 400 with error message
+        const user = req.user // get the user from the request
 
-        // Check if student exists
-        const checkStudent = await User.findOne({ email: req.body.email })
-        if (!checkStudent)
-            return res
-                .status(400)
-                .json({ message: 'Incorrect username or password' }) // if student does not exist, return 400 with error message
+        const check_student_db = await Student.findOne({ email: user.email }) // check if the user exists in the database
 
-        // Check if password is correct
-        const validPassword = await bcrypt.compare(
-            req.body.password,
-            checkStudent.password
-        )
-        if (!validPassword)
-            return res
-                .status(400)
-                .json({ message: 'Incorrect username or password' }) // if password is incorrect, return 400 with error message
-
-        // If the student exists and the password is correct, fetch the student data from the database
-        // and send it back to the client with a auth token
-        const studentDetails = await Student.findOne({ email: req.body.email })
-        if (!studentDetails)
-            return res.status(400).json({ message: 'Student not found' })
-
-        // Create token
-
-        //! Token doesn't have an expiration date and time
-
-        const token = jwt.sign(
-            { _id: checkStudent._id },
-            process.env.JWT_SECRET
-        )
-        res.header('auth-token', token).json({
-            // structure the response
-            token: token,
-            user: {
-                _id: studentDetails._id,
-                name: studentDetails.name,
-                email: studentDetails.email,
-                icard_number: studentDetails.icard_number,
-                active: studentDetails.active,
-                isaf_paying_status: studentDetails.isaf_paying_status,
-            },
-        })
-    },
-    register: async (req, res) => {
-        const { error } = validateRegister(req.body) // validate the data
-        if (error)
-            return res.status(400).json({ message: error.details[0].message }) // if error, return 400 with error message
-
-        // Check if student exists
-        const checkStudent = await User.findOne({ email: req.body.email })
-        if (checkStudent)
-            return res.status(400).json({ message: 'Student already exists' }) // if student exists, return 400 with error message
-
-        // Hash password
-        const salt = await bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS))
-        const hashedPassword = await bcrypt.hash(req.body.password, salt)
-
-        try {
-            const newUser = new User({
-                email: req.body.email,
-                password: hashedPassword,
+        if (check_student_db) {
+            return res.status(200).json(check_student_db) // if the user exists, return the user
+        } else {
+            const new_student = new Student({
+                // if the user doesn't exist, create a new user
+                name: user.name,
+                email: user.email,
+                active_status: false,
+                isaf_status: false,
+                verify: false,
+                picture: user.picture,
             })
 
-            // add auth to database
-            await User.create(newUser)
-
-            /**
-             * This is a temporary student modal
-             * I have randomly set active to true and
-             * isaf_paying_status to false.
-             */
-
-            // create new student
-            const student = new Student({
-                name: req.body.name,
-                icard_number: req.body.icard_number,
-                email: req.body.email,
-                active: true,
-                isaf_paying_status: false,
-            })
-
-            // add student to database
-            await Student.create(student)
-        } catch (err) {
-            return res.status(400).json({ message: err }) // if error, return 400 with error message
+            try {
+                const new_student_db = await Student.create(new_student)
+                return res.status(200).json(new_student_db)
+            } catch (err) {
+                return res.status(500).json({ message: err })
+            }
         }
-
-        res.status(201).json({ message: 'Student Registered' }) // if successful, return 201 with message
     },
 }

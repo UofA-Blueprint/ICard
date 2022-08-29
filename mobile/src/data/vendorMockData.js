@@ -1,45 +1,62 @@
 const vendorData = [
   {
     id: 1,
-    vendorName: "Vendor's Full Name",
-    address: 'Full address of Vendor',
-    description:
-      'Description of discounts e.g., 15$ off menu items for dine-in and take-out',
+    vendorName: 'Subway',
+    location: '1234 56 Ave NW',
+    contact: 'James Joe',
+    discount: '10%',
+    cardDesc: 'off menu items for dine in and takeout',
+    popupDesc: '10% off menu items for dine in and takeout',
+    image:
+      'https://logos-download.com/wp-content/uploads/2016/03/Subway_logo_logotype_emblem.png',
   },
   {
     id: 2,
-    vendorName: "Vendor's Full Name",
-    address: 'Full address of Vendor',
-    description:
-      'Description of discounts e.g., 15$ off menu items for dine-in and take-out',
+    vendorName: "Yelo'd",
+    location: '1234 56 Ave NW',
+    contact: 'James Joe',
+    discount: '1+1',
+    cardDesc:
+      'buy one cup or cone and get the second one (valued at $6) for free',
+    popupDesc:
+      'Buy one cup or cone and get the second one (valued at $6) for free',
+    image:
+      'https://www.yelod.ca/uploads/b/546e1880-6d2e-11ea-aa78-81814c044ec3/OL-yelod-wordlogo_MzAxMz.jpg',
   },
   {
     id: 3,
-    vendorName: "Vendor's Full Name",
-    address: 'Full address of Vendor',
-    description:
-      'Description of discounts e.g., 15$ off menu items for dine-in and take-out',
+    vendorName: 'Blowers and Grafton',
+    location: '1234 56 Ave NW',
+    contact: 'James Joe',
+    discount: 'Free Drink',
+    cardDesc: '1 free drink with a purchase of a medium or a large sized meal',
+    popupDesc: '1 free drink with a purchase of a medium or a large sized meal',
+    image:
+      'https://media-exp1.licdn.com/dms/image/C561BAQHznxtmClV2Cg/company-background_10000/0/1572051928760?e=2147483647&v=beta&t=Ksbphz1RPBTLN2u3uZfWt7r5D6gRU_rW1J0cNlICYOA',
   },
+
   {
     id: 4,
-    vendorName: "Vendor's Full Name",
-    address: 'Full address of Vendor',
-    description:
-      'Description of discounts e.g., 15$ off menu items for dine-in and take-out',
+    vendorName: 'Capreit',
+    location: '1234 56 Ave NW',
+    contact: 'James Joe',
+    discount: 'Gift Card',
+    cardDesc: '1 free drink with a purchase of a medium or a large sized meal',
+    popupDesc: '1 free drink with a purchase of a medium or a large sized meal',
+    image:
+      'https://renx.ca/wp-content/uploads/sites/2/2019/08/CAPREIT-logo.jpg',
   },
+
   {
     id: 5,
-    vendorName: "Vendor's Full Name",
-    address: 'Full address of Vendor',
-    description:
-      'Description of discounts e.g., 15$ off menu items for dine-in and take-out',
-  },
-  {
-    id: 6,
-    vendorName: "Vendor's Full Name",
-    address: 'Full address of Vendor',
-    description:
-      'Description of discounts e.g., 15$ off menu items for dine-in and take-out',
+    vendorName: 'Free Fitness Inc.',
+    location: '1234 56 Ave NW',
+    contact: 'James Joe',
+    discount: '$45',
+    cardDesc: '$45-$50/month student membership',
+    popupDesc: '$45-$50/month student membership',
+    image:
+      'https://courses.freefitnessinc.com/storage/course/25/Fall%20into%20Fitness%201.png',
   },
 ];
 

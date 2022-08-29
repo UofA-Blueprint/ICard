@@ -1,7 +1,6 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
-const bodyParser = require('body-parser')
 const swaggerUi = require('swagger-ui-express')
 const swaggerJsDoc = require('swagger-jsdoc')
 
@@ -9,6 +8,9 @@ var cors = require('cors')
 
 const studentsRouter = require('./routes/Students')
 const vendorsRouter = require('./routes/Vendors')
+const adminRouter = require('./routes/Admin')
+const authRouter = require('./routes/Auth')
+const imageRouter = require('./routes/Image')
 
 const app = express()
 dotenv.config()
@@ -45,7 +47,8 @@ run()
 var db = mongoose.connection // get the connection
 db.on('error', console.error.bind(console, 'connection error:'))
 
-const options = {   // swagger options
+const options = {
+    // swagger options
     definition: {
         openapi: '3.0.0',
         info: {
@@ -54,16 +57,18 @@ const options = {   // swagger options
         },
         servers: [
             {
-                url: 'http://localhost:3000/api/',  // url of the server
-            }
-        ]
+                url: 'http://localhost:3000/api/', // url of the server
+            },
+        ],
     },
-    apis: ['./src/routes/Students.js', './src/routes/Vendors.js'],  // path to the API docs
+    apis: ['./src/routes/Students.js', './src/routes/Vendors.js'], // path to the API docs
 }
 
 const specs = swaggerJsDoc(options) // create the swagger docs
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))   // setup the swagger docs route
+if (process.env.VERSION === 'staging') {
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs)) // setup the swagger docs route
+}
 
 app.use(cors()) // enable CORS
 
@@ -74,7 +79,10 @@ app.get('/test_db_conn', (req, res) => {
     res.json({ status: db.readyState, database: db.name })
 })
 
+app.use('/admin', adminRouter) // route for admin-bro
 app.use('/api/students', studentsRouter) // student routes
 app.use('/api/vendors', vendorsRouter) // vendor routes
+app.use('/api/auth', authRouter) // auth routes
+app.use('/api/images', imageRouter) // image routes
 
 module.exports = app // export the app for testing

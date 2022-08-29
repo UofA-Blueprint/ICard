@@ -118,8 +118,11 @@ router.get('/:studentId', verifyApiKey, studentController.getStudent) // get a s
  *              404:
  *                  description: The student was not found
  */
-router.get('/icard/:icard_number', verifyApiKey, studentController.getStudentByIcard) // get a student by icard number
-
+router.get(
+    '/icard/:icard_number',
+    verifyApiKey,
+    studentController.getStudentByIcard
+) // get a student by icard number
 
 /**
  * @swagger
@@ -149,7 +152,7 @@ router.get('/icard/:icard_number', verifyApiKey, studentController.getStudentByI
  *          500:
  *              description: Some server error
  */
-router.post('/', verifyApiKey, studentController.create) // create a new student
+// router.post('/', verifyApiKey, studentController.create) // create a new student
 
 /**
  * @swagger
@@ -186,9 +189,9 @@ router.post('/', verifyApiKey, studentController.create) // create a new student
  *                  description: The Student was not found
  *              500:
  *                  description: Some Server Error
- *          
+ *
  */
-router.put('/:studentId', verifyApiKey, studentController.update) // update a student
+// router.put('/:studentId', verifyApiKey, studentController.update) // update a student
 
 /**
  * @swagger
@@ -213,6 +216,6 @@ router.put('/:studentId', verifyApiKey, studentController.update) // update a st
  *              404:
  *                  description: The student was not found
  */
-router.delete('/:studentId', verifyApiKey, studentController.delete) // delete a student
+// router.delete('/:studentId', verifyApiKey, studentController.delete) // delete a student
 
 module.exports = router

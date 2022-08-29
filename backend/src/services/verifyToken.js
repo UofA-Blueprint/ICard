@@ -1,9 +1,9 @@
 const jwt = require('jsonwebtoken')
-const {OAuth2Client} = require('google-auth-library');
+const { OAuth2Client } = require('google-auth-library')
 require('dotenv').config()
 
 // create OAuth client for google authentication
-const client = new OAuth2Client(process.env.CLIENT_ID);
+const client = new OAuth2Client(process.env.CLIENT_ID)
 
 function verifyToken(req, res, next) {
     // Verifies the auth-token passed in the request header and returns the user if valid
@@ -41,28 +41,31 @@ function verifyApiKey(req, res, next) {
 
 // verifies the google token and returns the user if valid
 function checkAuthenticated(req, res, next) {
-    let token = req.header('session-token');    // get the token from the header
-    let user = {};  // create an empty user object
+    let token = req.header('session-token') // get the token from the header
+    let user = {} // create an empty user object
     async function verify() {
-        const ticket = await client.verifyIdToken({ // verify the token
+        const ticket = await client.verifyIdToken({
+            // verify the token
             idToken: token,
             audience: process.env.CLIENT_ID,
-        });
-        const payload = ticket.getPayload();    // get the payload with the user data
-        user.name = payload.name;
-        user.email = payload.email;
-        user.picture = payload.picture;
+        })
+        const payload = ticket.getPayload() // get the payload with the user data
+        user.name = payload.name
+        user.email = payload.email
+        user.picture = payload.picture
     }
-    verify().then(() => {
-        req.user = user; // set the user object to the request
-        next(); // call next() to continue
-    }).catch(err => {
-        res.status(401).json({ message: 'Invalid token.' })
-    });
+    verify()
+        .then(() => {
+            req.user = user // set the user object to the request
+            next() // call next() to continue
+        })
+        .catch((err) => {
+            res.status(401).json({ message: 'Invalid token.' })
+        })
 }
 
 module.exports = {
     verifyToken: verifyToken,
     verifyApiKey: verifyApiKey,
-    checkAuthenticated: checkAuthenticated
+    checkAuthenticated: checkAuthenticated,
 }

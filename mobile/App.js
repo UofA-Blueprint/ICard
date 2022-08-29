@@ -10,6 +10,7 @@ import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import HomeView from './src/views/HomeView';
 import ScanView from './src/views/ScanView';
+import VendorView from './src/views/VendorView';
 import RegistrationView from './src/views/RegistrationView';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
@@ -32,6 +33,7 @@ const App = () => {
             {user == null ? (
               <>
                 <Tab.Screen name="Home" component={HomeView} />
+                <Tab.Screen name="Vendors" component={VendorView} />
                 <Tab.Screen
                   name="Scan"
                   component={ScanView}
@@ -42,6 +44,7 @@ const App = () => {
             ) : (
               <>
                 <Tab.Screen name="Home" component={HomeView} />
+                <Tab.Screen name="Vendors" component={VendorView} />
                 <Tab.Screen
                   name="Scan"
                   component={ScanView}

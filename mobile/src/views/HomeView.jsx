@@ -1,10 +1,12 @@
 import React from 'react';
-import {StyleSheet, View, FlatList} from 'react-native';
+import {StyleSheet, View, FlatList, Text, Image} from 'react-native';
 import Header from '../components/shared/Header';
 import VendorCard from '../components/home/VendorCard';
+import DiscoverBar from '../components/home/DiscoverBar';
 import {globalStyleSheet} from '../utilites/Theme';
 
 import vendorData from '../data/vendorMockData';
+
 
 const HomeView = () => {
   const renderItem = ({item}) => (
@@ -15,8 +17,15 @@ const HomeView = () => {
     />
   );
   return (
-    <View style={styles.container}>
+    <View>
       <Header />
+      <Image
+        source={require('../../assets/ISA-logo.png')}
+        style={styles.logo}
+      />
+      <Text style={styles.title}>Welcome{'\n'}to ISA's{'\n'}mobile app</Text>
+      <Text style={styles.heading}>Discover</Text>
+      <DiscoverBar/>
       <FlatList
         data={vendorData}
         renderItem={renderItem}
@@ -33,6 +42,25 @@ const styles = StyleSheet.create({
   },
   vendorList: {
     paddingHorizontal: 20,
+  },
+  heading: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: 40,
+    marginLeft: 25,
+  },
+  title: {
+    marginLeft: 25,
+    fontSize: 35,
+    fontWeight: 'bold',
+    marginTop: 11,
+  },
+  logo: {
+    width: 100,
+    height: 83,
+    resizeMode: 'stretch',
+    marginLeft: 25, 
+    marginTop: 5,
   },
 });
 

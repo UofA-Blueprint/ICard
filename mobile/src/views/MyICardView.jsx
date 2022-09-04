@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {View, Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
 
 import Header from '../components/shared/Header';
@@ -12,7 +12,9 @@ import {
 
 import {colors, globalStyleSheet} from '../utilites/Theme';
 
-import user from '../data/userMockData';
+import AuthContext from '../context/AuthContext';
+
+let finalStatus = 'pending';
 
 const statusColors = {
   active: colors.lightGreen,
@@ -22,7 +24,7 @@ const statusColors = {
 };
 
 const MyICardView = () => {
-  let count = 0;
+  const {user, _} = useContext(AuthContext);
   let [fontsLoaded] = useFonts({
     Poppins_600SemiBold,
     Poppins_700Bold,
@@ -31,11 +33,16 @@ const MyICardView = () => {
     return <Text>Loading...</Text>;
   }
 
+  if (user == null) return <></>;
+
+  if (user.verify) finalStatus = 'inactive';
+  if (user.isaf_status) finalStatus = 'active';
+
   return (
     <View style={styles.container}>
       <Image
         source={
-          user.status == 'active'
+          finalStatus == 'active'
             ? require('../../assets/squiggly-lines-light.png')
             : require('../../assets/squiggly-lines.png')
         }
@@ -44,8 +51,7 @@ const MyICardView = () => {
       <TouchableOpacity
         style={styles.refreshButton}
         onPress={() => {
-          count = count + 1;
-          console.log('Pressed Lmao!', count);
+          console.log('Pressed!');
         }}>
         <MaterialCommunityIcons
           name="refresh"
@@ -65,16 +71,16 @@ const MyICardView = () => {
         />
 
         <View style={styles.card}>
-          <Image source={{uri: user.profilePic}} style={styles.avatar} />
+          <Image source={{uri: user.picture}} style={styles.avatar} />
           <Text style={[styles.userName, styles.subHeader]}>{user.name}</Text>
           <View style={styles.statusView}>
             <Text style={styles.statusHeader}>ISAF Status</Text>
             <Text style={[styles.subHeader, styles.ISAFStatus]}>
-              {user.status}
+              {finalStatus}
             </Text>
           </View>
         </View>
-        {user.status != 'active' && user.status != 'inactive' ? (
+        {finalStatus != 'active' && finalStatus != 'inactive' ? (
           <View style={styles.flexText}>
             <Text style={styles.baseText}>Last Updated: 3 years ago</Text>
             <Text style={styles.baseText}>
@@ -112,7 +118,7 @@ const styles = StyleSheet.create({
     ...globalStyleSheet.container,
     flex: 0,
     height: '50%',
-    backgroundColor: user.status == 'active' ? colors.primary : colors.white,
+    backgroundColor: finalStatus == 'active' ? colors.primary : colors.white,
     borderWidth: 1,
     width: '105%',
     borderRadius: 30,
@@ -147,13 +153,13 @@ const styles = StyleSheet.create({
   },
   statusView: {
     ...globalStyleSheet.container,
-    backgroundColor: user.status == 'active' ? colors.primary : colors.white,
+    backgroundColor: finalStatus == 'active' ? colors.primary : colors.white,
     zIndex: 10,
   },
   userName: {
     flex: 1,
     textAlignVertical: 'center',
-    color: user.status == 'active' ? colors.lightGreen : colors.black,
+    color: finalStatus == 'active' ? colors.lightGreen : colors.black,
   },
   logo: {
     position: 'absolute',
@@ -165,7 +171,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: -64,
     opacity: 1,
-    zIndex: user.status == 'active' ? 2 : 1,
+    zIndex: finalStatus == 'active' ? 2 : 1,
   },
   linesTop: {
     position: 'absolute',
@@ -188,10 +194,10 @@ const styles = StyleSheet.create({
   },
   ISAFStatus: {
     textTransform: 'uppercase',
-    color: statusColors[user.status],
+    color: statusColors[finalStatus],
   },
   statusHeader: {
-    color: user.status == 'active' ? colors.lightGray : colors.black,
+    color: finalStatus == 'active' ? colors.lightGray : colors.black,
   },
 });
 

@@ -31,7 +31,6 @@ const router = express.Router()
  *   name: Vendor
  */
 
-
 /**
  * @swagger
  * /vendors/:
@@ -121,7 +120,7 @@ router.get('/', verifyApiKey, vendorController.getAll)
  *                  description: The Vendor was not found
  *              500:
  *                  description: Some Server Error
- *          
+ *
  */
 // router.put('/:vendorId', verifyApiKey, vendorController.update)
 

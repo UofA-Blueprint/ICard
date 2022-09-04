@@ -34,7 +34,7 @@ const StudentSchema = new mongoose.Schema(
         },
         verification_image: {
             type: String,
-        }
+        },
     },
     { collection: 'students', versionKey: false }
 )

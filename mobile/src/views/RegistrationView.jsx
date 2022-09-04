@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {FontAwesome5} from '@expo/vector-icons';
 
@@ -8,33 +8,42 @@ import {colors, globalStyleSheet} from '../utilites/Theme';
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
 
+import AuthContext from '../context/AuthContext';
+
 WebBrowser.maybeCompleteAuthSession();
 
+import {CLIENT_ID, API_ROUTE, API_KEY} from '@env';
+
+const expoClientId = CLIENT_ID;
+const authRoute = API_ROUTE;
+const apiKey = API_KEY;
+
 const RegistrationView = () => {
-  const [accessToken, setAccessToken] = useState();
-  const [userInfo, setUserInfo] = useState();
+  const {_, setUser} = useContext(AuthContext);
 
   // Google Use Auth Request Hook
 
   const [request, response, promptAsync] = Google.useAuthRequest({
-    expoClientId:
-      '71633949714-fdu0efehl8ouvbih6eosrgfla2b2mk0u.apps.googleusercontent.com',
+    responseType: 'id_token',
+    expoClientId: expoClientId,
+    scopes: ['email', 'profile'],
   });
 
   // Effect Hook to save the access token and then fetch user data
   React.useEffect(() => {
     if (response?.type === 'success') {
+      const token = response.params.id_token;
       const fetchData = async () => {
-        const {authentication} = response; // storing our authentication data (JSON) into this authentication variable
-        setAccessToken(authentication.accessToken);
-        let userData = await fetch(
-          'https://www.googleapis.com/oauth2/v2/userinfo',
-          {
-            headers: {Authorization: 'Bearer ' + authentication.accessToken},
-          },
-        );
-        let data = await userData.json();
-        setUserInfo(data);
+        fetch(authRoute + 'api/auth/login', {
+          method: 'POST',
+          headers: {'session-token': token, 'x-api-key': apiKey},
+        })
+          .then(result => {
+            return result.json();
+          })
+          .then(data => {
+            setUser(data);
+          });
       };
       fetchData();
     }
@@ -42,37 +51,21 @@ const RegistrationView = () => {
 
   /*
   Render a Google Sign In Button
-  If the access token is granted, render a "Loading" text
-  until the app finally fetch the User Info.
-  If the user info is obtained, render their name and profile pic.
   */
 
   return (
     <View style={globalStyleSheet.container}>
       <Header />
       <View style={[styles.bodyContainer]}>
-        {accessToken ? (
-          userInfo ? (
-            <View style={styles.loggedIn}>
-              <Text>{userInfo.name}</Text>
-              <Image
-                source={{uri: userInfo.picture}}
-                style={styles.avatar}></Image>
-            </View>
-          ) : (
-            <Text>Loading...</Text>
-          )
-        ) : (
-          <TouchableOpacity
-            disabled={!request}
-            onPress={() => {
-              promptAsync();
-            }}
-            style={styles.signInButton}>
-            <FontAwesome5 name="google" size={16} color={colors.primary} />
-            <Text style={styles.promptMessage}>Sign In with Google</Text>
-          </TouchableOpacity>
-        )}
+        <TouchableOpacity
+          disabled={!request}
+          onPress={() => {
+            promptAsync();
+          }}
+          style={styles.signInButton}>
+          <FontAwesome5 name="google" size={16} color={colors.primary} />
+          <Text style={styles.promptMessage}>Sign In with Google</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

@@ -47,7 +47,8 @@ run()
 var db = mongoose.connection // get the connection
 db.on('error', console.error.bind(console, 'connection error:'))
 
-const options = {   // swagger options
+const options = {
+    // swagger options
     definition: {
         openapi: '3.0.0',
         info: {
@@ -56,17 +57,17 @@ const options = {   // swagger options
         },
         servers: [
             {
-                url: 'http://localhost:3000/api/',  // url of the server
-            }
-        ]
+                url: 'http://localhost:3000/api/', // url of the server
+            },
+        ],
     },
-    apis: ['./src/routes/Students.js', './src/routes/Vendors.js'],  // path to the API docs
+    apis: ['./src/routes/Students.js', './src/routes/Vendors.js'], // path to the API docs
 }
 
 const specs = swaggerJsDoc(options) // create the swagger docs
 
 if (process.env.VERSION === 'staging') {
-    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs))   // setup the swagger docs route
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs)) // setup the swagger docs route
 }
 
 app.use(cors()) // enable CORS
@@ -78,7 +79,7 @@ app.get('/test_db_conn', (req, res) => {
     res.json({ status: db.readyState, database: db.name })
 })
 
-app.use('/admin', adminRouter)  // route for admin-bro 
+app.use('/admin', adminRouter) // route for admin-bro
 app.use('/api/students', studentsRouter) // student routes
 app.use('/api/vendors', vendorsRouter) // vendor routes
 app.use('/api/auth', authRouter) // auth routes

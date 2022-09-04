@@ -17,7 +17,6 @@ const globalStyleSheet = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.white,
     alignItems: 'center',
-    justifyContent: 'center',
   },
   fullScreen: {
     height: '100%',

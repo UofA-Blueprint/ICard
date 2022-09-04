@@ -68,7 +68,7 @@ const VendorView = () => {
 const styles = StyleSheet.create({
   container: {
     ...globalStyleSheet.container,
-    top: 0
+
   }
 });
 

@@ -18,6 +18,15 @@ import ScreenOption from './src/utilites/ScreenOption';
 import {globalStyleSheet} from './src/utilites/Theme';
 import MyICardView from './src/views/MyICardView';
 
+import {Text} from 'react-native';
+
+import {
+  useFonts,
+  Poppins_400Regular,
+  Poppins_600SemiBold,
+  Poppins_700Bold,
+} from '@expo-google-fonts/poppins';
+
 import AuthContext from './src/context/AuthContext';
 
 const Tab = createBottomTabNavigator();
@@ -25,6 +34,14 @@ const Tab = createBottomTabNavigator();
 const App = () => {
   const [user, setUser] = useState(null);
   const value = {user, setUser};
+  let [fontsLoaded] = useFonts({
+    Poppins_400Regular,
+    Poppins_600SemiBold,
+    Poppins_700Bold,
+  });
+  if (!fontsLoaded) {
+    return <Text>Loading...</Text>;
+  }
   return (
     <SafeAreaView style={{flex: 1}}>
       <NavigationContainer>

@@ -1,9 +1,17 @@
-import React, {useState, useContext} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
-import {FontAwesome5} from '@expo/vector-icons';
+import React, {useContext} from 'react';
+var {Platform} = React;
+
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  ImageBackground,
+} from 'react-native';
 
 import Header from '../components/shared/Header';
-import {colors, globalStyleSheet} from '../utilites/Theme';
+import {colors, globalStyleSheet, typography} from '../utilites/Theme';
 
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
@@ -20,6 +28,8 @@ const apiKey = API_KEY;
 
 const RegistrationView = () => {
   const {_, setUser} = useContext(AuthContext);
+
+  console.table(CLIENT_ID, API_ROUTE, API_KEY);
 
   // Google Use Auth Request Hook
 
@@ -55,17 +65,41 @@ const RegistrationView = () => {
 
   return (
     <View style={globalStyleSheet.container}>
-      <Header />
       <View style={[styles.bodyContainer]}>
-        <TouchableOpacity
-          disabled={!request}
-          onPress={() => {
-            promptAsync();
-          }}
-          style={styles.signInButton}>
-          <FontAwesome5 name="google" size={16} color={colors.primary} />
-          <Text style={styles.promptMessage}>Sign In with Google</Text>
-        </TouchableOpacity>
+        <ImageBackground
+          source={require('../../assets/gradient.png')}
+          resizeMode="cover"
+          style={styles.image}>
+          <View style={styles.title}>
+            <Image
+              source={require('../../assets/ISA-plate.png')}
+              style={Platform.OS == 'android' ? styles.logo : {}}></Image>
+            <Text style={[typography.header, styles.header]}>
+              Discover more with ISA
+            </Text>
+            <Text style={{...typography.detail}}>
+              Please use University of Alberta email
+            </Text>
+          </View>
+          <View style={styles.groupOfButtons}>
+            <TouchableOpacity
+              disabled={!request}
+              onPress={() => {
+                promptAsync();
+              }}
+              style={styles.signInButton}>
+              <Image
+                style={styles.tinyLogo}
+                source={require('../../assets/google-logo.png')}></Image>
+              <Text style={styles.promptMessage}>Sign In with Google</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.skipButton}>
+              <Text style={[typography.body, {color: colors.primary}]}>
+                Skip for now
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </ImageBackground>
       </View>
     </View>
   );
@@ -74,31 +108,65 @@ const RegistrationView = () => {
 const styles = StyleSheet.create({
   bodyContainer: {
     flex: 1,
+    width: '100%',
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    flex: 1,
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logo: {
+    width: 245,
+    height: 280,
+    resizeMode: 'stretch',
   },
   signInButton: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignItems: 'center',
-    width: '60%',
+    backgroundColor: colors.white,
+    borderRadius: 50,
     paddingHorizontal: 24,
-    paddingVertical: 8,
-    borderWidth: 1,
-    borderRadius: 8,
-    borderColor: colors.primary,
+    paddingVertical: 12,
+    shadowColor: colors.black,
+    elevation: 2,
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
   },
-  promptMessage: {
+  header: {
+    paddingHorizontal: 36,
+    marginTop: 12,
     color: colors.primary,
   },
-  loggedIn: {
+
+  promptMessage: {
+    fontWeight: 'bold',
+    color: colors.darkGray,
+    fontSize: Platform.OS === 'ios' ? 20 : 18,
+  },
+  tinyLogo: {
+    width: 24,
+    height: 24,
+    marginRight: 12,
+  },
+  skipButton: {
+    marginTop: 12,
+  },
+  title: {
+    flex: 4,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  avatar: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    marginVertical: 24,
+  groupOfButtons: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

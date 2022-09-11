@@ -9,22 +9,25 @@ const SearchBar = ({clicked, setClicked, searchPhrase, setSearchPhrase}) => {
             <View style={
                 clicked ? styles.searchBar__clicked : styles.searchBar__unclicked
             }>
-                <Feather
-                    name='search'
-                    size={20}
-                    color='black'
-                    style={{marginLeft: 1}}
-                />
 
                 <TextInput
                     style={styles.input}
-                    placeholder='search'
+                    placeholder='Search coupons ...'
                     value={searchPhrase}
                     onChangeText={setSearchPhrase}
                     onFocus={() => {
                         setClicked(true);
                     }}
                 />
+                {!clicked && (
+                    <Feather
+                        name='search'
+                        size={20}
+                        color='black'
+                        style={{marginLeft: 1}}
+                    />
+                )
+                }
 
             </View>
             
@@ -57,7 +60,7 @@ const styles = StyleSheet.create({
         padding: 10,
         flexDirection: "row",
         width: "95%",
-        backgroundColor: "#d9dbda",
+        backgroundColor: "white",
         borderRadius: 15,
         alignItems: "center",
       },
@@ -65,7 +68,7 @@ const styles = StyleSheet.create({
         padding: 10,
         flexDirection: "row",
         width: "80%",
-        backgroundColor: "#d9dbda",
+        backgroundColor: "white",
         borderRadius: 15,
         alignItems: "center",
         justifyContent: "space-evenly",

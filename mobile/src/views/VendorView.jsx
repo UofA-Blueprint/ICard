@@ -68,7 +68,7 @@ const VendorView = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.white,
+    backgroundColor: "#D9FFDC44",
     alignItems: 'center',
   },
   vendorList: {

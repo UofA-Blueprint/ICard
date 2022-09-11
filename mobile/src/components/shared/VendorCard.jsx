@@ -77,8 +77,6 @@ const styles = StyleSheet.create({
    cardContainer: {
       paddingVertical: 10,
       paddingHorizontal: 16,
-      borderWidth: 1,
-      borderColor: colors.primary,
       borderRadius: 10,
       marginVertical: 12,
       display: 'flex',
@@ -87,6 +85,12 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       width: win.width - 40,
       minHeight: win.height/5,
+      backgroundColor: 'white',
+      shadowColor: '#888888',
+      shadowOpacity: 0.7,
+      shadowRadius: 2,  
+      shadowOffset: {width: 0, height: 5},
+      elevation: 1
     },
 
     textContainer: {

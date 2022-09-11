@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, FlatList, Text} from 'react-native';
+import {StyleSheet, View, FlatList, Text, Dimensions} from 'react-native';
 import Header from '../components/shared/Header';
 import {globalStyleSheet} from '../utilites/Theme';
 import vendorData from '../data/vendorMockData';
@@ -35,8 +35,6 @@ const VendorView = () => {
 
   return (
     <View style={styles.container}>
-      <Header/>
-
       <Text style={{
         color: colors.primary,
         fontSize: 30,
@@ -65,9 +63,12 @@ const VendorView = () => {
   );
 };
 
+const win = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 0.075*win.height,
     backgroundColor: "#D9FFDC44",
     alignItems: 'center',
   },

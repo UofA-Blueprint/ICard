@@ -3,7 +3,7 @@ import {StyleSheet, View, FlatList, Text, Image} from 'react-native';
 import Header from '../components/shared/Header';
 import VendorCard from '../components/home/VendorCard';
 import DiscoverBar from '../components/home/DiscoverBar';
-import {globalStyleSheet} from '../utilites/Theme';
+import {globalStyleSheet, colors} from '../utilites/Theme';
 
 import vendorData from '../data/vendorMockData';
 
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 40,
     marginLeft: 25,
+    color: colors.darkGray,
   },
   title: {
     marginLeft: 25,

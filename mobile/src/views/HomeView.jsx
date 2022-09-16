@@ -1,11 +1,12 @@
 import React from 'react';
-import {StyleSheet, View, FlatList, Text, Image} from 'react-native';
+import {StyleSheet, View, FlatList, Text, Image, Text, Image} from 'react-native';
 import Header from '../components/shared/Header';
 import VendorCard from '../components/home/VendorCard';
 import DiscoverBar from '../components/home/DiscoverBar';
 import {globalStyleSheet, colors} from '../utilites/Theme';
 
 import vendorData from '../data/vendorMockData';
+
 
 
 const HomeView = () => {
@@ -19,6 +20,13 @@ const HomeView = () => {
   return (
     <View>
       <Header />
+      <Image
+        source={require('../../assets/ISA-logo.png')}
+        style={styles.logo}
+      />
+      <Text style={styles.title}>Welcome{'\n'}to ISA's{'\n'}mobile app</Text>
+      <Text style={styles.heading}>Discover</Text>
+      <DiscoverBar/>
       <Image
         source={require('../../assets/ISA-logo.png')}
         style={styles.logo}

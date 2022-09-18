@@ -129,14 +129,15 @@ const popUpStyles = StyleSheet.create({
         backgroundColor: 'white',
         display: 'flex',
         alignItems: 'center',
-        borderColor: colors.primary,
         borderRadius: 20,
-        borderWidth: 1,
         paddingHorizontal: 20,
         paddingBottom: 25,
         paddingTop: 5,
         width: win.width,
-        height: win.height/2
+        height: win.height/2,
+        shadowOpacity: 0.7,
+        shadowRadius: 2,  
+        shadowOffset: {width: 0, height: -2},
     },
 
     modalContentContainer: {

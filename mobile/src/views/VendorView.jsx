@@ -7,24 +7,8 @@ import {colors} from '../utilites/Theme'
 import {useState} from 'react';
 import SearchBar from '../components/shared/SearchBar';
 import VendorList from '../components/shared/VendorList';
+import { shuffle } from '../utilites/Shuffle';
 
-function shuffle(array) {
-  let currentIndex = array.length,  randomIndex;
-
-  // While there remain elements to shuffle.
-  while (currentIndex != 0) {
-
-    // Pick a remaining element.
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
-  }
-
-  return array;
-}
 
 const VendorView = () => {
   const [searchPhrase, setSearchPhrase] = useState('');
@@ -63,12 +47,10 @@ const VendorView = () => {
   );
 };
 
-const win = Dimensions.get('window');
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 0.075*win.height,
+    paddingTop: 64,
     backgroundColor: "#D9FFDC44",
     alignItems: 'center',
   },

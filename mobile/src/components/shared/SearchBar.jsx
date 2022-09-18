@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, TextInput, View, Keyboard, Button} from 'react-native';
 import {Feather, Entypo} from '@expo/vector-icons';
+import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 
 
 const SearchBar = ({clicked, setClicked, searchPhrase, setSearchPhrase}) => {
@@ -19,6 +20,7 @@ const SearchBar = ({clicked, setClicked, searchPhrase, setSearchPhrase}) => {
                         setClicked(true);
                     }}
                 />
+
                 {!clicked && (
                     <Feather
                         name='search'
@@ -29,20 +31,26 @@ const SearchBar = ({clicked, setClicked, searchPhrase, setSearchPhrase}) => {
                 )
                 }
 
+                {clicked && (
+                    <View>
+                        <Pressable
+                            onPress={() => {
+                                Keyboard.dismiss();
+                                setClicked(false);
+                                setSearchPhrase('');
+                            }}
+                        >
+                            <Entypo
+                                name='cross'
+                                size={20}
+                                color='black'
+                                style={{marginLeft: 1}}
+                            />
+                        </Pressable>
+                    </View>
+            )}              
             </View>
-            
-            {clicked && (
-                <View>
-                    <Button
-                        title='cancel'
-                        onPress={() => {
-                            Keyboard.dismiss();
-                            setClicked(false);
-                            setSearchPhrase('');
-                        }}
-                    />
-                </View>
-            )}
+        
         </View>
     )
 }
@@ -61,15 +69,15 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         width: "95%",
         backgroundColor: "white",
-        borderRadius: 15,
+        borderRadius: 30,
         alignItems: "center",
       },
       searchBar__clicked: {
         padding: 10,
         flexDirection: "row",
-        width: "80%",
+        width: "95%",
         backgroundColor: "white",
-        borderRadius: 15,
+        borderRadius: 30,
         alignItems: "center",
         justifyContent: "space-evenly",
       },

@@ -8,6 +8,14 @@
     "android": {
       "permissions": ["CAMERA", "android.permission.CAMERA"],
       "package": "org.uofablueprint.icard"
-    }
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends."
+        }
+      ]
+    ]
   }
 }

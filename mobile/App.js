@@ -7,9 +7,8 @@
  */
 
 import React, {useState} from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import HomeView from './src/views/HomeView';
-import ScanView from './src/views/ScanView';
 import VendorView from './src/views/VendorView';
 import RegistrationView from './src/views/RegistrationView';
 import {NavigationContainer} from '@react-navigation/native';
@@ -28,6 +27,7 @@ import {
 } from '@expo-google-fonts/poppins';
 
 import AuthContext from './src/context/AuthContext';
+import VerificationView from './src/views/VerificationView';
 
 const Tab = createBottomTabNavigator();
 
@@ -43,7 +43,7 @@ const App = () => {
     return <Text>Loading...</Text>;
   }
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaProvider style={{flex: 1}}>
       <NavigationContainer>
         <AuthContext.Provider value={value}>
           <Tab.Navigator screenOptions={ScreenOption}>
@@ -51,12 +51,7 @@ const App = () => {
               <>
                 <Tab.Screen name="Home" component={HomeView} />
                 <Tab.Screen name="Vendors" component={VendorView} />
-                <Tab.Screen
-                  name="Scan"
-                  component={ScanView}
-                  options={{tabBarStyle: globalStyleSheet.tabBarHidden}}
-                />
-                <Tab.Screen name="My ICard" component={RegistrationView} />
+                <Tab.Screen name="My ICard" component={VerificationView} />
               </>
             ) : (
               <>
@@ -73,7 +68,7 @@ const App = () => {
           </Tab.Navigator>
         </AuthContext.Provider>
       </NavigationContainer>
-    </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
 

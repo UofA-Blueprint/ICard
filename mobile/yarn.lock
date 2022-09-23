@@ -4355,6 +4355,15 @@
   "resolved" "https://registry.npmjs.org/expo-image-loader/-/expo-image-loader-3.2.0.tgz"
   "version" "3.2.0"
 
+"expo-image-picker@~13.1.1":
+  "integrity" "sha512-fU8oONRkKg5DvuU+7KvnuOtf1ubzXNU/OsE/T6yB149LbXb+ZN5A49NicvJ+cOG4Oa5NAnILt0aAAkchIr3iRQ=="
+  "resolved" "https://registry.npmjs.org/expo-image-picker/-/expo-image-picker-13.1.1.tgz"
+  "version" "13.1.1"
+  dependencies:
+    "@expo/config-plugins" "^4.0.14"
+    "expo-image-loader" "~3.2.0"
+    "uuid" "7.0.2"
+
 "expo-keep-awake@~10.1.1":
   "integrity" "sha512-9zC0sdhQljUeMr2yQ7o4kzEZXVAy82fFOAZE1+TwPL7qR0b0sphe7OJ5T1GX1qLcwuVaJ8YewaPoLSHRk79+Rg=="
   "resolved" "https://registry.npmjs.org/expo-keep-awake/-/expo-keep-awake-10.1.1.tgz"
@@ -9629,6 +9638,11 @@
   "integrity" "sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg=="
   "resolved" "https://registry.npmjs.org/uuid/-/uuid-8.3.2.tgz"
   "version" "8.3.2"
+
+"uuid@7.0.2":
+  "integrity" "sha512-vy9V/+pKG+5ZTYKf+VcphF5Oc6EFiu3W8Nv3P3zIh0EqVI80ZxOzuPfe9EHjkFNvf8+xuTHVeei4Drydlx4zjw=="
+  "resolved" "https://registry.npmjs.org/uuid/-/uuid-7.0.2.tgz"
+  "version" "7.0.2"
 
 "v8-compile-cache@^2.0.3":
   "integrity" "sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA=="

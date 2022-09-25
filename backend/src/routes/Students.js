@@ -118,8 +118,11 @@ router.get('/:studentId', verifyApiKey, studentController.getStudent) // get a s
  *              404:
  *                  description: The student was not found
  */
-router.get('/icard/:icard_number', verifyApiKey, studentController.getStudentByIcard) // get a student by icard number
-
+router.get(
+    '/icard/:icard_number',
+    verifyApiKey,
+    studentController.getStudentByIcard
+) // get a student by icard number
 
 /**
  * @swagger
@@ -186,7 +189,7 @@ router.get('/icard/:icard_number', verifyApiKey, studentController.getStudentByI
  *                  description: The Student was not found
  *              500:
  *                  description: Some Server Error
- *          
+ *
  */
 // router.put('/:studentId', verifyApiKey, studentController.update) // update a student
 

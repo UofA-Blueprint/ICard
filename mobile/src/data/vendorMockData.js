@@ -9,7 +9,7 @@ const vendorData = [
   },
   {
     id: 2,
-    vendorName: 'Yelo\'d',
+    vendorName: "Yelo'd",
     location: '1234 56 Ave NW',
     contact: 'James Joe',
     description: 'Buy one cup or cone and get the second one (valued at $6) for free',

@@ -1,14 +1,20 @@
 import React from 'react';
-import {StyleSheet, View, FlatList, Text, Image, ImageBackground} from 'react-native';
-import VendorCard from '../components/shared/VendorCard';
+import {StyleSheet, View, Text, Image, ImageBackground} from 'react-native';
 import DiscoverBar from '../components/home/DiscoverBar';
 import {globalStyleSheet, colors} from '../utilites/Theme';
+import VendorList from '../components/shared/VendorList';
+import {useState} from 'react';
 
 import vendorData from '../data/vendorMockData';
+import { shuffle } from '../utilites/Shuffle';
 
 
 
 const HomeView = () => {
+
+  const vendorDataRandom = shuffle(vendorData);
+  const [searchPhrase, setSearchPhrase] = useState('');
+  const [clicked, setClicked] = useState(false);
   
   return (
     <ImageBackground source={require('../../assets/Background.png')} resizeMode="cover" style={styles.backgoundImage}>
@@ -29,7 +35,11 @@ const HomeView = () => {
         <Text style={styles.vendorText}>See All</Text>
       </View>
       
-      <VendorCard/>
+      <VendorList
+        searchPhrase={searchPhrase}
+        data={vendorDataRandom}
+        setClicked={setClicked}
+      />
 
     </ImageBackground>
   );

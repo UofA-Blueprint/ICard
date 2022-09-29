@@ -8,7 +8,7 @@ const DiscoverBar = () => {
 
       <TouchableOpacity style={styles.container} onPress={() => Linking.openURL('https://isa.ualberta.ca/')}>
       
-        <Svg
+        <Svg marginTop={6}
           width={48}
           height={45}
           xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +43,7 @@ const DiscoverBar = () => {
 
       <TouchableOpacity style={styles.container} onPress={() => Linking.openURL('https://isa.ualberta.ca/events')}>
 
-        <Svg
+        <Svg marginTop={6}
           width={48}
           height={45}
           xmlns="http://www.w3.org/2000/svg">

@@ -28,7 +28,7 @@ const HomeView = () => {
         style={styles.logo}
       />
       <Text style={styles.title}>Welcome{'\n'}to ISA's{'\n'}mobile app</Text>
-      <Text style={styles.headingDiscover}>Discover</Text>
+      <Text style={styles.headingDiscoverDiscover}>Discover</Text>
       <DiscoverBar/>
       <View style={styles.row}>
         <Text style={styles.headingVendor}>Vendors</Text>
@@ -51,10 +51,16 @@ const styles = StyleSheet.create({
   vendorList: {
     paddingHorizontal: 20,
   },
-  headingDiscover: {
+  headingDiscoverDiscover: {
     fontSize: 20,
     fontWeight: 'bold',
     marginTop: 40,
+    marginLeft: 25,
+    color: colors.darkGray,
+  },
+  headingVendor: {
+    fontSize: 20,
+    fontWeight: 'bold',
     marginLeft: 25,
     color: colors.darkGray,
   },

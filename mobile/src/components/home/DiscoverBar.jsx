@@ -38,6 +38,8 @@ const DiscoverBar = () => {
           />
 
   
+
+  
         </View>
       </TouchableOpacity>
 

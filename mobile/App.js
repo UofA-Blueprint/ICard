@@ -9,7 +9,6 @@
 import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import HomeView from './src/views/HomeView';
-import ScanView from './src/views/ScanView';
 import VendorView from './src/views/VendorView';
 import RegistrationView from './src/views/RegistrationView';
 import {NavigationContainer} from '@react-navigation/native';

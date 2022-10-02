@@ -34,22 +34,12 @@ const App = () => {
               <>
                 <Tab.Screen name="Home" component={HomeView} />
                 <Tab.Screen name="Vendors" component={VendorView} />
-                <Tab.Screen
-                  name="Scan"
-                  component={ScanView}
-                  options={{tabBarStyle: globalStyleSheet.tabBarHidden}}
-                />
                 <Tab.Screen name="My ICard" component={RegistrationView} />
               </>
             ) : (
               <>
                 <Tab.Screen name="Home" component={HomeView} />
                 <Tab.Screen name="Vendors" component={VendorView} />
-                <Tab.Screen
-                  name="Scan"
-                  component={ScanView}
-                  options={{tabBarStyle: globalStyleSheet.tabBarHidden}}
-                />
                 <Tab.Screen name="My ICard" component={MyICardView} />
               </>
             )}

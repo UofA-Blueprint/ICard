@@ -2,12 +2,16 @@ import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity, Linking} from 'react-native';
 import {colors, globalStyleSheet} from '../../utilites/Theme';
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b25ec7e (created discover bar and welcome title)
 const DiscoverBar = () => {
   return (
     <View style={styles.DiscoverRow}>
 
       <TouchableOpacity style={styles.container} onPress={() => Linking.openURL('https://isa.ualberta.ca/')}>
+<<<<<<< HEAD
       <Image
             source={require('../../../assets/Website.png')}
             style={styles.image}
@@ -16,6 +20,15 @@ const DiscoverBar = () => {
         <View style={styles.row}>
           <Text style={[globalStyleSheet.text, styles.label]}>
           ISA Website
+=======
+        <Image
+          source={require('../../../assets/Website.png')}
+          style={styles.image}
+        />
+        <View style={styles.row}>
+          <Text style={[globalStyleSheet.text, styles.label]}>
+          ISA's Website
+>>>>>>> b25ec7e (created discover bar and welcome title)
           </Text>
 
           <Image
@@ -51,13 +64,20 @@ const styles = StyleSheet.create({
   container: {
     paddingVertical: 10,
     paddingHorizontal: 16,
+<<<<<<< HEAD
     backgroundColor: colors.lightGray,
     borderRadius: 15,
+=======
+    borderWidth: 1,
+    borderColor: colors.primary,
+    borderRadius: 10,
+>>>>>>> b25ec7e (created discover bar and welcome title)
     marginTop: 8,
     marginRight: 16,
     flexGrow: 1,
     alignItems: 'center',
     flex: 1,
+<<<<<<< HEAD
     shadowColor: "#000",
     shadowOffset: {
 	    width: 4,
@@ -65,6 +85,8 @@ const styles = StyleSheet.create({
       },
     shadowOpacity: 0.25,
     elevation: 5,
+=======
+>>>>>>> b25ec7e (created discover bar and welcome title)
 
   },
   label: {

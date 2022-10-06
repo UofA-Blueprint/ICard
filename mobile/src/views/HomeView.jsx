@@ -39,6 +39,16 @@ const HomeView = () => {
         data={vendorDataRandom}
         setClicked={setClicked}
       />
+      <Text style={styles.heading}>Discover</Text>
+
+      <DiscoverBar />
+      <FlatList
+        data={vendorData}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+        style={styles.vendorList}
+        contentContainerStyle={globalStyleSheet.listContentContainer}
+      />
     </ImageBackground>
   );
 };

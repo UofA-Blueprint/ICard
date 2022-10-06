@@ -63,10 +63,22 @@ const VerificationView = () => {
             <Image source={{uri: image}} style={{width: 200, height: 200}} />
           )}
         </View>
-        <Pressable onPress={() => {}} style={styles.submitButton}>
+        <Pressable
+          onPress={() => {
+            console.log('Submit');
+          }}
+          style={[
+            styles.submitButton,
+            image != null ? styles.activeSubmitButton : '',
+          ]}
+          disabled={image == null}>
           <Text style={{color: 'white', ...typography.subHeader4}}>Submit</Text>
         </Pressable>
-        <Pressable onPress={() => {}} style={styles.skipButton}>
+        <Pressable
+          onPress={() => {
+            console.log('Skip');
+          }}
+          style={styles.skipButton}>
           <Text style={{color: colors.primary, ...typography.body}}>
             Skip for now
           </Text>
@@ -131,6 +143,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '80%',
     backgroundColor: colors.lightGray,
+  },
+  activeSubmitButton: {
+    backgroundColor: colors.primary,
   },
 });
 

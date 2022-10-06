@@ -26,11 +26,7 @@ const HomeView = () => {
         Welcome{'\n'}to ISA's{'\n'}mobile app
       </Text>
       <Text style={styles.heading}>Discover</Text>
-<<<<<<< HEAD
       <DiscoverBar />
-=======
-      <DiscoverBar/>
->>>>>>> 4eab920 (fixed accidental duplicate code)
       <FlatList
         data={vendorData}
         renderItem={renderItem}

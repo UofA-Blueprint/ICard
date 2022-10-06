@@ -41,7 +41,6 @@ const DiscoverBar = () => {
 
         <View style={styles.row}>
           <Text style={[globalStyleSheet.text, styles.label]}>Events</Text>
-
           <Image
             source={require('../../../assets/Arrow.png')}
             style={styles.image}
@@ -56,6 +55,8 @@ const styles = StyleSheet.create({
   container: {
     paddingVertical: 10,
     paddingHorizontal: 16,
+    backgroundColor: colors.lightGray,
+    borderRadius: 15,
     borderWidth: 1,
     borderColor: colors.primary,
     borderRadius: 10,
@@ -64,6 +65,13 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     alignItems: 'center',
     flex: 1,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 4,
+      height: 4,
+    },
+    shadowOpacity: 0.25,
+    elevation: 5,
   },
   label: {
     fontSize: 16,

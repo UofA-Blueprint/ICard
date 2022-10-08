@@ -1,17 +1,15 @@
 import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity, Linking} from 'react-native';
 import {colors, globalStyleSheet} from '../../utilites/Theme';
-
-
+import Events from "../../../assets/Events"
+import Website from "../../../assets/Website"
 const DiscoverBar = () => {
   return (
     <View style={styles.DiscoverRow}>
 
       <TouchableOpacity style={styles.container} onPress={() => Linking.openURL('https://isa.ualberta.ca/')}>
-      <Image
-            source={require('../../../assets/Website.png')}
-            style={styles.image}
-          />
+      
+        <Website/>
 
         <View style={styles.row}>
           <Text style={[globalStyleSheet.text, styles.label]}>
@@ -22,14 +20,16 @@ const DiscoverBar = () => {
             source={require('../../../assets/Arrow.png')}
             style={styles.image}
           />
+
+  
+
+  
         </View>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.container} onPress={() => Linking.openURL('https://isa.ualberta.ca/events')}>
-        <Image
-          source={require('../../../assets/Events.png')}
-          style={styles.image}
-        />
+
+        <Events/>
 
         <View style={styles.row}>
           <Text style={[globalStyleSheet.text, styles.label]}>

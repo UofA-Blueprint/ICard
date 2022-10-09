@@ -29,7 +29,11 @@ function shuffle(array) {
 
   return array;
 }
+<<<<<<< HEAD
 >>>>>>> 57731ef (need to fix styling)
+=======
+>>>>>>> 7fd9c6c (Fixed conflict)
+>>>>>>> 75c0bec (Fixed conflict)
 
 const VendorView = () => {
   const [searchPhrase, setSearchPhrase] = useState('');
@@ -41,6 +45,7 @@ const VendorView = () => {
   return (
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <View style={styles.container}>
 =======
     <View style={[styles.container, {backgroundColor: '#D9FFDC44'}]}>
@@ -50,6 +55,14 @@ const VendorView = () => {
       <Header/>
 
 >>>>>>> 57731ef (need to fix styling)
+=======
+    <View style={styles.container}>
+=======
+    <View style={[styles.container, {backgroundColor: '#D9FFDC44'}]}>
+      <Header/>
+
+>>>>>>> 7fd9c6c (Fixed conflict)
+>>>>>>> 75c0bec (Fixed conflict)
       <Text style={{
         color: colors.primary,
         fontSize: 30,
@@ -82,6 +95,9 @@ const styles = StyleSheet.create({
   container: {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 75c0bec (Fixed conflict)
     flex: 1,
     paddingTop: 64,
     backgroundColor: "#D9FFDC44",
@@ -95,13 +111,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 75c0bec (Fixed conflict)
 =======
     ...globalStyleSheet.container,
     top: 0
   }
+<<<<<<< HEAD
 >>>>>>> 57731ef (need to fix styling)
 =======
 >>>>>>> b95fceb (matched styling with figma)
+=======
+>>>>>>> 7fd9c6c (Fixed conflict)
+>>>>>>> 75c0bec (Fixed conflict)
 });
 
 export default VendorView;

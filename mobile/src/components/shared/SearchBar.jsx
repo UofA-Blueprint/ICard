@@ -4,7 +4,11 @@ import {Feather, Entypo} from '@expo/vector-icons';
 <<<<<<< HEAD
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 =======
+<<<<<<< HEAD
 >>>>>>> 57731ef (need to fix styling)
+=======
+>>>>>>> 7fd9c6c (Fixed conflict)
+>>>>>>> 75c0bec (Fixed conflict)
 
 
 const SearchBar = ({clicked, setClicked, searchPhrase, setSearchPhrase}) => {
@@ -29,7 +33,11 @@ const SearchBar = ({clicked, setClicked, searchPhrase, setSearchPhrase}) => {
                 <TextInput
                     style={styles.input}
                     placeholder='search'
+<<<<<<< HEAD
 >>>>>>> 57731ef (need to fix styling)
+=======
+>>>>>>> 7fd9c6c (Fixed conflict)
+>>>>>>> 75c0bec (Fixed conflict)
                     value={searchPhrase}
                     onChangeText={setSearchPhrase}
                     onFocus={() => {
@@ -83,7 +91,11 @@ const SearchBar = ({clicked, setClicked, searchPhrase, setSearchPhrase}) => {
                     />
                 </View>
             )}
+<<<<<<< HEAD
 >>>>>>> 57731ef (need to fix styling)
+=======
+>>>>>>> 7fd9c6c (Fixed conflict)
+>>>>>>> 75c0bec (Fixed conflict)
         </View>
     )
 }
@@ -107,7 +119,11 @@ const styles = StyleSheet.create({
 =======
         backgroundColor: "#d9dbda",
         borderRadius: 15,
+<<<<<<< HEAD
 >>>>>>> 57731ef (need to fix styling)
+=======
+>>>>>>> 7fd9c6c (Fixed conflict)
+>>>>>>> 75c0bec (Fixed conflict)
         alignItems: "center",
       },
       searchBar__clicked: {
@@ -121,7 +137,11 @@ const styles = StyleSheet.create({
         width: "80%",
         backgroundColor: "#d9dbda",
         borderRadius: 15,
+<<<<<<< HEAD
 >>>>>>> 57731ef (need to fix styling)
+=======
+>>>>>>> 7fd9c6c (Fixed conflict)
+>>>>>>> 75c0bec (Fixed conflict)
         alignItems: "center",
         justifyContent: "space-evenly",
       },

@@ -1,6 +1,7 @@
 import React from 'react';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {View, Text, StyleSheet, Image, Modal, Dimensions} from 'react-native';
 =======
 import {View, Text, StyleSheet, Image, Modal} from 'react-native';
@@ -129,11 +130,76 @@ const VendorCard = ({vendorName, location, description, vendorImage, contact}) =
                     </Text>
 
                 </View>
+=======
+import {View, Text, StyleSheet, Image, Modal} from 'react-native';
+import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
+import {colors} from '../../utilites/Theme';
+import {useState} from 'react';
+import {Feather} from '@expo/vector-icons';
+
+const VendorCard = ({
+  vendorName,
+  location,
+  description,
+  vendorImage,
+  contact,
+}) => {
+  const [popupOpen, setPopupOpen] = useState(false);
+
+  return (
+    <View>
+      <Modal
+        visible={popupOpen}
+        transparent={true}
+        animationType="slide"
+        onRequestClose={() => setPopupOpen(false)}>
+        <Pressable
+          onPress={() => setPopupOpen(false)}
+          style={{
+            flex: 1,
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            backgroundColor: '#00000000',
+          }}>
+          <Pressable onPress={() => {}} style={styles.modalView}>
+            <Pressable onPress={() => setPopupOpen(false)}>
+              <Feather name="chevron-down" size={50} color="#88888888" />
+>>>>>>> 75c0bec (Fixed conflict)
             </Pressable>
+
+            <Image style={styles.popupLogo} source={{uri: vendorImage}}></Image>
+
+            <View style={{flexShrink: 2, paddingHorizontal: 10}}>
+              <Text style={styles.popUpTitle}>{vendorName}</Text>
+            </View>
+
+            <Text style={popUpStyles.location}>{location}</Text>
+
+            <Text style={popUpStyles.description}>{description}</Text>
+
+            <Text style={popUpStyles.contact}>Point of contact: {contact}</Text>
+          </Pressable>
+        </Pressable>
+      </Modal>
+
+      <Pressable
+        style={styles.cardContainer}
+        onPress={() => setPopupOpen(true)}>
+        <Image source={{uri: vendorImage}} style={styles.logoImage}></Image>
+
+        <View style={styles.textContainer}>
+          <Text style={styles.title}>{vendorName}</Text>
+
+          <Text style={styles.location}>{location}</Text>
+
+          <Text style={styles.description}>{description}</Text>
         </View>
-    );
+      </Pressable>
+    </View>
+  );
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 const win = Dimensions.get('window'); 
@@ -169,67 +235,89 @@ const styles = StyleSheet.create({
       shadowOffset: {width: 0, height: 5},
       elevation: 1
     },
+=======
+const styles = StyleSheet.create({
+  cardContainer: {
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderRadius: 10,
+    marginVertical: 12,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: win.width - 40,
+    minHeight: win.height / 5,
+    backgroundColor: 'white',
+    shadowColor: '#888888',
+    shadowOpacity: 0.7,
+    shadowRadius: 2,
+    shadowOffset: {width: 0, height: 5},
+    elevation: 1,
+  },
+>>>>>>> 75c0bec (Fixed conflict)
 
-    textContainer: {
-        flexShrink: 1,
-        display: 'flex',
-        paddingLeft: 10
-    },
+  textContainer: {
+    flexShrink: 1,
+    display: 'flex',
+    paddingLeft: 10,
+  },
 
-    logoImage: {
-        flexBasis: 100,
-        flexShrink: 0,
-        aspectRatio: 1.5/1,
-        resizeMode: 'contain',
-    },
+  logoImage: {
+    flexBasis: 100,
+    flexShrink: 0,
+    aspectRatio: 1.5 / 1,
+    resizeMode: 'contain',
+  },
 
-    title: {
-        fontWeight: 'bold',
-        fontSize: 25,
-        color: colors.primary
-    },
+  title: {
+    fontWeight: 'bold',
+    fontSize: 25,
+    color: colors.primary,
+  },
 
-    location: {
-        fontWeight: '300',
-        fontSize: 20,
-        color: colors.primary
-    },
+  location: {
+    fontWeight: '300',
+    fontSize: 20,
+    color: colors.primary,
+  },
 
-    description: {
-        fontWeight: '300',
-        fontSize: 15,
-    }
-  })
+  description: {
+    fontWeight: '300',
+    fontSize: 15,
+  },
+});
 
 const popUpStyles = StyleSheet.create({
-    modalView: {
-        backgroundColor: 'white',
-        display: 'flex',
-        alignItems: 'center',
-        borderRadius: 20,
-        paddingHorizontal: 20,
-        paddingBottom: 25,
-        paddingTop: 5,
-        width: win.width,
-        height: win.height/2,
-        shadowOpacity: 0.7,
-        shadowRadius: 2,  
-        shadowOffset: {width: 0, height: -2},
-    },
+  modalView: {
+    backgroundColor: 'white',
+    display: 'flex',
+    alignItems: 'center',
+    borderRadius: 20,
+    paddingHorizontal: 20,
+    paddingBottom: 25,
+    paddingTop: 5,
+    width: win.width,
+    height: win.height / 2,
+    shadowOpacity: 0.7,
+    shadowRadius: 2,
+    shadowOffset: {width: 0, height: -2},
+  },
 
-    modalContentContainer: {
-        display: 'flex',
-        alignItems: 'center',
-    },
+  modalContentContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
 
-    title: {
-        color: colors.primary,
-        fontSize: 25,
-        fontWeight: 'bold',
-        marginBottom: 10,
-        marginLeft: 10
-    },
+  title: {
+    color: colors.primary,
+    fontSize: 25,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    marginLeft: 10,
+  },
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     popUpTitle: {
@@ -393,30 +481,88 @@ const popUpStyles = StyleSheet.create({
         aspectRatio: 1.5/1,
         resizeMode: 'contain'
     },
+=======
+  popUpTitle: {
+    color: colors.primary,
+    fontSize: 25,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    marginLeft: 10,
+  },
+>>>>>>> 75c0bec (Fixed conflict)
 
-    location: {
-        color: colors.primary,
-        fontSize: 15,
-        fontWeight: 'bold',
-        marginBottom: 10,
-        marginLeft: 10
-    },
+  discount: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    color: colors.black,
+    fontWeight: 'bold',
+    paddingHorizontal: 5,
+    fontSize: 20,
+    width: 100,
+    flexShrink: 1,
+  },
 
-    description: {
-        textAlign:'center',
-        fontWeight: '300',
-        fontSize: 20,
-        width: 250,
-        marginBottom: 10
-    },
+  text: {
+    color: colors.black,
+    fontSize: 10,
+    paddingHorizontal: 5,
+    flexShrink: 1,
+  },
 
-    contact: {
-        textAlign:'center',
-        fontWeight: '300',
-        fontSize: 15,
-        width: 250,
-        marginBottom: 10
-    }
-})
+  logo: {
+    height: 100,
+    flexShrink: 0.5,
+    aspectRatio: 1.5 / 1,
+    resizeMode: 'contain',
+  },
+
+  popupLogo: {
+    flexBasis: 100,
+    flexShrink: 0.5,
+    aspectRatio: 1.5 / 1,
+    resizeMode: 'contain',
+  },
+
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderColor: colors.primary,
+    borderRadius: 10,
+    marginVertical: 12,
+    marginHorizontal: 20,
+    width: '100%',
+  },
+
+  description: {
+    textAlign: 'center',
+    fontWeight: '300',
+    fontSize: 20,
+    width: 250,
+    marginBottom: 10,
+  },
+
+  modalView: {
+    backgroundColor: 'white',
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    borderColor: colors.primary,
+    borderRadius: 20,
+    borderWidth: 1,
+    paddingHorizontal: 20,
+    paddingBottom: 25,
+    paddingTop: 5,
+    width: '100%',
+    height: '50%',
+  },
+});
 
 export default VendorCard;

@@ -34,6 +34,7 @@ const vendorData = [
     contact: 'James Joe',
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     description:
       '1 free drink with a purchase of a medium or a large sized meal',
     image:
@@ -43,10 +44,22 @@ const vendorData = [
     cardDesc: '1 free drink with a purchase of a medium or a large sized meal',
     popupDesc: '1 free drink with a purchase of a medium or a large sized meal',
 =======
+=======
+>>>>>>> 75c0bec (Fixed conflict)
     description: '1 free drink with a purchase of a medium or a large sized meal',
 >>>>>>> b95fceb (matched styling with figma)
     image: 'https://anycard.ca/logouploads/faa7acfaa7ac7a35cc79b49307b52f8b7577ff_ShortFormLogopage001.jpg'
+<<<<<<< HEAD
 >>>>>>> 57731ef (need to fix styling)
+=======
+=======
+    discount: 'Free Drink',
+    cardDesc: '1 free drink with a purchase of a medium or a large sized meal',
+    popupDesc: '1 free drink with a purchase of a medium or a large sized meal',
+    image:
+      'https://anycard.ca/logouploads/faa7acfaa7ac7a35cc79b49307b52f8b7577ff_ShortFormLogopage001.jpg',
+>>>>>>> 7fd9c6c (Fixed conflict)
+>>>>>>> 75c0bec (Fixed conflict)
   },
 
   {

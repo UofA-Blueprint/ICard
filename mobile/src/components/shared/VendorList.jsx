@@ -9,6 +9,9 @@ const Item = ({itemData}) => (
       location={itemData.location}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 75c0bec (Fixed conflict)
       discount={itemData.discount}
       vendorImage={itemData.image}
       description={itemData.description}
@@ -17,12 +20,16 @@ const Item = ({itemData}) => (
       discount={itemData.discount}
       vendorImage={itemData.image}
       description={itemData.popupDesc}
+<<<<<<< HEAD
 >>>>>>> 57731ef (need to fix styling)
 =======
       discount={itemData.discount}
       vendorImage={itemData.image}
       description={itemData.description}
 >>>>>>> b95fceb (matched styling with figma)
+=======
+>>>>>>> 7fd9c6c (Fixed conflict)
+>>>>>>> 75c0bec (Fixed conflict)
       contact={itemData.contact}
     />
   );
@@ -49,6 +56,9 @@ const VendorList = ({searchPhrase, setClicked, data}) => {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 75c0bec (Fixed conflict)
         if (item.description.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
 =======
         if (item.cardDesc.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
@@ -64,10 +74,14 @@ const VendorList = ({searchPhrase, setClicked, data}) => {
         }
 
         if (item.popupDesc.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
+<<<<<<< HEAD
 >>>>>>> 57731ef (need to fix styling)
 =======
         if (item.description.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
 >>>>>>> b95fceb (matched styling with figma)
+=======
+>>>>>>> 7fd9c6c (Fixed conflict)
+>>>>>>> 75c0bec (Fixed conflict)
             return (
                 <Item itemData={item}/>
             )
@@ -83,6 +97,9 @@ const VendorList = ({searchPhrase, setClicked, data}) => {
     return (
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 75c0bec (Fixed conflict)
 =======
         <View sytle={{
             margin: 10,
@@ -91,15 +108,22 @@ const VendorList = ({searchPhrase, setClicked, data}) => {
         }}>
             <View
             >
+<<<<<<< HEAD
 >>>>>>> 57731ef (need to fix styling)
 =======
 >>>>>>> b95fceb (matched styling with figma)
+=======
+>>>>>>> 7fd9c6c (Fixed conflict)
+>>>>>>> 75c0bec (Fixed conflict)
                 <FlatList
                     data={data}
                     renderItem={renderItem}
                     keyExtractor={(item) => item.id}
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 75c0bec (Fixed conflict)
                     contentContainerStyle={styles.container}
                 />
     )
@@ -114,6 +138,7 @@ const styles = StyleSheet.create({
 })
 
 =======
+<<<<<<< HEAD
 =======
                     contentContainerStyle={styles.container}
 >>>>>>> b95fceb (matched styling with figma)
@@ -133,4 +158,14 @@ const styles = StyleSheet.create({
 })
 
 >>>>>>> b95fceb (matched styling with figma)
+=======
+                />
+
+            </View>
+        </View>
+    )
+}
+
+>>>>>>> 7fd9c6c (Fixed conflict)
+>>>>>>> 75c0bec (Fixed conflict)
 export default VendorList;

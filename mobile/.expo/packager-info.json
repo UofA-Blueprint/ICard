@@ -43,6 +43,7 @@
 =======
 =======
   "expoServerPort": null,
+<<<<<<< HEAD
 =======
   "expoServerPort": 19000,
 >>>>>>> b1d06bd (Modified package-info.json)
@@ -67,6 +68,9 @@
 =======
 =======
   "packagerPort": null,
+=======
+  "packagerPort": 19000,
+>>>>>>> 7fd9c6c (Fixed conflict)
   "expoServerNgrokUrl": null,
   "packagerNgrokUrl": null,
   "ngrokPid": null,

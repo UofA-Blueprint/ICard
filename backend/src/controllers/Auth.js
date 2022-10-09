@@ -17,9 +17,13 @@ module.exports = {
                 isaf_status: check_student_db.isaf_status,
                 verify: check_student_db.verify,
                 picture: check_student_db.picture,
-                key: jwt.sign({
-                    email: check_student_db.email,
-                }, process.env.JWT_SECRET, { expiresIn: '30d' }),
+                key: jwt.sign(
+                    {
+                        email: check_student_db.email,
+                    },
+                    process.env.JWT_SECRET,
+                    { expiresIn: '30d' }
+                ),
             }
             return res.status(200).json(studentWithKey) // if the user exists, return the user
         } else {
@@ -43,15 +47,37 @@ module.exports = {
                     isaf_status: new_student_db.isaf_status,
                     verify: new_student_db.verify,
                     picture: new_student_db.picture,
-                    key: jwt.sign({
-                        email: new_student_db.email,
-                    }, process.env.JWT_SECRET, { expiresIn: '30d' }),
+                    key: jwt.sign(
+                        {
+                            email: new_student_db.email,
+                        },
+                        process.env.JWT_SECRET,
+                        { expiresIn: '30d' }
+                    ),
                 }
 
                 return res.status(200).json(studentWithKey) // return the new user with the jwt key valid for 30 days
             } catch (err) {
                 return res.status(500).json({ message: err })
             }
+        }
+    },
+    // Validates the JWT Token passed in the header
+    validateKey: async (req, res) => {
+        const token = req.header('jwt-token')
+        if (!token) 
+            return res
+                .status(401)
+                .json({ message: 'Invalid Token' })
+
+        try {
+            const verified = await jwt.verify(token, process.env.JWT_SECRET)
+            if (verified) {
+                return res.status(200).json({ message: 'Valid Token' })
+            }
+        } catch (err) {
+            console.log(err)
+            res.status(400).json({ message: 'Invalid token.' })
         }
     },
 }

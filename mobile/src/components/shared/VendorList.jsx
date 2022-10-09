@@ -8,6 +8,7 @@ const Item = ({itemData}) => (
       vendorName={itemData.vendorName}
       location={itemData.location}
 <<<<<<< HEAD
+<<<<<<< HEAD
       discount={itemData.discount}
       vendorImage={itemData.image}
       description={itemData.description}
@@ -17,6 +18,11 @@ const Item = ({itemData}) => (
       vendorImage={itemData.image}
       description={itemData.popupDesc}
 >>>>>>> 57731ef (need to fix styling)
+=======
+      discount={itemData.discount}
+      vendorImage={itemData.image}
+      description={itemData.description}
+>>>>>>> b95fceb (matched styling with figma)
       contact={itemData.contact}
     />
   );
@@ -42,6 +48,7 @@ const VendorList = ({searchPhrase, setClicked, data}) => {
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (item.description.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
 =======
         if (item.cardDesc.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
@@ -58,6 +65,9 @@ const VendorList = ({searchPhrase, setClicked, data}) => {
 
         if (item.popupDesc.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
 >>>>>>> 57731ef (need to fix styling)
+=======
+        if (item.description.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
+>>>>>>> b95fceb (matched styling with figma)
             return (
                 <Item itemData={item}/>
             )
@@ -72,6 +82,7 @@ const VendorList = ({searchPhrase, setClicked, data}) => {
 
     return (
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         <View sytle={{
             margin: 10,
@@ -81,10 +92,13 @@ const VendorList = ({searchPhrase, setClicked, data}) => {
             <View
             >
 >>>>>>> 57731ef (need to fix styling)
+=======
+>>>>>>> b95fceb (matched styling with figma)
                 <FlatList
                     data={data}
                     renderItem={renderItem}
                     keyExtractor={(item) => item.id}
+<<<<<<< HEAD
 <<<<<<< HEAD
                     contentContainerStyle={styles.container}
                 />
@@ -100,12 +114,23 @@ const styles = StyleSheet.create({
 })
 
 =======
+=======
+                    contentContainerStyle={styles.container}
+>>>>>>> b95fceb (matched styling with figma)
                 />
-
-            </View>
-        </View>
     )
 }
 
+<<<<<<< HEAD
 >>>>>>> 57731ef (need to fix styling)
+=======
+const styles = StyleSheet.create({
+    container: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+})
+
+>>>>>>> b95fceb (matched styling with figma)
 export default VendorList;

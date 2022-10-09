@@ -40,9 +40,13 @@ const VendorView = () => {
 
   return (
 <<<<<<< HEAD
+<<<<<<< HEAD
     <View style={styles.container}>
 =======
     <View style={[styles.container, {backgroundColor: '#D9FFDC44'}]}>
+=======
+    <View style={styles.container}>
+>>>>>>> b95fceb (matched styling with figma)
       <Header/>
 
 >>>>>>> 57731ef (need to fix styling)
@@ -77,19 +81,27 @@ const VendorView = () => {
 const styles = StyleSheet.create({
   container: {
 <<<<<<< HEAD
+<<<<<<< HEAD
     flex: 1,
     paddingTop: 64,
     backgroundColor: "#D9FFDC44",
+=======
+    flex: 1,
+    backgroundColor: colors.white,
+>>>>>>> b95fceb (matched styling with figma)
     alignItems: 'center',
   },
   vendorList: {
     paddingHorizontal: 20,
   },
+<<<<<<< HEAD
 =======
     ...globalStyleSheet.container,
     top: 0
   }
 >>>>>>> 57731ef (need to fix styling)
+=======
+>>>>>>> b95fceb (matched styling with figma)
 });
 
 export default VendorView;

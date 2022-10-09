@@ -1,10 +1,14 @@
 {
+<<<<<<< HEAD
   "expoServerPort": null,
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
 >>>>>>> 57731ef (need to fix styling)
+=======
+  "expoServerPort": 19000,
+>>>>>>> b95fceb (matched styling with figma)
   "packagerPort": 19000,
   "expoServerNgrokUrl": "https://qt-r2h.anonymous.mobile.exp.direct",
   "packagerNgrokUrl": "https://qt-r2h.anonymous.mobile.exp.direct",

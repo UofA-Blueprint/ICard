@@ -1,17 +1,25 @@
 import React from 'react';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {View, Text, StyleSheet, Image, Modal, Dimensions} from 'react-native';
 =======
 import {View, Text, StyleSheet, Image, Modal} from 'react-native';
 >>>>>>> 57731ef (need to fix styling)
+=======
+import {View, Text, StyleSheet, Image, Modal, Dimensions} from 'react-native';
+>>>>>>> b95fceb (matched styling with figma)
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import {colors} from '../../utilites/Theme';
 import { useState } from 'react';
 import { Feather } from '@expo/vector-icons'; 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { ScrollView } from 'react-native-gesture-handler';
 =======
 >>>>>>> 57731ef (need to fix styling)
+=======
+import { ScrollView } from 'react-native-gesture-handler';
+>>>>>>> b95fceb (matched styling with figma)
 
 const VendorCard = ({vendorName, location, description, vendorImage, contact}) => {
     const [popupOpen, setPopupOpen] = useState(false);
@@ -25,6 +33,7 @@ const VendorCard = ({vendorName, location, description, vendorImage, contact}) =
                     alignItems: 'center',
                     backgroundColor: '#00000000'
                 }}>
+<<<<<<< HEAD
 <<<<<<< HEAD
                     <Pressable onPress={() => {}} style={popUpStyles.modalView}>
                         <Pressable onPress={() => setPopupOpen(false)}>
@@ -54,18 +63,30 @@ const VendorCard = ({vendorName, location, description, vendorImage, contact}) =
                         </ScrollView>
 =======
                     <Pressable onPress={() => {}} style={styles.modalView}>
+=======
+                    <Pressable onPress={() => {}} style={popUpStyles.modalView}>
+>>>>>>> b95fceb (matched styling with figma)
                         <Pressable onPress={() => setPopupOpen(false)}>
                             <Feather name='chevron-down' size={50} color='#88888888' />
                         </Pressable>
+                        <ScrollView>
+                            <View onStartShouldSetResponder={() => true} style={popUpStyles.modalContentContainer}>
+                                <Image style={popUpStyles.logo} source={{uri: vendorImage}}></Image>
 
-                        <Image style={styles.popupLogo} source={{uri: vendorImage}}></Image>
+                                <View style={{flexShrink: 2, paddingHorizontal: 10}}>
+                                    <Text style={popUpStyles.title}>
+                                    {vendorName}
+                                    </Text>
+                                </View>
 
-                        <View style={{flexShrink: 2, paddingHorizontal: 10}}>
-                            <Text style={styles.popUpTitle}>
-                            {vendorName}
-                            </Text>
-                        </View>
+                                <Text style={popUpStyles.location}>
+                                    {location}
+                                </Text>
+                                        <Text style={popUpStyles.description}>
+                                            {description}
+                                        </Text>
 
+<<<<<<< HEAD
                         <Text style={popUpStyles.location}>
                             {location}
                         </Text>
@@ -79,6 +100,13 @@ const VendorCard = ({vendorName, location, description, vendorImage, contact}) =
                             Point of contact: {contact}
                         </Text>
 >>>>>>> 57731ef (need to fix styling)
+=======
+                                <Text style={popUpStyles.contact}>
+                                    Point of contact: {contact}
+                                </Text>
+                            </View>
+                        </ScrollView>
+>>>>>>> b95fceb (matched styling with figma)
 
                       </Pressable>
                 </Pressable>
@@ -107,14 +135,24 @@ const VendorCard = ({vendorName, location, description, vendorImage, contact}) =
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 const win = Dimensions.get('window'); 
 
 =======
 >>>>>>> 57731ef (need to fix styling)
+=======
+const win = Dimensions.get('window'); 
+
+>>>>>>> b95fceb (matched styling with figma)
 const styles = StyleSheet.create({
    cardContainer: {
       paddingVertical: 10,
       paddingHorizontal: 16,
+<<<<<<< HEAD
+=======
+      borderWidth: 1,
+      borderColor: colors.primary,
+>>>>>>> b95fceb (matched styling with figma)
       borderRadius: 10,
       marginVertical: 12,
       display: 'flex',
@@ -123,6 +161,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       width: win.width - 40,
       minHeight: win.height/5,
+<<<<<<< HEAD
       backgroundColor: 'white',
       shadowColor: '#888888',
       shadowOpacity: 0.7,
@@ -277,10 +316,45 @@ const popUpStyles = StyleSheet.create({
         width: 250,
         marginBottom: 10
 =======
+=======
+    },
+
+    textContainer: {
+        flexShrink: 1,
+        display: 'flex',
+        paddingLeft: 10
+    },
+
+    logoImage: {
+        flexBasis: 100,
+        flexShrink: 0,
+        aspectRatio: 1.5/1,
+        resizeMode: 'contain',
+    },
+
+    title: {
+        fontWeight: 'bold',
+        fontSize: 25,
+        color: colors.primary
+    },
+
+    location: {
+        fontWeight: '300',
+        fontSize: 20,
+        color: colors.primary
+    },
+
+    description: {
+        fontWeight: '300',
+        fontSize: 15,
+    }
+  })
+
+const popUpStyles = StyleSheet.create({
+>>>>>>> b95fceb (matched styling with figma)
     modalView: {
         backgroundColor: 'white',
         display: 'flex',
-        justifyContent: 'flex-start',
         alignItems: 'center',
         borderColor: colors.primary,
         borderRadius: 20,
@@ -288,14 +362,24 @@ const popUpStyles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingBottom: 25,
         paddingTop: 5,
+<<<<<<< HEAD
         width: '100%',
         height: '50%'
 >>>>>>> 57731ef (need to fix styling)
     }
 })
+=======
+        width: win.width,
+        height: win.height/2
+    },
+>>>>>>> b95fceb (matched styling with figma)
 
-const popUpStyles = StyleSheet.create({
-    popUpTitle: {
+    modalContentContainer: {
+        display: 'flex',
+        alignItems: 'center',
+    },
+
+    title: {
         color: colors.primary,
         fontSize: 25,
         fontWeight: 'bold',
@@ -303,8 +387,8 @@ const popUpStyles = StyleSheet.create({
         marginLeft: 10
     },
 
-    popupLogo: {
-        flexBasis: 100,
+    logo: {
+        height: 100,
         flexShrink: 0.5,
         aspectRatio: 1.5/1,
         resizeMode: 'contain'
@@ -333,7 +417,6 @@ const popUpStyles = StyleSheet.create({
         width: 250,
         marginBottom: 10
     }
-
 })
 
 export default VendorCard;

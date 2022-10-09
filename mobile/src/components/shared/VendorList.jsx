@@ -7,10 +7,9 @@ const Item = ({itemData}) => (
     <VendorCard
       vendorName={itemData.vendorName}
       location={itemData.location}
-      cardDesc={itemData.cardDesc}
       discount={itemData.discount}
       vendorImage={itemData.image}
-      description={itemData.popupDesc}
+      description={itemData.description}
       contact={itemData.contact}
     />
   );
@@ -35,19 +34,7 @@ const VendorList = ({searchPhrase, setClicked, data}) => {
             )
         }
 
-        if (item.cardDesc.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
-            return (
-                <Item itemData={item}/>
-            )
-        }
-
-        if (item.discount.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
-            return (
-                <Item itemData={item}/>
-            )
-        }
-
-        if (item.popupDesc.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
+        if (item.description.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
             return (
                 <Item itemData={item}/>
             )
@@ -61,22 +48,21 @@ const VendorList = ({searchPhrase, setClicked, data}) => {
     }
 
     return (
-        <View sytle={{
-            margin: 10,
-            height: "85%",
-            width: "100%",
-        }}>
-            <View
-            >
                 <FlatList
                     data={data}
                     renderItem={renderItem}
                     keyExtractor={(item) => item.id}
+                    contentContainerStyle={styles.container}
                 />
-
-            </View>
-        </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
+})
 
 export default VendorList;

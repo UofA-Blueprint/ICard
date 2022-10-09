@@ -34,7 +34,7 @@ const VendorView = () => {
 
 
   return (
-    <View style={[styles.container, {backgroundColor: '#D9FFDC44'}]}>
+    <View style={styles.container}>
       <Header/>
 
       <Text style={{
@@ -67,9 +67,13 @@ const VendorView = () => {
 
 const styles = StyleSheet.create({
   container: {
-    ...globalStyleSheet.container,
-    top: 0
-  }
+    flex: 1,
+    backgroundColor: colors.white,
+    alignItems: 'center',
+  },
+  vendorList: {
+    paddingHorizontal: 20,
+  },
 });
 
 export default VendorView;

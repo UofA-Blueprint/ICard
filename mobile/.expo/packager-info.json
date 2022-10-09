@@ -104,6 +104,7 @@
 =======
   "expoServerPort": null,
 <<<<<<< HEAD
+<<<<<<< HEAD
   "packagerPort": 19000,
   "expoServerNgrokUrl": "https://qt-r2h.anonymous.mobile.exp.direct",
   "packagerNgrokUrl": "https://qt-r2h.anonymous.mobile.exp.direct",
@@ -120,8 +121,20 @@
   "packagerNgrokUrl": null,
   "ngrokPid": null,
 >>>>>>> 995789d (Added submit button functionality)
+<<<<<<< HEAD
 >>>>>>> 3de523d (Fixed conflict)
+<<<<<<< HEAD
 >>>>>>> 1a8d434 (Fixed conflict)
+=======
+=======
+=======
+  "packagerPort": 19000,
+  "expoServerNgrokUrl": "https://qt-r2h.llamoss1805.mobile.exp.direct",
+  "packagerNgrokUrl": "https://qt-r2h.llamoss1805.mobile.exp.direct",
+  "ngrokPid": 31796,
+>>>>>>> 0a59da8 (Fixed package-info.json)
+>>>>>>> e9d4ef1 (Fixed conflict)
+>>>>>>> 6965d5c (Fixed conflict)
   "devToolsPort": 19002,
   "packagerPid": null,
   "webpackServerPort": null

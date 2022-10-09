@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-  "expoServerPort": null,
-=======
   "expoServerPort": 19000,
->>>>>>> 1cec0c6 (removed scanner button)
   "packagerPort": 19000,
   "expoServerNgrokUrl": null,
   "packagerNgrokUrl": null,

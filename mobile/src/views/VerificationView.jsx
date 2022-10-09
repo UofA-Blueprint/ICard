@@ -3,12 +3,16 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> ea5d6e7 (Fixed conflict)
+=======
+>>>>>>> 1a8d434 (Fixed conflict)
 import React, {useState, useContext} from 'react';
 =======
 import React, {useState} from 'react';
 >>>>>>> e99e8ed (Fixed conflict)
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 import React, {useState, useContext} from 'react';
@@ -21,6 +25,11 @@ import React, {useState, useContext} from 'react';
 >>>>>>> db95617 (Fixed conflict)
 =======
 >>>>>>> ea5d6e7 (Fixed conflict)
+=======
+=======
+import React, {useState, useContext} from 'react';
+>>>>>>> 995789d (Added submit button functionality)
+>>>>>>> 1a8d434 (Fixed conflict)
 import {
   ImageBackground,
   StyleSheet,
@@ -40,8 +49,11 @@ import {useNavigation} from '@react-navigation/native';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> ea5d6e7 (Fixed conflict)
+=======
+>>>>>>> 1a8d434 (Fixed conflict)
 import {CLIENT_ID, API_ROUTE, API_KEY} from '@env';
 import AuthContext from '../context/AuthContext';
 
@@ -65,11 +77,15 @@ const VerificationView = () => {
   };
 =======
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1a8d434 (Fixed conflict)
 =======
 import {CLIENT_ID, API_ROUTE, API_KEY} from '@env';
 import AuthContext from '../context/AuthContext';
 
 >>>>>>> 995789d (Added submit button functionality)
+<<<<<<< HEAD
 const VerificationView = () => {
   const {user, _} = useContext(AuthContext);
   const [data, setData] = useState(null);
@@ -121,12 +137,34 @@ const VerificationView = () => {
   };
 >>>>>>> db95617 (Fixed conflict)
 =======
+=======
+>>>>>>> 1a8d434 (Fixed conflict)
 const VerificationView = () => {
+  const {user, _} = useContext(AuthContext);
+  const [data, setData] = useState(null);
   const navigation = useNavigation();
   const [image, setImage] = useState(null);
 
+<<<<<<< HEAD
 >>>>>>> e99e8ed (Fixed conflict)
+<<<<<<< HEAD
 >>>>>>> ea5d6e7 (Fixed conflict)
+=======
+=======
+  const createFormData = uri => {
+    const fileName = uri.split('/').pop();
+    const fileType = fileName.split('.').pop();
+    const formData = new FormData();
+    formData.append('image', {
+      uri: uri,
+      name: fileName,
+      type: `image/${fileType}`,
+    });
+    console.log(formData);
+    return formData;
+  };
+>>>>>>> 995789d (Added submit button functionality)
+>>>>>>> 1a8d434 (Fixed conflict)
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -144,12 +182,16 @@ const VerificationView = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1a8d434 (Fixed conflict)
       setData(createFormData(result.uri));
 =======
 >>>>>>> e99e8ed (Fixed conflict)
 =======
       setData(createFormData(result.uri));
 >>>>>>> 995789d (Added submit button functionality)
+<<<<<<< HEAD
 =======
 >>>>>>> 0fe716f (Fixed conflict)
 =======
@@ -160,10 +202,13 @@ const VerificationView = () => {
 =======
 >>>>>>> e99e8ed (Fixed conflict)
 >>>>>>> ea5d6e7 (Fixed conflict)
+=======
+>>>>>>> 1a8d434 (Fixed conflict)
       setImage(result.uri);
     }
   };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -175,6 +220,10 @@ const VerificationView = () => {
 >>>>>>> db95617 (Fixed conflict)
 =======
 >>>>>>> ea5d6e7 (Fixed conflict)
+=======
+=======
+>>>>>>> 995789d (Added submit button functionality)
+>>>>>>> 1a8d434 (Fixed conflict)
   const submitImage = async data => {
     console.log(data);
     const fetchData = async () => {
@@ -200,10 +249,14 @@ const VerificationView = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1a8d434 (Fixed conflict)
 =======
 >>>>>>> e99e8ed (Fixed conflict)
 =======
 >>>>>>> 995789d (Added submit button functionality)
+<<<<<<< HEAD
 =======
 >>>>>>> 0fe716f (Fixed conflict)
 =======
@@ -212,6 +265,8 @@ const VerificationView = () => {
 =======
 >>>>>>> e99e8ed (Fixed conflict)
 >>>>>>> ea5d6e7 (Fixed conflict)
+=======
+>>>>>>> 1a8d434 (Fixed conflict)
   return (
     <ImageBackground
       source={require('../../assets/gradient.png')}

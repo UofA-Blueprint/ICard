@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, {useState, useContext} from 'react';
 =======
 import React, {useState} from 'react';
@@ -11,6 +12,9 @@ import React, {useState, useContext} from 'react';
 =======
 import React, {useState} from 'react';
 >>>>>>> 0fe716f (Fixed conflict)
+=======
+import React, {useState, useContext} from 'react';
+>>>>>>> db95617 (Fixed conflict)
 import {
   ImageBackground,
   StyleSheet,
@@ -28,6 +32,7 @@ import {useNavigation} from '@react-navigation/native';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {CLIENT_ID, API_ROUTE, API_KEY} from '@env';
 import AuthContext from '../context/AuthContext';
 
@@ -78,11 +83,33 @@ const VerificationView = () => {
   };
 >>>>>>> 995789d (Added submit button functionality)
 =======
+=======
+import {CLIENT_ID, API_ROUTE, API_KEY} from '@env';
+import AuthContext from '../context/AuthContext';
+
+>>>>>>> db95617 (Fixed conflict)
 const VerificationView = () => {
+  const {user, _} = useContext(AuthContext);
+  const [data, setData] = useState(null);
   const navigation = useNavigation();
   const [image, setImage] = useState(null);
 
+<<<<<<< HEAD
 >>>>>>> 0fe716f (Fixed conflict)
+=======
+  const createFormData = uri => {
+    const fileName = uri.split('/').pop();
+    const fileType = fileName.split('.').pop();
+    const formData = new FormData();
+    formData.append('image', {
+      uri: uri,
+      name: fileName,
+      type: `image/${fileType}`,
+    });
+    console.log(formData);
+    return formData;
+  };
+>>>>>>> db95617 (Fixed conflict)
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -98,6 +125,7 @@ const VerificationView = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       setData(createFormData(result.uri));
 =======
 >>>>>>> e99e8ed (Fixed conflict)
@@ -106,6 +134,9 @@ const VerificationView = () => {
 >>>>>>> 995789d (Added submit button functionality)
 =======
 >>>>>>> 0fe716f (Fixed conflict)
+=======
+      setData(createFormData(result.uri));
+>>>>>>> db95617 (Fixed conflict)
       setImage(result.uri);
     }
   };
@@ -113,8 +144,11 @@ const VerificationView = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 995789d (Added submit button functionality)
+=======
+>>>>>>> db95617 (Fixed conflict)
   const submitImage = async data => {
     console.log(data);
     const fetchData = async () => {
@@ -138,12 +172,15 @@ const VerificationView = () => {
   };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> e99e8ed (Fixed conflict)
 =======
 >>>>>>> 995789d (Added submit button functionality)
 =======
 >>>>>>> 0fe716f (Fixed conflict)
+=======
+>>>>>>> db95617 (Fixed conflict)
   return (
     <ImageBackground
       source={require('../../assets/gradient.png')}
@@ -183,8 +220,12 @@ const VerificationView = () => {
 =======
         <Pressable
           onPress={() => {
+<<<<<<< HEAD
             console.log('Submit');
 >>>>>>> 1fed3a7 (Fixed conflict)
+=======
+            submitImage(data);
+>>>>>>> db95617 (Fixed conflict)
           }}
           style={[
             styles.submitButton,

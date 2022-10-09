@@ -51,15 +51,7 @@ const App = () => {
               <>
                 <Tab.Screen name="Home" component={HomeView} />
                 <Tab.Screen name="Vendors" component={VendorView} />
-<<<<<<< HEAD
-<<<<<<< HEAD
                 <Tab.Screen name="My ICard" component={RegistrationView} />
-=======
-                <Tab.Screen name="My ICard" component={VerificationView} />
->>>>>>> e378576 (Finished layout)
-=======
-                <Tab.Screen name="My ICard" component={RegistrationView} />
->>>>>>> 963f521 (Added submit button functionality)
               </>
             ) : (
               <>

@@ -1,8 +1,19 @@
 import React, {useContext} from 'react';
-import {View, Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Pressable,
+} from 'react-native';
 
 import Header from '../components/shared/Header';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
+import VerificationView from './VerificationView';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 import {
   useFonts,
@@ -23,7 +34,7 @@ const statusColors = {
   pending: colors.yellow,
 };
 
-const MyICardView = () => {
+const MyICardHome = ({navigation}) => {
   const {user, _} = useContext(AuthContext);
   let [fontsLoaded] = useFonts({
     Poppins_600SemiBold,
@@ -40,14 +51,6 @@ const MyICardView = () => {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={
-          finalStatus == 'active'
-            ? require('../../assets/squiggly-lines-light.png')
-            : require('../../assets/squiggly-lines.png')
-        }
-        style={styles.linesTop}
-      />
       <TouchableOpacity
         style={styles.refreshButton}
         onPress={() => {
@@ -61,15 +64,6 @@ const MyICardView = () => {
       </TouchableOpacity>
       <Header />
       <View style={styles.bodyContainer}>
-        <Image
-          source={
-            user.status == 'active'
-              ? require('../../assets/squiggly-lines-light.png')
-              : require('../../assets/squiggly-lines.png')
-          }
-          style={styles.lines}
-        />
-
         <View style={styles.card}>
           <Image source={{uri: user.picture}} style={styles.avatar} />
           <Text style={[styles.userName, styles.subHeader]}>{user.name}</Text>
@@ -83,6 +77,24 @@ const MyICardView = () => {
         {finalStatus != 'active' && finalStatus != 'inactive' ? (
           <View style={styles.flexText}>
             <Text style={styles.baseText}>Last Updated: 3 years ago</Text>
+            {user.verify ? (
+              <></>
+            ) : (
+              <Pressable
+                style={({pressed}) => [
+                  {
+                    backgroundColor: pressed ? 'rgb(210, 255, 180)' : 'white',
+                  },
+                  styles.verifyButton,
+                ]}
+                onPress={() => {
+                  navigation.navigate('Verification');
+                }}>
+                <Text style={{fontFamily: 'Poppins_600SemiBold'}}>
+                  Verify account
+                </Text>
+              </Pressable>
+            )}
             <Text style={styles.baseText}>
               Click
               <MaterialCommunityIcons name="refresh" size={24} color="black" />
@@ -93,11 +105,23 @@ const MyICardView = () => {
           <></>
         )}
       </View>
-      <Image
-        source={require('../../assets/ISA-logo.png')}
-        style={styles.logo}
-      />
     </View>
+  );
+};
+
+const MyICardView = ({navigation}) => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="My ICard Home"
+        component={MyICardHome}
+        options={{headerShown: false}}></Stack.Screen>
+      <Stack.Screen
+        name="Verification"
+        component={VerificationView}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
   );
 };
 
@@ -198,6 +222,19 @@ const styles = StyleSheet.create({
   },
   statusHeader: {
     color: finalStatus == 'active' ? colors.lightGray : colors.black,
+  },
+  verifyButton: {
+    zIndex: 999,
+    borderRadius: 24,
+    padding: 12,
+    color: colors.primary,
+    shadowColor: '#00000',
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowRadius: 5,
+    shadowOpacity: 1.0,
   },
 });
 

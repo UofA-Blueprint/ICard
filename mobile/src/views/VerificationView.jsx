@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   ImageBackground,
   StyleSheet,
@@ -13,10 +13,27 @@ import {colors, typography} from '../utilites/Theme';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
 
+import {CLIENT_ID, API_ROUTE, API_KEY} from '@env';
+import AuthContext from '../context/AuthContext';
+
 const VerificationView = () => {
+  const {user, _} = useContext(AuthContext);
+  const [data, setData] = useState(null);
   const navigation = useNavigation();
   const [image, setImage] = useState(null);
 
+  const createFormData = uri => {
+    const fileName = uri.split('/').pop();
+    const fileType = fileName.split('.').pop();
+    const formData = new FormData();
+    formData.append('image', {
+      uri: uri,
+      name: fileName,
+      type: `image/${fileType}`,
+    });
+    console.log(formData);
+    return formData;
+  };
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -29,8 +46,31 @@ const VerificationView = () => {
     console.log(result);
 
     if (!result.cancelled) {
+      setData(createFormData(result.uri));
       setImage(result.uri);
     }
+  };
+
+  const submitImage = async data => {
+    console.log(data);
+    const fetchData = async () => {
+      fetch(API_ROUTE + 'api/images/upload', {
+        method: 'POST',
+        headers: {
+          'session-token': user.token,
+          'x-api-key': API_KEY,
+        },
+        body: data,
+      })
+        .then(result => {
+          return result.text();
+        })
+        .then(data => {
+          console.log(data);
+          navigation.navigate('My ICard Home');
+        });
+    };
+    await fetchData();
   };
 
   return (
@@ -65,7 +105,7 @@ const VerificationView = () => {
         </View>
         <Pressable
           onPress={() => {
-            console.log('Submit');
+            submitImage(data);
           }}
           style={[
             styles.submitButton,

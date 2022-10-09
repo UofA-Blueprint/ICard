@@ -2,10 +2,14 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ea5d6e7 (Fixed conflict)
 import React, {useState, useContext} from 'react';
 =======
 import React, {useState} from 'react';
 >>>>>>> e99e8ed (Fixed conflict)
+<<<<<<< HEAD
 =======
 import React, {useState, useContext} from 'react';
 >>>>>>> 995789d (Added submit button functionality)
@@ -15,6 +19,8 @@ import React, {useState} from 'react';
 =======
 import React, {useState, useContext} from 'react';
 >>>>>>> db95617 (Fixed conflict)
+=======
+>>>>>>> ea5d6e7 (Fixed conflict)
 import {
   ImageBackground,
   StyleSheet,
@@ -33,6 +39,9 @@ import {useNavigation} from '@react-navigation/native';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ea5d6e7 (Fixed conflict)
 import {CLIENT_ID, API_ROUTE, API_KEY} from '@env';
 import AuthContext from '../context/AuthContext';
 
@@ -55,6 +64,7 @@ const VerificationView = () => {
     return formData;
   };
 =======
+<<<<<<< HEAD
 =======
 import {CLIENT_ID, API_ROUTE, API_KEY} from '@env';
 import AuthContext from '../context/AuthContext';
@@ -110,6 +120,13 @@ const VerificationView = () => {
     return formData;
   };
 >>>>>>> db95617 (Fixed conflict)
+=======
+const VerificationView = () => {
+  const navigation = useNavigation();
+  const [image, setImage] = useState(null);
+
+>>>>>>> e99e8ed (Fixed conflict)
+>>>>>>> ea5d6e7 (Fixed conflict)
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -126,6 +143,7 @@ const VerificationView = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       setData(createFormData(result.uri));
 =======
 >>>>>>> e99e8ed (Fixed conflict)
@@ -137,6 +155,11 @@ const VerificationView = () => {
 =======
       setData(createFormData(result.uri));
 >>>>>>> db95617 (Fixed conflict)
+=======
+      setData(createFormData(result.uri));
+=======
+>>>>>>> e99e8ed (Fixed conflict)
+>>>>>>> ea5d6e7 (Fixed conflict)
       setImage(result.uri);
     }
   };
@@ -145,10 +168,13 @@ const VerificationView = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 995789d (Added submit button functionality)
 =======
 >>>>>>> db95617 (Fixed conflict)
+=======
+>>>>>>> ea5d6e7 (Fixed conflict)
   const submitImage = async data => {
     console.log(data);
     const fetchData = async () => {
@@ -173,6 +199,7 @@ const VerificationView = () => {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> e99e8ed (Fixed conflict)
 =======
@@ -181,6 +208,10 @@ const VerificationView = () => {
 >>>>>>> 0fe716f (Fixed conflict)
 =======
 >>>>>>> db95617 (Fixed conflict)
+=======
+=======
+>>>>>>> e99e8ed (Fixed conflict)
+>>>>>>> ea5d6e7 (Fixed conflict)
   return (
     <ImageBackground
       source={require('../../assets/gradient.png')}
@@ -214,6 +245,9 @@ const VerificationView = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ea5d6e7 (Fixed conflict)
         <Pressable
           onPress={() => {
             submitImage(data);
@@ -241,12 +275,16 @@ const VerificationView = () => {
           }}
           style={styles.skipButton}>
 =======
+<<<<<<< HEAD
 =======
 >>>>>>> 0fe716f (Fixed conflict)
+=======
+>>>>>>> ea5d6e7 (Fixed conflict)
         <Pressable onPress={() => {}} style={styles.submitButton}>
           <Text style={{color: 'white', ...typography.subHeader4}}>Submit</Text>
         </Pressable>
         <Pressable onPress={() => {}} style={styles.skipButton}>
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> e99e8ed (Fixed conflict)
 =======
@@ -260,6 +298,9 @@ const VerificationView = () => {
           }}
           style={styles.skipButton}>
 >>>>>>> 1fed3a7 (Fixed conflict)
+=======
+>>>>>>> e99e8ed (Fixed conflict)
+>>>>>>> ea5d6e7 (Fixed conflict)
           <Text style={{color: colors.primary, ...typography.body}}>
             Skip for now
           </Text>
@@ -328,11 +369,15 @@ const styles = StyleSheet.create({
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ea5d6e7 (Fixed conflict)
   activeSubmitButton: {
     backgroundColor: colors.primary,
   },
 =======
 >>>>>>> e99e8ed (Fixed conflict)
+<<<<<<< HEAD
 =======
 >>>>>>> 0fe716f (Fixed conflict)
 =======
@@ -340,6 +385,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
   },
 >>>>>>> 1fed3a7 (Fixed conflict)
+=======
+>>>>>>> ea5d6e7 (Fixed conflict)
 });
 
 export default VerificationView;

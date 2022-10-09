@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import React, {useState, useContext} from 'react';
+=======
+import React, {useState} from 'react';
+>>>>>>> e99e8ed (Fixed conflict)
 import {
   ImageBackground,
   StyleSheet,
@@ -13,6 +17,7 @@ import {colors, typography} from '../utilites/Theme';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useNavigation} from '@react-navigation/native';
 
+<<<<<<< HEAD
 import {CLIENT_ID, API_ROUTE, API_KEY} from '@env';
 import AuthContext from '../context/AuthContext';
 
@@ -34,6 +39,12 @@ const VerificationView = () => {
     console.log(formData);
     return formData;
   };
+=======
+const VerificationView = () => {
+  const navigation = useNavigation();
+  const [image, setImage] = useState(null);
+
+>>>>>>> e99e8ed (Fixed conflict)
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -46,11 +57,15 @@ const VerificationView = () => {
     console.log(result);
 
     if (!result.cancelled) {
+<<<<<<< HEAD
       setData(createFormData(result.uri));
+=======
+>>>>>>> e99e8ed (Fixed conflict)
       setImage(result.uri);
     }
   };
 
+<<<<<<< HEAD
   const submitImage = async data => {
     console.log(data);
     const fetchData = async () => {
@@ -73,6 +88,8 @@ const VerificationView = () => {
     await fetchData();
   };
 
+=======
+>>>>>>> e99e8ed (Fixed conflict)
   return (
     <ImageBackground
       source={require('../../assets/gradient.png')}
@@ -103,6 +120,7 @@ const VerificationView = () => {
             <Image source={{uri: image}} style={{width: 200, height: 200}} />
           )}
         </View>
+<<<<<<< HEAD
         <Pressable
           onPress={() => {
             submitImage(data);
@@ -119,6 +137,12 @@ const VerificationView = () => {
             console.log('Skip');
           }}
           style={styles.skipButton}>
+=======
+        <Pressable onPress={() => {}} style={styles.submitButton}>
+          <Text style={{color: 'white', ...typography.subHeader4}}>Submit</Text>
+        </Pressable>
+        <Pressable onPress={() => {}} style={styles.skipButton}>
+>>>>>>> e99e8ed (Fixed conflict)
           <Text style={{color: colors.primary, ...typography.body}}>
             Skip for now
           </Text>
@@ -184,9 +208,12 @@ const styles = StyleSheet.create({
     width: '80%',
     backgroundColor: colors.lightGray,
   },
+<<<<<<< HEAD
   activeSubmitButton: {
     backgroundColor: colors.primary,
   },
+=======
+>>>>>>> e99e8ed (Fixed conflict)
 });
 
 export default VerificationView;

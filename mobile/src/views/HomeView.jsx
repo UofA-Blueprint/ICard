@@ -1,10 +1,16 @@
 import React from 'react';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {StyleSheet, View, Text, Image, ImageBackground} from 'react-native';
 =======
 import {StyleSheet, View, FlatList, Text, Image, ImageBackground} from 'react-native';
 import VendorCard from '../components/shared/VendorCard';
 >>>>>>> cbd9915 (Put the home page together)
+=======
+import {StyleSheet, View, FlatList, Text, Image} from 'react-native';
+import Header from '../components/shared/Header';
+import VendorCard from '../components/home/VendorCard';
+>>>>>>> 4eab920 (fixed accidental duplicate code)
 import DiscoverBar from '../components/home/DiscoverBar';
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -55,6 +61,7 @@ const HomeView = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> df5ffde (Fixed conflict)
       <Text style={styles.title}>
@@ -70,6 +77,11 @@ const HomeView = () => {
 =======
       <DiscoverBar />
 >>>>>>> df5ffde (Fixed conflict)
+=======
+      <Text style={styles.title}>Welcome{'\n'}to ISA's{'\n'}mobile app</Text>
+      <Text style={styles.heading}>Discover</Text>
+      <DiscoverBar/>
+>>>>>>> 4eab920 (fixed accidental duplicate code)
       <FlatList
         data={vendorData}
         renderItem={renderItem}

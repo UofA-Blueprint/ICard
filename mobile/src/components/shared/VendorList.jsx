@@ -7,9 +7,16 @@ const Item = ({itemData}) => (
     <VendorCard
       vendorName={itemData.vendorName}
       location={itemData.location}
+<<<<<<< HEAD
       discount={itemData.discount}
       vendorImage={itemData.image}
       description={itemData.description}
+=======
+      cardDesc={itemData.cardDesc}
+      discount={itemData.discount}
+      vendorImage={itemData.image}
+      description={itemData.popupDesc}
+>>>>>>> 57731ef (need to fix styling)
       contact={itemData.contact}
     />
   );
@@ -34,7 +41,23 @@ const VendorList = ({searchPhrase, setClicked, data}) => {
             )
         }
 
+<<<<<<< HEAD
         if (item.description.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
+=======
+        if (item.cardDesc.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
+            return (
+                <Item itemData={item}/>
+            )
+        }
+
+        if (item.discount.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
+            return (
+                <Item itemData={item}/>
+            )
+        }
+
+        if (item.popupDesc.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
+>>>>>>> 57731ef (need to fix styling)
             return (
                 <Item itemData={item}/>
             )
@@ -48,10 +71,21 @@ const VendorList = ({searchPhrase, setClicked, data}) => {
     }
 
     return (
+<<<<<<< HEAD
+=======
+        <View sytle={{
+            margin: 10,
+            height: "85%",
+            width: "100%",
+        }}>
+            <View
+            >
+>>>>>>> 57731ef (need to fix styling)
                 <FlatList
                     data={data}
                     renderItem={renderItem}
                     keyExtractor={(item) => item.id}
+<<<<<<< HEAD
                     contentContainerStyle={styles.container}
                 />
     )
@@ -65,4 +99,13 @@ const styles = StyleSheet.create({
     }
 })
 
+=======
+                />
+
+            </View>
+        </View>
+    )
+}
+
+>>>>>>> 57731ef (need to fix styling)
 export default VendorList;

@@ -23,10 +23,17 @@ const vendorData = [
     vendorName: 'Blowers and Grafton',
     location: '1234 56 Ave NW',
     contact: 'James Joe',
+<<<<<<< HEAD
     description:
       '1 free drink with a purchase of a medium or a large sized meal',
     image:
       'https://anycard.ca/logouploads/faa7acfaa7ac7a35cc79b49307b52f8b7577ff_ShortFormLogopage001.jpg',
+=======
+    discount: 'Free Drink',
+    cardDesc: '1 free drink with a purchase of a medium or a large sized meal',
+    popupDesc: '1 free drink with a purchase of a medium or a large sized meal',
+    image: 'https://anycard.ca/logouploads/faa7acfaa7ac7a35cc79b49307b52f8b7577ff_ShortFormLogopage001.jpg'
+>>>>>>> 57731ef (need to fix styling)
   },
 
   {

@@ -1,10 +1,17 @@
 import React from 'react';
+<<<<<<< HEAD
 import {View, Text, StyleSheet, Image, Modal, Dimensions} from 'react-native';
+=======
+import {View, Text, StyleSheet, Image, Modal} from 'react-native';
+>>>>>>> 57731ef (need to fix styling)
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import {colors} from '../../utilites/Theme';
 import { useState } from 'react';
 import { Feather } from '@expo/vector-icons'; 
+<<<<<<< HEAD
 import { ScrollView } from 'react-native-gesture-handler';
+=======
+>>>>>>> 57731ef (need to fix styling)
 
 const VendorCard = ({vendorName, location, description, vendorImage, contact}) => {
     const [popupOpen, setPopupOpen] = useState(false);
@@ -18,6 +25,7 @@ const VendorCard = ({vendorName, location, description, vendorImage, contact}) =
                     alignItems: 'center',
                     backgroundColor: '#00000000'
                 }}>
+<<<<<<< HEAD
                     <Pressable onPress={() => {}} style={popUpStyles.modalView}>
                         <Pressable onPress={() => setPopupOpen(false)}>
                             <Feather name='chevron-down' size={50} color='#88888888' />
@@ -44,6 +52,33 @@ const VendorCard = ({vendorName, location, description, vendorImage, contact}) =
                                 </Text>
                             </View>
                         </ScrollView>
+=======
+                    <Pressable onPress={() => {}} style={styles.modalView}>
+                        <Pressable onPress={() => setPopupOpen(false)}>
+                            <Feather name='chevron-down' size={50} color='#88888888' />
+                        </Pressable>
+
+                        <Image style={styles.popupLogo} source={{uri: vendorImage}}></Image>
+
+                        <View style={{flexShrink: 2, paddingHorizontal: 10}}>
+                            <Text style={styles.popUpTitle}>
+                            {vendorName}
+                            </Text>
+                        </View>
+
+                        <Text style={popUpStyles.location}>
+                            {location}
+                        </Text>
+                            
+
+                        <Text style={popUpStyles.description}>
+                            {description}
+                        </Text>
+
+                        <Text style={popUpStyles.contact}>
+                            Point of contact: {contact}
+                        </Text>
+>>>>>>> 57731ef (need to fix styling)
 
                       </Pressable>
                 </Pressable>
@@ -71,8 +106,11 @@ const VendorCard = ({vendorName, location, description, vendorImage, contact}) =
     );
 };
 
+<<<<<<< HEAD
 const win = Dimensions.get('window'); 
 
+=======
+>>>>>>> 57731ef (need to fix styling)
 const styles = StyleSheet.create({
    cardContainer: {
       paddingVertical: 10,
@@ -153,8 +191,120 @@ const popUpStyles = StyleSheet.create({
         marginLeft: 10
     },
 
+<<<<<<< HEAD
+=======
+    popUpTitle: {
+        color: colors.primary,
+        fontSize: 25,
+        fontWeight: 'bold',
+        marginBottom: 10,
+        marginLeft: 10
+    },
+
+    discount: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        color: colors.black,
+        fontWeight: 'bold',
+        paddingHorizontal: 5,
+        fontSize: 20,
+        width: 100,
+        flexShrink: 1,
+    },
+
+    text: {
+        color: colors.black,
+        fontSize: 10,
+        paddingHorizontal: 5,
+        flexShrink: 1
+    },
+
+>>>>>>> 57731ef (need to fix styling)
     logo: {
         height: 100,
+        flexShrink: 0.5,
+        aspectRatio: 1.5/1,
+        resizeMode: 'contain'
+    },
+
+<<<<<<< HEAD
+    location: {
+        color: colors.primary,
+        fontSize: 15,
+        fontWeight: 'bold',
+        marginBottom: 10,
+        marginLeft: 10
+=======
+    popupLogo: {
+        flexBasis: 100,
+        flexShrink: 0.5,
+        aspectRatio: 1.5/1,
+        resizeMode: 'contain'
+    },
+
+    container: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingVertical: 10,
+        paddingHorizontal: 16,
+        backgroundColor: 'white',
+        borderWidth: 1,
+        borderColor: colors.primary,
+        borderRadius: 10,
+        marginVertical: 12,
+        marginHorizontal: 20,
+        width: "100%"
+>>>>>>> 57731ef (need to fix styling)
+    },
+
+    description: {
+        textAlign:'center',
+        fontWeight: '300',
+        fontSize: 20,
+        width: 250,
+        marginBottom: 10
+    },
+
+<<<<<<< HEAD
+    contact: {
+        textAlign:'center',
+        fontWeight: '300',
+        fontSize: 15,
+        width: 250,
+        marginBottom: 10
+=======
+    modalView: {
+        backgroundColor: 'white',
+        display: 'flex',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        borderColor: colors.primary,
+        borderRadius: 20,
+        borderWidth: 1,
+        paddingHorizontal: 20,
+        paddingBottom: 25,
+        paddingTop: 5,
+        width: '100%',
+        height: '50%'
+>>>>>>> 57731ef (need to fix styling)
+    }
+})
+
+const popUpStyles = StyleSheet.create({
+    popUpTitle: {
+        color: colors.primary,
+        fontSize: 25,
+        fontWeight: 'bold',
+        marginBottom: 10,
+        marginLeft: 10
+    },
+
+    popupLogo: {
+        flexBasis: 100,
         flexShrink: 0.5,
         aspectRatio: 1.5/1,
         resizeMode: 'contain'
@@ -183,6 +333,7 @@ const popUpStyles = StyleSheet.create({
         width: 250,
         marginBottom: 10
     }
+
 })
 
 export default VendorCard;

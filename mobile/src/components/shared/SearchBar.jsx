@@ -1,7 +1,10 @@
 import React from 'react';
 import {StyleSheet, TextInput, View, Keyboard, Button} from 'react-native';
 import {Feather, Entypo} from '@expo/vector-icons';
+<<<<<<< HEAD
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
+=======
+>>>>>>> 57731ef (need to fix styling)
 
 
 const SearchBar = ({clicked, setClicked, searchPhrase, setSearchPhrase}) => {
@@ -10,10 +13,23 @@ const SearchBar = ({clicked, setClicked, searchPhrase, setSearchPhrase}) => {
             <View style={
                 clicked ? styles.searchBar__clicked : styles.searchBar__unclicked
             }>
+<<<<<<< HEAD
 
                 <TextInput
                     style={styles.input}
                     placeholder='Search coupons ...'
+=======
+                <Feather
+                    name='search'
+                    size={20}
+                    color='black'
+                    style={{marginLeft: 1}}
+                />
+
+                <TextInput
+                    style={styles.input}
+                    placeholder='search'
+>>>>>>> 57731ef (need to fix styling)
                     value={searchPhrase}
                     onChangeText={setSearchPhrase}
                     onFocus={() => {
@@ -21,6 +37,7 @@ const SearchBar = ({clicked, setClicked, searchPhrase, setSearchPhrase}) => {
                     }}
                 />
 
+<<<<<<< HEAD
                 {!clicked && (
                     <Feather
                         name='search'
@@ -51,6 +68,22 @@ const SearchBar = ({clicked, setClicked, searchPhrase, setSearchPhrase}) => {
             )}              
             </View>
         
+=======
+            </View>
+            
+            {clicked && (
+                <View>
+                    <Button
+                        title='cancel'
+                        onPress={() => {
+                            Keyboard.dismiss();
+                            setClicked(false);
+                            setSearchPhrase('');
+                        }}
+                    />
+                </View>
+            )}
+>>>>>>> 57731ef (need to fix styling)
         </View>
     )
 }
@@ -68,16 +101,27 @@ const styles = StyleSheet.create({
         padding: 10,
         flexDirection: "row",
         width: "95%",
+<<<<<<< HEAD
         backgroundColor: "white",
         borderRadius: 30,
+=======
+        backgroundColor: "#d9dbda",
+        borderRadius: 15,
+>>>>>>> 57731ef (need to fix styling)
         alignItems: "center",
       },
       searchBar__clicked: {
         padding: 10,
         flexDirection: "row",
+<<<<<<< HEAD
         width: "95%",
         backgroundColor: "white",
         borderRadius: 30,
+=======
+        width: "80%",
+        backgroundColor: "#d9dbda",
+        borderRadius: 15,
+>>>>>>> 57731ef (need to fix styling)
         alignItems: "center",
         justifyContent: "space-evenly",
       },

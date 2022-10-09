@@ -7,8 +7,29 @@ import {colors} from '../utilites/Theme'
 import {useState} from 'react';
 import SearchBar from '../components/shared/SearchBar';
 import VendorList from '../components/shared/VendorList';
+<<<<<<< HEAD
 import { shuffle } from '../utilites/Shuffle';
 
+=======
+
+function shuffle(array) {
+  let currentIndex = array.length,  randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+>>>>>>> 57731ef (need to fix styling)
 
 const VendorView = () => {
   const [searchPhrase, setSearchPhrase] = useState('');
@@ -18,7 +39,13 @@ const VendorView = () => {
 
 
   return (
+<<<<<<< HEAD
     <View style={styles.container}>
+=======
+    <View style={[styles.container, {backgroundColor: '#D9FFDC44'}]}>
+      <Header/>
+
+>>>>>>> 57731ef (need to fix styling)
       <Text style={{
         color: colors.primary,
         fontSize: 30,
@@ -49,6 +76,7 @@ const VendorView = () => {
 
 const styles = StyleSheet.create({
   container: {
+<<<<<<< HEAD
     flex: 1,
     paddingTop: 64,
     backgroundColor: "#D9FFDC44",
@@ -57,6 +85,11 @@ const styles = StyleSheet.create({
   vendorList: {
     paddingHorizontal: 20,
   },
+=======
+    ...globalStyleSheet.container,
+    top: 0
+  }
+>>>>>>> 57731ef (need to fix styling)
 });
 
 export default VendorView;

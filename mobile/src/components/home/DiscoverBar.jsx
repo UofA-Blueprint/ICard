@@ -18,6 +18,7 @@ import {colors, globalStyleSheet} from '../../utilites/Theme';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 const DiscoverBar = () => {
   return (
@@ -51,11 +52,15 @@ import Website from "../../../assets/Website"
 =======
 import Svg, { Path } from "react-native-svg"
 >>>>>>> 45a41de (Put the home page together)
+=======
+import Svg, { Path } from "react-native-svg"
+>>>>>>> cbd9915 (Put the home page together)
 const DiscoverBar = () => {
   return (
     <View style={styles.DiscoverRow}>
 
       <TouchableOpacity style={styles.container} onPress={() => Linking.openURL('https://isa.ualberta.ca/')}>
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       
@@ -73,6 +78,10 @@ const DiscoverBar = () => {
 =======
         <Svg marginTop={6}
 >>>>>>> b47603a (fixed vendor component on home page)
+=======
+      
+        <Svg
+>>>>>>> cbd9915 (Put the home page together)
           width={48}
           height={45}
           xmlns="http://www.w3.org/2000/svg">
@@ -91,6 +100,7 @@ const DiscoverBar = () => {
             fill="#2E6933"/>
         </Svg>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         <Website/>
 <<<<<<< HEAD
@@ -106,6 +116,8 @@ const DiscoverBar = () => {
 >>>>>>> df5ffde (Fixed conflict)
 =======
 >>>>>>> 45a41de (Put the home page together)
+=======
+>>>>>>> cbd9915 (Put the home page together)
 
 >>>>>>> 45a41de (Put the home page together)
         <View style={styles.row}>
@@ -137,6 +149,7 @@ const DiscoverBar = () => {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <TouchableOpacity
         style={styles.container}
         onPress={() => Linking.openURL('https://isa.ualberta.ca/events')}>
@@ -162,6 +175,11 @@ const DiscoverBar = () => {
 =======
         <Svg marginTop={6}
 >>>>>>> b47603a (fixed vendor component on home page)
+=======
+      <TouchableOpacity style={styles.container} onPress={() => Linking.openURL('https://isa.ualberta.ca/events')}>
+
+        <Svg
+>>>>>>> cbd9915 (Put the home page together)
           width={48}
           height={45}
           xmlns="http://www.w3.org/2000/svg">
@@ -171,12 +189,15 @@ const DiscoverBar = () => {
         </Svg>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 45a41de (Put the home page together)
 =======
 >>>>>>> cbd9915 (Put the home page together)
 =======
         <Events/>
 >>>>>>> 4e85c96 (Moved svg to seperate files)
+=======
+>>>>>>> cbd9915 (Put the home page together)
 
         <View style={styles.row}>
 <<<<<<< HEAD

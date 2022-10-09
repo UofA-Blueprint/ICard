@@ -3,6 +3,7 @@ import React from 'react';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {StyleSheet, View, Text, Image, ImageBackground} from 'react-native';
 =======
 import {StyleSheet, View, FlatList, Text, Image, ImageBackground} from 'react-native';
@@ -20,6 +21,10 @@ import VendorCard from '../components/shared/VendorCard';
 =======
 import {StyleSheet, View, Text, Image, ImageBackground} from 'react-native';
 >>>>>>> b47603a (fixed vendor component on home page)
+=======
+import {StyleSheet, View, FlatList, Text, Image, ImageBackground} from 'react-native';
+import VendorCard from '../components/shared/VendorCard';
+>>>>>>> cbd9915 (Put the home page together)
 import DiscoverBar from '../components/home/DiscoverBar';
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -45,6 +50,7 @@ import { shuffle } from '../utilites/Shuffle';
 
 
 const HomeView = () => {
+<<<<<<< HEAD
 >>>>>>> b47603a (fixed vendor component on home page)
 
   const vendorDataRandom = shuffle(vendorData);
@@ -79,6 +85,12 @@ const HomeView = () => {
     <ImageBackground source={require('../../assets/Background.png')} resizeMode="cover" style={styles.backgoundImage}>
       
 >>>>>>> 45a41de (Put the home page together)
+=======
+  
+  return (
+    <ImageBackground source={require('../../assets/Background.png')} resizeMode="cover" style={styles.backgoundImage}>
+      
+>>>>>>> cbd9915 (Put the home page together)
       <Image
         source={require('../../assets/Sign-Out.png')}
         style={styles.signOut}
@@ -87,6 +99,7 @@ const HomeView = () => {
         source={require('../../assets/ISA-logo.png')}
         style={styles.logo}
       />
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -132,11 +145,17 @@ const HomeView = () => {
 >>>>>>> cbd9915 (Put the home page together)
 =======
 >>>>>>> 45a41de (Put the home page together)
+=======
+      <Text style={styles.title}>Welcome{'\n'}to ISA's{'\n'}mobile app</Text>
+      <Text style={styles.headingDiscover}>Discover</Text>
+      <DiscoverBar/>
+>>>>>>> cbd9915 (Put the home page together)
       <View style={styles.row}>
         <Text style={styles.headingVendor}>Vendors</Text>
         <Text style={styles.vendorText}>See All</Text>
       </View>
       
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -165,6 +184,11 @@ const HomeView = () => {
 
     </ImageBackground>
 >>>>>>> 45a41de (Put the home page together)
+=======
+      <VendorCard/>
+
+    </ImageBackground>
+>>>>>>> cbd9915 (Put the home page together)
   );
 };
 const styles = StyleSheet.create({
@@ -198,6 +222,12 @@ const styles = StyleSheet.create({
     marginLeft: 25,
     color: colors.darkGray,
   },
+  headingVendor: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginLeft: 25,
+    color: colors.darkGray,
+  },
   title: {
     marginLeft: 25,
     fontSize: 35,
@@ -212,6 +242,7 @@ const styles = StyleSheet.create({
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     marginLeft: 25,
     marginTop: 5,
 =======
@@ -219,6 +250,8 @@ const styles = StyleSheet.create({
 >>>>>>> cbd9915 (Put the home page together)
 =======
 >>>>>>> 45a41de (Put the home page together)
+=======
+>>>>>>> cbd9915 (Put the home page together)
     marginLeft: 25, 
     marginTop: 7,
   },
@@ -246,6 +279,7 @@ const styles = StyleSheet.create({
     textAlign: 'right',
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 45a41de (Put the home page together)
 =======
 >>>>>>> cbd9915 (Put the home page together)
@@ -255,6 +289,8 @@ const styles = StyleSheet.create({
 >>>>>>> df5ffde (Fixed conflict)
 =======
 >>>>>>> 45a41de (Put the home page together)
+=======
+>>>>>>> cbd9915 (Put the home page together)
   },
 });
 

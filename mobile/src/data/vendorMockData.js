@@ -32,7 +32,7 @@ const vendorData = [
     cardDesc: '1 free drink with a purchase of a medium or a large sized meal',
     popupDesc: '1 free drink with a purchase of a medium or a large sized meal',
     image:
-      'https://media-exp1.licdn.com/dms/image/C561BAQHznxtmClV2Cg/company-background_10000/0/1572051928760?e=2147483647&v=beta&t=Ksbphz1RPBTLN2u3uZfWt7r5D6gRU_rW1J0cNlICYOA',
+      'https://anycard.ca/logouploads/faa7acfaa7ac7a35cc79b49307b52f8b7577ff_ShortFormLogopage001.jpg',
   },
 
   {

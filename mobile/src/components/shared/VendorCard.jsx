@@ -1,9 +1,9 @@
 import React from 'react';
-import { render } from 'react-dom';
-import {View, Text, StyleSheet, Image, Dimensions, Modal, Button} from 'react-native';
+import {View, Text, StyleSheet, Image, Modal} from 'react-native';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
-import {colors, globalStyleSheet} from '../../utilites/Theme';
+import {colors} from '../../utilites/Theme';
 import { useState } from 'react';
+import { Feather } from '@expo/vector-icons'; 
 
 const VendorCard = ({vendorName, location, description, vendorImage, cardDesc, discount, contact}) => {
     const [popupOpen, setPopupOpen] = useState(false);
@@ -13,45 +13,34 @@ const VendorCard = ({vendorName, location, description, vendorImage, cardDesc, d
             <Modal visible={popupOpen} transparent={true} animationType='slide' onRequestClose={() => setPopupOpen(false)}>
                 <Pressable onPress={() => setPopupOpen(false)} style={{
                     flex: 1,
-                    justifyContent: 'center',
+                    justifyContent: 'flex-end',
                     alignItems: 'center',
                     backgroundColor: '#00000000'
                 }}>
                     <Pressable onPress={() => {}} style={styles.modalView}>
-                        <View style={{
-                                display: 'flex',
-                                flexDirection: 'row',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                paddingHorizontal: 10,
-                                paddingVertical: 5
-                        }}>
-                            <View style={{flexShrink: 2, paddingHorizontal: 10}}>
-                                <Text style={styles.title}>
-                                {vendorName}
-                                </Text>
-                            </View>
+                        <Pressable onPress={() => setPopupOpen(false)}>
+                            <Feather name='chevron-down' size={50} color='#88888888' />
+                        </Pressable>
 
-                            <Image style={styles.logo} source={{uri: vendorImage}}></Image>
-                            
+                        <Image style={styles.popupLogo} source={{uri: vendorImage}}></Image>
+
+                        <View style={{flexShrink: 2, paddingHorizontal: 10}}>
+                            <Text style={styles.popUpTitle}>
+                            {vendorName}
+                            </Text>
                         </View>
 
-                        <Text style={{
-                            textAlign:'center',
-                            fontWeight: 'bold',
-                            fontSize: 12,
-                            width: 250,
-                            marginBottom: 10
-                        }}>
+                        <Text style={popUpStyles.location}>
+                            {location}
+                        </Text>
+                            
+
+                        <Text style={popUpStyles.description}>
                             {description}
                         </Text>
 
-                        <Text style={styles.text}>
-                            Location: {location}
-                        </Text>
-
-                        <Text style={styles.text}>
-                            Contact: {contact}
+                        <Text style={popUpStyles.contact}>
+                            Point of contact: {contact}
                         </Text>
 
                       </Pressable>
@@ -88,12 +77,18 @@ const VendorCard = ({vendorName, location, description, vendorImage, cardDesc, d
     );
 };
 
-const win = Dimensions.get('window');
-
 const styles = StyleSheet.create({
     title: {
         color: colors.primary,
         fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 10,
+        marginLeft: 10
+    },
+
+    popUpTitle: {
+        color: colors.primary,
+        fontSize: 25,
         fontWeight: 'bold',
         marginBottom: 10,
         marginLeft: 10
@@ -126,6 +121,13 @@ const styles = StyleSheet.create({
         resizeMode: 'contain'
     },
 
+    popupLogo: {
+        flexBasis: 100,
+        flexShrink: 0.5,
+        aspectRatio: 1.5/1,
+        resizeMode: 'contain'
+    },
+
     container: {
         display: 'flex',
         flexDirection: 'row',
@@ -139,7 +141,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginVertical: 12,
         marginHorizontal: 20,
-        width: 0.8*win.width
+        width: "100%"
     },
 
     description: {
@@ -149,15 +151,59 @@ const styles = StyleSheet.create({
     modalView: {
         backgroundColor: 'white',
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         borderColor: colors.primary,
         borderRadius: 20,
         borderWidth: 1,
         paddingHorizontal: 20,
-        paddingBottom: 20,
-        paddingTop: 5
+        paddingBottom: 25,
+        paddingTop: 5,
+        width: '100%',
+        height: '50%'
     }
 });
+
+const popUpStyles = StyleSheet.create({
+    popUpTitle: {
+        color: colors.primary,
+        fontSize: 25,
+        fontWeight: 'bold',
+        marginBottom: 10,
+        marginLeft: 10
+    },
+
+    popupLogo: {
+        flexBasis: 100,
+        flexShrink: 0.5,
+        aspectRatio: 1.5/1,
+        resizeMode: 'contain'
+    },
+
+    location: {
+        color: colors.primary,
+        fontSize: 15,
+        fontWeight: 'bold',
+        marginBottom: 10,
+        marginLeft: 10
+    },
+
+    description: {
+        textAlign:'center',
+        fontWeight: '300',
+        fontSize: 20,
+        width: 250,
+        marginBottom: 10
+    },
+
+    contact: {
+        textAlign:'center',
+        fontWeight: '300',
+        fontSize: 15,
+        width: 250,
+        marginBottom: 10
+    }
+
+})
 
 export default VendorCard;

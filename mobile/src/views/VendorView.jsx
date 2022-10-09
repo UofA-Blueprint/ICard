@@ -46,6 +46,7 @@ const VendorView = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <View style={styles.container}>
 =======
     <View style={[styles.container, {backgroundColor: '#D9FFDC44'}]}>
@@ -56,9 +57,14 @@ const VendorView = () => {
 
 >>>>>>> 57731ef (need to fix styling)
 =======
+=======
+>>>>>>> 7091f72 (Fixed conflict)
     <View style={styles.container}>
 =======
     <View style={[styles.container, {backgroundColor: '#D9FFDC44'}]}>
+=======
+    <View style={styles.container}>
+>>>>>>> 6bfa6d2 (Fixed conflict)
       <Header/>
 
 >>>>>>> 7fd9c6c (Fixed conflict)
@@ -96,15 +102,22 @@ const styles = StyleSheet.create({
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 75c0bec (Fixed conflict)
+=======
+>>>>>>> 7091f72 (Fixed conflict)
     flex: 1,
     paddingTop: 64,
     backgroundColor: "#D9FFDC44",
 =======
     flex: 1,
     backgroundColor: colors.white,
+<<<<<<< HEAD
 >>>>>>> b95fceb (matched styling with figma)
+=======
+>>>>>>> 6bfa6d2 (Fixed conflict)
+>>>>>>> 7091f72 (Fixed conflict)
     alignItems: 'center',
   },
   vendorList: {
@@ -112,8 +125,11 @@ const styles = StyleSheet.create({
   },
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 75c0bec (Fixed conflict)
+=======
+>>>>>>> 7091f72 (Fixed conflict)
 =======
     ...globalStyleSheet.container,
     top: 0
@@ -124,7 +140,12 @@ const styles = StyleSheet.create({
 >>>>>>> b95fceb (matched styling with figma)
 =======
 >>>>>>> 7fd9c6c (Fixed conflict)
+<<<<<<< HEAD
 >>>>>>> 75c0bec (Fixed conflict)
+=======
+=======
+>>>>>>> 6bfa6d2 (Fixed conflict)
+>>>>>>> 7091f72 (Fixed conflict)
 });
 
 export default VendorView;

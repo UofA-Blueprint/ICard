@@ -6,10 +6,13 @@ import React from 'react';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 9bc3438 (Fixed conflict)
 =======
 >>>>>>> ea2a4cf (Fixed conflict)
+=======
+>>>>>>> 594cf06 (Fixed conflict)
 import {StyleSheet, View, Text, Image, ImageBackground} from 'react-native';
 =======
 import {StyleSheet, View, FlatList, Text, Image, ImageBackground} from 'react-native';
@@ -76,7 +79,13 @@ const HomeView = () => {
 >>>>>>> 9bc3438 (Fixed conflict)
 =======
 =======
+=======
+>>>>>>> 8fa6499 (Fixed conflict)
 import {StyleSheet, View, Text, Image, ImageBackground} from 'react-native';
+=======
+import {StyleSheet, View, FlatList, Text, Image, ImageBackground} from 'react-native';
+import VendorCard from '../components/shared/VendorCard';
+>>>>>>> cbd9915 (Put the home page together)
 import DiscoverBar from '../components/home/DiscoverBar';
 <<<<<<< HEAD
 import {globalStyleSheet} from '../utilites/Theme';
@@ -90,12 +99,20 @@ import vendorData from '../data/vendorMockData';
 import { shuffle } from '../utilites/Shuffle';
 
 const HomeView = () => {
+<<<<<<< HEAD
 >>>>>>> 54c48e2 (Fixed conflict)
+<<<<<<< HEAD
 >>>>>>> ea2a4cf (Fixed conflict)
+=======
+=======
+<<<<<<< HEAD
+>>>>>>> 8fa6499 (Fixed conflict)
+>>>>>>> 594cf06 (Fixed conflict)
 
   const vendorDataRandom = shuffle(vendorData);
   const [searchPhrase, setSearchPhrase] = useState('');
   const [clicked, setClicked] = useState(false);
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -128,10 +145,19 @@ const HomeView = () => {
 >>>>>>> 9bc3438 (Fixed conflict)
 =======
 =======
+>>>>>>> 594cf06 (Fixed conflict)
+=======
 >>>>>>> b6f9aa8 (Fixed conflict)
 =======
 >>>>>>> 54c48e2 (Fixed conflict)
+<<<<<<< HEAD
 >>>>>>> ea2a4cf (Fixed conflict)
+=======
+=======
+=======
+>>>>>>> cbd9915 (Put the home page together)
+>>>>>>> 8fa6499 (Fixed conflict)
+>>>>>>> 594cf06 (Fixed conflict)
   
   return (
     <ImageBackground source={require('../../assets/Background.png')} resizeMode="cover" style={styles.backgoundImage}>
@@ -158,9 +184,12 @@ const HomeView = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> df5ffde (Fixed conflict)
 =======
+=======
+>>>>>>> 594cf06 (Fixed conflict)
       <Text style={styles.title}>Welcome{'\n'}to ISA's{'\n'}mobile app</Text>
       <Text style={styles.headingDiscoverDiscover}>Discover</Text>
       <DiscoverBar/>
@@ -176,7 +205,12 @@ const HomeView = () => {
 =======
 =======
 >>>>>>> b6f9aa8 (Fixed conflict)
+<<<<<<< HEAD
 >>>>>>> 9bc3438 (Fixed conflict)
+=======
+=======
+>>>>>>> 8fa6499 (Fixed conflict)
+>>>>>>> 594cf06 (Fixed conflict)
       <Text style={styles.title}>
         Welcome{'\n'}to ISA's{'\n'}mobile app
       </Text>
@@ -286,15 +320,23 @@ const HomeView = () => {
       <Text style={styles.title}>Welcome{'\n'}to ISA's{'\n'}mobile app</Text>
       <Text style={styles.headingDiscover}>Discover</Text>
       <DiscoverBar/>
+=======
+      <Text style={styles.title}>Welcome{'\n'}to ISA's{'\n'}mobile app</Text>
+      <Text style={styles.headingDiscover}>Discover</Text>
+      <DiscoverBar/>
+>>>>>>> cbd9915 (Put the home page together)
       <View style={styles.row}>
         <Text style={styles.headingVendor}>Vendors</Text>
         <Text style={styles.vendorText}>See All</Text>
       </View>
       
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9bc3438 (Fixed conflict)
       <VendorCard/>
 =======
+=======
+>>>>>>> 594cf06 (Fixed conflict)
       <VendorList
         searchPhrase={searchPhrase}
         data={vendorDataRandom}
@@ -305,6 +347,7 @@ const HomeView = () => {
     </ImageBackground>
 >>>>>>> 45a41de (Put the home page together)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       <VendorCard/>
 
@@ -313,6 +356,16 @@ const HomeView = () => {
 =======
 >>>>>>> b6f9aa8 (Fixed conflict)
 >>>>>>> 9bc3438 (Fixed conflict)
+=======
+>>>>>>> b6f9aa8 (Fixed conflict)
+=======
+=======
+      <VendorCard/>
+
+    </ImageBackground>
+>>>>>>> cbd9915 (Put the home page together)
+>>>>>>> 8fa6499 (Fixed conflict)
+>>>>>>> 594cf06 (Fixed conflict)
   );
 };
 const styles = StyleSheet.create({
@@ -358,14 +411,20 @@ const styles = StyleSheet.create({
     color: colors.darkGray,
   },
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 8fa6499 (Fixed conflict)
   headingVendor: {
     fontSize: 20,
     fontWeight: 'bold',
     marginLeft: 25,
     color: colors.darkGray,
   },
+<<<<<<< HEAD
 =======
 >>>>>>> b6f9aa8 (Fixed conflict)
+=======
+>>>>>>> 8fa6499 (Fixed conflict)
   title: {
     marginLeft: 25,
     fontSize: 35,
@@ -376,6 +435,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 83,
     resizeMode: 'stretch',
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -396,6 +456,8 @@ const styles = StyleSheet.create({
 >>>>>>> cbeefdb (Fixed conflict)
 =======
 >>>>>>> 9bc3438 (Fixed conflict)
+=======
+>>>>>>> 594cf06 (Fixed conflict)
     marginLeft: 25, 
     marginTop: 7,
   },
@@ -445,9 +507,13 @@ const styles = StyleSheet.create({
 >>>>>>> cbeefdb (Fixed conflict)
 =======
 =======
+=======
+>>>>>>> 8fa6499 (Fixed conflict)
     marginLeft: 25,
     marginTop: 5,
 =======
+=======
+>>>>>>> cbd9915 (Put the home page together)
     marginLeft: 25, 
     marginTop: 7,
   },
@@ -473,9 +539,18 @@ const styles = StyleSheet.create({
     marginRight: 24,
     fontSize: 14,
     textAlign: 'right',
+<<<<<<< HEAD
 >>>>>>> 45a41de (Put the home page together)
+<<<<<<< HEAD
 >>>>>>> b6f9aa8 (Fixed conflict)
+<<<<<<< HEAD
 >>>>>>> 9bc3438 (Fixed conflict)
+=======
+=======
+=======
+>>>>>>> cbd9915 (Put the home page together)
+>>>>>>> 8fa6499 (Fixed conflict)
+>>>>>>> 594cf06 (Fixed conflict)
   },
 });
 

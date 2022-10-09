@@ -3,6 +3,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "expoServerPort": null,
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -23,6 +24,8 @@
 >>>>>>> 0fe716f (Fixed conflict)
 =======
 >>>>>>> 92dee65 (Fixed conflict)
+=======
+>>>>>>> 1fed3a7 (Fixed conflict)
   "expoServerPort": 19000,
   "packagerPort": 19000,
 >>>>>>> 1cec0c6 (removed scanner button)
@@ -48,7 +51,17 @@
   "packagerNgrokUrl": "https://qt-r2h.anonymous.mobile.exp.direct",
   "ngrokPid": 26176,
 >>>>>>> e378576 (Finished layout)
+<<<<<<< HEAD
 >>>>>>> 0fe716f (Fixed conflict)
+=======
+=======
+  "expoServerPort": null,
+  "packagerPort": 19000,
+  "expoServerNgrokUrl": "https://qt-r2h.llamoss1805.mobile.exp.direct",
+  "packagerNgrokUrl": "https://qt-r2h.llamoss1805.mobile.exp.direct",
+  "ngrokPid": 33448,
+>>>>>>> da1393f (Added disable status for Submit button)
+>>>>>>> 1fed3a7 (Fixed conflict)
   "devToolsPort": 19002,
   "packagerPid": null,
   "webpackServerPort": null

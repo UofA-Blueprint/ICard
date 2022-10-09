@@ -176,15 +176,22 @@ const VerificationView = () => {
         </View>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <Pressable
           onPress={() => {
             submitImage(data);
+=======
+        <Pressable
+          onPress={() => {
+            console.log('Submit');
+>>>>>>> 1fed3a7 (Fixed conflict)
           }}
           style={[
             styles.submitButton,
             image != null ? styles.activeSubmitButton : '',
           ]}
           disabled={image == null}>
+<<<<<<< HEAD
           <Text style={{color: 'white', ...typography.subHeader4}}>Submit</Text>
         </Pressable>
         <Pressable
@@ -203,6 +210,15 @@ const VerificationView = () => {
 >>>>>>> e99e8ed (Fixed conflict)
 =======
 >>>>>>> 0fe716f (Fixed conflict)
+=======
+          <Text style={{color: 'white', ...typography.subHeader4}}>Submit</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => {
+            console.log('Skip');
+          }}
+          style={styles.skipButton}>
+>>>>>>> 1fed3a7 (Fixed conflict)
           <Text style={{color: colors.primary, ...typography.body}}>
             Skip for now
           </Text>
@@ -270,6 +286,7 @@ const styles = StyleSheet.create({
   },
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   activeSubmitButton: {
     backgroundColor: colors.primary,
   },
@@ -277,6 +294,11 @@ const styles = StyleSheet.create({
 >>>>>>> e99e8ed (Fixed conflict)
 =======
 >>>>>>> 0fe716f (Fixed conflict)
+=======
+  activeSubmitButton: {
+    backgroundColor: colors.primary,
+  },
+>>>>>>> 1fed3a7 (Fixed conflict)
 });
 
 export default VerificationView;

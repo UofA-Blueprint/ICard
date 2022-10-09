@@ -121,6 +121,7 @@ const HomeView = () => {
       <Text style={styles.heading}>Discover</Text>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       <DiscoverBar />
 =======
 =======
@@ -138,6 +139,9 @@ const HomeView = () => {
       <DiscoverBar/>
 <<<<<<< HEAD
 >>>>>>> 4eab920 (fixed accidental duplicate code)
+=======
+      <DiscoverBar />
+>>>>>>> 1fed3a7 (Fixed conflict)
       <FlatList
         data={vendorData}
         renderItem={renderItem}

@@ -19,6 +19,7 @@ import {colors, globalStyleSheet} from '../../utilites/Theme';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 const DiscoverBar = () => {
   return (
@@ -55,6 +56,10 @@ import Svg, { Path } from "react-native-svg"
 =======
 import Svg, { Path } from "react-native-svg"
 >>>>>>> cbd9915 (Put the home page together)
+=======
+import Events from "../../../assets/Events"
+import Website from "../../../assets/Website"
+>>>>>>> 4e85c96 (Moved svg to seperate files)
 const DiscoverBar = () => {
   return (
     <View style={styles.DiscoverRow}>
@@ -64,6 +69,7 @@ const DiscoverBar = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
       
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         <Svg marginTop={6}
@@ -118,6 +124,9 @@ const DiscoverBar = () => {
 >>>>>>> 45a41de (Put the home page together)
 =======
 >>>>>>> cbd9915 (Put the home page together)
+=======
+        <Website/>
+>>>>>>> 4e85c96 (Moved svg to seperate files)
 
 >>>>>>> 45a41de (Put the home page together)
         <View style={styles.row}>
@@ -162,6 +171,7 @@ const DiscoverBar = () => {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <Svg marginTop={6}
 =======
       <TouchableOpacity style={styles.container} onPress={() => Linking.openURL('https://isa.ualberta.ca/events')}>
@@ -198,6 +208,9 @@ const DiscoverBar = () => {
 >>>>>>> 4e85c96 (Moved svg to seperate files)
 =======
 >>>>>>> cbd9915 (Put the home page together)
+=======
+        <Events/>
+>>>>>>> 4e85c96 (Moved svg to seperate files)
 
         <View style={styles.row}>
 <<<<<<< HEAD

@@ -1,4 +1,5 @@
 import React from 'react';
+<<<<<<< HEAD
 import {
   View,
   Text,
@@ -7,6 +8,10 @@ import {
   TouchableOpacity,
   Linking,
 } from 'react-native';
+=======
+<<<<<<< HEAD
+import {View, Text, StyleSheet, Image, TouchableOpacity, Linking} from 'react-native';
+>>>>>>> 567cc26 (Fixed conflict)
 import {colors, globalStyleSheet} from '../../utilites/Theme';
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -113,13 +118,69 @@ const DiscoverBar = () => {
 >>>>>>> 4e85c96 (Moved svg to seperate files)
 
         <View style={styles.row}>
+<<<<<<< HEAD
           <Text style={[globalStyleSheet.text, styles.label]}>Events</Text>
+=======
+          <Text style={[globalStyleSheet.text, styles.label]}>
+          Events
+=======
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Linking,
+} from 'react-native';
+import {colors, globalStyleSheet} from '../../utilites/Theme';
+
+const DiscoverBar = () => {
+  return (
+    <View style={styles.DiscoverRow}>
+      <TouchableOpacity
+        style={styles.container}
+        onPress={() => Linking.openURL('https://isa.ualberta.ca/')}>
+        <Image
+          source={require('../../../assets/Website.png')}
+          style={styles.image}
+        />
+        <View style={styles.row}>
+          <Text style={[globalStyleSheet.text, styles.label]}>
+            ISA's Website
+>>>>>>> 3ff578c (Added discovery bar)
+          </Text>
+
+>>>>>>> 567cc26 (Fixed conflict)
           <Image
             source={require('../../../assets/Arrow.png')}
             style={styles.image}
           />
         </View>
       </TouchableOpacity>
+<<<<<<< HEAD
+=======
+
+<<<<<<< HEAD
+=======
+      <TouchableOpacity
+        style={styles.container}
+        onPress={() => Linking.openURL('https://isa.ualberta.ca/events')}>
+        <Image
+          source={require('../../../assets/Events.png')}
+          style={styles.image}
+        />
+
+        <View style={styles.row}>
+          <Text style={[globalStyleSheet.text, styles.label]}>Events</Text>
+
+          <Image
+            source={require('../../../assets/Arrow.png')}
+            style={styles.image}
+          />
+        </View>
+      </TouchableOpacity>
+>>>>>>> 3ff578c (Added discovery bar)
+>>>>>>> 567cc26 (Fixed conflict)
     </View>
   );
 };
@@ -128,23 +189,43 @@ const styles = StyleSheet.create({
   container: {
     paddingVertical: 10,
     paddingHorizontal: 16,
+<<<<<<< HEAD
     backgroundColor: colors.lightGray,
     borderRadius: 15,
+<<<<<<< HEAD
     borderWidth: 1,
     borderColor: colors.primary,
     borderRadius: 10,
+=======
+=======
+    borderWidth: 1,
+    borderColor: colors.primary,
+    borderRadius: 10,
+>>>>>>> 3ff578c (Added discovery bar)
+>>>>>>> 567cc26 (Fixed conflict)
     marginTop: 8,
     marginRight: 16,
     flexGrow: 1,
     alignItems: 'center',
     flex: 1,
+<<<<<<< HEAD
     shadowColor: '#000',
+=======
+<<<<<<< HEAD
+    shadowColor: "#000",
+>>>>>>> 567cc26 (Fixed conflict)
     shadowOffset: {
       width: 4,
       height: 4,
     },
     shadowOpacity: 0.25,
     elevation: 5,
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> 3ff578c (Added discovery bar)
+>>>>>>> 567cc26 (Fixed conflict)
   },
   label: {
     fontSize: 16,
@@ -155,10 +236,24 @@ const styles = StyleSheet.create({
     marginLeft: 24,
     marginRight: 8,
     justifyContent: 'space-between',
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    
+=======
+>>>>>>> 3ff578c (Added discovery bar)
+>>>>>>> 567cc26 (Fixed conflict)
   },
   row: {
     flexDirection: 'row',
     marginTop: 8,
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    
+=======
+>>>>>>> 3ff578c (Added discovery bar)
+>>>>>>> 567cc26 (Fixed conflict)
   },
   image: {
     marginTop: 7,
@@ -166,4 +261,12 @@ const styles = StyleSheet.create({
   },
 });
 
+<<<<<<< HEAD
 export default DiscoverBar;
+=======
+<<<<<<< HEAD
+export default DiscoverBar;
+=======
+export default DiscoverBar;
+>>>>>>> 3ff578c (Added discovery bar)
+>>>>>>> 567cc26 (Fixed conflict)

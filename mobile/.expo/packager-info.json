@@ -1,6 +1,7 @@
 {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "expoServerPort": null,
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -17,12 +18,15 @@
 =======
   "packagerPort": null,
 =======
+=======
+>>>>>>> 0fe716f (Fixed conflict)
   "expoServerPort": 19000,
   "packagerPort": 19000,
 >>>>>>> 1cec0c6 (removed scanner button)
   "expoServerNgrokUrl": null,
   "packagerNgrokUrl": null,
   "ngrokPid": null,
+<<<<<<< HEAD
 >>>>>>> 995789d (Added submit button functionality)
 =======
   "packagerPort": 19000,
@@ -30,6 +34,15 @@
   "packagerNgrokUrl": "https://qt-r2h.llamoss1805.mobile.exp.direct",
   "ngrokPid": 31796,
 >>>>>>> 0a59da8 (Fixed package-info.json)
+=======
+=======
+  "expoServerPort": null,
+  "packagerPort": 19000,
+  "expoServerNgrokUrl": "https://qt-r2h.anonymous.mobile.exp.direct",
+  "packagerNgrokUrl": "https://qt-r2h.anonymous.mobile.exp.direct",
+  "ngrokPid": 26176,
+>>>>>>> e378576 (Finished layout)
+>>>>>>> 0fe716f (Fixed conflict)
   "devToolsPort": 19002,
   "packagerPid": null,
   "webpackServerPort": null

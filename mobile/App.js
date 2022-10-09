@@ -51,7 +51,11 @@ const App = () => {
               <>
                 <Tab.Screen name="Home" component={HomeView} />
                 <Tab.Screen name="Vendors" component={VendorView} />
+<<<<<<< HEAD
                 <Tab.Screen name="My ICard" component={RegistrationView} />
+=======
+                <Tab.Screen name="My ICard" component={VerificationView} />
+>>>>>>> e378576 (Finished layout)
               </>
             ) : (
               <>

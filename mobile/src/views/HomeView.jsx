@@ -5,8 +5,11 @@ import React from 'react';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 9bc3438 (Fixed conflict)
+=======
+>>>>>>> ea2a4cf (Fixed conflict)
 import {StyleSheet, View, Text, Image, ImageBackground} from 'react-native';
 =======
 import {StyleSheet, View, FlatList, Text, Image, ImageBackground} from 'react-native';
@@ -67,13 +70,33 @@ import { shuffle } from '../utilites/Shuffle';
 const HomeView = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> b47603a (fixed vendor component on home page)
 =======
 >>>>>>> 9bc3438 (Fixed conflict)
+=======
+=======
+import {StyleSheet, View, Text, Image, ImageBackground} from 'react-native';
+import DiscoverBar from '../components/home/DiscoverBar';
+<<<<<<< HEAD
+import {globalStyleSheet} from '../utilites/Theme';
+=======
+import {globalStyleSheet, colors} from '../utilites/Theme';
+import VendorList from '../components/shared/VendorList';
+import {useState} from 'react';
+>>>>>>> b47603a (fixed vendor component on home page)
+
+import vendorData from '../data/vendorMockData';
+import { shuffle } from '../utilites/Shuffle';
+
+const HomeView = () => {
+>>>>>>> 54c48e2 (Fixed conflict)
+>>>>>>> ea2a4cf (Fixed conflict)
 
   const vendorDataRandom = shuffle(vendorData);
   const [searchPhrase, setSearchPhrase] = useState('');
   const [clicked, setClicked] = useState(false);
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -103,6 +126,12 @@ const HomeView = () => {
 =======
 >>>>>>> b6f9aa8 (Fixed conflict)
 >>>>>>> 9bc3438 (Fixed conflict)
+=======
+=======
+>>>>>>> b6f9aa8 (Fixed conflict)
+=======
+>>>>>>> 54c48e2 (Fixed conflict)
+>>>>>>> ea2a4cf (Fixed conflict)
   
   return (
     <ImageBackground source={require('../../assets/Background.png')} resizeMode="cover" style={styles.backgoundImage}>
@@ -262,8 +291,16 @@ const HomeView = () => {
         <Text style={styles.vendorText}>See All</Text>
       </View>
       
+<<<<<<< HEAD
 >>>>>>> 9bc3438 (Fixed conflict)
       <VendorCard/>
+=======
+      <VendorList
+        searchPhrase={searchPhrase}
+        data={vendorDataRandom}
+        setClicked={setClicked}
+      />
+>>>>>>> ea2a4cf (Fixed conflict)
 
     </ImageBackground>
 >>>>>>> 45a41de (Put the home page together)

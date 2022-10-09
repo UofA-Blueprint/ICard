@@ -1,6 +1,7 @@
 import React from 'react';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {
   View,
   Text,
@@ -13,6 +14,8 @@ import {
 <<<<<<< HEAD
 =======
 >>>>>>> 41c6b75 (Fixed conflict)
+=======
+>>>>>>> bcc8343 (Fixed conflict)
 import {View, Text, StyleSheet, Image, TouchableOpacity, Linking} from 'react-native';
 >>>>>>> 567cc26 (Fixed conflict)
 import {colors, globalStyleSheet} from '../../utilites/Theme';
@@ -242,6 +245,8 @@ const DiscoverBar = () => {
           <Text style={[globalStyleSheet.text, styles.label]}>
           Events
 =======
+=======
+>>>>>>> 0178024 (Fixed conflict)
 import {
   View,
   Text,
@@ -250,6 +255,10 @@ import {
   TouchableOpacity,
   Linking,
 } from 'react-native';
+=======
+<<<<<<< HEAD
+import {View, Text, StyleSheet, Image, TouchableOpacity, Linking} from 'react-native';
+>>>>>>> 567cc26 (Fixed conflict)
 import {colors, globalStyleSheet} from '../../utilites/Theme';
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -392,6 +401,66 @@ const DiscoverBar = () => {
 >>>>>>> 4e85c96 (Moved svg to seperate files)
 
         <View style={styles.row}>
+<<<<<<< HEAD
+          <Text style={[globalStyleSheet.text, styles.label]}>Events</Text>
+<<<<<<< HEAD
+
+=======
+=======
+          <Text style={[globalStyleSheet.text, styles.label]}>
+          Events
+=======
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Linking,
+} from 'react-native';
+import {colors, globalStyleSheet} from '../../utilites/Theme';
+
+const DiscoverBar = () => {
+  return (
+    <View style={styles.DiscoverRow}>
+      <TouchableOpacity
+        style={styles.container}
+        onPress={() => Linking.openURL('https://isa.ualberta.ca/')}>
+        <Image
+          source={require('../../../assets/Website.png')}
+          style={styles.image}
+        />
+        <View style={styles.row}>
+          <Text style={[globalStyleSheet.text, styles.label]}>
+            ISA's Website
+>>>>>>> 3ff578c (Added discovery bar)
+          </Text>
+
+>>>>>>> 567cc26 (Fixed conflict)
+>>>>>>> 0178024 (Fixed conflict)
+          <Image
+            source={require('../../../assets/Arrow.png')}
+            style={styles.image}
+          />
+        </View>
+      </TouchableOpacity>
+<<<<<<< HEAD
+>>>>>>> 3ff578c (Added discovery bar)
+=======
+<<<<<<< HEAD
+=======
+
+<<<<<<< HEAD
+=======
+      <TouchableOpacity
+        style={styles.container}
+        onPress={() => Linking.openURL('https://isa.ualberta.ca/events')}>
+        <Image
+          source={require('../../../assets/Events.png')}
+          style={styles.image}
+        />
+
+        <View style={styles.row}>
           <Text style={[globalStyleSheet.text, styles.label]}>Events</Text>
 
           <Image
@@ -401,7 +470,12 @@ const DiscoverBar = () => {
         </View>
       </TouchableOpacity>
 >>>>>>> 3ff578c (Added discovery bar)
+<<<<<<< HEAD
 >>>>>>> 41c6b75 (Fixed conflict)
+=======
+>>>>>>> 567cc26 (Fixed conflict)
+>>>>>>> 0178024 (Fixed conflict)
+>>>>>>> bcc8343 (Fixed conflict)
     </View>
   );
 };
@@ -415,12 +489,15 @@ const styles = StyleSheet.create({
     borderRadius: 15,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     borderWidth: 1,
     borderColor: colors.primary,
     borderRadius: 10,
 =======
 =======
 >>>>>>> 41c6b75 (Fixed conflict)
+=======
+>>>>>>> bcc8343 (Fixed conflict)
 =======
     borderWidth: 1,
     borderColor: colors.primary,
@@ -444,12 +521,29 @@ const styles = StyleSheet.create({
 =======
 >>>>>>> b25ec7e (created discover bar and welcome title)
 >>>>>>> 3b11119 (Fixed merge conflict)
+<<<<<<< HEAD
 >>>>>>> cbeefdb (Fixed conflict)
+=======
+=======
+<<<<<<< HEAD
+    borderWidth: 1,
+    borderColor: colors.primary,
+    borderRadius: 10,
+=======
+=======
+    borderWidth: 1,
+    borderColor: colors.primary,
+    borderRadius: 10,
+>>>>>>> 3ff578c (Added discovery bar)
+>>>>>>> 567cc26 (Fixed conflict)
+>>>>>>> 0178024 (Fixed conflict)
+>>>>>>> bcc8343 (Fixed conflict)
     marginTop: 8,
     marginRight: 16,
     flexGrow: 1,
     alignItems: 'center',
     flex: 1,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
     shadowColor: '#000',
@@ -459,6 +553,16 @@ const styles = StyleSheet.create({
 >>>>>>> 41c6b75 (Fixed conflict)
     shadowColor: "#000",
 >>>>>>> 567cc26 (Fixed conflict)
+=======
+    shadowColor: "#000",
+=======
+    shadowColor: '#000',
+=======
+<<<<<<< HEAD
+    shadowColor: "#000",
+>>>>>>> 567cc26 (Fixed conflict)
+>>>>>>> 0178024 (Fixed conflict)
+>>>>>>> bcc8343 (Fixed conflict)
     shadowOffset: {
       width: 4,
       height: 4,
@@ -468,8 +572,11 @@ const styles = StyleSheet.create({
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
+=======
+>>>>>>> bcc8343 (Fixed conflict)
 =======
 >>>>>>> b25ec7e (created discover bar and welcome title)
 >>>>>>> df5ffde (Fixed conflict)
@@ -481,9 +588,20 @@ const styles = StyleSheet.create({
 =======
 >>>>>>> 3ff578c (Added discovery bar)
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 567cc26 (Fixed conflict)
 =======
 >>>>>>> 41c6b75 (Fixed conflict)
+=======
+=======
+<<<<<<< HEAD
+=======
+
+=======
+>>>>>>> 3ff578c (Added discovery bar)
+>>>>>>> 567cc26 (Fixed conflict)
+>>>>>>> 0178024 (Fixed conflict)
+>>>>>>> bcc8343 (Fixed conflict)
   },
   label: {
     fontSize: 16,
@@ -496,6 +614,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
     
@@ -507,12 +626,26 @@ const styles = StyleSheet.create({
 =======
 >>>>>>> 3ff578c (Added discovery bar)
 >>>>>>> 41c6b75 (Fixed conflict)
+=======
+    
+=======
+>>>>>>> 3ff578c (Added discovery bar)
+=======
+=======
+<<<<<<< HEAD
+    
+=======
+>>>>>>> 3ff578c (Added discovery bar)
+>>>>>>> 567cc26 (Fixed conflict)
+>>>>>>> 0178024 (Fixed conflict)
+>>>>>>> bcc8343 (Fixed conflict)
   },
   row: {
     flexDirection: 'row',
     marginTop: 8,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
     
@@ -524,6 +657,19 @@ const styles = StyleSheet.create({
 =======
 >>>>>>> 3ff578c (Added discovery bar)
 >>>>>>> 41c6b75 (Fixed conflict)
+=======
+    
+=======
+>>>>>>> 3ff578c (Added discovery bar)
+=======
+=======
+<<<<<<< HEAD
+    
+=======
+>>>>>>> 3ff578c (Added discovery bar)
+>>>>>>> 567cc26 (Fixed conflict)
+>>>>>>> 0178024 (Fixed conflict)
+>>>>>>> bcc8343 (Fixed conflict)
   },
   image: {
     marginTop: 7,
@@ -536,6 +682,7 @@ export default DiscoverBar;
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 export default DiscoverBar;
 =======
 export default DiscoverBar;
@@ -545,3 +692,15 @@ export default DiscoverBar;
 export default DiscoverBar;
 >>>>>>> 3ff578c (Added discovery bar)
 >>>>>>> 41c6b75 (Fixed conflict)
+=======
+export default DiscoverBar;
+>>>>>>> 3ff578c (Added discovery bar)
+=======
+<<<<<<< HEAD
+export default DiscoverBar;
+=======
+export default DiscoverBar;
+>>>>>>> 3ff578c (Added discovery bar)
+>>>>>>> 567cc26 (Fixed conflict)
+>>>>>>> 0178024 (Fixed conflict)
+>>>>>>> bcc8343 (Fixed conflict)

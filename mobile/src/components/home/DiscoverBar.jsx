@@ -16,6 +16,7 @@ import {colors, globalStyleSheet} from '../../utilites/Theme';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 const DiscoverBar = () => {
   return (
@@ -35,11 +36,23 @@ import Svg, { Path } from "react-native-svg"
 import Events from "../../../assets/Events"
 import Website from "../../../assets/Website"
 >>>>>>> 4e85c96 (Moved svg to seperate files)
+=======
+import Events from "../../../assets/Events"
+import Website from "../../../assets/Website"
+=======
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> b25ec7e (created discover bar and welcome title)
+>>>>>>> 3b11119 (Fixed merge conflict)
+>>>>>>> df5ffde (Fixed conflict)
 const DiscoverBar = () => {
   return (
     <View style={styles.DiscoverRow}>
 
       <TouchableOpacity style={styles.container} onPress={() => Linking.openURL('https://isa.ualberta.ca/')}>
+<<<<<<< HEAD
       
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -66,12 +79,35 @@ const DiscoverBar = () => {
         </Svg>
 =======
         <Website/>
+<<<<<<< HEAD
 >>>>>>> 4e85c96 (Moved svg to seperate files)
+=======
+=======
+<<<<<<< HEAD
+      <Image
+            source={require('../../../assets/Website.png')}
+            style={styles.image}
+          />
+>>>>>>> 3b11119 (Fixed merge conflict)
+>>>>>>> df5ffde (Fixed conflict)
 
 >>>>>>> 45a41de (Put the home page together)
         <View style={styles.row}>
           <Text style={[globalStyleSheet.text, styles.label]}>
+<<<<<<< HEAD
             ISA's Website
+=======
+          ISA Website
+=======
+        <Image
+          source={require('../../../assets/Website.png')}
+          style={styles.image}
+        />
+        <View style={styles.row}>
+          <Text style={[globalStyleSheet.text, styles.label]}>
+          ISA's Website
+>>>>>>> b25ec7e (created discover bar and welcome title)
+>>>>>>> df5ffde (Fixed conflict)
           </Text>
 
           <Image
@@ -201,8 +237,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.primary,
     borderRadius: 10,
+<<<<<<< HEAD
 >>>>>>> 3ff578c (Added discovery bar)
+<<<<<<< HEAD
 >>>>>>> 567cc26 (Fixed conflict)
+=======
+=======
+>>>>>>> b25ec7e (created discover bar and welcome title)
+>>>>>>> 3b11119 (Fixed merge conflict)
+>>>>>>> df5ffde (Fixed conflict)
     marginTop: 8,
     marginRight: 16,
     flexGrow: 1,
@@ -221,7 +264,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     elevation: 5,
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+=======
+>>>>>>> b25ec7e (created discover bar and welcome title)
+>>>>>>> df5ffde (Fixed conflict)
 
 =======
 >>>>>>> 3ff578c (Added discovery bar)

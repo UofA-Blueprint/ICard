@@ -7,6 +7,7 @@ import VendorCard from '../components/shared/VendorCard';
 >>>>>>> cbd9915 (Put the home page together)
 import DiscoverBar from '../components/home/DiscoverBar';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {globalStyleSheet} from '../utilites/Theme';
 =======
 import {globalStyleSheet, colors} from '../utilites/Theme';
@@ -26,9 +27,23 @@ const HomeView = () => {
 =======
 >>>>>>> cbd9915 (Put the home page together)
   
+=======
+import {globalStyleSheet} from '../utilites/Theme';
+
+import vendorData from '../data/vendorMockData';
+import {shuffle} from '../utilites/Shuffle';
+
+const HomeView = () => {
+  const vendorDataRandom = shuffle(vendorData);
+  const [searchPhrase, setSearchPhrase] = useState('');
+  const [clicked, setClicked] = useState(false);
+
+>>>>>>> df5ffde (Fixed conflict)
   return (
-    <ImageBackground source={require('../../assets/Background.png')} resizeMode="cover" style={styles.backgoundImage}>
-      
+    <ImageBackground
+      source={require('../../assets/Background.png')}
+      resizeMode="cover"
+      style={styles.backgoundImage}>
       <Image
         source={require('../../assets/Sign-Out.png')}
         style={styles.signOut}
@@ -39,21 +54,29 @@ const HomeView = () => {
       />
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> df5ffde (Fixed conflict)
       <Text style={styles.title}>
         Welcome{'\n'}to ISA's{'\n'}mobile app
       </Text>
       <Text style={styles.heading}>Discover</Text>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <DiscoverBar />
 =======
       <DiscoverBar/>
 >>>>>>> 4eab920 (fixed accidental duplicate code)
+=======
+      <DiscoverBar />
+>>>>>>> df5ffde (Fixed conflict)
       <FlatList
         data={vendorData}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         style={styles.vendorList}
         contentContainerStyle={globalStyleSheet.listContentContainer}
+<<<<<<< HEAD
       />
     </View>
 =======
@@ -75,8 +98,9 @@ const HomeView = () => {
         searchPhrase={searchPhrase}
         data={vendorDataRandom}
         setClicked={setClicked}
+=======
+>>>>>>> df5ffde (Fixed conflict)
       />
-
     </ImageBackground>
 >>>>>>> 45a41de (Put the home page together)
 =======
@@ -123,6 +147,7 @@ const styles = StyleSheet.create({
     resizeMode: 'stretch',
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     marginLeft: 25,
     marginTop: 5,
 =======
@@ -157,6 +182,10 @@ const styles = StyleSheet.create({
 >>>>>>> 45a41de (Put the home page together)
 =======
 >>>>>>> cbd9915 (Put the home page together)
+=======
+    marginLeft: 25,
+    marginTop: 5,
+>>>>>>> df5ffde (Fixed conflict)
   },
 });
 

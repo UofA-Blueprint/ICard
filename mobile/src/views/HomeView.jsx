@@ -28,6 +28,7 @@ import VendorCard from '../components/shared/VendorCard';
 import DiscoverBar from '../components/home/DiscoverBar';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {globalStyleSheet} from '../utilites/Theme';
 =======
 import {globalStyleSheet, colors} from '../utilites/Theme';
@@ -43,10 +44,17 @@ const HomeView = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
+=======
+import {globalStyleSheet, colors} from '../utilites/Theme';
+import VendorList from '../components/shared/VendorList';
+import {useState} from 'react';
+=======
+import {globalStyleSheet} from '../utilites/Theme';
+>>>>>>> 3b11119 (Fixed merge conflict)
+>>>>>>> cbeefdb (Fixed conflict)
 
 import vendorData from '../data/vendorMockData';
 import { shuffle } from '../utilites/Shuffle';
-
 
 
 const HomeView = () => {
@@ -104,6 +112,7 @@ const HomeView = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> df5ffde (Fixed conflict)
       <Text style={styles.title}>
@@ -114,6 +123,10 @@ const HomeView = () => {
 <<<<<<< HEAD
       <DiscoverBar />
 =======
+=======
+      <Text style={styles.title}>Welcome{'\n'}to ISA's{'\n'}mobile app</Text>
+      <Text style={styles.headingDiscoverDiscover}>Discover</Text>
+>>>>>>> cbeefdb (Fixed conflict)
       <DiscoverBar/>
 >>>>>>> 4eab920 (fixed accidental duplicate code)
 =======
@@ -166,8 +179,24 @@ const HomeView = () => {
         data={vendorDataRandom}
         setClicked={setClicked}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> df5ffde (Fixed conflict)
+=======
+=======
+      <Text style={styles.title}>
+        Welcome{'\n'}to ISA's{'\n'}mobile app
+      </Text>
+      <Text style={styles.heading}>Discover</Text>
+      <DiscoverBar />
+      <FlatList
+        data={vendorData}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+        style={styles.vendorList}
+        contentContainerStyle={globalStyleSheet.listContentContainer}
+>>>>>>> 3b11119 (Fixed merge conflict)
+>>>>>>> cbeefdb (Fixed conflict)
       />
     </ImageBackground>
 >>>>>>> 45a41de (Put the home page together)
@@ -203,6 +232,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 40,
     marginLeft: 25,
+<<<<<<< HEAD
   },
   headingVendor: {
     fontSize: 20,
@@ -215,6 +245,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: 25,
     color: colors.darkGray,
+=======
+>>>>>>> cbeefdb (Fixed conflict)
   },
   headingVendor: {
     fontSize: 20,
@@ -243,6 +275,7 @@ const styles = StyleSheet.create({
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     marginLeft: 25,
     marginTop: 5,
 =======
@@ -252,6 +285,8 @@ const styles = StyleSheet.create({
 >>>>>>> 45a41de (Put the home page together)
 =======
 >>>>>>> cbd9915 (Put the home page together)
+=======
+>>>>>>> cbeefdb (Fixed conflict)
     marginLeft: 25, 
     marginTop: 7,
   },
@@ -280,6 +315,7 @@ const styles = StyleSheet.create({
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 45a41de (Put the home page together)
 =======
 >>>>>>> cbd9915 (Put the home page together)
@@ -291,6 +327,12 @@ const styles = StyleSheet.create({
 >>>>>>> 45a41de (Put the home page together)
 =======
 >>>>>>> cbd9915 (Put the home page together)
+=======
+=======
+    marginLeft: 25,
+    marginTop: 5,
+>>>>>>> 3b11119 (Fixed merge conflict)
+>>>>>>> cbeefdb (Fixed conflict)
   },
 });
 

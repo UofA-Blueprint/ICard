@@ -23,6 +23,7 @@ import {colors, globalStyleSheet} from '../../utilites/Theme';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 const DiscoverBar = () => {
   return (
@@ -46,12 +47,17 @@ import Website from "../../../assets/Website"
 import Events from "../../../assets/Events"
 import Website from "../../../assets/Website"
 =======
+import Events from "../../../assets/Events"
+import Website from "../../../assets/Website"
+>>>>>>> cbeefdb (Fixed conflict)
+=======
 
 <<<<<<< HEAD
 
 =======
 >>>>>>> b25ec7e (created discover bar and welcome title)
 >>>>>>> 3b11119 (Fixed merge conflict)
+<<<<<<< HEAD
 >>>>>>> df5ffde (Fixed conflict)
 =======
 import Svg, { Path } from "react-native-svg"
@@ -63,6 +69,8 @@ import Svg, { Path } from "react-native-svg"
 import Events from "../../../assets/Events"
 import Website from "../../../assets/Website"
 >>>>>>> 4e85c96 (Moved svg to seperate files)
+=======
+>>>>>>> cbeefdb (Fixed conflict)
 const DiscoverBar = () => {
   return (
     <View style={styles.DiscoverRow}>
@@ -71,6 +79,9 @@ const DiscoverBar = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cbeefdb (Fixed conflict)
       
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -113,8 +124,11 @@ const DiscoverBar = () => {
 =======
         <Website/>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 4e85c96 (Moved svg to seperate files)
 =======
+=======
+>>>>>>> cbeefdb (Fixed conflict)
 =======
 <<<<<<< HEAD
       <Image
@@ -122,6 +136,7 @@ const DiscoverBar = () => {
             style={styles.image}
           />
 >>>>>>> 3b11119 (Fixed merge conflict)
+<<<<<<< HEAD
 >>>>>>> df5ffde (Fixed conflict)
 =======
 >>>>>>> 45a41de (Put the home page together)
@@ -130,6 +145,8 @@ const DiscoverBar = () => {
 =======
         <Website/>
 >>>>>>> 4e85c96 (Moved svg to seperate files)
+=======
+>>>>>>> cbeefdb (Fixed conflict)
 
 >>>>>>> 45a41de (Put the home page together)
         <View style={styles.row}>
@@ -147,7 +164,10 @@ const DiscoverBar = () => {
           <Text style={[globalStyleSheet.text, styles.label]}>
           ISA's Website
 >>>>>>> b25ec7e (created discover bar and welcome title)
+<<<<<<< HEAD
 >>>>>>> df5ffde (Fixed conflict)
+=======
+>>>>>>> cbeefdb (Fixed conflict)
           </Text>
 
           <Image
@@ -330,6 +350,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 3ff578c (Added discovery bar)
 <<<<<<< HEAD
 >>>>>>> 567cc26 (Fixed conflict)
@@ -341,6 +362,12 @@ const styles = StyleSheet.create({
 =======
 >>>>>>> 3ff578c (Added discovery bar)
 >>>>>>> 41c6b75 (Fixed conflict)
+=======
+>>>>>>> 3ff578c (Added discovery bar)
+=======
+>>>>>>> b25ec7e (created discover bar and welcome title)
+>>>>>>> 3b11119 (Fixed merge conflict)
+>>>>>>> cbeefdb (Fixed conflict)
     marginTop: 8,
     marginRight: 16,
     flexGrow: 1,
@@ -363,11 +390,16 @@ const styles = StyleSheet.create({
     elevation: 5,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 =======
 >>>>>>> b25ec7e (created discover bar and welcome title)
 >>>>>>> df5ffde (Fixed conflict)
+=======
+=======
+>>>>>>> b25ec7e (created discover bar and welcome title)
+>>>>>>> cbeefdb (Fixed conflict)
 
 =======
 >>>>>>> 3ff578c (Added discovery bar)

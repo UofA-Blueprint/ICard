@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "expoServerPort": null,
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -20,6 +21,8 @@
 =======
 =======
 >>>>>>> 0fe716f (Fixed conflict)
+=======
+>>>>>>> 92dee65 (Fixed conflict)
   "expoServerPort": 19000,
   "packagerPort": 19000,
 >>>>>>> 1cec0c6 (removed scanner button)
@@ -37,6 +40,9 @@
 =======
 =======
   "expoServerPort": null,
+=======
+  "expoServerPort": 19000,
+>>>>>>> b1d06bd (Modified package-info.json)
   "packagerPort": 19000,
   "expoServerNgrokUrl": "https://qt-r2h.anonymous.mobile.exp.direct",
   "packagerNgrokUrl": "https://qt-r2h.anonymous.mobile.exp.direct",

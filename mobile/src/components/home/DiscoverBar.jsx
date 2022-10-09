@@ -253,6 +253,7 @@ import {
 import {colors, globalStyleSheet} from '../../utilites/Theme';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 const DiscoverBar = () => {
   return (
@@ -268,12 +269,17 @@ const DiscoverBar = () => {
 =======
 >>>>>>> cbd9915 (Put the home page together)
 import Svg, { Path } from "react-native-svg"
+=======
+import Events from "../../../assets/Events"
+import Website from "../../../assets/Website"
+>>>>>>> 4e85c96 (Moved svg to seperate files)
 const DiscoverBar = () => {
   return (
     <View style={styles.DiscoverRow}>
 
       <TouchableOpacity style={styles.container} onPress={() => Linking.openURL('https://isa.ualberta.ca/')}>
       
+<<<<<<< HEAD
 <<<<<<< HEAD
         <Svg marginTop={6}
 =======
@@ -296,6 +302,9 @@ const DiscoverBar = () => {
             d="M6.441 0C4.733 0 3.094.79 1.887 2.197.679 3.603 0 5.51 0 7.5v30c0 1.99.679 3.897 1.887 5.303C3.094 44.21 4.733 45 6.44 45h34.352c1.708 0 3.347-.79 4.554-2.197 1.208-1.406 1.887-3.314 1.887-5.303v-30c0-1.99-.679-3.897-1.887-5.303C44.14.79 42.501 0 40.793 0H6.441Zm34.352 5H6.441c-.57 0-1.116.263-1.518.732-.403.47-.629 1.105-.629 1.768v30c0 .663.226 1.299.629 1.768.402.469.949.732 1.518.732h34.352c.57 0 1.116-.263 1.518-.732.403-.47.629-1.105.629-1.768v-30c0-.663-.226-1.299-.629-1.768C41.91 5.263 41.362 5 40.793 5Z"
             fill="#2E6933"/>
         </Svg>
+=======
+        <Website/>
+>>>>>>> 4e85c96 (Moved svg to seperate files)
 
 >>>>>>> 45a41de (Put the home page together)
         <View style={styles.row}>
@@ -360,6 +369,7 @@ const DiscoverBar = () => {
 =======
       <TouchableOpacity style={styles.container} onPress={() => Linking.openURL('https://isa.ualberta.ca/events')}>
 
+<<<<<<< HEAD
         <Svg marginTop={6}
 =======
       <TouchableOpacity style={styles.container} onPress={() => Linking.openURL('https://isa.ualberta.ca/events')}>
@@ -377,6 +387,9 @@ const DiscoverBar = () => {
 >>>>>>> 45a41de (Put the home page together)
 =======
 >>>>>>> cbd9915 (Put the home page together)
+=======
+        <Events/>
+>>>>>>> 4e85c96 (Moved svg to seperate files)
 
         <View style={styles.row}>
           <Text style={[globalStyleSheet.text, styles.label]}>Events</Text>

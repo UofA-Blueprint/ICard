@@ -5,6 +5,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "expoServerPort": null,
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -29,9 +30,17 @@
 >>>>>>> 1fed3a7 (Fixed conflict)
 =======
 =======
+>>>>>>> 8b627a8 (Fixed conflict)
+=======
 >>>>>>> 6bfa6d2 (Fixed conflict)
 >>>>>>> 7091f72 (Fixed conflict)
   "expoServerPort": 19000,
+=======
+  "expoServerPort": null,
+=======
+  "expoServerPort": 19000,
+>>>>>>> 1cec0c6 (removed scanner button)
+>>>>>>> 9af328a (Fixed conflict)
   "packagerPort": 19000,
 >>>>>>> 1cec0c6 (removed scanner button)
   "expoServerNgrokUrl": null,

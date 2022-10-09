@@ -67,8 +67,12 @@ const DiscoverBar = () => {
 >>>>>>> cbd9915 (Put the home page together)
 =======
       
+<<<<<<< HEAD
         <Svg
 >>>>>>> 45a41de (Put the home page together)
+=======
+        <Svg marginTop={6}
+>>>>>>> b47603a (fixed vendor component on home page)
           width={48}
           height={45}
           xmlns="http://www.w3.org/2000/svg">
@@ -149,11 +153,15 @@ const DiscoverBar = () => {
 =======
       <TouchableOpacity style={styles.container} onPress={() => Linking.openURL('https://isa.ualberta.ca/events')}>
 
+<<<<<<< HEAD
         <Svg
 >>>>>>> cbd9915 (Put the home page together)
 =======
         <Svg
 >>>>>>> 45a41de (Put the home page together)
+=======
+        <Svg marginTop={6}
+>>>>>>> b47603a (fixed vendor component on home page)
           width={48}
           height={45}
           xmlns="http://www.w3.org/2000/svg">

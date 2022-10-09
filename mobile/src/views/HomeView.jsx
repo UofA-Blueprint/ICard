@@ -2,6 +2,7 @@ import React from 'react';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {StyleSheet, View, Text, Image, ImageBackground} from 'react-native';
 =======
 import {StyleSheet, View, FlatList, Text, Image, ImageBackground} from 'react-native';
@@ -16,6 +17,9 @@ import VendorCard from '../components/home/VendorCard';
 import {StyleSheet, View, FlatList, Text, Image, ImageBackground} from 'react-native';
 import VendorCard from '../components/shared/VendorCard';
 >>>>>>> 45a41de (Put the home page together)
+=======
+import {StyleSheet, View, Text, Image, ImageBackground} from 'react-native';
+>>>>>>> b47603a (fixed vendor component on home page)
 import DiscoverBar from '../components/home/DiscoverBar';
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -24,6 +28,7 @@ import {globalStyleSheet} from '../utilites/Theme';
 import {globalStyleSheet, colors} from '../utilites/Theme';
 import VendorList from '../components/shared/VendorList';
 import {useState} from 'react';
+<<<<<<< HEAD
 >>>>>>> b47603a (fixed vendor component on home page)
 
 import vendorData from '../data/vendorMockData';
@@ -32,10 +37,20 @@ import { shuffle } from '../utilites/Shuffle';
 const HomeView = () => {
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+
+import vendorData from '../data/vendorMockData';
+import { shuffle } from '../utilites/Shuffle';
+
+
+
+const HomeView = () => {
+>>>>>>> b47603a (fixed vendor component on home page)
 
   const vendorDataRandom = shuffle(vendorData);
   const [searchPhrase, setSearchPhrase] = useState('');
   const [clicked, setClicked] = useState(false);
+<<<<<<< HEAD
 =======
 >>>>>>> cbd9915 (Put the home page together)
   
@@ -57,6 +72,8 @@ const HomeView = () => {
       resizeMode="cover"
       style={styles.backgoundImage}>
 =======
+=======
+>>>>>>> b47603a (fixed vendor component on home page)
   
   return (
     <ImageBackground source={require('../../assets/Background.png')} resizeMode="cover" style={styles.backgoundImage}>
@@ -122,10 +139,14 @@ const HomeView = () => {
       
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b47603a (fixed vendor component on home page)
       <VendorList
         searchPhrase={searchPhrase}
         data={vendorDataRandom}
         setClicked={setClicked}
+<<<<<<< HEAD
 =======
 >>>>>>> df5ffde (Fixed conflict)
       />
@@ -133,6 +154,9 @@ const HomeView = () => {
 >>>>>>> 45a41de (Put the home page together)
 =======
       <VendorCard/>
+=======
+      />
+>>>>>>> b47603a (fixed vendor component on home page)
 
     </ImageBackground>
 >>>>>>> cbd9915 (Put the home page together)

@@ -1,5 +1,5 @@
 const express = require('express')
-const { verifyApiKey, validateJwtToken } = require('../services/verifyToken')
+const { verifyApiKey } = require('../services/verifyToken')
 const vendorController = require('../controllers/Vendor')
 const router = express.Router()
 
@@ -53,7 +53,7 @@ const router = express.Router()
  *               items:
  *                 $ref: '#/components/schemas/Vendor'
  */
-router.get('/', verifyApiKey, validateJwtToken, vendorController.getAll)
+router.get('/', verifyApiKey, vendorController.getAll)
 
 /**
  * @swagger

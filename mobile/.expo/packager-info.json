@@ -1,9 +1,9 @@
 {
-  "expoServerPort": null,
-  "packagerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
+  "expoServerPort": 19000,
+  "packagerPort": 19000,
+  "expoServerNgrokUrl": "https://qt-r2h.ayush3.mobile.exp.direct",
+  "packagerNgrokUrl": "https://qt-r2h.ayush3.mobile.exp.direct",
+  "ngrokPid": 12464,
   "devToolsPort": 19002,
   "packagerPid": null,
   "webpackServerPort": null

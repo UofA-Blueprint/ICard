@@ -13,8 +13,10 @@ import AuthContext from '../context/AuthContext';
 WebBrowser.maybeCompleteAuthSession();
 
 import {CLIENT_ID, API_ROUTE, API_KEY} from '@env';
+import MyICardPage from '../components/shared/ICardPage';
 
 const expoClientId = CLIENT_ID;
+console.log(expoClientId);
 const authRoute = API_ROUTE;
 const apiKey = API_KEY;
 
@@ -53,13 +55,13 @@ const RegistrationView = () => {
   Render a Google Sign In Button
   */
 
-  return (
-    <View style={globalStyleSheet.container}>
-      <Header />
-      <View style={[styles.bodyContainer]}>
+    return(
+      <MyICardPage user = {null} status = {'Unlinked'}>
+          <View style={[styles.bodyContainer]}>
         <TouchableOpacity
           disabled={!request}
           onPress={() => {
+            //console.log('pressed');
             promptAsync();
           }}
           style={styles.signInButton}>
@@ -67,20 +69,27 @@ const RegistrationView = () => {
           <Text style={styles.promptMessage}>Sign In with Google</Text>
         </TouchableOpacity>
       </View>
-    </View>
-  );
+    
+      </MyICardPage>
+    )
+
+  
+
+  
 };
 
 const styles = StyleSheet.create({
   bodyContainer: {
-    flex: 1,
+    width: '60%',
     justifyContent: 'center',
+    marginTop: 5,
+    //borderWidth: 1
   },
   signInButton: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    width: '60%',
+    width: '100%',
     paddingHorizontal: 24,
     paddingVertical: 8,
     borderWidth: 1,

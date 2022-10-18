@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {View, Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {View, Image, StyleSheet, Text, TouchableOpacity, ImageBackground} from 'react-native';
 
 import Header from '../components/shared/Header';
 import {MaterialCommunityIcons} from '@expo/vector-icons';

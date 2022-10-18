@@ -21,8 +21,10 @@ import AuthContext from '../context/AuthContext';
 WebBrowser.maybeCompleteAuthSession();
 
 import {CLIENT_ID, API_ROUTE, API_KEY} from '@env';
+import MyICardPage from '../components/shared/ICardPage';
 
 const expoClientId = CLIENT_ID;
+console.log(expoClientId);
 const authRoute = API_ROUTE;
 const apiKey = API_KEY;
 
@@ -66,70 +68,35 @@ const RegistrationView = () => {
   */
 
   return (
-    <View style={globalStyleSheet.container}>
+    <MyICardPage user={null} status={'Unlinked'}>
       <View style={[styles.bodyContainer]}>
-        <ImageBackground
-          source={require('../../assets/gradient.png')}
-          resizeMode="cover"
-          style={styles.image}>
-          <View style={styles.title}>
-            <Image
-              source={require('../../assets/ISA-plate.png')}
-              style={Platform.OS == 'android' ? styles.logo : {}}></Image>
-            <Text style={[typography.header, styles.header]}>
-              Discover more with ISA
-            </Text>
-            <Text style={{...typography.detail}}>
-              Please use University of Alberta email
-            </Text>
-          </View>
-          <View style={styles.groupOfButtons}>
-            <TouchableOpacity
-              disabled={!request}
-              onPress={() => {
-                promptAsync();
-              }}
-              style={styles.signInButton}>
-              <Image
-                style={styles.tinyLogo}
-                source={require('../../assets/google-logo.png')}></Image>
-              <Text style={styles.promptMessage}>Sign In with Google</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.skipButton}>
-              <Text style={[typography.body, {color: colors.primary}]}>
-                Skip for now
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </ImageBackground>
+        <TouchableOpacity
+          disabled={!request}
+          onPress={() => {
+            //console.log('pressed');
+            promptAsync();
+          }}
+          style={styles.signInButton}>
+          <FontAwesome5 name="google" size={16} color={colors.primary} />
+          <Text style={styles.promptMessage}>Sign In with Google</Text>
+        </TouchableOpacity>
       </View>
-    </View>
+    </MyICardPage>
   );
 };
 
 const styles = StyleSheet.create({
   bodyContainer: {
-    flex: 1,
-    width: '100%',
+    width: '60%',
     justifyContent: 'center',
-    alignItems: 'center',
-  },
-  image: {
-    flex: 1,
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  logo: {
-    width: 245,
-    height: 280,
-    resizeMode: 'stretch',
+    marginTop: 5,
+    //borderWidth: 1
   },
   signInButton: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    backgroundColor: colors.white,
-    borderRadius: 50,
+    alignItems: 'center',
+    width: '100%',
     paddingHorizontal: 24,
     paddingVertical: 12,
     shadowColor: colors.black,

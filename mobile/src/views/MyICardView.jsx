@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  Pressable,
+  ImageBackground,
 } from 'react-native';
 
 import Header from '../components/shared/Header';

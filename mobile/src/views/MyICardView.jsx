@@ -24,6 +24,7 @@ import {
 import {colors, globalStyleSheet} from '../utilites/Theme';
 
 import AuthContext from '../context/AuthContext';
+import MyICardPage from '../components/shared/ICardPage';
 
 let finalStatus = 'pending';
 
@@ -49,64 +50,7 @@ const MyICardHome = ({navigation}) => {
   if (user.verify) finalStatus = 'inactive';
   if (user.isaf_status) finalStatus = 'active';
 
-  return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.refreshButton}
-        onPress={() => {
-          console.log('Pressed!');
-        }}>
-        <MaterialCommunityIcons
-          name="refresh"
-          size={36}
-          color={colors.darkGray}
-        />
-      </TouchableOpacity>
-      <Header />
-      <View style={styles.bodyContainer}>
-        <View style={styles.card}>
-          <Image source={{uri: user.picture}} style={styles.avatar} />
-          <Text style={[styles.userName, styles.subHeader]}>{user.name}</Text>
-          <View style={styles.statusView}>
-            <Text style={styles.statusHeader}>ISAF Status</Text>
-            <Text style={[styles.subHeader, styles.ISAFStatus]}>
-              {finalStatus}
-            </Text>
-          </View>
-        </View>
-        {finalStatus != 'active' && finalStatus != 'inactive' ? (
-          <View style={styles.flexText}>
-            <Text style={styles.baseText}>Last Updated: 3 years ago</Text>
-            {user.verify ? (
-              <></>
-            ) : (
-              <Pressable
-                style={({pressed}) => [
-                  {
-                    backgroundColor: pressed ? 'rgb(210, 255, 180)' : 'white',
-                  },
-                  styles.verifyButton,
-                ]}
-                onPress={() => {
-                  navigation.navigate('Verification');
-                }}>
-                <Text style={{fontFamily: 'Poppins_600SemiBold'}}>
-                  Verify account
-                </Text>
-              </Pressable>
-            )}
-            <Text style={styles.baseText}>
-              Click
-              <MaterialCommunityIcons name="refresh" size={24} color="black" />
-              for more updated info.
-            </Text>
-          </View>
-        ) : (
-          <></>
-        )}
-      </View>
-    </View>
-  );
+  return <MyICardPage user={user} status={'inactive'} />;
 };
 
 const MyICardView = ({navigation}) => {

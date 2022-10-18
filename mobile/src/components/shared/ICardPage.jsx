@@ -1,6 +1,5 @@
 import React from 'react';
 import {View, ImageBackground, Image, StyleSheet, Text, TouchableOpacity} from 'react-native';
-
 import Header from '../shared/Header';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
 
@@ -35,8 +34,8 @@ const MyICardPage = (props) => {
 
     return (
     <View style={styles.container}>
-        <ImageBackground source = {require('../../../assets/Background.png') } resizeMode="cover" style = {styles.backgroundImage}>
-
+        
+        
         <Image
         source={
             require('../../../assets/squiggly-lines.png')
@@ -55,7 +54,10 @@ const MyICardPage = (props) => {
         />
         </TouchableOpacity>
         <Header />
+        
         <View style={styles.bodyContainer}>
+        <ImageBackground source = {require('../../../assets/Background.png') } resizeMode="cover" style = {styles.backgroundImage}>
+        
         <Image
             source={
                 require('../../../assets/squiggly-lines.png')
@@ -63,8 +65,8 @@ const MyICardPage = (props) => {
             style={{...styles.lines, backgroundColor: props.status == 'active' ? 2 : 1}}
         />
 
-        <View style={{...styles.card, backgroundColor: props.status == 'active' ? colors.primary : colors.white}}>
-            <Image source={user != null ? {uri:user.picture } : require('../../../assets/avatar-unknown.png')} style={styles.avatar} />
+        <View style={{...styles.card, backgroundColor: props.status == 'active' ? colors.primary : colors.white, borderBottomColor: statusColors[props.status], borderTopColor: statusColors[props.status], borderBottomWidth: 8, borderTopWidth: 8 }}>
+            <Image source={user != null ? {uri:user.picture } : require('../../../assets/avatar-unknown.png')} style={{...styles.avatar, borderColor: statusColors[props.status]}} />
             <Text style={[{...styles.userName, color: props.status == 'active' ? colors.lightGreen : colors.black}, styles.subHeader]}>{user != null ? user.name : 'N/A'}</Text>
             <View style={{...styles.statusView, backgroundColor: props.status == 'active' ? colors.primary : colors.white }}>
             <Text style={{...styles.statusHeader, color: props.status == 'active' ? colors.lightGray : colors.black}}>ISAF Status</Text>
@@ -74,7 +76,9 @@ const MyICardPage = (props) => {
             </View>
         </View>
         {props.status == 'Unlinked' ? (
+            
             props.children
+          
         ): (
             <></>
         )}
@@ -90,12 +94,14 @@ const MyICardPage = (props) => {
         ) : (
             <></>
         )}
+
+        </ImageBackground>
         </View>
         <Image
         source={require('../../../assets/ISA-logo.png')}
         style={styles.logo}
         />
-        </ImageBackground> 
+         
     </View>
     );
     };
@@ -114,14 +120,15 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     justifyContent: "center",
-    
+    alignItems: "center"
   },
   bodyContainer: {
     flex: 1,
     width: '100%',
     ...globalStyleSheet.container,
     justifyContent: 'flex-start',
-    paddingTop: 96,
+    //paddingTop: 96,
+    
   },
   card: {
     ...globalStyleSheet.container,
@@ -129,16 +136,35 @@ const styles = StyleSheet.create({
     height: '50%',
     backgroundColor: colors.white,//finalStatus == 'active' ? colors.primary : colors.white,
     borderWidth: 1,
+    borderLeftColor: 'white',
+    borderRightColor: 'white',
     width: '90%', 
     borderRadius: 30,
     paddingTop: 48,
     elevation: 10,
     zIndex: 1,
+    marginTop: 96
+  },
+  signInButton: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    width: '60%',
+    paddingHorizontal: 24,
+    paddingVertical: 8,
+    borderWidth: 1,
+    borderRadius: 8,
+    borderColor: colors.primary,
+    marginTop: 10,
+    zIndex: 15
+  },
+  promptMessage: {
+    color: colors.primary,
   },
   avatar: {
     width: 128,
     height: 128,
-    borderWidth: 1,
+    borderWidth: 3,
     borderColor: colors.darkGray,
     borderRadius: 64,
     position: 'absolute',

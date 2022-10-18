@@ -57,20 +57,20 @@ const RegistrationView = () => {
 
     return(
       <MyICardPage user = {null} status = {'Unlinked'}>
-          <View style={[styles.bodyContainer]}>
-        <TouchableOpacity
-          disabled={!request}
-          onPress={() => {
-            //console.log('pressed');
-            promptAsync();
-          }}
-          style={styles.signInButton}>
-          <FontAwesome5 name="google" size={16} color={colors.primary} />
-          <Text style={styles.promptMessage}>Sign In with Google</Text>
-        </TouchableOpacity>
-      </View>
-    
+        <View style={styles.bodyContainer}>
+          <TouchableOpacity
+                disabled={!request}
+                onPress = {() => {
+                  promptAsync();
+                }}
+                style={styles.signInButton}
+                activeOpacity = {0.5}>
+                <FontAwesome5 name="google" size={16} color={colors.primary} />
+                <Text style={styles.promptMessage}>Sign In with Google</Text>
+          </TouchableOpacity>
+        </View>
       </MyICardPage>
+        
     )
 
   
@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     borderColor: colors.primary,
+    zIndex: 15
   },
   promptMessage: {
     color: colors.primary,

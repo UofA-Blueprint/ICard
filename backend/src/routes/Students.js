@@ -1,6 +1,6 @@
 const express = require('express')
 const studentController = require('../controllers/Students')
-const { verifyApiKey } = require('../services/verifyToken')
+const { verifyApiKey, validateJwtToken } = require('../services/verifyToken')
 
 const router = express.Router()
 
@@ -60,7 +60,7 @@ const router = express.Router()
  *                 $ref: '#/components/schemas/Student'
  */
 
-router.get('/all', verifyApiKey, studentController.getAll) // get all students
+router.get('/all', verifyApiKey, validateJwtToken, studentController.getAll) // get all students
 
 /**
  * @swagger
@@ -89,7 +89,7 @@ router.get('/all', verifyApiKey, studentController.getAll) // get all students
  *              404:
  *                  description: The student was not found
  */
-router.get('/:studentId', verifyApiKey, studentController.getStudent) // get a student by id
+router.get('/:studentId', verifyApiKey, validateJwtToken, studentController.getStudent) // get a student by id
 
 /**
  * @swagger
@@ -118,11 +118,7 @@ router.get('/:studentId', verifyApiKey, studentController.getStudent) // get a s
  *              404:
  *                  description: The student was not found
  */
-router.get(
-    '/icard/:icard_number',
-    verifyApiKey,
-    studentController.getStudentByIcard
-) // get a student by icard number
+router.get('/icard/:icard_number', verifyApiKey, validateJwtToken, studentController.getStudentByIcard) // get a student by icard number
 
 /**
  * @swagger

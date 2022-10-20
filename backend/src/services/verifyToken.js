@@ -64,8 +64,24 @@ function checkAuthenticated(req, res, next) {
         })
 }
 
+const validateJwtToken = async(req, res, next) => {
+    const token = req.header('jwt-token')
+    if (!token)
+        return res.status(401).json({ message: 'Access denied. No token provided.'})
+    
+    try {
+        const verified = await jwt.verify(token, process.env.JWT_SECRET)
+        req.user = verified
+        next()
+    } catch (err) {
+        console.log(err)
+        res.status(400).json({ message: 'Invalid token.' })
+    }
+}
+
 module.exports = {
     verifyToken: verifyToken,
     verifyApiKey: verifyApiKey,
     checkAuthenticated: checkAuthenticated,
+    validateJwtToken: validateJwtToken
 }

@@ -19,7 +19,7 @@ const VendorSchema = new mongoose.Schema(
             type: String,
         },
         image: {
-            type: Image,
+            type: String,
         },
     },
     { collection: 'vendors', versionKey: false }

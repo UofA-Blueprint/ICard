@@ -90,6 +90,7 @@ const styles = StyleSheet.create({
     width: '60%',
     justifyContent: 'center',
     marginTop: 5,
+    zIndex: 1, //Doubt
     //borderWidth: 1
   },
   signInButton: {
@@ -102,7 +103,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     borderColor: colors.primary,
-    zIndex: 15,
+    zIndex: 999,
+    //position: 'absolute',
+    //top: 0
   },
   header: {
     paddingHorizontal: 36,

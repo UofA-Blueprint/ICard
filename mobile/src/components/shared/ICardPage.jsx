@@ -10,6 +10,7 @@ import {
 } from '@expo-google-fonts/poppins';
 
 import {colors, globalStyleSheet} from '../../utilites/Theme';
+import FancyBox from './FancyBox';
 
 const statusColors = {
     active: colors.lightGreen,
@@ -57,6 +58,24 @@ const MyICardPage = (props) => {
         
         <View style={styles.bodyContainer}>
         <ImageBackground source = {require('../../../assets/Background.png') } resizeMode="cover" style = {styles.backgroundImage}>
+        
+        {props.status == 'Unlinked' ? (
+            <FancyBox style = {styles.box}>
+              <View style = {styles.alertContainer}>
+                <MaterialCommunityIcons style = {styles.linkIcon} name='link-variant' size = {20} color = {colors.white}/>
+                <Text style = {styles.alertText}>Link to your University of Alberta email to gain access to My ICard</Text>
+              </View>
+            </FancyBox>
+          ):(<></>)}
+          {props.status == 'inactive' ? (
+            <FancyBox style = {styles.box}>
+              <View style = {styles.alertContainer}>
+                <MaterialCommunityIcons style = {{...styles.linkIcon, backgroundColor: colors.red}} name='close-thick' size = {20} color = {colors.white}/>
+                <Text style = {styles.alertText}>Your account is unverified. Please go through the verification process</Text>
+              </View>
+            </FancyBox>
+          ) : (<></>)}
+          
         
         <Image
             source={
@@ -115,6 +134,13 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
   },
+  linkIcon: {
+    borderWidth: 1,
+    borderRadius: 15,
+    padding: 5,
+    backgroundColor: colors.darkGray,
+    marginRight: 5
+  },
   backgroundImage: {
     flex: 1,
     width: '100%',
@@ -130,6 +156,17 @@ const styles = StyleSheet.create({
     //paddingTop: 96,
     
   },
+  box: {
+    marginTop: 10,
+    backgroundColor: colors.lightGray
+  },
+  alertContainer: {
+    width: '100%',
+    height: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
   card: {
     ...globalStyleSheet.container,
     flex: 0,
@@ -143,7 +180,7 @@ const styles = StyleSheet.create({
     paddingTop: 48,
     elevation: 10,
     zIndex: 1,
-    marginTop: 96
+    marginTop: 60,
   },
   signInButton: {
     flexDirection: 'row',
@@ -224,7 +261,7 @@ const styles = StyleSheet.create({
     borderRadius: 36,
     zIndex: 15,
     position: 'absolute',
-    top: 100,
+    top: 165,
     right: 50,
   },
   ISAFStatus: {
@@ -234,6 +271,12 @@ const styles = StyleSheet.create({
   statusHeader: {
     color: colors.black,
   },
+  alertText: {
+    textAlign: 'center',
+    color: colors.darkGray,
+    fontFamily: 'Poppins_600SemiBold',
+    fontSize: 12,
+  }
 });
 
 export default MyICardPage;

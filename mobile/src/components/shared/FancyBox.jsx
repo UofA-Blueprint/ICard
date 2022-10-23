@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Image, StyleSheet} from 'react-native';
-import {colors, globalStyleSheet} from '../../utilites/Theme';
+import {View, StyleSheet} from 'react-native';
+import {colors} from '../../utilites/Theme';
 
 
 const FancyBox = (props) => {
@@ -14,8 +14,9 @@ const FancyBox = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        padding: 15,
+        
         height: '12%',
+        width: '95%',
         backgroundColor: colors.white,
         borderTopLeftRadius: 30,
         borderBottomLeftRadius: 30,
@@ -27,7 +28,8 @@ const styles = StyleSheet.create({
         shadowOffset: {width: 2, height: 4},
         shadowOpacity: 0.4,
         shadowRadius: 30,
-        zIndex: 100
+        
+        
     }
 })
 

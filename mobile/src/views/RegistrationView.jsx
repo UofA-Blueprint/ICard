@@ -1,17 +1,8 @@
 import React, {useContext} from 'react';
-var {Platform} = React;
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {FontAwesome5} from '@expo/vector-icons';
 
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  ImageBackground,
-} from 'react-native';
-
-import Header from '../components/shared/Header';
-import {colors, globalStyleSheet, typography} from '../utilites/Theme';
+import {colors} from '../utilites/Theme';
 
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
@@ -90,8 +81,7 @@ const styles = StyleSheet.create({
     width: '60%',
     justifyContent: 'center',
     marginTop: 5,
-    zIndex: 1, //Doubt
-    //borderWidth: 1
+    zIndex: 1,
   },
   signInButton: {
     flexDirection: 'row',
@@ -103,38 +93,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     borderColor: colors.primary,
-    zIndex: 999,
-    //position: 'absolute',
-    //top: 0
   },
   header: {
     paddingHorizontal: 36,
     marginTop: 12,
     color: colors.primary,
-  },
-
-  promptMessage: {
-    fontWeight: 'bold',
-    color: colors.darkGray,
-    fontSize: Platform.OS === 'ios' ? 20 : 18,
-  },
-  tinyLogo: {
-    width: 24,
-    height: 24,
-    marginRight: 12,
-  },
-  skipButton: {
-    marginTop: 12,
-  },
-  title: {
-    flex: 4,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  groupOfButtons: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
 

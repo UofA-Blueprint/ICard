@@ -165,7 +165,7 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: "flex-start",
     alignItems: "center",
-    borderWidth: 3,
+    
     
   },
   bodyContainer: {

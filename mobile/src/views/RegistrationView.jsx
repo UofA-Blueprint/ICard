@@ -1,9 +1,8 @@
-import React, {useState, useContext} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
+import React, {useContext} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {FontAwesome5} from '@expo/vector-icons';
 
-import Header from '../components/shared/Header';
-import {colors, globalStyleSheet} from '../utilites/Theme';
+import {colors} from '../utilites/Theme';
 
 import * as WebBrowser from 'expo-web-browser';
 import * as Google from 'expo-auth-session/providers/google';
@@ -83,8 +82,8 @@ const styles = StyleSheet.create({
     width: '60%',
     justifyContent: 'center',
     marginTop: 5,
-    zIndex: 1 //Doubt 
-    //borderWidth: 1
+    zIndex: 1  
+    
   },
   signInButton: {
     flexDirection: 'row',
@@ -96,23 +95,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     borderColor: colors.primary,
-    zIndex: 999,
-    //position: 'absolute',
-    //top: 0
+    
+    
   },
   promptMessage: {
     color: colors.primary,
   },
-  loggedIn: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  avatar: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    marginVertical: 24,
-  },
+  
+  
 });
 
 export default RegistrationView;

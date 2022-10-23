@@ -62,16 +62,25 @@ const MyICardPage = (props) => {
         {props.status == 'Unlinked' ? (
             <FancyBox style = {styles.box}>
               <View style = {styles.alertContainer}>
-                <MaterialCommunityIcons style = {styles.linkIcon} name='link-variant' size = {20} color = {colors.white}/>
-                <Text style = {styles.alertText}>Link to your University of Alberta email to gain access to My ICard</Text>
+                <View style = {styles.linkIcon}>
+                  <MaterialCommunityIcons  name='link-variant' size = {20} color = {colors.white}/>
+                </View>
+                <View style = {{height: '100%', width:'95%', flexWrap:'wrap', alignItems:'center', justifyContent:'center'}}>  
+                  <Text style = {styles.alertText}>Link to your University of Alberta email to gain access to My ICard</Text>
+                
+                </View>
               </View>
             </FancyBox>
           ):(<></>)}
           {props.status == 'inactive' ? (
-            <FancyBox style = {styles.box}>
+            <FancyBox style = {{...styles.box}}>
               <View style = {styles.alertContainer}>
-                <MaterialCommunityIcons style = {{...styles.linkIcon, backgroundColor: colors.red}} name='close-thick' size = {20} color = {colors.white}/>
-                <Text style = {styles.alertText}>Your account is unverified. Please go through the verification process</Text>
+                <View style = {{...styles.linkIcon, backgroundColor: colors.red}}>
+                  <MaterialCommunityIcons  name='close-thick' size = {20} color = {colors.white}/>
+                </View>  
+                <View style = {{height: '100%', width:'95%', flexWrap:'wrap', alignItems:'center', justifyContent:'center'}}>
+                  <Text style = {styles.alertText}>Your account is unverified. Please go through the verification process</Text>
+                </View>
               </View>
             </FancyBox>
           ) : (<></>)}
@@ -101,6 +110,16 @@ const MyICardPage = (props) => {
         ): (
             <></>
         )}
+        {props.status == 'inactive' ? (
+          <FancyBox style = {{...styles.box, zIndex: 100, width:'60%'}}>
+            <TouchableOpacity 
+                onPress = {props.verify}
+                style={{width: '100%', padding:15, height: '100%', alignItems:'center', justifyContent:'center'}}
+                activeOpacity = {0.5} >
+              <Text style = {styles.verifyTxt}>Verify Account</Text>
+            </TouchableOpacity>
+          </FancyBox>
+        ):(<></>)}
         {props.status != 'active' && props.status != 'inactive' ? (
             <View style={styles.flexText}>
             <Text style={styles.baseText}>Last Updated: 3 years ago</Text>
@@ -113,13 +132,13 @@ const MyICardPage = (props) => {
         ) : (
             <></>
         )}
-
-        </ImageBackground>
-        </View>
         <Image
         source={require('../../../assets/ISA-logo.png')}
         style={styles.logo}
         />
+        </ImageBackground>
+        </View>
+        
          
     </View>
     );
@@ -139,40 +158,42 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     padding: 5,
     backgroundColor: colors.darkGray,
-    marginRight: 5
+    
   },
   backgroundImage: {
-    flex: 1,
     width: '100%',
     height: '100%',
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: "flex-start",
+    alignItems: "center",
+    borderWidth: 3,
+    
   },
   bodyContainer: {
     flex: 1,
     width: '100%',
     ...globalStyleSheet.container,
-    justifyContent: 'flex-start',
-    //paddingTop: 96,
+   
     
   },
   box: {
     marginTop: 10,
-    backgroundColor: colors.lightGray
+    backgroundColor: colors.lightGray,
+    
   },
   alertContainer: {
     width: '100%',
     height: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
+    padding: 15
+    
   },
   card: {
     ...globalStyleSheet.container,
     flex: 0,
     height: '50%',
-    backgroundColor: colors.white,//finalStatus == 'active' ? colors.primary : colors.white,
-    borderWidth: 1,
+    backgroundColor: colors.white,
     borderLeftColor: 'white',
     borderRightColor: 'white',
     width: '90%', 
@@ -217,6 +238,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  verifyTxt: {
+    fontFamily: 'Poppins_600SemiBold',
+    textAlign: 'center',
+    fontSize: 16,
+    color: colors.darkGray,
+  },
   baseText: {
     fontFamily: 'Poppins_600SemiBold',
     textAlign: 'center',
@@ -237,7 +264,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
     bottom: 0,
-    opacity: 0.2,
+    opacity: 0.2
   },
   lines: {
     position: 'absolute',

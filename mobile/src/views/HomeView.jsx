@@ -1,9 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Text, Image, ImageBackground} from 'react-native';
 import DiscoverBar from '../components/home/DiscoverBar';
-import {globalStyleSheet, colors} from '../utilites/Theme';
-import VendorList from '../components/shared/VendorList';
-import {useState} from 'react';
+import {globalStyleSheet} from '../utilites/Theme';
 
 import vendorData from '../data/vendorMockData';
 import {shuffle} from '../utilites/Shuffle';
@@ -56,7 +54,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 40,
     marginLeft: 25,
-    color: colors.darkGray,
   },
   headingVendor: {
     fontSize: 20,
@@ -105,6 +102,8 @@ const styles = StyleSheet.create({
     marginRight: 24,
     fontSize: 14,
     textAlign: 'right',
+    marginLeft: 25,
+    marginTop: 5,
   },
 });
 

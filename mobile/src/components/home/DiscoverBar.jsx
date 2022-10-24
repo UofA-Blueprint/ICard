@@ -34,10 +34,7 @@ const DiscoverBar = () => {
       <TouchableOpacity
         style={styles.container}
         onPress={() => Linking.openURL('https://isa.ualberta.ca/events')}>
-        <Image
-          source={require('../../../assets/Events.png')}
-          style={styles.image}
-        />
+        <Events />
 
         <View style={styles.row}>
           <Text style={[globalStyleSheet.text, styles.label]}>Events</Text>

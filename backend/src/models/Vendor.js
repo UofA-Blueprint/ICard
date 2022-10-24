@@ -15,6 +15,12 @@ const VendorSchema = new mongoose.Schema(
         phone_number: {
             type: String,
         },
+        point_of_contact: {
+            type: String,
+        },
+        image: {
+            type: String,
+        },
     },
     { collection: 'vendors', versionKey: false }
 )

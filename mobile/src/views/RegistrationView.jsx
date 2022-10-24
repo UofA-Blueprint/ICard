@@ -52,7 +52,6 @@ const RegistrationView = () => {
             return result.json();
           })
           .then(data => {
-            console.log(data);
             data['token'] = token;
             setUser(data);
           });

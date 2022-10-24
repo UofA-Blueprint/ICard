@@ -8,21 +8,18 @@ import {
   Linking,
 } from 'react-native';
 import {colors, globalStyleSheet} from '../../utilites/Theme';
-
+import Events from '../../../assets/Events';
+import Website from '../../../assets/Website';
 const DiscoverBar = () => {
   return (
     <View style={styles.DiscoverRow}>
       <TouchableOpacity
         style={styles.container}
         onPress={() => Linking.openURL('https://isa.ualberta.ca/')}>
-        <Image
-          source={require('../../../assets/Website.png')}
-          style={styles.image}
-        />
+        <Website />
+
         <View style={styles.row}>
-          <Text style={[globalStyleSheet.text, styles.label]}>
-            ISA's Website
-          </Text>
+          <Text style={[globalStyleSheet.text, styles.label]}>ISA Website</Text>
 
           <Image
             source={require('../../../assets/Arrow.png')}
@@ -53,14 +50,20 @@ const styles = StyleSheet.create({
   container: {
     paddingVertical: 10,
     paddingHorizontal: 16,
-    borderWidth: 1,
-    borderColor: colors.primary,
-    borderRadius: 10,
+    backgroundColor: colors.lightGray,
+    borderRadius: 15,
     marginTop: 8,
     marginRight: 16,
     flexGrow: 1,
     alignItems: 'center',
     flex: 1,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 4,
+      height: 4,
+    },
+    shadowOpacity: 0.25,
+    elevation: 5,
   },
   label: {
     fontSize: 16,

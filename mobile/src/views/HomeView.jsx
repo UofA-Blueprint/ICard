@@ -1,13 +1,16 @@
 import React from 'react';
 import {StyleSheet, View, Text, Image, ImageBackground} from 'react-native';
 import DiscoverBar from '../components/home/DiscoverBar';
+<<<<<<< HEAD
 import {globalStyleSheet, colors} from '../utilites/Theme';
 import VendorList from '../components/shared/VendorList';
 import {useState} from 'react';
+=======
+import {globalStyleSheet} from '../utilites/Theme';
+>>>>>>> 3b11119 (Fixed merge conflict)
 
 import vendorData from '../data/vendorMockData';
 import { shuffle } from '../utilites/Shuffle';
-
 
 
 const HomeView = () => {
@@ -27,6 +30,7 @@ const HomeView = () => {
         source={require('../../assets/ISA-logo.png')}
         style={styles.logo}
       />
+<<<<<<< HEAD
       <Text style={styles.title}>Welcome{'\n'}to ISA's{'\n'}mobile app</Text>
       <Text style={styles.headingDiscoverDiscover}>Discover</Text>
       <DiscoverBar/>
@@ -39,6 +43,19 @@ const HomeView = () => {
         searchPhrase={searchPhrase}
         data={vendorDataRandom}
         setClicked={setClicked}
+=======
+      <Text style={styles.title}>
+        Welcome{'\n'}to ISA's{'\n'}mobile app
+      </Text>
+      <Text style={styles.heading}>Discover</Text>
+      <DiscoverBar />
+      <FlatList
+        data={vendorData}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+        style={styles.vendorList}
+        contentContainerStyle={globalStyleSheet.listContentContainer}
+>>>>>>> 3b11119 (Fixed merge conflict)
       />
 
     </ImageBackground>
@@ -56,7 +73,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 40,
     marginLeft: 25,
-    color: colors.darkGray,
   },
   headingVendor: {
     fontSize: 20,
@@ -80,6 +96,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 83,
     resizeMode: 'stretch',
+<<<<<<< HEAD
     marginLeft: 25, 
     marginTop: 7,
   },
@@ -105,6 +122,10 @@ const styles = StyleSheet.create({
     marginRight: 24,
     fontSize: 14,
     textAlign: 'right',
+=======
+    marginLeft: 25,
+    marginTop: 5,
+>>>>>>> 3b11119 (Fixed merge conflict)
   },
 });
 

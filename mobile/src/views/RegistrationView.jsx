@@ -15,7 +15,6 @@ import {CLIENT_ID, API_ROUTE, API_KEY} from '@env';
 import MyICardPage from '../components/shared/ICardPage';
 
 const expoClientId = CLIENT_ID;
-console.log(expoClientId);
 const authRoute = API_ROUTE;
 const apiKey = API_KEY;
 

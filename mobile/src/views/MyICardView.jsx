@@ -17,6 +17,7 @@ const MyICardView = () => {
   if (user.verify) finalStatus = 'inactive';
   if (user.isaf_status) finalStatus = 'active';
 
+  //verify button below is a todo. Just have a console.log in it for now
   return (
     <MyICardPage user = {user} status = {finalStatus} verify = {() => {console.log('verify')}}/>
   );

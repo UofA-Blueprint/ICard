@@ -119,4 +119,7 @@ buck-out/
 web-build/
 dist/
 
+# Yarn
+.yarn/
+
 # @end expo-cli

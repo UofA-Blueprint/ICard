@@ -6,7 +6,7 @@ import VerificationView from './VerificationView';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-let finalStatus = 'pending';
+let finalStatus = 'inactive';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,7 +14,6 @@ const MyICard = ({navigation}) => {
   const {user, _} = useContext(AuthContext);
 
   if (user == null) return <></>;
-
   if (user.verify) finalStatus = 'inactive';
   if (user.isaf_status) finalStatus = 'active';
 
@@ -32,20 +31,18 @@ const MyICard = ({navigation}) => {
 
 const MyICardView = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="My ICard Page"
-          component={MyICard}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Verification"
-          component={VerificationView}
-          options={{headerShown: false}}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="My ICard Page"
+        component={MyICard}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Verification"
+        component={VerificationView}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
   );
 };
 

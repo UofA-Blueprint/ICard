@@ -27,10 +27,6 @@ function getPublicUrl(filename) {
  */
 async function deleteFile(fileName) {
     await gcs.bucket(bucketName).file(fileName).delete()
-
-    console.log(
-        `old veerification image at gs://${bucketName}/${fileName} has been deleted`
-    )
 }
 
 let ImgUpload = {}
@@ -56,14 +52,8 @@ ImgUpload.uploadToGCS = async (req, res, next) => {
         return next()
     }
 
-    console.log()
-    console.log(student) // student with current image
-    console.log(req.file) // image to upload
-
     // delete the old verification image before new one uploaded
     if ('verification_image' in student) {
-        console.log('there is already a verification image for this student')
-
         const fileLink = student.verification_image
         const lastSlash = fileLink.lastIndexOf('/')
         const fileName = fileLink.slice(lastSlash + 1)
@@ -88,7 +78,6 @@ ImgUpload.uploadToGCS = async (req, res, next) => {
     })
 
     stream.on('finish', () => {
-        console.log('uploaded new verification image: ' + gcsname)
         req.file.cloudStorageObject = gcsname
         req.file.cloudStoragePublicUrl = getPublicUrl(gcsname)
         next()

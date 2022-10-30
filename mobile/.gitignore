@@ -122,7 +122,5 @@ dist/
 # yarn
 .yarn/
 .vscode/
-ios/
-android/
 
 # @end expo-cli

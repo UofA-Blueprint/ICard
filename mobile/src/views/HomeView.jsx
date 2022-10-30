@@ -3,14 +3,20 @@ import {StyleSheet, View, Text, Image, ImageBackground} from 'react-native';
 import DiscoverBar from '../components/home/DiscoverBar';
 import {globalStyleSheet} from '../utilites/Theme';
 
-import vendorData from '../data/vendorMockData';
-import {shuffle} from '../utilites/Shuffle';
+import AuthContext from '../context/AuthContext';
+import MyICardPage from '../components/shared/ICardPage';
 
-const HomeView = () => {
-  const vendorDataRandom = shuffle(vendorData);
-  const [searchPhrase, setSearchPhrase] = useState('');
-  const [clicked, setClicked] = useState(false);
+let finalStatus = 'pending';
 
+const MyICardView = () => {
+  const {user, _} = useContext(AuthContext);
+
+  if (user == null) return <></>;
+
+  if (user.verify) finalStatus = 'inactive';
+  if (user.isaf_status) finalStatus = 'active';
+
+  //verify button below is a todo. Just have a console.log in it for now
   return (
     <ImageBackground
       source={require('../../assets/Background.png')}
@@ -117,4 +123,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeView;
+export default MyICardView;

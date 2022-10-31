@@ -1,14 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {View, StyleSheet, Pressable, Text, Image} from 'react-native';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import * as ImagePicker from 'expo-image-picker';
 import {colors} from '../utilites/Theme';
 import * as Progress from 'react-native-progress';
+import {_, API_ROUTE, API_KEY} from '@env';
+import AuthContext from '../context/AuthContext';
 
 const VerifcationView = ({navigation}) => {
   const [image, setImage] = useState(null);
   const [filename, setFilename] = useState(null);
+  const {user, _} = useContext(AuthContext);
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -27,6 +30,27 @@ const VerifcationView = ({navigation}) => {
       setFilename(address[address.length - 1]);
     }
   };
+
+  const submitImage = async () => {
+    let formData = new FormData();
+    formData.append('image', image);
+    fetch(API_ROUTE + 'api/images/upload', {
+      method: 'post',
+      headers: {
+        'jwt-token': user['key'],
+        'x-api-key': API_KEY,
+        'Content-Type': 'multipart/form-data',
+      },
+      body: formData,
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+      });
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -37,7 +61,7 @@ const VerifcationView = ({navigation}) => {
             color={colors.primary}
             backgroundColor="transparent"
             onPress={() => {
-              navigation.navigate('My ICard View');
+              navigation.navigate('My ICard Page');
             }}></FontAwesome5.Button>
         </View>
         <Text style={styles.viewTitle}>Verify Account</Text>
@@ -54,9 +78,11 @@ const VerifcationView = ({navigation}) => {
         </Text>
         <Text style={styles.example}>Example</Text>
         <View style={styles.exampleImage}>
-          <Image source={require('../../assets/example.png')}></Image>
+          <Image
+            source={require('../../assets/example.png')}
+            resizeMode="contain"></Image>
         </View>
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <View style={{alignItems: 'center', justifyContent: 'center'}}>
           <View style={image ? styles.uploaded : styles.uploadSection}>
             {image ? (
               <FontAwesome5
@@ -93,6 +119,17 @@ const VerifcationView = ({navigation}) => {
               <></>
             )}
           </View>
+          <Pressable
+            style={image ? styles.submitButton : styles.inactiveSubmitButton}
+            onPress={image ? submitImage : () => {}}>
+            <Text style={styles.submitButtonText}>Submit</Text>
+          </Pressable>
+          <Pressable
+            onPress={() => {
+              navigation.navigate('My ICard Page');
+            }}>
+            <Text style={styles.skipButtonText}>Skip for now</Text>
+          </Pressable>
         </View>
       </View>
     </SafeAreaView>
@@ -118,12 +155,14 @@ const styles = StyleSheet.create({
   },
   example: {
     fontWeight: 'bold',
-    fontSize: 24,
+    fontSize: 20,
     padding: 16,
   },
   exampleImage: {
     justifyContent: 'center',
     alignItems: 'center',
+    marginVertical: 16,
+    backgroundColor: 'blue',
   },
   viewTitle: {fontWeight: 'bold'},
   body: {flex: 1},
@@ -172,6 +211,26 @@ const styles = StyleSheet.create({
     top: 0,
     right: 0,
   },
+  submitButton: {
+    borderRadius: 99,
+    backgroundColor: colors.primary,
+    padding: 16,
+    width: '80%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 16,
+  },
+  inactiveSubmitButton: {
+    borderRadius: 99,
+    backgroundColor: colors.mediumGray,
+    padding: 16,
+    width: '80%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 16,
+  },
+  submitButtonText: {color: colors.white},
+  skipButtonText: {color: colors.primary},
 });
 
 export default VerifcationView;

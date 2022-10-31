@@ -53,27 +53,22 @@ const RegistrationView = () => {
   Render a Google Sign In Button
   */
 
-    return(
-      <MyICardPage user = {null} status = {'Unlinked'}>
-        <View style={styles.bodyContainer}>
-          <TouchableOpacity
-                disabled={!request}
-                onPress = {() => {
-                  promptAsync();
-                }}
-                style={styles.signInButton}
-                activeOpacity = {0.5}>
-                <FontAwesome5 name="google" size={16} color={colors.primary} />
-                <Text style={styles.promptMessage}>Sign In with Google</Text>
-          </TouchableOpacity>
-        </View>
-      </MyICardPage>
-        
-    )
-
-  
-
-  
+  return (
+    <MyICardPage user={null} status={'Unlinked'}>
+      <View style={styles.bodyContainer}>
+        <TouchableOpacity
+          disabled={!request}
+          onPress={() => {
+            promptAsync();
+          }}
+          style={styles.signInButton}
+          activeOpacity={0.5}>
+          <FontAwesome5 name="google" size={16} color={colors.primary} />
+          <Text style={styles.promptMessage}>Sign In with Google</Text>
+        </TouchableOpacity>
+      </View>
+    </MyICardPage>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -81,8 +76,7 @@ const styles = StyleSheet.create({
     width: '60%',
     justifyContent: 'center',
     marginTop: 5,
-    zIndex: 1  
-    
+    zIndex: 1,
   },
   signInButton: {
     flexDirection: 'row',
@@ -94,14 +88,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 8,
     borderColor: colors.primary,
-    
-    
   },
   promptMessage: {
     color: colors.primary,
   },
-  
-  
 });
 
 export default RegistrationView;

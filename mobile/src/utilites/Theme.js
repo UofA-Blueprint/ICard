@@ -10,6 +10,7 @@ const colors = {
   black: '#000000',
   red: '#AF0000',
   yellow: '#C4C81E',
+  mediumGray: '#CBCBCB',
 };
 
 const globalStyleSheet = StyleSheet.create({

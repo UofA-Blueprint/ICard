@@ -1,21 +1,34 @@
 import React from 'react';
+import axios from 'axios';
 import {StyleSheet, View, Text, Image, ImageBackground} from 'react-native';
 import DiscoverBar from '../components/home/DiscoverBar';
 import {globalStyleSheet, colors} from '../utilites/Theme';
 import VendorList from '../components/shared/VendorList';
-import {useState} from 'react';
-
-import vendorData from '../data/vendorMockData';
+import {useState, useEffect} from 'react';
+import {options, url} from '../data/vendorMockData';
 import { shuffle } from '../utilites/Shuffle';
+import { getData } from '../data/vendorMockData';
 
 
 
 const HomeView = () => {
 
-  const vendorDataRandom = shuffle(vendorData);
   const [searchPhrase, setSearchPhrase] = useState('');
   const [clicked, setClicked] = useState(false);
-  
+  const [vendorData, setList] = useState([]);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+        await axios.get(url, options)
+        .then((res) => {
+          setList(res.data)
+        })
+        .catch((error) => console.log(error));
+    }
+    fetchData();
+  }, []);
+
+
   return (
     <ImageBackground source={require('../../assets/Background.png')} resizeMode="cover" style={styles.backgoundImage}>
       
@@ -37,7 +50,7 @@ const HomeView = () => {
       
       <VendorList
         searchPhrase={searchPhrase}
-        data={vendorDataRandom}
+        data={vendorData}
         setClicked={setClicked}
       />
 

@@ -16,15 +16,11 @@ import {options, url} from '../data/vendorMockData'
     const [vendorData, setList] = useState([]);
 
   React.useEffect(() => {
-    const fetchData = async () => {
-          
-        await axios.get(url, options)
-        .then((res) => {
+    axios.get(url, options)
+          .then((res) => {
           setList(res.data)
         })
-        .catch((error) => console.log(error));
-    }
-    fetchData();
+        .catch((error) => console.log(error))
   }, []);
 
 

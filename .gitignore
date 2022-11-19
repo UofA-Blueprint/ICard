@@ -3,3 +3,4 @@ backend/node_modules
 .vscode/
 backend/isa-icard-2261fd0e0b9a.json
 mobile/.env
+.DS_Store

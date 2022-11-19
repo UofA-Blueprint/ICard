@@ -5,12 +5,12 @@ import {colors} from '../utilites/Theme';
 
 const Item = ({itemData}) => (
     <VendorCard
-      vendorName={itemData.vendorName}
-      location={itemData.location}
+      vendorName={itemData.name}
+      location={itemData.address}
       discount={itemData.discount}
       vendorImage={itemData.image}
       description={itemData.description}
-      contact={itemData.contact}
+      contact={itemData.phone_number}
     />
   );
 

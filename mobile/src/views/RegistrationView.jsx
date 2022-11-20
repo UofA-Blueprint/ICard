@@ -13,6 +13,7 @@ WebBrowser.maybeCompleteAuthSession();
 
 import {CLIENT_ID, API_ROUTE, API_KEY} from '@env';
 import MyICardPage from '../components/shared/ICardPage';
+import { logoutCheck, storeDate } from '../utilites/LogoutCheck';
 
 const expoClientId = CLIENT_ID;
 const authRoute = API_ROUTE;
@@ -43,6 +44,8 @@ const RegistrationView = () => {
           })
           .then(data => {
             setUser(data);
+            storeDate();
+            //logoutCheck();
           });
       };
       fetchData();

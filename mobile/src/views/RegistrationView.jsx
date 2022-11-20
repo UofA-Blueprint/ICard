@@ -13,7 +13,7 @@ WebBrowser.maybeCompleteAuthSession();
 
 import {CLIENT_ID, API_ROUTE, API_KEY} from '@env';
 import MyICardPage from '../components/shared/ICardPage';
-import { logoutCheck, storeDate } from '../utilites/LogoutCheck';
+import { storeDate } from '../utilites/StoreDate';
 
 const expoClientId = CLIENT_ID;
 const authRoute = API_ROUTE;

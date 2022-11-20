@@ -6,8 +6,10 @@
  * @flow strict-local
  */
 
-import React, {useState, useRef, useEffect} from 'react';
+import React, {useState, useRef, useEffect, useContext} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import HomeView from './src/views/HomeView';
 import ScanView from './src/views/ScanView';
 import VendorView from './src/views/VendorView';
@@ -19,18 +21,40 @@ import {globalStyleSheet} from './src/utilites/Theme';
 import MyICardView from './src/views/MyICardView';
 import { AppState } from "react-native";
 import AuthContext from './src/context/AuthContext';
-import { logoutCheck } from './src/utilites/LogoutCheck';
+import { storeDate } from './src/utilites/StoreDate';
 
 const Tab = createBottomTabNavigator();
 
 //console.log(AppState.currentState);
 const App = () => {
   const [user, setUser] = useState(null);
+  const [check, setCheck] = useState(false);
   const value = {user, setUser};
   const appState = useRef(AppState.currentState);
-  const val = useRef(value.user);
-  console.log(val);
-  
+  //const val = useRef(user);
+  //console.log(val);
+  const logoutCheck = async() => {
+    
+    try{
+        const lastDate = parseInt(await AsyncStorage.getItem('lastOpened'));
+        console.log(lastDate);
+        if(lastDate != null){
+            console.log(lastDate);
+            console.log(new Date().getTime());
+            console.log(new Date().getTime() - lastDate);
+            
+            if(new Date().getTime() - lastDate > 60000){
+                setUser(null)
+            }
+            else{
+                await storeDate()
+            }
+
+        }
+    } catch(error){
+        logoutCheck()
+    }
+}
   useEffect(() => {
     const subscription = AppState.addEventListener("change", nextAppState => {
       
@@ -60,11 +84,10 @@ const App = () => {
       appState.current = nextAppState;
       if(appState.current === 'active'){
         console.log('Blimey');
-        console.log(val);
-        if(val.current != null){
+        console.log(user);
+        if(user != null){
           console.log('Logout check done')
-          logoutCheck();
-          
+          setCheck(true);          
         }
       }
 
@@ -78,9 +101,18 @@ const App = () => {
     return () => {
       subscription.remove();
     };
-  }, []);
+  }, [user]);
  
- 
+  useEffect(() => {
+    const checkLogout = async() => {
+      if(check){
+        await logoutCheck();
+        console.log(user);
+        setCheck(false);
+      }
+    }
+    checkLogout()
+  }, [check])
   
   return (
     <SafeAreaView style={{flex: 1}}>

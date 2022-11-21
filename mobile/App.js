@@ -6,95 +6,93 @@
  * @flow strict-local
  */
 
-import React, {useState, useRef, useEffect, useContext} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import HomeView from './src/views/HomeView';
-import ScanView from './src/views/ScanView';
 import VendorView from './src/views/VendorView';
 import RegistrationView from './src/views/RegistrationView';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ScreenOption from './src/utilites/ScreenOption';
-import {globalStyleSheet} from './src/utilites/Theme';
 import MyICardView from './src/views/MyICardView';
 import { AppState } from "react-native";
 import AuthContext from './src/context/AuthContext';
 import { storeDate } from './src/utilites/StoreDate';
+import { storeUser } from './src/utilites/StoreUser';
 
 const Tab = createBottomTabNavigator();
 
-//console.log(AppState.currentState);
 const App = () => {
   const [user, setUser] = useState(null);
   const [check, setCheck] = useState(false);
   const value = {user, setUser};
   const appState = useRef(AppState.currentState);
-  //const val = useRef(user);
-  //console.log(val);
-  const logoutCheck = async() => {
+  
+  const logoutCheck = async(userData = null,startup = false) => {
     
     try{
-        const lastDate = parseInt(await AsyncStorage.getItem('lastOpened'));
-        console.log(lastDate);
+        const lastDate = parseInt(await AsyncStorage.getItem('lastOpened'));    
         if(lastDate != null){
-            console.log(lastDate);
-            console.log(new Date().getTime());
-            console.log(new Date().getTime() - lastDate);
-            
-            if(new Date().getTime() - lastDate > 60000){
+            //change num in if statement below to a month in milliseconds
+            if(new Date().getTime() - lastDate > 30000){
                 setUser(null)
+                storeUser(null)
             }
             else{
+                if(startup){
+                  setUser(userData)
+                }
                 await storeDate()
             }
-
         }
     } catch(error){
         logoutCheck()
     }
 }
   useEffect(() => {
+    const checkUser = async() => {
+      const userData = JSON.parse(await AsyncStorage.getItem('userData'))
+      if(userData != null){
+        logoutCheck(userData, true)
+      }
+
+    } 
+    checkUser()
+  }, [])
+  
+  
+  useEffect(() => {
     const subscription = AppState.addEventListener("change", nextAppState => {
       
       if (
-        appState.current.match(/inactive|background/) &&
-        nextAppState === "active"
+        appState.current.match(/active/) &&
+        nextAppState === "background"
       ) {
-        console.log("App has come to the foreground!");
+        
+        if(user != null){ 
+          storeDate()
+        }
       }
 
       appState.current = nextAppState;
-      console.log("AppState", appState.current);
-    
       
-    
-    
     });
 
     return () => {
       subscription.remove();
     };
-  }, []);
-
+  }, [user]);
   useEffect(() => {
-    const subscription = AppState.addEventListener("change", nextAppState => {
-      
+    const subscription = AppState.addEventListener("change", nextAppState => {    
       appState.current = nextAppState;
       if(appState.current === 'active'){
-        console.log('Blimey');
-        console.log(user);
-        if(user != null){
-          console.log('Logout check done')
+        
+        if(user != null){         
           setCheck(true);          
         }
       }
-
-     
-    
-      
-    
     
     });
 
@@ -107,7 +105,6 @@ const App = () => {
     const checkLogout = async() => {
       if(check){
         await logoutCheck();
-        console.log(user);
         setCheck(false);
       }
     }

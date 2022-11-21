@@ -47,8 +47,6 @@ const VerifcationView = ({navigation}) => {
         return response.json();
       })
       .then(data => {
-        console.log(data);
-
         fetch(API_ROUTE + 'api/students/' + user.id, {
           method: 'get',
           headers: {
@@ -63,6 +61,7 @@ const VerifcationView = ({navigation}) => {
           .then(data => {
             setUser(data)
           })
+          .catch(console.error)
       });
   };
 

@@ -18,7 +18,7 @@ const MyICard = ({navigation}) => {
   if (user.isaf_status) finalStatus = 'active';
 
   if (!user.isaf_status && !user.verify && user.verification_image)
-    finalStatus = 'verifying account status';
+    finalStatus = 'verifying account';
 
   //verify button below is a todo. Just have a console.log in it for now
   return (

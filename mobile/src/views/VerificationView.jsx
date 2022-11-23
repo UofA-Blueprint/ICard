@@ -55,9 +55,7 @@ const VerifcationView = ({navigation}) => {
             'Content-Type': 'multipart/form-data',
           },
         })
-          .then(result => {
-            return result.json()
-          })
+          .then(result => result.json)
           .then(data => {
             setUser(data)
           })

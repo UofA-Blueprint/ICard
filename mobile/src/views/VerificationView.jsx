@@ -11,7 +11,7 @@ import AuthContext from '../context/AuthContext';
 const VerifcationView = ({navigation}) => {
   const [image, setImage] = useState(null);
   const [filename, setFilename] = useState(null);
-  const {user, _} = useContext(AuthContext);
+  const {user, setUser} = useContext(AuthContext);
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -47,7 +47,19 @@ const VerifcationView = ({navigation}) => {
         return response.json();
       })
       .then(data => {
-        console.log(data);
+        fetch(API_ROUTE + 'api/students/' + user.id, {
+          method: 'get',
+          headers: {
+            'jwt-token': user['key'],
+            'x-api-key': API_KEY,
+            'Content-Type': 'multipart/form-data',
+          },
+        })
+          .then(result => result.json())
+          .then(data => {
+            setUser(data)
+          })
+          .catch(console.error)
       });
   };
 

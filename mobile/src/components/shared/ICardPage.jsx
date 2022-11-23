@@ -18,7 +18,7 @@ const statusColors = {
   active: colors.primary,
   inactive: colors.red,
   stale: colors.darkGray,
-  'verifying account': '#FAD233',
+  'verifying account': colors.yellow,
   Unlinked: colors.lightGray,
 };
  

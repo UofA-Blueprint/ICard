@@ -9,7 +9,7 @@ const colors = {
   darkGray: '#737373',
   black: '#000000',
   red: '#AF0000',
-  yellow: '#C4C81E',
+  yellow: '#FAD233',
   mediumGray: '#CBCBCB',
 };
 

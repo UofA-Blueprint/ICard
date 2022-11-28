@@ -74,12 +74,6 @@ const styles = StyleSheet.create({
     marginLeft: 25,
     color: colors.darkGray,
   },
-  headingVendor: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginLeft: 25,
-    color: colors.darkGray,
-  },
   title: {
     marginLeft: 25,
     fontSize: 35,
@@ -107,6 +101,8 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 24,
     justifyContent: 'space-between',
   },

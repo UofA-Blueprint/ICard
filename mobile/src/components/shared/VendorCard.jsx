@@ -16,11 +16,11 @@ const VendorCard = ({vendorName, location, description, vendorImage, contact}) =
                     flex: 1,
                     justifyContent: 'flex-end',
                     alignItems: 'center',
-                    backgroundColor: '#00000000'
+                    backgroundColor: '#0000000'
                 }}>
                     <Pressable onPress={() => {}} style={popUpStyles.modalView}>
                         <Pressable onPress={() => setPopupOpen(false)}>
-                            <Feather name='chevron-down' size={50} color='#88888888' />
+                            <Feather name='chevron-down' size={50} color='#DDDADA' />
                         </Pressable>
                         <ScrollView>
                             <View onStartShouldSetResponder={() => true} style={popUpStyles.modalContentContainer}>
@@ -40,7 +40,7 @@ const VendorCard = ({vendorName, location, description, vendorImage, contact}) =
                                         </Text>
 
                                 <Text style={popUpStyles.contact}>
-                                    Point of contact: {contact}
+                                    Point of contact:{contact}
                                 </Text>
                             </View>
                         </ScrollView>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
    cardContainer: {
       paddingVertical: 10,
       paddingHorizontal: 16,
-      borderRadius: 10,
+      borderRadius: 15,
       marginVertical: 12,
       display: 'flex',
       flexDirection: 'row',
@@ -121,15 +121,16 @@ const styles = StyleSheet.create({
     description: {
         fontWeight: '300',
         fontSize: 15,
+        color: colors.darkGray
     }
   })
 
 const popUpStyles = StyleSheet.create({
     modalView: {
-        backgroundColor: 'white',
+        backgroundColor: colors.white,
         display: 'flex',
         alignItems: 'center',
-        borderRadius: 20,
+        borderRadius: 15,
         paddingHorizontal: 20,
         paddingBottom: 25,
         paddingTop: 5,
@@ -162,7 +163,7 @@ const popUpStyles = StyleSheet.create({
 
     location: {
         color: colors.primary,
-        fontSize: 15,
+        fontSize: 16,
         fontWeight: 'bold',
         marginBottom: 10,
         marginLeft: 10

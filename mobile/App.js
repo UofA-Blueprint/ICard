@@ -21,6 +21,8 @@ import { AppState } from "react-native";
 import AuthContext from './src/context/AuthContext';
 import { storeDate } from './src/utilites/StoreDate';
 import { storeUser } from './src/utilites/StoreUser';
+import { storeDateKey, storedUserDataKey, monthInMilliseconds } from './src/utilites/GlobalConstants';
+
 
 const Tab = createBottomTabNavigator();
 
@@ -30,32 +32,35 @@ const App = () => {
   const value = {user, setUser};
   const appState = useRef(AppState.currentState);
   
-  const logoutCheck = async(userData = null,startup = false) => {
+  const logoutCheckOnStartupAndOnForeground = async(userData = null,startup = false) => {
     
     try{
-        const lastDate = parseInt(await AsyncStorage.getItem('lastOpened'));    
+        const lastDate = parseInt(await AsyncStorage.getItem(storeDateKey));    
         if(lastDate != null){
             //change num in if statement below to a month in milliseconds
-            if(new Date().getTime() - lastDate > 2629800000){
+            if(new Date().getTime() - lastDate > monthInMilliseconds){
                 setUser(null)
                 storeUser(null)
             }
             else{
-                if(startup){
+              if(startup){
+                  //If the user is starting up the app from scratch, log them in automatically
+                  //TODO: User data automatically being set to old data that was saved before quitting or going to bg. Currently need to refresh after automatic login to get new refreshed data. Maybe, if stuff has changed, we set user to the new data instead of the old stored data
                   setUser(userData)
                 }
                 await storeDate()
             }
         }
     } catch(error){
-        logoutCheck()
+        console.log(error)
     }
 }
+  //Log out check on startup
   useEffect(() => {
     const checkUser = async() => {
-      const userData = JSON.parse(await AsyncStorage.getItem('userData'))
+      const userData = JSON.parse(await AsyncStorage.getItem(storedUserDataKey))
       if(userData != null){
-        logoutCheck(userData, true)
+        logoutCheckOnStartupAndOnForeground(userData, true)
       }
 
     } 
@@ -63,35 +68,16 @@ const App = () => {
   }, [])
   
   
-  useEffect(() => {
-    const subscription = AppState.addEventListener("change", nextAppState => {
-      
-      if (
-        appState.current.match(/active/) &&
-        nextAppState === "background"
-      ) {
-        
-        if(user != null){ 
-          storeDate()
-        }
-      }
 
-      appState.current = nextAppState;
-      
-    });
-
-    return () => {
-      subscription.remove();
-    };
-  }, [user]);
   useEffect(() => {
     const subscription = AppState.addEventListener("change", nextAppState => {    
       appState.current = nextAppState;
-      if(appState.current === 'active'){
+      if(appState.current === 'active' && user != null){         
+        logoutCheckOnStartupAndOnForeground()          
         
-        if(user != null){         
-          setCheck(true);          
-        }
+      }
+      if(appState.current === 'background' && user != null){ 
+        storeDate()
       }
     
     });
@@ -101,15 +87,7 @@ const App = () => {
     };
   }, [user]);
  
-  useEffect(() => {
-    const checkLogout = async() => {
-      if(check){
-        await logoutCheck();
-        setCheck(false);
-      }
-    }
-    checkLogout()
-  }, [check])
+  
   
   return (
     <SafeAreaView style={{flex: 1}}>

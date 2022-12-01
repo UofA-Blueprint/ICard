@@ -1,11 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { storedUserDataKey } from './GlobalConstants';
 
 export const storeUser = async(data) => {
     try{
-        await AsyncStorage.setItem('userData', JSON.stringify(data))
+        await AsyncStorage.setItem(storedUserDataKey, JSON.stringify(data))
     }catch(error){
-        storeUser()
+        console.log(error);
     }
 };
 

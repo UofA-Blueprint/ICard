@@ -1,11 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { storeDateKey } from './GlobalConstants';
 
 export const storeDate = async() => {
     try{
-        await AsyncStorage.setItem('lastOpened', new Date().getTime().toString())
+        await AsyncStorage.setItem(storeDateKey, new Date().getTime().toString())
     } catch(error) {
-        storeDate() //Is this a good way to handle error?
+        console.log(error);
     }
 }
 

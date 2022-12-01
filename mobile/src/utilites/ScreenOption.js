@@ -11,8 +11,6 @@ const ScreenOption = ({route}) => ({
     let iconName;
     if (route.name === 'Home') {
       iconName = focused ? 'home-variant' : 'home-variant-outline';
-    } else if (route.name === 'Scan') {
-      iconName = focused ? 'camera' : 'camera-outline';
     } else if (route.name === 'My ICard') {
       iconName = focused ? 'credit-card' : 'credit-card-outline';
     }

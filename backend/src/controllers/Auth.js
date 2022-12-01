@@ -11,6 +11,7 @@ module.exports = {
 
         if (check_student_db) {
             const studentWithKey = {
+                id: check_student_db.id,
                 name: check_student_db.name,
                 email: check_student_db.email,
                 active_status: check_student_db.active_status,
@@ -24,6 +25,7 @@ module.exports = {
                     process.env.JWT_SECRET,
                     { expiresIn: '30d' }
                 ),
+                verification_image: check_student_db.verification_image
             }
             return res.status(200).json(studentWithKey) // if the user exists, return the user
         } else {

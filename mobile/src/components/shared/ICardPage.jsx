@@ -18,7 +18,7 @@ const statusColors = {
   active: colors.primary,
   inactive: colors.red,
   stale: colors.darkGray,
-  pending: colors.yellow,
+  'verifying account': colors.yellow,
   Unlinked: colors.lightGray,
 };
  
@@ -31,8 +31,8 @@ const MyICardPage = (props) => {
   if (!fontsLoaded) {
     return <Text>Loading...</Text>;
   }
- 
- 
+
+
   const Card = ({status}) => {
     let content
     let color = props.status

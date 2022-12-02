@@ -1,5 +1,5 @@
-import React, {useContext} from 'react';
-
+import React, {useContext, useState} from 'react';
+import { View,  RefreshControl, StyleSheet,  ScrollView, ActivityIndicator } from 'react-native';
 import AuthContext from '../context/AuthContext';
 import MyICardPage from '../components/shared/ICardPage';
 import VerificationView from './VerificationView'
@@ -13,6 +13,11 @@ const Stack = createNativeStackNavigator();
 const MyICard = ({navigation}) => {
   const {user, _} = useContext(AuthContext);
 
+  const loadUserData = () => {
+    console.log('Pulled')
+  }
+
+  const [refreshing, setRefreshing] = useState(false);
   if (user == null) return <></>;
   if (user.verify) finalStatus = 'inactive';
   if (user.isaf_status) finalStatus = 'active';
@@ -22,13 +27,19 @@ const MyICard = ({navigation}) => {
 
   //verify button below is a todo. Just have a console.log in it for now
   return (
-    <MyICardPage
-      user={user}
-      status={finalStatus}
-      verify={() => {
-        navigation.navigate('Verification');
-      }}
-    />
+    <View style = {styles.container}>
+      {refreshing ? <ActivityIndicator/> : null}
+      <ScrollView refreshControl={<RefreshControl refreshing = {refreshing} onRefresh = {loadUserData}/>} 
+        contentContainerStyle={styles.contentContainer}>
+        <MyICardPage
+          user={user}
+          status={finalStatus}
+          verify={() => {
+            navigation.navigate('Verification');
+          }}
+        />
+      </ScrollView>
+    </View>
   );
 };
 
@@ -48,5 +59,15 @@ const MyICardView = () => {
     </Stack.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+ 
+  container:{
+    flex:1
+  },
+  contentContainer: {
+    flex: 1
+  }
+})
 
 export default MyICardView;

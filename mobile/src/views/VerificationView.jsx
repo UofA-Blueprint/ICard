@@ -1,17 +1,20 @@
 import React, {useState, useContext} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {View, StyleSheet, Pressable, Text, Image} from 'react-native';
+import {View, StyleSheet, Pressable, Text, Image, Modal, TouchableOpacity, ImageBackground, ScrollView, FlatList} from 'react-native';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import * as ImagePicker from 'expo-image-picker';
 import {colors} from '../utilites/Theme';
 import * as Progress from 'react-native-progress';
 import {_, API_ROUTE, API_KEY} from '@env';
 import AuthContext from '../context/AuthContext';
+import Step from '../components/shared/Step';
 
 const VerifcationView = ({navigation}) => {
   const [image, setImage] = useState(null);
   const [filename, setFilename] = useState(null);
   const {user, setUser} = useContext(AuthContext);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [Progress, setProgress] = useState(0);
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -63,6 +66,8 @@ const VerifcationView = ({navigation}) => {
       });
   };
 
+
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -84,10 +89,34 @@ const VerifcationView = ({navigation}) => {
           upload a screenshot to verify your account.
           <FontAwesome5
             name="question-circle"
-            size={12}
+            size={30}
             color={colors.primary}
-            backgroundColor="transparent"></FontAwesome5>
+            backgroundColor="transparent"
+            onPress={() => setModalVisible(true)}></FontAwesome5>
         </Text>
+
+        <Modal transparent={true} visible = {modalVisible}>
+          <View style={{backgroundColor:'#000000aa', flex:1, justifyContent:'center', alignItems:'center'}}>
+            <View style={styles.popup}>
+              <TouchableOpacity onPress={() => setModalVisible(false)}>
+                <Image source={require('../../assets/x2.png')} style={styles.notificationPic}/>
+              </TouchableOpacity>
+              <Text style={styles.title}>How to upload your email?</Text>
+              
+              <ScrollView pagingEnabled={true} decelerationRate='fast' onMomentumScrollEnd={() =>setModalVisible(true)} horizontal>
+
+              <Step text='Open your UAlberta Gmail account.' step='Step: 1' screen={require('../../assets/step1.png')} bubbles={require('../../assets/Bubbles1.png')}/>
+              <Step text='Search “The Wait is Over! Pick-up Your Free I-Card Now!” in the search bar and find the email sent by “isa.communication s@ualberta.ca”.' step='Step: 2' screen={require('../../assets/step2.png')} bubbles={require('../../assets/Bubbles2.png')}/>
+              <Step text='Take a screenshot of the email including the recipient’s email address.' step='Step: 3' screen={require('../../assets/step3.png')} bubbles={require('../../assets/Bubbles3.png')}/>
+              <Step text='Submit the screenshot into the ISA mobile application.' step='Step: 4' screen={require('../../assets/step4.png')} bubbles={require('../../assets/Bubbles4.png')}/>
+              
+              </ScrollView>
+
+            </View>
+          </View>
+        </Modal>
+
+
         <Text style={styles.example}>Example</Text>
         <View style={styles.exampleImage}>
           <Image
@@ -243,6 +272,31 @@ const styles = StyleSheet.create({
   },
   submitButtonText: {color: colors.white},
   skipButtonText: {color: colors.primary},
+  popup: {
+    borderRadius: 10,
+    backgroundColor: '#ffffff',
+    width: 294,
+    maxHeight: 536,
+    flex: 1,
+  },
+  notificationPic: {
+    width: 15,
+    height: 15,
+    marginTop: 13,
+    marginLeft: 266,
+  },
+  title: {
+    fontSize: 20,
+    alignSelf: 'center',
+    marginTop: 21,
+    fontWeight: '700',
+  },
+  background: {
+    width: 288,
+    height: 328,
+    marginTop: 32,
+    marginLeft: 3,
+  },
 });
 
 export default VerifcationView;

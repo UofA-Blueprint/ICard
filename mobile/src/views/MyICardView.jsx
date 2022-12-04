@@ -5,19 +5,49 @@ import MyICardPage from '../components/shared/ICardPage';
 import VerificationView from './VerificationView'
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+//import * as StudentFunctions from '../../../backend/src/controllers/Students';
 
 let finalStatus = 'inactive';
 
 const Stack = createNativeStackNavigator();
 
-const MyICard = ({navigation}) => {
-  const {user, _} = useContext(AuthContext);
+import {API_ROUTE, API_KEY} from '@env';
+import { storeUser } from '../utilites/StoreUser';
 
-  const loadUserData = () => {
-    console.log('Pulled')
+const authRoute = API_ROUTE;
+const apiKey = API_KEY;
+
+const MyICard = ({navigation}) => {
+  const {user, setUser} = useContext(AuthContext);
+  const [refreshing, setRefreshing] = useState(false);
+  //console.log(user);
+  const loadUserData = async () => {
+    //console.log('Pulled')
+    setRefreshing(true);
+    fetch(authRoute + `api/students/${user.id}`, {
+      method: 'GET',
+      headers: {'x-api-key': apiKey, 'jwt-token': user.key},
+    })
+    .then(result => {
+      return result.json();
+    })
+    .then(data => {
+      data["key"] = user.key;
+      data["id"] = data["_id"];
+      delete data["_id"];
+      console.log("Retrived data:")
+      console.log(data);
+      setRefreshing(false);
+      setUser(data);
+      storeUser(data);
+      
+    })
+    .catch((error) => {
+      console.error(error);
+    });
   }
 
-  const [refreshing, setRefreshing] = useState(false);
+  
   if (user == null) return <></>;
   if (user.verify) finalStatus = 'inactive';
   if (user.isaf_status) finalStatus = 'active';
@@ -28,7 +58,6 @@ const MyICard = ({navigation}) => {
   //verify button below is a todo. Just have a console.log in it for now
   return (
     <View style = {styles.container}>
-      {refreshing ? <ActivityIndicator/> : null}
       <ScrollView refreshControl={<RefreshControl refreshing = {refreshing} onRefresh = {loadUserData}/>} 
         contentContainerStyle={styles.contentContainer}>
         <MyICardPage

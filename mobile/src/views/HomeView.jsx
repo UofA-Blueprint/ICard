@@ -9,6 +9,7 @@ import {useState, useEffect} from 'react';
 import {options, url} from '../data/vendorMockData';
 import {shuffle} from '../utilites/Shuffle';
 import {getData} from '../data/vendorMockData';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const HomeView = ({navigation}) => {
   const [searchPhrase, setSearchPhrase] = useState('');
@@ -28,35 +29,37 @@ const HomeView = ({navigation}) => {
     <ImageBackground
       source={require('../../assets/Background.png')}
       resizeMode="cover"
-      style={styles.backgoundImage}>
-      <Image
-        source={require('../../assets/Sign-Out.png')}
-        style={styles.signOut}
-      />
-      <Image
-        source={require('../../assets/ISA-logo.png')}
-        style={styles.logo}
-      />
-      <Text style={styles.title}>
-        Welcome{'\n'}to ISA's{'\n'}mobile app
-      </Text>
-      <Text style={styles.headingDiscoverDiscover}>Discover</Text>
-      <DiscoverBar />
-      <View style={styles.row}>
-        <Text style={styles.headingVendor}>Vendors</Text>
-
-        <Text
-          style={styles.vendorText}
-          onPress={() => navigation.navigate('Vendors')}>
-          See All
+      style={styles.backgroundImage}>
+      <SafeAreaView style={{flex: 1}} edges={['top']}>
+        <Image
+          source={require('../../assets/Sign-Out.png')}
+          style={styles.signOut}
+        />
+        <Image
+          source={require('../../assets/ISA-logo.png')}
+          style={styles.logo}
+        />
+        <Text style={styles.title}>
+          Welcome{'\n'}to ISA's{'\n'}mobile app
         </Text>
-      </View>
+        <Text style={styles.headingDiscoverDiscover}>Discover</Text>
+        <DiscoverBar />
+        <View style={styles.row}>
+          <Text style={styles.headingVendor}>Vendors</Text>
 
-      <VendorList
-        searchPhrase={searchPhrase}
-        data={vendorData}
-        setClicked={setClicked}
-      />
+          <Text
+            style={styles.vendorText}
+            onPress={() => navigation.navigate('Vendors')}>
+            See All
+          </Text>
+        </View>
+
+        <VendorList
+          searchPhrase={searchPhrase}
+          data={vendorData}
+          setClicked={setClicked}
+        />
+      </SafeAreaView>
     </ImageBackground>
   );
 };

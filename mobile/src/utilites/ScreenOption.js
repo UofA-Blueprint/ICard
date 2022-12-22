@@ -13,6 +13,8 @@ const ScreenOption = ({route}) => ({
       iconName = focused ? 'home-variant' : 'home-variant-outline';
     } else if (route.name === 'My ICard') {
       iconName = focused ? 'credit-card' : 'credit-card-outline';
+    } else if (route.name === 'Vendors') {
+      iconName = focused ? 'store' : 'store-outline';
     }
 
     return <MaterialCommunityIcons name={iconName} size={size} color={color} />;

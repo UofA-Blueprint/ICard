@@ -35,27 +35,6 @@ const App = () => {
   const [check, setCheck] = useState(false);
   const value = {user, setUser};
   const appState = useRef(AppState.currentState);
-<<<<<<< HEAD
-  
-  const logoutCheckOnStartupAndOnForeground = async(userData = null,startup = false) => {
-    
-    try{
-        const lastDate = parseInt(await AsyncStorage.getItem(storeDateKey));    
-        if(lastDate != null && !isNaN(lastDate)){
-            //change num in if statement below to a month in milliseconds
-            if(new Date().getTime() - lastDate > 30000){
-                setUser(null)
-                storeUser(null)
-            }
-            else{
-              if(startup){
-                  //If the user is starting up the app from scratch, log them in automatically
-                  //TODO: User data automatically being set to old data that was saved before quitting or going to bg. Currently need to refresh after automatic login to get new refreshed data. Maybe, if stuff has changed, we set user to the new data instead of the old stored data
-                  setUser(userData)
-                }
-                await storeDate()
-            }
-=======
 
   const logoutCheckOnStartupAndOnForeground = async (
     userData = null,
@@ -65,7 +44,7 @@ const App = () => {
       const lastDate = parseInt(await AsyncStorage.getItem(storeDateKey));
       if (lastDate != null && !isNaN(lastDate)) {
         //change num in if statement below to a month in milliseconds
-        if (new Date().getTime() - lastDate > monthInMilliseconds) {
+        if (new Date().getTime() - lastDate > 30000) {
           setUser(null);
           storeUser(null);
         } else {
@@ -75,7 +54,6 @@ const App = () => {
             setUser(userData);
           }
           await storeDate();
->>>>>>> bcf9f5b9ae419c0062f0130e9d265eacb1bd77cd
         }
       }
     } catch (error) {

@@ -36,6 +36,8 @@ const MyICard = ({navigation}) => {
     .then(data => {
       data["key"] = user.key;
       data["id"] = data["_id"];
+      //doubt with verification image below. If unfilled from the start in the backend, does data[verfication_image] return "" or null? When mine was empty in the backend, console.log(data) did not show any attribute called verification image. When i filled it up in the backend, it then showed up when printed in the console. But then when I erased it in the backend now, suddenly console.log(data) still shows verifcation image but with this: ""??
+      data["verification_image"] == "" ? data["verification_image"] = "" : null;
       delete data["_id"];
       console.log("Retrived data:")
       console.log(data);
@@ -57,10 +59,14 @@ if(user.isaf_status == true && user.verify == true){
   finalStatus = 'active';
 }else if(user.isaf_status == false && user.verify == true){
   finalStatus = 'inactive';
-  message = 'Rejected. Please contact ISA';
-}else{
+  message = 'Something went wrong. Try to re-submit the screenshot image or contact ISA at "isa.general@ualberta.ca"';
+}else if(user.isaf_status == false && user.verify == false && user.verification_image == ""){
   finalStatus = 'inactive';
-  message = 'Please pay your ISAF fees';
+  message = 'Your account is unverified. Please go through the verification process'
+}
+else if(user.isaf_status == false && user.verify == false && user.verification_image != ""){
+  finalStatus = 'verifying account'
+  message = 'Verification in progress, may take up to 1-3 business days';
 }
 
   

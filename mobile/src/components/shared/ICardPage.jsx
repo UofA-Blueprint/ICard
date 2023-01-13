@@ -33,7 +33,7 @@ const MyICardPage = (props) => {
   }
 
 
-  const Card = ({status}) => {
+  const Card = ({status, msg}) => {
     let content
     let color = props.status
  
@@ -42,7 +42,7 @@ const MyICardPage = (props) => {
         <View style={styles.notification}>
           <Image source={require('../../../assets/x.png')} style={styles.notificationPic} />
           <View justifyContent={'center'}>
-            <Text style={styles.notificationText}>Please pay your ISAF fees to{'\n'}activate account</Text>
+            <Text style={styles.notificationText}>{msg}</Text>
           </View>
         </View>
       )}
@@ -71,7 +71,7 @@ const MyICardPage = (props) => {
     <ImageBackground source={require('../../../assets/Background.png')} resizeMode="cover" style={styles.backgroundImage}>
  
      
-      <Card status={props.status} />
+      <Card status={props.status} msg = {props.msg} />
      
  
       <View style={styles.container} backgroundColor={statusColors[props.status]} marginTop={props.status == 'inactive' || props.status == 'stale' || props.status == 'Unlinked' ? 109 : 235}>

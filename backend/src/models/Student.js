@@ -14,17 +14,12 @@ const StudentSchema = new mongoose.Schema(
             minlength: 6,
             maxlength: 255,
         },
-        active_status: {
-            type: Boolean,
-            required: true,
-            default: false,
-        },
         isaf_status: {
             type: Boolean,
             required: true,
             default: false,
         },
-        verify: {
+        verify_status: {
             type: Boolean,
             required: true,
             default: false,

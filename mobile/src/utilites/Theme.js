@@ -34,13 +34,11 @@ const globalStyleSheet = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: colors.primary,
     justifyContent: 'center',
-    height: 60,
     padding: 8,
   },
   tabBarHidden: {display: 'none'},
   tabBarLabel: {
     fontSize: 8,
-    padding: 8,
   },
   listContentContainer: {marginBottom: 20, paddingVertical: 40},
 });

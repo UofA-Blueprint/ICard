@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import { View,  RefreshControl, StyleSheet,  ScrollView, ActivityIndicator } from 'react-native';
 import AuthContext from '../context/AuthContext';
 import MyICardPage from '../components/shared/ICardPage';
@@ -8,6 +8,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 //import * as StudentFunctions from '../../../backend/src/controllers/Students';
 
 let finalStatus = 'inactive';
+let message = '';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,7 @@ const apiKey = API_KEY;
 const MyICard = ({navigation}) => {
   const {user, setUser} = useContext(AuthContext);
   const [refreshing, setRefreshing] = useState(false);
+  console.log('Message: ' + message);
   //console.log(user);
   const loadUserData = async () => {
     //console.log('Pulled')
@@ -45,15 +47,36 @@ const MyICard = ({navigation}) => {
     .catch((error) => {
       console.error(error);
     });
-  }
+}
+
+if (user == null) return <></>;
+
+
+
+if(user.isaf_status == true && user.verify == true){
+  finalStatus = 'active';
+}else if(user.isaf_status == false && user.verify == true){
+  finalStatus = 'inactive';
+  message = 'Rejected. Please contact ISA';
+}else{
+  finalStatus = 'inactive';
+  message = 'Please pay your ISAF fees';
+}
 
   
-  if (user == null) return <></>;
-  if (user.verify) finalStatus = 'inactive';
-  if (user.isaf_status) finalStatus = 'active';
 
-  if (!user.isaf_status && !user.verify && user.verification_image)
-    finalStatus = 'verifying account';
+
+
+
+
+
+  
+  
+  //if (user.verify) finalStatus = 'inactive';
+  //if (user.isaf_status) finalStatus = 'active';
+
+  /*if (!user.isaf_status && !user.verify && user.verification_image)
+    finalStatus = 'verifying account';*/
 
   //verify button below is a todo. Just have a console.log in it for now
   return (
@@ -63,6 +86,7 @@ const MyICard = ({navigation}) => {
         <MyICardPage
           user={user}
           status={finalStatus}
+          msg = {message}
           verify={() => {
             navigation.navigate('Verification');
           }}

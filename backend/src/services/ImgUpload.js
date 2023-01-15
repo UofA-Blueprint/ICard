@@ -108,12 +108,12 @@ ImgUpload.uploadVendorToGCS = async (req, res, next) => {
 
     // delete the old verification image before new one uploaded
     // check if the vendor.image is empty or not
-    if(vendor.image) {
-        const fileLink = vendor.image
-        const lastSlash = fileLink.lastIndexOf('/')
-        const fileName = fileLink.slice(lastSlash + 1)
-        deleteFile(fileName).catch(console.error)
-    }
+    // if(vendor.image) {
+    //     const fileLink = vendor.image
+    //     const lastSlash = fileLink.lastIndexOf('/')
+    //     const fileName = fileLink.slice(lastSlash + 1)
+    //     deleteFile(fileName).catch(console.error)
+    // }
 
     const gcsname = Date.now() + '-' + req.file.originalname
     const file = bucket.file(gcsname)

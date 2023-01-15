@@ -6,7 +6,7 @@
     "scripts": {
         "start": "node src/server.js",
         "test": "jest --runInBand",
-        "lint": "eslint --fix --ext .js,.jsx .",
+        "lint": "eslint --fix --ext .js",
         "dev": "nodemon src/server.js"
     },
     "repository": {

@@ -1,6 +1,8 @@
 'use strict'
 const Cloud = require('@google-cloud/storage')
 const Student = require('../models/Student')
+const Vendor = require('../models/Vendor')
+
 require('dotenv').config()
 const { Storage } = Cloud
 const gcs = new Storage({
@@ -84,6 +86,54 @@ ImgUpload.uploadToGCS = async (req, res, next) => {
     })
 
     stream.end(req.file.buffer) // end the stream and upload the file to the bucket
+}
+
+ImgUpload.uploadVendorToGCS = async (req, res, next) => {
+    if(!req.body.vendorId) {
+        return res.status(400).json({
+            message: 'Vendor ID is required'
+        })
+    }
+
+    const vendor = await Vendor.findOne({ _id: req.body.vendorId })
+    if(!vendor) {
+        return res.status(400).json({
+            message: 'Vendor does not exist'
+        })
+    }
+
+    if(!req.file) {
+        return next()
+    }
+
+    // if('image' in vendor) {
+    //     const fileLink = vendor.image
+    //     const lastSlash = fileLink.lastIndexOf('/')
+    //     const fileName = fileLink.slice(lastSlash + 1)
+
+    //     deleteFile(fileName).catch(console.error)
+    // }
+
+    const gcsname = Date.now() + '-' + req.file.originalname
+    const file = bucket.file(gcsname)
+
+    const stream = file.createWriteStream({
+        metadata: {
+        },
+    })
+
+    stream.on('error', (err) => {
+        req.file.cloudStorageError = err
+        next(err)
+    })
+
+    stream.on('finish', () => {
+        req.file.cloudStorageObject = gcsname
+        req.file.cloudStoragePublicUrl = getPublicUrl(gcsname)
+        next()
+    })
+
+    stream.end(req.file.buffer)
 }
 
 module.exports = ImgUpload

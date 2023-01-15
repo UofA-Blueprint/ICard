@@ -26,7 +26,11 @@ function vendorImageUpload() {
                 'Content-Type': 'multipart/form-data'
             }
         }).then(res => {
-            console.log(res);
+            alert('Vendor Logo Uploaded Successfully');
+            // clear the input field
+            document.getElementById('input1').value = '';
+            // clear the file input field
+            document.getElementsByName('myImage')[0].value = '';
         }
         ).catch(err => {
             console.log(err);

@@ -64,7 +64,7 @@ const MyICardPage = (props) => {
             </View>
           </View>
         )}
-    return <View>{content}</View>
+    return <View style = {{width: '95%'}}>{content}</View>
   }
  
   return (
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   notification: {
     flexDirection: 'row',
     borderRadius: 30,
-    width: 312,
+    //width: '100%',
     height: 66,
     backgroundColor: colors.white,
     marginTop: 60,
@@ -163,17 +163,23 @@ const styles = StyleSheet.create({
       },
     shadowOpacity: 0.25,
     elevation: 5,
+    paddingLeft: 10,
+    paddingRight: 10
   },
   notificationPic: {
     width: 34,
     height: 34,
+    //justifyContent: 'center'
     marginTop: 16,
-    marginLeft: 16,
+    //marginLeft: 16,
   },
   notificationText: {
     marginLeft: 24,
+    height: '100%',
+    textAlignVertical: 'center',
     fontSize: 12,
     fontWeight: '400',
+    flexWrap: 'wrap'
   },
 });
  

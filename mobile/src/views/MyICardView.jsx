@@ -21,6 +21,7 @@ const apiKey = API_KEY;
 const MyICard = ({navigation}) => {
   const {user, setUser} = useContext(AuthContext);
   const [refreshing, setRefreshing] = useState(false);
+  //const [message, setMessage] = useState("");
   console.log('Message: ' + message);
   //console.log(user);
   const loadUserData = async () => {
@@ -39,8 +40,8 @@ const MyICard = ({navigation}) => {
       //doubt with verification image below. If unfilled from the start in the backend, does data[verfication_image] return "" or null? When mine was empty in the backend, console.log(data) did not show any attribute called verification image. When i filled it up in the backend, it then showed up when printed in the console. But then when I erased it in the backend now, suddenly console.log(data) still shows verifcation image but with this: ""??
       data["verification_image"] == "" ? data["verification_image"] = "" : null;
       delete data["_id"];
-      console.log("Retrived data:")
-      console.log(data);
+      //console.log("Retrived data:")
+      //console.log(data);
       setRefreshing(false);
       setUser(data);
       storeUser(data);

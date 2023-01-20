@@ -44,7 +44,7 @@ const App = () => {
       const lastDate = parseInt(await AsyncStorage.getItem(storeDateKey));
       if (lastDate != null && !isNaN(lastDate)) {
         //change num in if statement below to a month in milliseconds
-        if (new Date().getTime() - lastDate > 30000) {
+        if (new Date().getTime() - lastDate > 10000) {
           setUser(null);
           storeUser(null);
         } else {

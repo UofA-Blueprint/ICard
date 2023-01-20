@@ -16,7 +16,7 @@ module.exports = {
                 email: check_student_db.email,
                 active_status: check_student_db.active_status,
                 isaf_status: check_student_db.isaf_status,
-                verify: check_student_db.verify,
+                verify: check_student_db.verify_status,
                 picture: check_student_db.picture,
                 key: jwt.sign(
                     {
@@ -35,7 +35,7 @@ module.exports = {
                 email: user.email,
                 active_status: false,
                 isaf_status: false,
-                verify: false,
+                verify: verify_status,
                 picture: user.picture,
             })
 
@@ -47,7 +47,7 @@ module.exports = {
                     email: new_student_db.email,
                     active_status: new_student_db.active_status,
                     isaf_status: new_student_db.isaf_status,
-                    verify: new_student_db.verify,
+                    verify: new_student_db.verify_status,
                     picture: new_student_db.picture,
                     key: jwt.sign(
                         {

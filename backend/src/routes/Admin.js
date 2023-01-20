@@ -113,7 +113,7 @@ const adminBro = new AdminBro({
     pages: {
         VendorLogo: {
             label: 'Vendor Image Upload',
-            component: AdminBro.bundle('../components/VendorImageUpload'),
+            component: AdminBro.bundle('../components/vendorImageUpload'),
         }
     },
 })

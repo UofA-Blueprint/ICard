@@ -55,13 +55,13 @@ ImgUpload.uploadToGCS = async (req, res, next) => {
     }
 
     // delete the old verification image before new one uploaded
-    if ('verification_image' in student) {
-        const fileLink = student.verification_image
-        const lastSlash = fileLink.lastIndexOf('/')
-        const fileName = fileLink.slice(lastSlash + 1)
+    // if ('verification_image' in student) {
+    //     const fileLink = student.verification_image
+    //     const lastSlash = fileLink.lastIndexOf('/')
+    //     const fileName = fileLink.slice(lastSlash + 1)
 
-        deleteFile(fileName).catch(console.error)
-    }
+    //     deleteFile(fileName).catch(console.error)
+    // }
 
     // Can optionally add a path to the gcsname below by concatenating it to the filename.
     const gcsname = Date.now() + '-' + req.file.originalname

@@ -54,8 +54,8 @@ module.exports = {
                 //         { expiresIn: '30d' }
                 //     ),
                 // }
-
-                const fetch_student = await Student.findOne({ email: new_student_db.email })
+                console.log('I was here')
+                const fetch_student = await Student.findOne({ email: user.email })
                 const studentWithKey = {
                     id: fetch_student.id,
                     name: fetch_student.name,

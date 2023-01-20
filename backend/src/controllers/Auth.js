@@ -40,15 +40,32 @@ module.exports = {
             try {
                 const new_student_db = await Student.create(new_student)
 
+                // const studentWithKey = {
+                //     name: new_student_db.name,
+                //     email: new_student_db.email,
+                //     isaf_status: new_student_db.isaf_status,
+                //     verify_status: new_student_db.verify_status,
+                //     picture: new_student_db.picture,
+                //     key: jwt.sign(
+                //         {
+                //             email: new_student_db.email,
+                //         },
+                //         process.env.JWT_SECRET,
+                //         { expiresIn: '30d' }
+                //     ),
+                // }
+
+                const fetch_student = await Student.findOne({ email: new_student_db.email })
                 const studentWithKey = {
-                    name: new_student_db.name,
-                    email: new_student_db.email,
-                    isaf_status: new_student_db.isaf_status,
-                    verify_status: new_student_db.verify_status,
-                    picture: new_student_db.picture,
+                    id: fetch_student.id,
+                    name: fetch_student.name,
+                    email: fetch_student.email,
+                    isaf_status: fetch_student.isaf_status,
+                    verify_status: fetch_student.verify_status,
+                    picture: fetch_student.picture,
                     key: jwt.sign(
                         {
-                            email: new_student_db.email,
+                            email: fetch_student.email,
                         },
                         process.env.JWT_SECRET,
                         { expiresIn: '30d' }

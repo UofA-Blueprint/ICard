@@ -14,9 +14,12 @@ module.exports = {
                 id: check_student_db.id,
                 name: check_student_db.name,
                 email: check_student_db.email,
-                active_status: check_student_db.active_status,
                 isaf_status: check_student_db.isaf_status,
+<<<<<<< HEAD
                 verify: check_student_db.verify_status,
+=======
+                verify_status: check_student_db.verify_status,
+>>>>>>> b333a505135eba4f5b54c1834a39f90ef0d5b375
                 picture: check_student_db.picture,
                 key: jwt.sign(
                     {
@@ -33,25 +36,53 @@ module.exports = {
                 // if the user doesn't exist, create a new user
                 name: user.name,
                 email: user.email,
-                active_status: false,
                 isaf_status: false,
+<<<<<<< HEAD
                 verify: verify_status,
+=======
+                verify_status: false,
+>>>>>>> b333a505135eba4f5b54c1834a39f90ef0d5b375
                 picture: user.picture,
             })
 
             try {
                 const new_student_db = await Student.create(new_student)
 
+                // const studentWithKey = {
+                //     name: new_student_db.name,
+                //     email: new_student_db.email,
+                //     isaf_status: new_student_db.isaf_status,
+                //     verify_status: new_student_db.verify_status,
+                //     picture: new_student_db.picture,
+                //     key: jwt.sign(
+                //         {
+                //             email: new_student_db.email,
+                //         },
+                //         process.env.JWT_SECRET,
+                //         { expiresIn: '30d' }
+                //     ),
+                // }
+                console.log('I was here')
+                const fetch_student = await Student.findOne({ email: user.email })
                 const studentWithKey = {
+<<<<<<< HEAD
                     name: new_student_db.name,
                     email: new_student_db.email,
                     active_status: new_student_db.active_status,
                     isaf_status: new_student_db.isaf_status,
                     verify: new_student_db.verify_status,
                     picture: new_student_db.picture,
+=======
+                    id: fetch_student.id,
+                    name: fetch_student.name,
+                    email: fetch_student.email,
+                    isaf_status: fetch_student.isaf_status,
+                    verify_status: fetch_student.verify_status,
+                    picture: fetch_student.picture,
+>>>>>>> b333a505135eba4f5b54c1834a39f90ef0d5b375
                     key: jwt.sign(
                         {
-                            email: new_student_db.email,
+                            email: fetch_student.email,
                         },
                         process.env.JWT_SECRET,
                         { expiresIn: '30d' }

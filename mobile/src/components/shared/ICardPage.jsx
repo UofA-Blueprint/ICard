@@ -102,17 +102,17 @@ const MyICardPage = (props) => {
       else if (status == 'iNactive') {
         content = (
             <View style={styles.notification}>
-            <Image source={require('../../../assets/Link.png')} style={styles.notificationPic} />
+            <Image source={require('../../../assets/x.png')} style={styles.notificationPic} />
             <View justifyContent={'center'}>
               <Text style={styles.notificationText}>Your account is unverified. Please{'\n'}go through the verification process</Text>
             </View>
           </View> 
         )}
-          //inactive, reverify
+          //inactive, re
         else if (status == 'Inactive') {
           content = (
               <View style={styles.notification}>
-              <Image source={require('../../../assets/Link.png')} style={styles.notificationPic} />
+              <Image source={require('../../../assets/x.png')} style={styles.notificationPic} />
               <View justifyContent={'center'}>
                 <Text style={styles.notificationText}>Something went wrong, please{'\n'}reverify account or contact ISA at{'\n'}isa.general@ualberta.ca </Text>
               </View>

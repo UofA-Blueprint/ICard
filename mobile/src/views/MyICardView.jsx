@@ -22,6 +22,7 @@ const MyICard = ({navigation}) => {
 
   if (!user.isaf_status && !user.verify_status && !user.verification_image) finalStatus = 'iNactive'; //verify
     
+  
   if (!user.isaf_status && !user.verify && user.verification_image)
     finalStatus = 'verifying account';
   

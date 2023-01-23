@@ -64,6 +64,15 @@ const MyICardPage = (props) => {
             </View>
           </View>
         )}
+      else if (status == 'verifying account') {
+        content = (
+          <View style={styles.notification}>
+            <Image source={require('../../../assets/Link.png')} style={styles.notificationPic} />
+            <View justifyContent={'center'}>
+              <Text style={styles.notificationText}>{msg}</Text>
+            </View>
+          </View>
+        )}
     return <View style = {{width: '95%'}}>{content}</View>
   }
  

@@ -58,7 +58,7 @@ const RegistrationView = () => {
   */
 
   return (
-    <MyICardPage user={null} status={'Inactive'}>
+    <MyICardPage user={null} status={'Unlinked'}>
       <View style={styles.bodyContainer}>
         <TouchableOpacity
           disabled={!request}

@@ -89,7 +89,7 @@ const MyICardPage = (props) => {
       else if (status == 'Unlinked') {
         content = (
           <View style={styles.notification}>
-            <Image source={require('../../../assets/Refresh.png')} style={styles.notificationPic} />
+            <Image source={require('../../../assets/Link.png')} style={styles.notificationPic} />
             <View justifyContent={'center'}>
               <Text style={styles.notificationText}>Link to your University of Alberta{'\n'}email to gain access to My ICard</Text>
             </View>

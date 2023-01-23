@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import {View, Image, StyleSheet, Text, TouchableOpacity, ImageBackground} from 'react-native';
 import FancyBox from './FancyBox';
+
  
 import {
   useFonts,
@@ -13,13 +14,15 @@ import {colors} from '../../utilites/Theme';
  
  
  
- 
+ //Adding experimental colors
 const statusColors = {
   active: colors.primary,
   inactive: colors.red,
   stale: colors.darkGray,
   'verifying account': colors.yellow,
   Unlinked: colors.lightGray,
+  'iNactive': colors.red,
+  'Inactive': colors.red
 };
  
 const MyICardPage = (props) => {
@@ -33,13 +36,40 @@ const MyICardPage = (props) => {
   }
 
 
+
+  //creation of two experimental buttons
+  const Button = ({status, onPress}) => {
+    let content1
+    if (status == 'iNactive') {
+      content1 = (
+        <View>
+          <TouchableOpacity style={styles.button} onPress={onPress}>
+         <Text style={styles.buttonText}> Verify account</Text>
+        </TouchableOpacity>
+        </View>
+      )
+    }
+    else if (status == 'Inactive') {
+      content1 = (
+        <View>
+          <TouchableOpacity style={styles.button} onPress={onPress}>
+         <Text style={styles.buttonText}> Reverify account</Text>
+        </TouchableOpacity>
+        </View>
+      )
+    }
+
+    return <Text>{content1} </Text>
+  }
+
+
   const Card = ({status}) => {
     let content
     let color = props.status
  
     if (status == 'inactive') {
       content = (
-        <View style={styles.notification}>
+          <View style={styles.notification}>
           <Image source={require('../../../assets/x.png')} style={styles.notificationPic} />
           <View justifyContent={'center'}>
             <Text style={styles.notificationText}>Please pay your ISAF fees to{'\n'}activate account</Text>
@@ -55,26 +85,49 @@ const MyICardPage = (props) => {
           </View>
         </View>
       )}
+
       else if (status == 'Unlinked') {
         content = (
           <View style={styles.notification}>
-            <Image source={require('../../../assets/Link.png')} style={styles.notificationPic} />
+            <Image source={require('../../../assets/Refresh.png')} style={styles.notificationPic} />
             <View justifyContent={'center'}>
               <Text style={styles.notificationText}>Link to your University of Alberta{'\n'}email to gain access to My ICard</Text>
             </View>
           </View>
         )}
+     
+      //Adding two new experimental status
+
+      //inactive, verify
+      else if (status == 'iNactive') {
+        content = (
+            <View style={styles.notification}>
+            <Image source={require('../../../assets/Link.png')} style={styles.notificationPic} />
+            <View justifyContent={'center'}>
+              <Text style={styles.notificationText}>Your account is unverified. Please{'\n'}go through the verification process</Text>
+            </View>
+          </View> 
+        )}
+          //inactive, reverify
+        else if (status == 'Inactive') {
+          content = (
+              <View style={styles.notification}>
+              <Image source={require('../../../assets/Link.png')} style={styles.notificationPic} />
+              <View justifyContent={'center'}>
+                <Text style={styles.notificationText}>Something went wrong, please{'\n'}reverify account or contact ISA at{'\n'}isa.general@ualberta.ca </Text>
+              </View>
+            </View> 
+          )}
+
     return <View>{content}</View>
   }
- 
   return (
     <ImageBackground source={require('../../../assets/Background.png')} resizeMode="cover" style={styles.backgroundImage}>
  
      
       <Card status={props.status} />
-     
- 
-      <View style={styles.container} backgroundColor={statusColors[props.status]} marginTop={props.status == 'inactive' || props.status == 'stale' || props.status == 'Unlinked' ? 109 : 235}>
+
+      <View style={styles.container} backgroundColor={statusColors[props.status]} marginTop={props.status == 'inactive' || props.status == 'stale' || props.status == 'Unlinked'||props.status =='iNactive' || props.status == 'Inactive' ? 109 : 235}>
         <View style={styles.containerInside}>
           <Image source={user != null ? {uri:user.picture } : require('../../../assets/account.png')} style={styles.avatar} borderColor={statusColors[props.status]} />
           <Text style={styles.userName} >{user != null ? user.name : 'N/A'}</Text>
@@ -82,6 +135,9 @@ const MyICardPage = (props) => {
           <Text style={[{...styles.ISAFStatus, color: statusColors[props.status]}]} >{props.status}</Text>
         </View>
       </View>
+
+      {/* Experimental Position */}
+      <Button onPress={props.verify} status={props.status}/>
       {props.status == 'Unlinked' ? (
            props.children
        ): (
@@ -174,6 +230,31 @@ const styles = StyleSheet.create({
     marginLeft: 24,
     fontSize: 12,
     fontWeight: '400',
+  },
+  button: {
+    backgroundColor: colors.white,
+    padding: 16,
+    alignSelf: 'center',
+    width: 312, 
+    height: 54,
+    borderRadius: 50,
+    marginTop: 12,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+      },
+    shadowRadius: 4,
+    shadowOpacity:1
+  },
+  buttonText: {
+    fontFamily: 'Roboto',
+    fontStyle: 'normal',
+    fontSize: 20,
+    color: colors.darkGray,
+    textAlign: 'center',
+    lineHeight:23,
+    display: 'flex',
+    alignItems: 'center'
   },
 });
  

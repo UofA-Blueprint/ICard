@@ -17,9 +17,14 @@ const MyICard = ({navigation}) => {
   if (user.verify) finalStatus = 'inactive';
   if (user.isaf_status) finalStatus = 'active';
 
+  //Adding two new scenarios (experimental) //Posible error: verify and verify_status??
+  if (!user.isaf_status && user.verify_status) finalStatus = 'Inactive';  //reverify
+
+  if (!user.isaf_status && !user.verify_status && !user.verification_image) finalStatus = 'iNactive'; //verify
+    
   if (!user.isaf_status && !user.verify && user.verification_image)
     finalStatus = 'verifying account';
-
+  
   //verify button below is a todo. Just have a console.log in it for now
   return (
     <MyICardPage

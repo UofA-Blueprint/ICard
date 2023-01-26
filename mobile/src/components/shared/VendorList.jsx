@@ -50,6 +50,7 @@ const VendorList = ({searchPhrase, setClicked, data}) => {
 
     return (
                 <FlatList
+                    showsVerticalScrollIndicator ={true}
                     data={data}
                     renderItem={renderItem}
                     keyExtractor={(item) => item.id}

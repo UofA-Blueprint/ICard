@@ -83,7 +83,7 @@ const MyICardPage = (props) => {
       <Card status={props.status} msg = {props.msg} />
      
  
-      <View style={styles.container} backgroundColor={statusColors[props.status]} marginTop={props.status == 'inactive' || props.status == 'stale' || props.status == 'Unlinked' ? 109 : 235}>
+      <View style={styles.container} backgroundColor={statusColors[props.status]} marginTop={props.status == 'inactive' || props.status == 'stale' || props.status == 'Unlinked' || props.status == 'verifying account'? 109 : 235}>
         <View style={styles.containerInside}>
           <Image source={user != null ? {uri:user.picture } : require('../../../assets/account.png')} style={styles.avatar} borderColor={statusColors[props.status]} />
           <Text style={styles.userName} >{user != null ? user.name : 'N/A'}</Text>
@@ -162,6 +162,8 @@ const styles = StyleSheet.create({
   notification: {
     flexDirection: 'row',
     borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
     //width: '100%',
     height: 66,
     backgroundColor: colors.white,
@@ -179,14 +181,14 @@ const styles = StyleSheet.create({
     width: 34,
     height: 34,
     //justifyContent: 'center'
-    marginTop: 16,
+    //marginTop: 16,
     //marginLeft: 16,
   },
   notificationText: {
-    marginLeft: 24,
+    marginLeft: 5,
     height: '100%',
     textAlignVertical: 'center',
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: '400',
     flexWrap: 'wrap'
   },

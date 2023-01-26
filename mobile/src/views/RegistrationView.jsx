@@ -46,8 +46,6 @@ const RegistrationView = () => {
           .then(data => {
             data["verification_image"] == ""  || data["verification_image"] == undefined ? data["verification_image"] = "" : null;
             setUser(data);
-            console.log("When logging in: ")
-            console.log(data)
             storeDate();
             storeUser(data);
           });

@@ -7,7 +7,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 //import * as StudentFunctions from '../../../backend/src/controllers/Students';
 
-console.log("here")
+
 let finalStatus;
 let message;
 
@@ -23,11 +23,9 @@ const MyICard = ({navigation}) => {
   const {user, setUser} = useContext(AuthContext);
   const [checkStatus, setCheckStatus] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
-  //const [message, setMessage] = useState("");
-  console.log('Message: ' + message);
-  //console.log(user);
+
   const loadUserData = async () => {
-    //console.log('Pulled')
+
     setRefreshing(true);
     fetch(authRoute + `api/students/${user.id}`, {
       method: 'GET',
@@ -39,17 +37,12 @@ const MyICard = ({navigation}) => {
     .then(data => {
       data["key"] = user.key;
       data["id"] = data["_id"];
-      //doubt with verification image below. If unfilled from the start in the backend, does data[verfication_image] return "" or null? When mine was empty in the backend, console.log(data) did not show any attribute called verification image. When i filled it up in the backend, it then showed up when printed in the console. But then when I erased it in the backend now, suddenly console.log(data) still shows verifcation image but with this: ""??
       data["verification_image"] == ""  || data["verification_image"] == undefined ? data["verification_image"] = "" : null;
       delete data["_id"];
-      console.log("Retrived data:")
-      console.log(data);
       setRefreshing(false);
       setUser(data);
       storeUser(data);
       setCheckStatus(true);
-      
-      
     })
     .catch((error) => {
       console.error(error);
@@ -60,7 +53,6 @@ if (user == null) return <></>;
 
 
 const statusCheck = () => {
-  console.log("checking status")
   if(user.isaf_status == true && user.verify_status == true){
     finalStatus = 'active';
   }else if(user.isaf_status == false && user.verify_status == true){
@@ -82,24 +74,11 @@ const statusCheck = () => {
  
 useEffect(() => {
   if (checkStatus){
-    console.log("Use effect running")
     statusCheck();
     setCheckStatus(false);
   }
 }, [checkStatus])    
 
- 
-
-
-//console.log(finalStatus);
-//console.log(message);
-  
-  
-  //if (user.verify) finalStatus = 'inactive';
-  //if (user.isaf_status) finalStatus = 'active';
-
-  /*if (!user.isaf_status && !user.verify && user.verification_image)
-    finalStatus = 'verifying account';*/
 
   //verify button below is a todo. Just have a console.log in it for now
   return (

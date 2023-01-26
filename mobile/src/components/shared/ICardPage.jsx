@@ -111,13 +111,18 @@ const MyICardPage = (props) => {
 
     return <View>{content}</View>
   }
+  const marginTopValue = props.status == 'inactive' || props.status == 'stale' 
+        || props.status == 'Unlinked'||props.status =='inactive, verify' 
+        || props.status == 'inactive, reverify' 
+        ? 109 : 235;
+
   return (
     <ImageBackground source={require('../../../assets/Background.png')} resizeMode="cover" style={styles.backgroundImage}>
  
      
       <Card status={props.status} />
 
-      <View style={styles.container} backgroundColor={statusColors[props.status]} marginTop={props.status == 'inactive' || props.status == 'stale' || props.status == 'Unlinked'||props.status =='inactive, verify' || props.status == 'inactive, reverify' ? 109 : 235}>
+      <View style={styles.container} backgroundColor={statusColors[props.status]} marginTop={marginTopValue}>
         <View style={styles.containerInside}>
           <Image source={user != null ? {uri:user.picture } : require('../../../assets/account.png')} style={styles.avatar} borderColor={statusColors[props.status]} />
           <Text style={styles.userName} >{user != null ? user.name : 'N/A'}</Text>
@@ -128,15 +133,18 @@ const MyICardPage = (props) => {
               <Text>{props.status}</Text>}
           </Text>
         </View>
+        
       </View>
 
-      {/* Experimental Position */}
-
-      {props.status == 'inactive, verify' || 'inactive, reverify' ? (
+      {props.status == 'inactive, verify' || props.status == 'inactive, reverify'  ? (
           <VerificationButton onPress={props.verify} status={props.status}/>
-      ): (
-        <></>
+      ): (  <></>
+        
       )}
+
+
+
+     
 
       {props.status == 'Unlinked' ? (
            props.children

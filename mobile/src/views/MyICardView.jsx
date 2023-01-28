@@ -83,7 +83,7 @@ useEffect(() => {
   //verify button below is a todo. Just have a console.log in it for now
   return (
     <View style = {styles.container}>
-      <ScrollView refreshControl={<RefreshControl refreshing = {refreshing} onRefresh = {loadUserData}/>} 
+      <ScrollView data-testid = {'refreshControl'} refreshControl={<RefreshControl refreshing = {refreshing} onRefresh = {loadUserData}/>} 
         contentContainerStyle={styles.contentContainer}>
         <MyICardPage
           user={user}

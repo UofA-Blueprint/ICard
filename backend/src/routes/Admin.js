@@ -54,7 +54,12 @@ const adminBro = new AdminBro({
             options: {
                 properties: {
                     _id: {
-                        isVisible: false,
+                        isVisible: {
+                            list: false,
+                            edit: false,
+                            filter: false,
+                            show: true
+                        },
                     },
                 },
             },
@@ -105,6 +110,12 @@ const adminBro = new AdminBro({
             },
         },
     ],
+    pages: {
+        VendorLogo: {
+            label: 'Vendor Image Upload',
+            component: AdminBro.bundle('../components/vendorImageUpload'),
+        }
+    },
 })
 
 const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {

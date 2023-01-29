@@ -16,19 +16,20 @@ const Item = ({itemData}) => (
 
 const VendorList = ({searchPhrase, setClicked, data}) => {
     const renderItem = ({item}) => {
+        
         if (searchPhrase === '') {
             return (
                 <Item itemData={item}/>
             )
         }
-
-        if (item.vendorName.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
+        
+        if (item.name.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
             return (
                 <Item itemData={item}/>
             )
         }
 
-        if (item.location.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
+        if (item.address.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
             return (
                 <Item itemData={item}/>
             )
@@ -40,15 +41,16 @@ const VendorList = ({searchPhrase, setClicked, data}) => {
             )
         }
 
-        if (item.contact.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
+        if (item.phone_number.toLowerCase().includes(searchPhrase.toLowerCase().trim())) {
             return (
                 <Item itemData={item}/>
             )
-        }
+        } 
     }
 
     return (
                 <FlatList
+                    showsVerticalScrollIndicator ={true}
                     data={data}
                     renderItem={renderItem}
                     keyExtractor={(item) => item.id}

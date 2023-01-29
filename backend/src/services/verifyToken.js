@@ -59,7 +59,7 @@ function checkAuthenticated(req, res, next) {
             req.user = user // set the user object to the request
             next() // call next() to continue
         })
-        .catch((err) => {
+        .catch(() => {
             res.status(401).json({ message: 'Invalid token.' })
         })
 }

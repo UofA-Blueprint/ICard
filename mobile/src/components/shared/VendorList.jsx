@@ -49,12 +49,14 @@ const VendorList = ({searchPhrase, setClicked, data}) => {
     }
 
     return (
+            <View style={styles.container}>
                 <FlatList
                     data={data}
                     renderItem={renderItem}
                     keyExtractor={(item) => item.id}
                     contentContainerStyle={styles.container}
                 />
+            </View>
     )
 }
 

@@ -39,22 +39,6 @@ module.exports = {
 
             try {
                 const new_student_db = await Student.create(new_student)
-
-                // const studentWithKey = {
-                //     name: new_student_db.name,
-                //     email: new_student_db.email,
-                //     isaf_status: new_student_db.isaf_status,
-                //     verify_status: new_student_db.verify_status,
-                //     picture: new_student_db.picture,
-                //     key: jwt.sign(
-                //         {
-                //             email: new_student_db.email,
-                //         },
-                //         process.env.JWT_SECRET,
-                //         { expiresIn: '30d' }
-                //     ),
-                // }
-                console.log('I was here')
                 const fetch_student = await Student.findOne({ email: user.email })
                 const studentWithKey = {
                     id: fetch_student.id,

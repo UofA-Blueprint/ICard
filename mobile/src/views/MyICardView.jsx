@@ -36,13 +36,13 @@ const MyICardView = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Verification"
-        component={VerificationView}
+        name="My ICard Page"
+        component={MyICard}
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="My ICard Page"
-        component={MyICard}
+        name="Verification"
+        component={VerificationView}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

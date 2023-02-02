@@ -13,7 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeView from './src/views/HomeView';
 import VendorView from './src/views/VendorView';
 import RegistrationView from './src/views/RegistrationView';
-import {NavigationContainer} from '@react-navigation/native';
+import {getFocusedRouteNameFromRoute, NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ScreenOption from './src/utilites/ScreenOption';
 import MyICardView from './src/views/MyICardView';
@@ -104,7 +104,21 @@ const App = () => {
               <>
                 <Tab.Screen name="Home" component={HomeView} />
                 <Tab.Screen name="Vendors" component={VendorView} />
-                <Tab.Screen name="My ICard" component={MyICardView} />
+                {/* https://medium.com/@mspviraj/hide-bottom-tab-bar-on-a-specific-screen-in-react-navigation-6-0-26d31625d339 */}
+                <Tab.Screen
+                  name="My ICard"
+                  component={MyICardView}
+                  options={({route}) => ({
+                    tabBarStyle: (route => {
+                      const routeName =
+                        getFocusedRouteNameFromRoute(route) ?? '';
+                      if (routeName === 'Verification') {
+                        return {display: 'none'};
+                      }
+                      return;
+                    })(route),
+                  })}
+                />
               </>
             )}
           </Tab.Navigator>

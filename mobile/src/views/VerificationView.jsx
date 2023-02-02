@@ -241,6 +241,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: colors.darkGray,
     letterSpacing: 0.5,
+    lineHeight: 23
   },
   example: {
     fontWeight: 'bold',
@@ -251,7 +252,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 8,
-    marginBottom: 16,
+    marginBottom: 20,
   },
   viewTitle: {fontWeight: 'bold', fontSize: 20},
   body: {flex: 1},
@@ -265,6 +266,7 @@ const styles = StyleSheet.create({
     borderColor: colors.primary,
     width: '100%',
     padding: 6,
+    marginBottom: 5,
   },
   uploadButton: {
     backgroundColor: colors.primary,

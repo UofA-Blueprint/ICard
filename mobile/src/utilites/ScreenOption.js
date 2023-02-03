@@ -9,7 +9,7 @@ const ScreenOption = ({route}) => ({
   // https://medium.com/@mspviraj/hide-bottom-tab-bar-on-a-specific-screen-in-react-navigation-6-0-26d31625d339
   tabBarStyle: (route => {
     const routeName = getFocusedRouteNameFromRoute(route) ?? '';
-    if (routeName === 'Verification') {
+    if (routeName === 'Verification' || routeName === 'Submitted') {
       return {display: 'none'};
     } else {
       return {display: globalStyleSheet.tabBar};

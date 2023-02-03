@@ -204,7 +204,7 @@ const VerifcationView = ({navigation}) => {
             </View>
             <Pressable
               style={image ? styles.submitButton : styles.inactiveSubmitButton}
-              onPress={image ? submitImage : () => {}}>
+              onPress={image ? submitImage : () => {console.log('press')}}>
               <Text style={styles.submitButtonText}>Submit</Text>
             </Pressable>
             <Pressable
@@ -305,7 +305,7 @@ const styles = StyleSheet.create({
     right: 0,
   },
   submitButton: {
-    borderRadius: 99,
+    borderRadius: 20,
     backgroundColor: colors.primary,
     padding: 16,
     width: '90%',

@@ -104,20 +104,9 @@ const App = () => {
               <>
                 <Tab.Screen name="Home" component={HomeView} />
                 <Tab.Screen name="Vendors" component={VendorView} />
-                {/* https://medium.com/@mspviraj/hide-bottom-tab-bar-on-a-specific-screen-in-react-navigation-6-0-26d31625d339 */}
                 <Tab.Screen
                   name="My ICard"
                   component={MyICardView}
-                  options={({route}) => ({
-                    tabBarStyle: (route => {
-                      const routeName =
-                        getFocusedRouteNameFromRoute(route) ?? '';
-                      if (routeName === 'Verification') {
-                        return {display: 'none'};
-                      }
-                      return;
-                    })(route),
-                  })}
                 />
               </>
             )}

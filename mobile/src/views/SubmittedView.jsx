@@ -14,8 +14,9 @@ import {
 } from 'react-native';
 import {colors} from '../utilites/Theme';
 import {Ionicons} from '@expo/vector-icons';
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
-const SubmittedView = () => {
+const SubmittedView = ({navigation}) => {
   return (
     <ImageBackground
       source={require('../../assets/Background.png')}
@@ -23,6 +24,16 @@ const SubmittedView = () => {
       style={styles.backgroundImage}>
       <SafeAreaView style={styles.container} edges={['top']}>
         <View style={styles.header}>
+          <View style={styles.backButton}>
+            <FontAwesome5.Button
+              name="arrow-left"
+              size={24}
+              color={colors.primary}
+              backgroundColor="transparent"
+              onPress={() => {
+                navigation.navigate('My ICard Page');
+              }}></FontAwesome5.Button>
+          </View>
           <Text style={styles.viewTitle}>Verify Account</Text>
         </View>
         <View style={styles.body}>
@@ -33,13 +44,19 @@ const SubmittedView = () => {
           <View>
             <Ionicons name="checkmark-circle-outline" style={styles.ionicon} />
 
-            <Text style={{color: colors.darkGray, fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>Submitted!</Text>
+            <Text
+              style={{
+                color: colors.darkGray,
+                fontSize: 20,
+                fontWeight: 'bold',
+                textAlign: 'center',
+              }}>
+              Submitted!
+            </Text>
           </View>
           <Pressable
             style={styles.submitButton}
-            onPress={() => {
-              console.log('press');
-            }}>
+            onPress={() => navigation.navigate('Home')}>
             <Text style={styles.submitButtonText}>Discover ISAF Deals</Text>
           </Pressable>
         </View>
@@ -59,6 +76,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     position: 'relative',
     paddingTop: 16,
+  },
+  backButton: {
+    position: 'absolute',
+    left: -20,
   },
   instruction: {
     fontSize: 18,

@@ -75,6 +75,7 @@ const VerifcationView = ({navigation}) => {
           })
           .catch(console.error);
       });
+    navigation.navigate('Submitted');
   };
 
   return (
@@ -204,7 +205,7 @@ const VerifcationView = ({navigation}) => {
             </View>
             <Pressable
               style={image ? styles.submitButton : styles.inactiveSubmitButton}
-              onPress={image ? submitImage : () => {console.log('press')}}>
+              onPress={image ? submitImage : () => {}}>
               <Text style={styles.submitButtonText}>Submit</Text>
             </Pressable>
             <Pressable
@@ -241,7 +242,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: colors.darkGray,
     letterSpacing: 0.5,
-    lineHeight: 23
+    lineHeight: 23,
   },
   example: {
     fontWeight: 'bold',

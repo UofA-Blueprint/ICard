@@ -10,9 +10,9 @@ const ScreenOption = ({route}) => ({
   tabBarStyle: (route => {
     const routeName = getFocusedRouteNameFromRoute(route) ?? '';
     if (routeName === 'Verification' || routeName === 'Submitted') {
-      return {display: 'none'};
+      return globalStyleSheet.tabBarHidden;
     } else {
-      return {display: globalStyleSheet.tabBar};
+      return globalStyleSheet.tabBar;
     }
   })(route),
   tabBarLabelStyle: globalStyleSheet.tabBarLabel,

@@ -56,7 +56,7 @@ const SubmittedView = ({navigation}) => {
           </View>
           <Pressable
             style={styles.submitButton}
-            onPress={() => navigation.navigate('Home')}>
+            onPress={() => navigation.navigate('Vendors')}>
             <Text style={styles.submitButtonText}>Discover ISAF Deals</Text>
           </Pressable>
         </View>

@@ -78,7 +78,7 @@ const VerifcationView = ({navigation}) => {
             color={colors.primary}
             backgroundColor="transparent"
             onPress={() => {
-              navigation.navigate('My ICard Page');
+              navigation.navigate('My ICard');
             }}></FontAwesome5.Button>
         </View>
         <Text style={styles.viewTitle}>Verify Account</Text>
@@ -167,7 +167,7 @@ const VerifcationView = ({navigation}) => {
           </Pressable>
           <Pressable
             onPress={() => {
-              navigation.navigate('My ICard Page');
+              navigation.navigate('My ICard');
             }}>
             <Text style={styles.skipButtonText}>Skip for now</Text>
           </Pressable>

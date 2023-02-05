@@ -188,7 +188,7 @@ const VerifcationView = ({navigation}) => {
                   <Text style={styles.uploadButtonText}>Upload Photo</Text>
                 </Pressable>
               )}
-              {image ? (
+              {image && (
                 <View style={styles.cancelButton}>
                   <FontAwesome5.Button
                     name="times"
@@ -199,8 +199,6 @@ const VerifcationView = ({navigation}) => {
                     }}
                   />
                 </View>
-              ) : (
-                <></>
               )}
             </View>
             <Pressable

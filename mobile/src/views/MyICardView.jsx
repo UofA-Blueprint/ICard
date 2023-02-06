@@ -3,6 +3,7 @@ import React, {useContext} from 'react';
 import AuthContext from '../context/AuthContext';
 import MyICardPage from '../components/shared/ICardPage';
 import VerificationView from './VerificationView'
+import SubmittedView from './SubmittedView';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -43,6 +44,11 @@ const MyICardView = () => {
       <Stack.Screen
         name="Verification"
         component={VerificationView}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Submitted"
+        component={SubmittedView}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

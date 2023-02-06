@@ -57,6 +57,7 @@ const RegistrationView = () => {
   Render a Google Sign In Button
   */
 
+  //status defines button condition
   return (
     <MyICardPage user={null} status={'Unlinked'}>
       <View style={styles.bodyContainer}>

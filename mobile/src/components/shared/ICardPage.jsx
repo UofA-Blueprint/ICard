@@ -39,14 +39,16 @@ const MyICardPage = (props) => {
     {
       content1 = (
         <View>
-          <TouchableOpacity style={styles.button} onPress={onPress}>
-         <Text style={styles.buttonText}> {status === 'inactive, verify' ? 'Verify Account': 'Reverify account'}</Text>
-        </TouchableOpacity>
+          <TouchableOpacity style={styles.verificationbutton} onPress={onPress}>
+            <Text style={styles.buttonText}>
+              {status === 'inactive, verify' ? 'Verify Account' : 'Reverify account'}
+            </Text>
+          </TouchableOpacity>
         </View>
-      )
+      );
     }
-    return <Text>{content1} </Text>
-  }
+    return content1;
+  };
 
 
   const Card = ({status}) => {
@@ -226,7 +228,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '400',
   },
-  button: {
+  verificationbutton: {
     backgroundColor: colors.white,
     padding: 16,
     alignSelf: 'center',
@@ -234,22 +236,24 @@ const styles = StyleSheet.create({
     height: 54,
     borderRadius: 50,
     marginTop: 12,
+    shadowColor: "#000",
     shadowOffset: {
-      width: 0,
-      height: 4,
+	    width: 4,
+	    height: 4,
       },
-    shadowRadius: 4,
-    shadowOpacity:1
+    shadowOpacity: 0.25,
+    elevation: 5,
   },
   buttonText: {
+    textAlign: 'center',
     fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontSize: 20,
+    lineHeight: 23,
     color: colors.darkGray,
-    textAlign: 'center',
-    lineHeight:23,
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
  

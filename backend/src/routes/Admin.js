@@ -1,18 +1,17 @@
-const AdminBro = require('admin-bro')
-const AdminBroExpress = require('admin-bro-expressjs')
-const AdminBroMongoose = require('admin-bro-mongoose')
-const User = require('../models/AdminUser')
-const Student = require('../models/Student')
-const Vendor = require('../models/Vendor')
-const bcrypt = require('bcrypt')
-const mongoose = require('mongoose')
-require('dotenv').config()
+const AdminBro = require('admin-bro');
+const AdminBroExpress = require('admin-bro-expressjs');
+const AdminBroMongoose = require('admin-bro-mongoose');
+const User = require('../models/AdminUser');
+const Student = require('../models/Student');
+const Vendor = require('../models/Vendor');
+const bcrypt = require('bcrypt');
+const mongoose = require('mongoose');
+require('dotenv').config();
 
 // Check if the current user is an admin
-const canModifyUsers = ({ currentAdmin }) =>
-    currentAdmin && currentAdmin.role === 'admin'
+const canModifyUsers = ({ currentAdmin }) => currentAdmin && currentAdmin.role === 'admin';
 
-AdminBro.registerAdapter(AdminBroMongoose) // register mongoose adapter such that AdminBro can use it
+AdminBro.registerAdapter(AdminBroMongoose); // register mongoose adapter such that AdminBro can use it
 
 const adminBro = new AdminBro({
     databases: [mongoose], // register mongoose database
@@ -58,7 +57,7 @@ const adminBro = new AdminBro({
                             list: false,
                             edit: false,
                             filter: false,
-                            show: true
+                            show: true,
                         },
                     },
                 },
@@ -97,9 +96,9 @@ const adminBro = new AdminBro({
                                         parseInt(process.env.SALT_ROUNDS)
                                     ),
                                     password: undefined,
-                                }
+                                };
                             }
-                            return request
+                            return request;
                         },
                         isAccessible: canModifyUsers,
                     },
@@ -114,27 +113,24 @@ const adminBro = new AdminBro({
         VendorLogo: {
             label: 'Vendor Image Upload',
             component: AdminBro.bundle('../components/vendorImageUpload'),
-        }
+        },
     },
-})
+});
 
 const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
-    cookieName: process.env.ADMIN_COOKIE_NAME || 'admin-bro',   // name of the cookie used to store the admin session
-    cookiePassword:
-        process.env.ADMIN_COOKIE_PASSWORD || 'super-secret-password',      // password used to encrypt the cookie
-    authenticate: async (email, password) => {      // function used to authenticate the signing in user
-        const user = await User.findOne({ email: email })
+    cookieName: process.env.ADMIN_COOKIE_NAME || 'admin-bro', // name of the cookie used to store the admin session
+    cookiePassword: process.env.ADMIN_COOKIE_PASSWORD || 'super-secret-password', // password used to encrypt the cookie
+    authenticate: async (email, password) => {
+        // function used to authenticate the signing in user
+        const user = await User.findOne({ email: email });
         if (user) {
-            const matched = await bcrypt.compare(
-                password,
-                user.encryptedPassword
-            )
+            const matched = await bcrypt.compare(password, user.encryptedPassword);
             if (matched) {
-                return user
+                return user;
             }
         }
-        return null
+        return null;
     },
-})
+});
 
-module.exports = router
+module.exports = router;

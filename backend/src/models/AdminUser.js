@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema(
     {
@@ -10,13 +10,13 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        role: { 
+        role: {
             type: String,
-            enum: ['admin', 'restricted'], 
+            enum: ['admin', 'restricted'],
             required: true,
-        }
+        },
     },
     { collection: 'auth', versionKey: false }
-)
+);
 
-module.exports = mongoose.model('Admin', userSchema)
+module.exports = mongoose.model('Admin', userSchema);

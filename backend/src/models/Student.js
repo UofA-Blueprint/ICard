@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const StudentSchema = new mongoose.Schema(
     {
@@ -32,6 +32,6 @@ const StudentSchema = new mongoose.Schema(
         },
     },
     { collection: 'students', versionKey: false }
-)
+);
 
-module.exports = mongoose.model('Student', StudentSchema)
+module.exports = mongoose.model('Student', StudentSchema);

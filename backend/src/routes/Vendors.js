@@ -1,7 +1,7 @@
-const express = require('express')
-const { verifyApiKey } = require('../services/verifyToken')
-const vendorController = require('../controllers/Vendor')
-const router = express.Router()
+const express = require('express');
+const { verifyApiKey } = require('../services/verifyToken');
+const vendorController = require('../controllers/Vendor');
+const router = express.Router();
 
 /**
  * @swagger
@@ -53,7 +53,7 @@ const router = express.Router()
  *               items:
  *                 $ref: '#/components/schemas/Vendor'
  */
-router.get('/', verifyApiKey, vendorController.getAll)
+router.get('/', verifyApiKey, vendorController.getAll);
 
 /**
  * @swagger
@@ -149,4 +149,4 @@ router.get('/', verifyApiKey, vendorController.getAll)
  */
 // router.delete('/:vendorId', verifyApiKey, vendorController.delete)
 
-module.exports = router
+module.exports = router;

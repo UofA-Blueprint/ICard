@@ -7,7 +7,8 @@
         "start": "node src/server.js",
         "test": "jest --runInBand",
         "lint": "eslint --fix --ext .js",
-        "dev": "nodemon src/server.js"
+        "dev": "nodemon src/server.js",
+        "format": "prettier --write 'src/**/*.js'"
     },
     "repository": {
         "type": "git",
@@ -53,11 +54,5 @@
         "react-dom": "=16.13.1",
         "swagger-jsdoc": "^6.2.1",
         "swagger-ui-express": "^4.5.0"
-    },
-    "jest": {
-        "testEnvironment": "node",
-        "coveragePathIgnorePatterns": [
-            "/node_modules/"
-        ]
     }
 }

@@ -1,8 +1,8 @@
-const express = require('express')
-const studentController = require('../controllers/Students')
-const { verifyApiKey, validateJwtToken } = require('../services/verifyToken')
+const express = require('express');
+const studentController = require('../controllers/Students');
+const { verifyApiKey, validateJwtToken } = require('../services/verifyToken');
 
-const router = express.Router()
+const router = express.Router();
 
 // verifyToken is a middleware that checks if the user is authenticated and has the correct api-key
 
@@ -60,7 +60,7 @@ const router = express.Router()
  *                 $ref: '#/components/schemas/Student'
  */
 
-router.get('/all', verifyApiKey, validateJwtToken, studentController.getAll) // get all students
+router.get('/all', verifyApiKey, validateJwtToken, studentController.getAll); // get all students
 
 /**
  * @swagger
@@ -89,7 +89,7 @@ router.get('/all', verifyApiKey, validateJwtToken, studentController.getAll) // 
  *              404:
  *                  description: The student was not found
  */
-router.get('/:studentId', verifyApiKey, validateJwtToken, studentController.getStudent) // get a student by id
+router.get('/:studentId', verifyApiKey, validateJwtToken, studentController.getStudent); // get a student by id
 
 /**
  * @swagger
@@ -118,7 +118,12 @@ router.get('/:studentId', verifyApiKey, validateJwtToken, studentController.getS
  *              404:
  *                  description: The student was not found
  */
-router.get('/icard/:icard_number', verifyApiKey, validateJwtToken, studentController.getStudentByIcard) // get a student by icard number
+router.get(
+    '/icard/:icard_number',
+    verifyApiKey,
+    validateJwtToken,
+    studentController.getStudentByIcard
+); // get a student by icard number
 
 /**
  * @swagger
@@ -214,4 +219,4 @@ router.get('/icard/:icard_number', verifyApiKey, validateJwtToken, studentContro
  */
 // router.delete('/:studentId', verifyApiKey, studentController.delete) // delete a student
 
-module.exports = router
+module.exports = router;

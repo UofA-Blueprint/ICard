@@ -1,4 +1,4 @@
-const Joi = require('joi')
+const Joi = require('joi');
 
 const studentValidation = (data) => {
     // validate the student request body
@@ -9,9 +9,9 @@ const studentValidation = (data) => {
         icard_number: Joi.string().min(6).max(10).required(),
         active: Joi.boolean().required(),
         isaf_paying_status: Joi.boolean().required(),
-    })
+    });
 
-    return schema.validate(data) // validate the data
-}
+    return schema.validate(data); // validate the data
+};
 
-module.exports = studentValidation
+module.exports = studentValidation;

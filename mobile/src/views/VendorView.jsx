@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {StyleSheet, View, FlatList, Text, Dimensions} from 'react-native';
+import {StyleSheet, View, FlatList, Text, Dimensions, ImageBackground} from 'react-native';
 import Header from '../components/shared/Header';
 import {globalStyleSheet} from '../utilites/Theme';
 import {colors} from '../utilites/Theme'
@@ -25,12 +25,12 @@ import {options, url} from '../data/vendorMockData'
 
 
     return (
-      <View style={styles.container}>
+      <ImageBackground source={require('../../assets/Background.png')} style={styles.backgoundImage}>
         <Text style={{
           color: colors.primary,
-          fontSize: 30,
+          fontSize: 35,
           fontWeight: 'bold',
-          marginVertical: 10,
+          marginTop: 36,
           marginHorizontal: 20,
           alignSelf: 'flex-start'
         }}>
@@ -50,7 +50,7 @@ import {options, url} from '../data/vendorMockData'
           setClicked={setClicked}
         />
 
-      </View>
+      </ImageBackground>
     );
   };
 
@@ -60,6 +60,10 @@ import {options, url} from '../data/vendorMockData'
       paddingTop: 64,
       backgroundColor: "#D9FFDC44",
       alignItems: 'center',
+    },
+    backgoundImage:{
+      flex: 1,
+      resizeMode: 'cover'
     },
     vendorList: {
       paddingHorizontal: 20,

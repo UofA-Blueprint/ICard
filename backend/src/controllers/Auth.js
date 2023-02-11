@@ -40,7 +40,6 @@ module.exports = {
                     process.env.JWT_SECRET,
                     { expiresIn: '30d' }
                 );
-
                 return res.status(200).json(payload._doc); // return the new user with the jwt key valid for 30 days
             } catch (err) {
                 return res.status(500).json({ message: err });

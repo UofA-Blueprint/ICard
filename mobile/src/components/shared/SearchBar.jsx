@@ -1,4 +1,5 @@
 import React from 'react';
+import {colors} from '../../utilites/Theme';
 import {StyleSheet, TextInput, View, Keyboard, Button} from 'react-native';
 import {Feather, Entypo} from '@expo/vector-icons';
 import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
@@ -13,7 +14,8 @@ const SearchBar = ({clicked, setClicked, searchPhrase, setSearchPhrase}) => {
 
                 <TextInput
                     style={styles.input}
-                    placeholder='Search coupons ...'
+                    placeholder='Search coupons...'
+                    placeholderTextColor={colors.mediumGray}
                     value={searchPhrase}
                     onChangeText={setSearchPhrase}
                     onFocus={() => {
@@ -25,7 +27,7 @@ const SearchBar = ({clicked, setClicked, searchPhrase, setSearchPhrase}) => {
                     <Feather
                         name='search'
                         size={20}
-                        color='black'
+                        color={colors.mediumGray}
                         style={{marginLeft: 1}}
                     />
                 )
@@ -43,7 +45,7 @@ const SearchBar = ({clicked, setClicked, searchPhrase, setSearchPhrase}) => {
                             <Entypo
                                 name='cross'
                                 size={20}
-                                color='black'
+                                color={colors.black}
                                 style={{marginLeft: 1}}
                             />
                         </Pressable>
@@ -67,8 +69,8 @@ const styles = StyleSheet.create({
       searchBar__unclicked: {
         padding: 10,
         flexDirection: "row",
-        width: "95%",
-        backgroundColor: "white",
+        width: "100%",
+        backgroundColor: colors.white,
         borderRadius: 30,
         alignItems: "center",
       },
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
         padding: 10,
         flexDirection: "row",
         width: "95%",
-        backgroundColor: "white",
+        backgroundColor: colors.white,
         borderRadius: 30,
         alignItems: "center",
         justifyContent: "space-evenly",

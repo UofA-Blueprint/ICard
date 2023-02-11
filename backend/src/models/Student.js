@@ -30,6 +30,10 @@ const StudentSchema = new mongoose.Schema(
         verification_image: {
             type: String,
         },
+        updated: {
+            type: Boolean,
+            default: false,
+        }
     },
     { collection: 'students', versionKey: false }
 );

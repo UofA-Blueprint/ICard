@@ -10,7 +10,7 @@ module.exports = {
 
         await Student.updateOne(
             { email: req.user.email },
-            { $set: { verification_image: data.imageUrl } }
+            { $set: { verification_image: data.imageUrl, updated: true } }
         );
 
         res.json({

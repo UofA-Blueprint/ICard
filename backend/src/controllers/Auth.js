@@ -8,10 +8,9 @@ module.exports = {
         const user = req.user; // get the user from the request
 
         const check_student_db = await Student.findOne({ email: user.email }); // check if the user exists in the database
-
         if (check_student_db) {
             let { ...payload } = check_student_db;
-            payload.key = jwt.sign(
+            payload._doc.key = jwt.sign(
                 {
                     email: check_student_db.email,
                 },
@@ -19,7 +18,7 @@ module.exports = {
                 { expiresIn: '30d' }
             );
 
-            return res.status(200).json(payload); // return the user with the jwt key valid for 30 days
+            return res.status(200).json(payload._doc); // return the user with the jwt key valid for 30 days
         } else {
             const new_student = new Student({
                 // if the user doesn't exist, create a new user
@@ -34,7 +33,7 @@ module.exports = {
                 await Student.create(new_student);
                 const fetch_student = await Student.findOne({ email: user.email });
                 let { ...payload } = fetch_student;
-                payload.key = jwt.sign(
+                payload._doc.key = jwt.sign(
                     {
                         email: fetch_student.email,
                     },
@@ -42,7 +41,7 @@ module.exports = {
                     { expiresIn: '30d' }
                 );
 
-                return res.status(200).json(payload); // return the new user with the jwt key valid for 30 days
+                return res.status(200).json(payload._doc); // return the new user with the jwt key valid for 30 days
             } catch (err) {
                 return res.status(500).json({ message: err });
             }

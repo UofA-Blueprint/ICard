@@ -55,7 +55,7 @@ const router = express.Router();
  *                 $ref: '#/components/schemas/Vendor'
  */
 if (config.get('flags.vendors.get')) {
-    router.get('/', verifyApiKey, validateJwtToken, vendorController.getAll);
+    router.get('/', verifyApiKey, vendorController.getAll);
 }
 /**
  * @swagger

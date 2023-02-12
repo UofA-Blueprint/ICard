@@ -1,7 +1,6 @@
 const express = require('express');
 const studentController = require('../controllers/Students');
 const { verifyApiKey, validateJwtToken } = require('../services/verifyToken');
-const config = require('config');
 
 const router = express.Router();
 
@@ -60,9 +59,8 @@ const router = express.Router();
  *               items:
  *                 $ref: '#/components/schemas/Student'
  */
-if (config.get('flags.students.get')) {
-    router.get('/all', verifyApiKey, validateJwtToken, studentController.getAll); // get all students
-}
+
+router.get('/all', verifyApiKey, validateJwtToken, studentController.getAll); // get all students
 
 /**
  * @swagger
@@ -91,9 +89,8 @@ if (config.get('flags.students.get')) {
  *              404:
  *                  description: The student was not found
  */
-if (config.get('flags.students.get_by_id')) {
-    router.get('/:studentId', verifyApiKey, validateJwtToken, studentController.getStudent); // get a student by id
-}
+router.get('/:studentId', verifyApiKey, validateJwtToken, studentController.getStudent); // get a student by id
+
 /**
  * @swagger
  * /students/icard/{icard_number}:
@@ -121,14 +118,13 @@ if (config.get('flags.students.get_by_id')) {
  *              404:
  *                  description: The student was not found
  */
-if (config.get('flags.students.get')){
-    router.get(
+router.get(
     '/icard/:icard_number',
     verifyApiKey,
     validateJwtToken,
     studentController.getStudentByIcard
-    ); // get a student by icard number
-}
+); // get a student by icard number
+
 /**
  * @swagger
  * /students/:
@@ -157,9 +153,7 @@ if (config.get('flags.students.get')){
  *          500:
  *              description: Some server error
  */
-if (config.get('flags.students.create')) {
-    router.post('/', verifyApiKey, studentController.create) // create a new student
-}
+// router.post('/', verifyApiKey, studentController.create) // create a new student
 
 /**
  * @swagger
@@ -198,9 +192,7 @@ if (config.get('flags.students.create')) {
  *                  description: Some Server Error
  *
  */
-if (config.get('flags.students.update')) {
-    router.put('/:studentId', verifyApiKey, studentController.update) // update a student
-}
+// router.put('/:studentId', verifyApiKey, studentController.update) // update a student
 
 /**
  * @swagger
@@ -225,8 +217,6 @@ if (config.get('flags.students.update')) {
  *              404:
  *                  description: The student was not found
  */
-if (config.get('flags.students.delete')) {
-    router.delete('/:studentId', verifyApiKey, studentController.delete) // delete a student
-}
+// router.delete('/:studentId', verifyApiKey, studentController.delete) // delete a student
 
 module.exports = router;

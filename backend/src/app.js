@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
-const config = require('config');
 
 var cors = require('cors');
 
@@ -55,12 +54,12 @@ const options = {
     definition: {
         openapi: '3.0.0',
         info: {
-            title: config.get('swagger.title'),
-            version: config.get('swagger.version'),
+            title: 'ICard',
+            version: '1.0.0',
         },
         servers: [
             {
-                url: config.get('swagger.url'), // url of the server
+                url: 'https://localhost:3000/api', // url of the server
             },
         ],
     },

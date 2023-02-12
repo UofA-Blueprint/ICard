@@ -5,7 +5,6 @@ const User = require('../models/AdminUser');
 const Student = require('../models/Student');
 const Vendor = require('../models/Vendor');
 const bcrypt = require('bcrypt');
-const config = require('config');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
@@ -18,10 +17,11 @@ const adminBro = new AdminBro({
     databases: [mongoose], // register mongoose database
     rootPath: '/admin',
     branding: {
-        companyName: config.get('admin.company_name'),
-        logo: config.get("admin.logo"),
+        companyName: 'ISA',
+        logo: 'https://static.ucraft.net/fs/ucraft/userFiles/uaisa/images/small-logo.png?v=1628056458',
         softwareBrothers: false,
-        favicon: config.get("admin.favicon"),
+        favicon:
+            'https://static.ucraft.net/fs/ucraft/userFiles/uaisa/images/small-logo.png?v=1628056458',
     },
     locale: {
         translations: {
@@ -29,7 +29,7 @@ const adminBro = new AdminBro({
                 loginWelcome: '',
             },
             labels: {
-                loginWelcome: config.get('admin.login_welcome'),
+                loginWelcome: 'ICARD Admin Panel',
             },
         },
     },
@@ -111,6 +111,7 @@ const adminBro = new AdminBro({
     ],
     pages: {
         VendorLogo: {
+            label: 'Vendor Image Upload',
             component: AdminBro.bundle('../components/vendorImageUpload'),
         },
     },

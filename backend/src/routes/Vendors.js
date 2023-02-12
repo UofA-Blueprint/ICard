@@ -1,7 +1,6 @@
 const express = require('express');
-const { verifyApiKey, validateJwtToken } = require('../services/verifyToken');
+const { verifyApiKey } = require('../services/verifyToken');
 const vendorController = require('../controllers/Vendor');
-const config = require('config');
 const router = express.Router();
 
 /**
@@ -54,9 +53,8 @@ const router = express.Router();
  *               items:
  *                 $ref: '#/components/schemas/Vendor'
  */
-if (config.get('flags.vendors.get')) {
-    router.get('/', verifyApiKey, validateJwtToken, vendorController.getAll);
-}
+router.get('/', verifyApiKey, vendorController.getAll);
+
 /**
  * @swagger
  * /vendors/:
@@ -85,9 +83,7 @@ if (config.get('flags.vendors.get')) {
  *          500:
  *              description: Some server error
  */
-if (config.get('flags.vendors.create')) {
-    router.post('/', verifyApiKey, validateJwtToken, vendorController.create);
-}
+// router.post('/', verifyApiKey, vendorController.create)
 
 /**
  * @swagger
@@ -126,9 +122,7 @@ if (config.get('flags.vendors.create')) {
  *                  description: Some Server Error
  *
  */
-if (config.get('flags.vendors.update')) {
-    router.put('/:vendorId', verifyApiKey, vendorController.update);
-}
+// router.put('/:vendorId', verifyApiKey, vendorController.update)
 
 /**
  * @swagger
@@ -153,8 +147,6 @@ if (config.get('flags.vendors.update')) {
  *              404:
  *                  description: The student was not found
  */
-if (config.get('flags.vendors.delete')) {
-    router.delete('/:vendorId', verifyApiKey, vendorController.delete);
-}
+// router.delete('/:vendorId', verifyApiKey, vendorController.delete)
 
 module.exports = router;

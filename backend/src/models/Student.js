@@ -33,7 +33,7 @@ const StudentSchema = new mongoose.Schema(
         updated: {
             type: Boolean,
             default: false,
-        }
+        },
     },
     { collection: 'students', versionKey: false }
 );

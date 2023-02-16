@@ -7,7 +7,8 @@
         "start": "node src/server.js",
         "test": "jest --runInBand",
         "lint": "eslint --fix --ext .js",
-        "dev": "nodemon src/server.js"
+        "dev": "nodemon src/server.js",
+        "format": "prettier --write 'src/**/*.js'"
     },
     "repository": {
         "type": "git",
@@ -21,9 +22,6 @@
     "homepage": "https://github.com/UofA-Blueprint/ICard#readme",
     "devDependencies": {
         "cross-env": "^7.0.3",
-        "eslint": "^8.17.0",
-        "eslint-config-google": "^0.14.0",
-        "jest": "^28.1.1",
         "nodemon": "^2.0.16",
         "prettier": "^2.6.2",
         "supertest": "^6.2.3"
@@ -35,12 +33,11 @@
         "admin-bro-mongoose": "^0.5.2",
         "axios": "^1.2.2",
         "bcrypt": "^5.0.1",
-        "bcryptjs": "^2.4.3",
         "body-parser": "^1.20.0",
+        "config": "^3.3.9",
         "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",
         "dotenv": "^16.0.1",
-        "eslint-plugin-jest": "^26.5.3",
         "express": "^4.18.1",
         "express-formidable": "^1.2.0",
         "express-session": "^1.17.3",
@@ -53,11 +50,5 @@
         "react-dom": "=16.13.1",
         "swagger-jsdoc": "^6.2.1",
         "swagger-ui-express": "^4.5.0"
-    },
-    "jest": {
-        "testEnvironment": "node",
-        "coveragePathIgnorePatterns": [
-            "/node_modules/"
-        ]
     }
 }

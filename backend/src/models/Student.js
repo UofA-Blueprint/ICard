@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const StudentSchema = new mongoose.Schema(
     {
@@ -30,8 +30,12 @@ const StudentSchema = new mongoose.Schema(
         verification_image: {
             type: String,
         },
+        updated: {
+            type: Boolean,
+            default: false,
+        },
     },
     { collection: 'students', versionKey: false }
-)
+);
 
-module.exports = mongoose.model('Student', StudentSchema)
+module.exports = mongoose.model('Student', StudentSchema);

@@ -45,6 +45,7 @@ const RegistrationView = () => {
           })
           .then(data => {
             data["verification_image"] == ""  || data["verification_image"] == undefined ? data["verification_image"] = "" : null;
+            //console.log(data)
             setUser(data);
             storeDate();
             storeUser(data);
@@ -58,6 +59,7 @@ const RegistrationView = () => {
   Render a Google Sign In Button
   */
 
+  //status defines button condition
   return (
     <MyICardPage user={null} status={'Unlinked'}>
       <View style={styles.bodyContainer}>

@@ -1,4 +1,4 @@
-const Joi = require('joi')
+const Joi = require('joi');
 
 module.exports = {
     validateLogin: (data) => {
@@ -7,9 +7,9 @@ module.exports = {
             // create a schema
             email: Joi.string().min(6).max(255).required().email(),
             password: Joi.string().min(5).max(1024).required(),
-        })
+        });
 
-        return schema.validate(data) // validate the data
+        return schema.validate(data); // validate the data
     },
     validateRegister: (data) => {
         // validate the register request body
@@ -19,8 +19,8 @@ module.exports = {
             email: Joi.string().min(6).max(255).required().email(),
             password: Joi.string().min(5).max(1024).required(),
             icard_number: Joi.string().min(5).max(1024).required(),
-        })
+        });
 
-        return schema.validate(data) // validate the data
-    }
-}
+        return schema.validate(data); // validate the data
+    },
+};

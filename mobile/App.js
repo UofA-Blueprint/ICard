@@ -13,7 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import HomeView from './src/views/HomeView';
 import VendorView from './src/views/VendorView';
 import RegistrationView from './src/views/RegistrationView';
-import {NavigationContainer} from '@react-navigation/native';
+import {getFocusedRouteNameFromRoute, NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ScreenOption from './src/utilites/ScreenOption';
 import MyICardView from './src/views/MyICardView';
@@ -44,7 +44,7 @@ const App = () => {
       const lastDate = parseInt(await AsyncStorage.getItem(storeDateKey));
       if (lastDate != null && !isNaN(lastDate)) {
         //change num in if statement below to a month in milliseconds
-        if (new Date().getTime() - lastDate > monthInMilliseconds) {
+        if (new Date().getTime() - lastDate > 10000) {
           setUser(null);
           storeUser(null);
         } else {
@@ -104,7 +104,10 @@ const App = () => {
               <>
                 <Tab.Screen name="Home" component={HomeView} />
                 <Tab.Screen name="Vendors" component={VendorView} />
-                <Tab.Screen name="My ICard" component={MyICardView} />
+                <Tab.Screen
+                  name="My ICard"
+                  component={MyICardView}
+                />
               </>
             )}
           </Tab.Navigator>

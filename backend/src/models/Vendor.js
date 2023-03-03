@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const VendorSchema = new mongoose.Schema(
     {
@@ -23,6 +23,6 @@ const VendorSchema = new mongoose.Schema(
         },
     },
     { collection: 'vendors', versionKey: false }
-)
+);
 
-module.exports = mongoose.model('Vendor', VendorSchema)
+module.exports = mongoose.model('Vendor', VendorSchema);

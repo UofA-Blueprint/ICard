@@ -3,6 +3,7 @@ import React, {useContext} from 'react';
 import AuthContext from '../context/AuthContext';
 import MyICardPage from '../components/shared/ICardPage';
 import VerificationView from './VerificationView'
+import SubmittedView from './SubmittedView';
 import VendorView from './VendorView';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -18,7 +19,9 @@ const MyICard = ({navigation}) => {
   if (user == null) return <></>;
   if (user.verify) finalStatus = 'inactive';
   if (user.isaf_status) finalStatus = 'active';
+  if (!user.isaf_status && user.verify_status) finalStatus = 'inactive, reverify';  //reverify
 
+  if (!user.isaf_status && !user.verify_status && !user.verification_image) finalStatus = 'inactive, verify'; //verify
   if (!user.isaf_status && !user.verify && user.verification_image)
     finalStatus = 'verifying account';
 
@@ -45,6 +48,11 @@ const MyICardView = () => {
       <Stack.Screen
         name="Verification"
         component={VerifcationView}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Submitted"
+        component={SubmittedView}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

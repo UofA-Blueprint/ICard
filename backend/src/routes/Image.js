@@ -15,7 +15,19 @@ const multer = Multer({
 
 // multer accessing the key 'image', as defined in the 'FormData' object on the frontend
 // Passing the uploadToGCS function as middleware to handle the uploading of req.file
-router.post('/upload', verifyApiKey, validateJwtToken, multer.single('image'), imgUpload.uploadToGCS, imageController.upload);
-router.post('/uploadVendor', multer.single('image'), imgUpload.uploadVendorToGCS, imageController.vendor);
+router.post(
+    '/upload',
+    verifyApiKey,
+    validateJwtToken,
+    multer.single('image'),
+    imgUpload.uploadToGCS,
+    imageController.upload
+);
+router.post(
+    '/uploadVendor',
+    multer.single('image'),
+    imgUpload.uploadVendorToGCS,
+    imageController.vendor
+);
 
-module.exports = router
+module.exports = router;

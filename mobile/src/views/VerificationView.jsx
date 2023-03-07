@@ -1,6 +1,17 @@
 import React, {useState, useContext} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {View, StyleSheet, Pressable, Text, Image, Modal, TouchableOpacity, ImageBackground, ScrollView, FlatList} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Pressable,
+  Text,
+  Image,
+  Modal,
+  TouchableOpacity,
+  ImageBackground,
+  ScrollView,
+  FlatList,
+} from 'react-native';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import * as ImagePicker from 'expo-image-picker';
 import {colors} from '../utilites/Theme';
@@ -60,125 +71,160 @@ const VerifcationView = ({navigation}) => {
         })
           .then(result => result.json())
           .then(data => {
-            setUser(data)
+            setUser(data);
           })
-          .catch(console.error)
+          .catch(console.error);
       });
+    navigation.navigate('Submitted');
   };
 
-
-
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.backButton}>
-          <FontAwesome5.Button
-            name="arrow-left"
-            size={32}
-            color={colors.primary}
-            backgroundColor="transparent"
-            onPress={() => {
-              navigation.navigate('My ICard');
-            }}></FontAwesome5.Button>
-        </View>
-        <Text style={styles.viewTitle}>Verify Account</Text>
-      </View>
-      <View style={styles.body}>
-        <Text style={styles.instruction}>
-          An email from ISA was sent to your University of Alberta email. Please
-          upload a screenshot to verify your account.
-          <FontAwesome5
-            name="question-circle"
-            size={30}
-            color={colors.primary}
-            backgroundColor="transparent"
-            onPress={() => setModalVisible(true)}></FontAwesome5>
-        </Text>
-
-        <Modal transparent={true} visible = {modalVisible}>
-          <View style={{backgroundColor:'#000000aa', flex:1, justifyContent:'center', alignItems:'center'}}>
-            <View style={styles.popup}>
-              <TouchableOpacity onPress={() => setModalVisible(false)}>
-                <Image source={require('../../assets/x2.png')} style={styles.notificationPic}/>
-              </TouchableOpacity>
-              <Text style={styles.title}>How to upload your email?</Text>
-              
-              <ScrollView pagingEnabled={true} decelerationRate='fast' onMomentumScrollEnd={() =>setModalVisible(true)} horizontal>
-
-              <Step text='Open your UAlberta Gmail account.' step='Step: 1' screen={require('../../assets/step1.png')} bubbles={require('../../assets/Bubbles1.png')}/>
-              <Step text='Search “The Wait is Over! Pick-up Your Free I-Card Now!” in the search bar and find the email sent by “isa.communication s@ualberta.ca”.' step='Step: 2' screen={require('../../assets/step2.png')} bubbles={require('../../assets/Bubbles2.png')}/>
-              <Step text='Take a screenshot of the email including the recipient’s email address.' step='Step: 3' screen={require('../../assets/step3.png')} bubbles={require('../../assets/Bubbles3.png')}/>
-              <Step text='Submit the screenshot into the ISA mobile application.' step='Step: 4' screen={require('../../assets/step4.png')} bubbles={require('../../assets/Bubbles4.png')}/>
-              
-              </ScrollView>
-
-            </View>
+    <ImageBackground
+      source={require('../../assets/Background.png')}
+      resizeMode="cover"
+      style={styles.backgroundImage}>
+      <SafeAreaView style={styles.container} edges={['top']}>
+        <View style={styles.header}>
+          <View style={styles.backButton}>
+            <FontAwesome5.Button
+              name="arrow-left"
+              size={24}
+              color={colors.primary}
+              backgroundColor="transparent"
+              onPress={() => {
+                navigation.navigate('My ICard Page');
+              }}></FontAwesome5.Button>
           </View>
-        </Modal>
-
-
-        <Text style={styles.example}>Example</Text>
-        <View style={styles.exampleImage}>
-          <Image
-            source={require('../../assets/example.png')}
-            resizeMode="contain"></Image>
+          <Text style={styles.viewTitle}>Verify Account</Text>
         </View>
-        <View style={{alignItems: 'center', justifyContent: 'center'}}>
-          <View style={image ? styles.uploaded : styles.uploadSection}>
-            {image ? (
-              <FontAwesome5
-                name="file-alt"
-                size={64}
-                color={colors.primary}
-                backgroundColor="transparent"></FontAwesome5>
-            ) : (
-              <FontAwesome5
-                name="image"
-                size={64}
-                color={colors.primary}
-                backgroundColor="transparent"></FontAwesome5>
-            )}
-            {image ? (
-              <Text style={styles.filename}>{filename}</Text>
-            ) : (
-              <Pressable onPress={pickImage} style={styles.uploadButton}>
-                <Text style={styles.uploadButtonText}>Upload Photo</Text>
-              </Pressable>
-            )}
-            {image ? (
-              <View style={styles.cancelButton}>
-                <FontAwesome5.Button
-                  name="times"
-                  backgroundColor="transparent"
-                  color={colors.primary}
-                  onPress={() => {
-                    setImage(null);
-                  }}
-                />
+        <ScrollView style={styles.body}>
+          <Text style={styles.instruction}>
+            An email from ISA was sent to your University of Alberta email.
+            Please upload a screenshot to verify your account.{' '}
+            <FontAwesome5
+              name="question-circle"
+              size={20}
+              color={colors.primary}
+              backgroundColor="transparent"
+              onPress={() => setModalVisible(true)}></FontAwesome5>
+          </Text>
+
+          <Modal transparent={true} visible={modalVisible}>
+            <View
+              style={{
+                backgroundColor: '#000000aa',
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+              <View style={styles.popup}>
+                <TouchableOpacity onPress={() => setModalVisible(false)}>
+                  <Image
+                    source={require('../../assets/x2.png')}
+                    style={styles.notificationPic}
+                  />
+                </TouchableOpacity>
+                <Text style={styles.title}>How to upload your email?</Text>
+
+                <ScrollView
+                  pagingEnabled={true}
+                  decelerationRate="fast"
+                  onMomentumScrollEnd={() => setModalVisible(true)}
+                  horizontal>
+                  <Step
+                    text="Open your UAlberta Gmail account."
+                    step="Step: 1"
+                    screen={require('../../assets/step1.png')}
+                    bubbles={require('../../assets/Bubbles1.png')}
+                  />
+                  <Step
+                    text="Search “The Wait is Over! Pick-up Your Free I-Card Now!” in the search bar and find the email sent by “isa.communication s@ualberta.ca”."
+                    step="Step: 2"
+                    screen={require('../../assets/step2.png')}
+                    bubbles={require('../../assets/Bubbles2.png')}
+                  />
+                  <Step
+                    text="Take a screenshot of the email including the recipient’s email address."
+                    step="Step: 3"
+                    screen={require('../../assets/step3.png')}
+                    bubbles={require('../../assets/Bubbles3.png')}
+                  />
+                  <Step
+                    text="Submit the screenshot into the ISA mobile application."
+                    step="Step: 4"
+                    screen={require('../../assets/step4.png')}
+                    bubbles={require('../../assets/Bubbles4.png')}
+                  />
+                </ScrollView>
               </View>
-            ) : (
-              <></>
-            )}
+            </View>
+          </Modal>
+
+          <Text style={styles.example}>Example</Text>
+          <View style={styles.exampleImage}>
+            <Image
+              source={require('../../assets/example.png')}
+              resizeMode="contain"></Image>
           </View>
-          <Pressable
-            style={image ? styles.submitButton : styles.inactiveSubmitButton}
-            onPress={image ? submitImage : () => {}}>
-            <Text style={styles.submitButtonText}>Submit</Text>
-          </Pressable>
-          <Pressable
-            onPress={() => {
-              navigation.navigate('My ICard');
-            }}>
-            <Text style={styles.skipButtonText}>Skip for now</Text>
-          </Pressable>
-        </View>
-      </View>
-    </SafeAreaView>
+          <View style={{alignItems: 'center', justifyContent: 'center'}}>
+            <View style={image ? styles.uploaded : styles.uploadSection}>
+              {image ? (
+                <FontAwesome5
+                  name="file-alt"
+                  size={64}
+                  color={colors.primary}
+                  backgroundColor="transparent"></FontAwesome5>
+              ) : (
+                <FontAwesome5
+                  name="image"
+                  size={64}
+                  color={colors.primary}
+                  backgroundColor="transparent"></FontAwesome5>
+              )}
+              {image ? (
+                <Text style={styles.filename}>{filename}</Text>
+              ) : (
+                <Pressable onPress={pickImage} style={styles.uploadButton}>
+                  <Text style={styles.uploadButtonText}>Upload Photo</Text>
+                </Pressable>
+              )}
+              {image && (
+                <View style={styles.cancelButton}>
+                  <FontAwesome5.Button
+                    name="times"
+                    backgroundColor="transparent"
+                    color={colors.primary}
+                    onPress={() => {
+                      setImage(null);
+                    }}
+                  />
+                </View>
+              )}
+            </View>
+            <Pressable
+              style={image ? styles.submitButton : styles.inactiveSubmitButton}
+              onPress={image ? submitImage : () => {}}>
+              <Text style={styles.submitButtonText}>Submit</Text>
+            </Pressable>
+            <Pressable
+              onPress={() => {
+                navigation.navigate('My ICard Page');
+              }}>
+              <Text style={styles.skipButtonText}>Skip for now</Text>
+            </Pressable>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {flex: 1, padding: 16},
+  backgroundImage: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  container: {flex: 1, paddingHorizontal: 36},
   header: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -188,24 +234,26 @@ const styles = StyleSheet.create({
   },
   backButton: {
     position: 'absolute',
-    left: 0,
+    left: -20,
   },
   instruction: {
-    padding: 16,
-    fontSize: 16,
+    fontSize: 18,
+    color: colors.darkGray,
+    letterSpacing: 0.5,
+    lineHeight: 23,
   },
   example: {
     fontWeight: 'bold',
-    fontSize: 20,
-    padding: 16,
+    fontSize: 18,
+    paddingTop: 16,
   },
   exampleImage: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 16,
-    backgroundColor: 'blue',
+    marginTop: 8,
+    marginBottom: 20,
   },
-  viewTitle: {fontWeight: 'bold'},
+  viewTitle: {fontWeight: 'bold', fontSize: 20},
   body: {flex: 1},
   uploadSection: {
     flexDirection: 'row',
@@ -216,20 +264,23 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.primary,
     width: '100%',
-    padding: 16,
+    padding: 6,
+    marginBottom: 5,
   },
   uploadButton: {
     backgroundColor: colors.primary,
-    padding: 16,
+    padding: 12,
     flex: 2,
     borderRadius: 99,
     justifyContent: 'center',
     alignItems: 'center',
     maxWidth: '60%',
+    // height: '30%'
   },
   uploadButtonText: {
     color: colors.white,
     fontWeight: 'bold',
+    fontSize: 16,
   },
   filename: {
     fontWeight: 'bold',
@@ -253,25 +304,25 @@ const styles = StyleSheet.create({
     right: 0,
   },
   submitButton: {
-    borderRadius: 99,
+    borderRadius: 20,
     backgroundColor: colors.primary,
     padding: 16,
-    width: '80%',
+    width: '90%',
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 16,
   },
   inactiveSubmitButton: {
-    borderRadius: 99,
+    borderRadius: 20,
     backgroundColor: colors.mediumGray,
     padding: 16,
-    width: '80%',
+    width: '90%',
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 16,
   },
-  submitButtonText: {color: colors.white},
-  skipButtonText: {color: colors.primary},
+  submitButtonText: {color: colors.white, fontWeight: 'bold', fontSize: 16},
+  skipButtonText: {color: colors.primary, fontSize: 16},
   popup: {
     borderRadius: 10,
     backgroundColor: '#ffffff',

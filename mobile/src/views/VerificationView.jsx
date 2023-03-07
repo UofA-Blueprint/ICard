@@ -20,6 +20,10 @@ import {_, API_ROUTE, API_KEY} from '@env';
 import AuthContext from '../context/AuthContext';
 import Step from '../components/shared/Step';
 
+
+
+
+
 const VerifcationView = ({navigation}) => {
   const [image, setImage] = useState(null);
   const [filename, setFilename] = useState(null);
@@ -92,7 +96,8 @@ const VerifcationView = ({navigation}) => {
               color={colors.primary}
               backgroundColor="transparent"
               onPress={() => {
-                navigation.navigate('My ICard Page');
+                navigation.navigate('Home');
+                navigation.navigate('My ICard');
               }}></FontAwesome5.Button>
           </View>
           <Text style={styles.viewTitle}>Verify Account</Text>
@@ -208,7 +213,8 @@ const VerifcationView = ({navigation}) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                navigation.navigate('My ICard Page');
+                navigation.navigate('Home');
+                navigation.navigate('My ICard');
               }}>
               <Text style={styles.skipButtonText}>Skip for now</Text>
             </Pressable>
@@ -218,6 +224,8 @@ const VerifcationView = ({navigation}) => {
     </ImageBackground>
   );
 };
+
+
 
 const styles = StyleSheet.create({
   backgroundImage: {

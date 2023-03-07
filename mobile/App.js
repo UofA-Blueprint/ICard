@@ -6,14 +6,17 @@
  * @flow strict-local
  */
 
+
 import React, {useState, useRef, useEffect} from 'react';
 import {SafeAreaView, SafeAreaProvider} from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
 import HomeView from './src/views/HomeView';
 import VendorView from './src/views/VendorView';
 import RegistrationView from './src/views/RegistrationView';
-import {getFocusedRouteNameFromRoute, NavigationContainer} from '@react-navigation/native';
+import TitleView from './src/views/TitleView';
+import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ScreenOption from './src/utilites/ScreenOption';
 import MyICardView from './src/views/MyICardView';
@@ -22,19 +25,24 @@ import AuthContext from './src/context/AuthContext';
 import {storeDate} from './src/utilites/StoreDate';
 import {storeUser} from './src/utilites/StoreUser';
 import {Ionicons} from '@expo/vector-icons';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {
   storeDateKey,
   storedUserDataKey,
   monthInMilliseconds,
 } from './src/utilites/GlobalConstants';
 
+
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
 
 const App = () => {
   const [user, setUser] = useState(null);
   const [check, setCheck] = useState(false);
   const value = {user, setUser};
   const appState = useRef(AppState.currentState);
+
 
   const logoutCheckOnStartupAndOnForeground = async (
     userData = null,
@@ -73,6 +81,7 @@ const App = () => {
     checkUser();
   }, []);
 
+
   useEffect(() => {
     const subscription = AppState.addEventListener('change', nextAppState => {
       appState.current = nextAppState;
@@ -84,33 +93,56 @@ const App = () => {
       }
     });
 
+
     return () => {
       subscription.remove();
     };
   }, [user]);
 
+
+
+
+  const Tabs = () => {
+    return(
+      <AuthContext.Provider value={value}>
+            <Tab.Navigator screenOptions={ScreenOption}>
+              {user == null ? (
+                <>
+                  <Tab.Screen name="Home" component={HomeView} />
+                  <Tab.Screen name="Vendors" component={VendorView} />
+                  <Tab.Screen name="My ICard" component={RegistrationView} />
+                </>
+              ) : (
+                <>
+                  <Tab.Screen name="Home" component={HomeView} />
+                  <Tab.Screen name="Vendors" component={VendorView} />
+                  <Tab.Screen name="My ICard" component={MyICardView} />
+                </>
+              )}
+            </Tab.Navigator>
+        </AuthContext.Provider>
+      )
+  };
+
+
+
+
   return (
     <SafeAreaProvider style={{flex: 1}}>
       <NavigationContainer>
         <AuthContext.Provider value={value}>
-          <Tab.Navigator screenOptions={ScreenOption}>
+          <Stack.Navigator screenOptions={ScreenOption}>
             {user == null ? (
               <>
-                <Tab.Screen name="Home" component={HomeView} />
-                <Tab.Screen name="Vendors" component={VendorView} />
-                <Tab.Screen name="My ICard" component={RegistrationView} />
+                <Stack.Screen name="Title" component={TitleView} />
+                <Stack.Screen name="Home" component={Tabs} />
               </>
             ) : (
               <>
-                <Tab.Screen name="Home" component={HomeView} />
-                <Tab.Screen name="Vendors" component={VendorView} />
-                <Tab.Screen
-                  name="My ICard"
-                  component={MyICardView}
-                />
+                <Stack.Screen name="Home" component={Tabs} />
               </>
             )}
-          </Tab.Navigator>
+          </Stack.Navigator>
         </AuthContext.Provider>
       </NavigationContainer>
     </SafeAreaProvider>

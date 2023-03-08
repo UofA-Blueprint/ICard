@@ -108,19 +108,19 @@ const styles = StyleSheet.create({
 
     title: {
         fontWeight: 'bold',
-        fontSize: 25,
+        fontSize: 18,
         color: colors.primary
     },
 
     location: {
         fontWeight: '300',
-        fontSize: 20,
+        fontSize: 16,
         color: colors.primary
     },
 
     description: {
         fontWeight: '300',
-        fontSize: 15,
+        fontSize: 14,
         color: colors.darkGray
     }
   })

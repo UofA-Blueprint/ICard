@@ -80,11 +80,12 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    marginTop: 8,
+    marginBottom: 12,
+    marginTop: 8
     
   },
   image: {
-    marginTop: 7,
+    marginTop: 6.5,
     marginLeft: 4.2,
   },
 });

@@ -30,8 +30,8 @@ import {options, url} from '../data/vendorMockData'
           color: colors.primary,
           fontSize: 35,
           fontWeight: 'bold',
-          marginTop: 36,
-          marginHorizontal: 20,
+          marginTop: 64,
+          marginHorizontal: 24,
           alignSelf: 'flex-start'
         }}>
           Vendors

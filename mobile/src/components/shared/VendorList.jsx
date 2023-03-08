@@ -49,22 +49,28 @@ const VendorList = ({searchPhrase, setClicked, data}) => {
     }
 
     return (
-                <FlatList
-                    showsVerticalScrollIndicator ={true}
-                    data={data}
-                    renderItem={renderItem}
-                    keyExtractor={(item) => item.id}
-                    contentContainerStyle={styles.container}
-                />
-    )
-}
-
-const styles = StyleSheet.create({
-    container: {
-        display: 'flex',
+        <View style={styles.container}>
+          <FlatList
+            showsVerticalScrollIndicator={true}
+            data={data}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            contentContainerStyle={styles.contentContainer}
+          />
+        </View>
+      );
+    };
+    
+    const styles = StyleSheet.create({
+      container: {
+        flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
-    }
-})
+        justifyContent: 'center',
+      },
+      contentContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+    });
 
 export default VendorList;

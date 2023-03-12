@@ -72,4 +72,5 @@ const VendorList = ({searchPhrase, setClicked, data}) => {
         alignItems: 'center',
       },
     });
+    
 export default VendorList;

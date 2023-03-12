@@ -11,6 +11,7 @@ import {shuffle} from '../utilites/Shuffle';
 import {getData} from '../data/vendorMockData';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {ScrollView} from 'react-native-virtualized-view'
+
 const HomeView = ({navigation}) => {
   const [searchPhrase, setSearchPhrase] = useState('');
   const [clicked, setClicked] = useState(false);

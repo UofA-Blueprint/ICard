@@ -116,7 +116,7 @@ const MyICardPage = (props) => {
 
   const marginTopValue = props.status == 'inactive' || props.status == 'stale' 
         || props.status == 'Unlinked'||props.status =='inactive, verify' 
-        || props.status == 'inactive, reverify' 
+        || props.status == 'inactive, reverify' || props.status == 'verifying account'
         ? 109 : 235;
  
   return (
@@ -217,7 +217,6 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    //width: '100%',
     height: 66,
     backgroundColor: colors.white,
     marginTop: 60,
@@ -233,9 +232,7 @@ const styles = StyleSheet.create({
   notificationPic: {
     width: 34,
     height: 34,
-    //justifyContent: 'center'
-    //marginTop: 16,
-    //marginLeft: 16,
+    
   },
   notificationText: {
     marginLeft: 5,

@@ -48,8 +48,16 @@ const Registration = ({navigation}) => {
             return result.json();
           })
           .then(data => {
+            //Data being retrieved from backend is weird. If completely new user logs in
+            //then verification image is undefined and does not show up in the fetched user data obj
+            //If verifcation image was added to user at somepoint and then erased (so field is blank now), suddenly
+            //verification image field is not undefined and is just recognised as a blank space in
+            //the fetched user obj
+            //Line below is a work around
+            //if verification field is blank space or undefined, label it as empty/blank space
             data["verification_image"] == ""  || data["verification_image"] == undefined ? data["verification_image"] = "" : null;
-            //console.log(data)
+            data["id"] = data["_id"];
+            delete data["_id"];
             setUser(data);
             storeDate();
             storeUser(data);

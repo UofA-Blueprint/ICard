@@ -40,12 +40,18 @@ const MyICard = ({navigation}) => {
     .then(data => {
       data["key"] = user.key;
       data["id"] = data["_id"];
-      //data["verification_image"] == ""  || data["verification_image"] == undefined ? data["verification_image"] = "" : null;
+      //Data being retrieved from backend is weird. If completely new user logs in
+      //then verification image is undefined and does not show up in the fetched user data obj
+      //If verifcation image was added to user at somepoint and then erased (so field is blank now), suddenly
+      //verification image field is not undefined and is just recognised as a blank space in
+      //the fetched user obj
+      //Line below is a work around
+      //if verification field is blank space or undefined, label it as empty/blank space
+      data["verification_image"] == ""  || data["verification_image"] == undefined ? data["verification_image"] = "" : null;
       delete data["_id"];
       setRefreshing(false);
       setUser(data);
       storeUser(data);
-      console.log(data);
       setCheckStatus(true);
     })
     .catch((error) => {
@@ -59,11 +65,11 @@ if (user == null) return <></>;
 const statusCheck = () => {
   if (user == null) return <></>;
   if (user.verify) finalStatus = 'inactive';
-  if (user.isaf_status) finalStatus = 'active';
+  if (user.isaf_status && user.verify_status) finalStatus = 'active';
   if (!user.isaf_status && user.verify_status) finalStatus = 'inactive, reverify';  //reverify
 
   if (!user.isaf_status && !user.verify_status && !user.verification_image) finalStatus = 'inactive, verify'; //verify
-  if (!user.isaf_status && !user.verify && user.verification_image)
+  if (!user.isaf_status && !user.verify_status && user.verification_image)
 
     finalStatus = 'verifying account';
     message = 'Verification in progress, may take up to 1-3 business days';

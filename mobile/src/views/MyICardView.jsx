@@ -4,8 +4,10 @@ import AuthContext from '../context/AuthContext';
 import MyICardPage from '../components/shared/ICardPage';
 import VerificationView from './VerificationView'
 import SubmittedView from './SubmittedView';
+import VendorView from './VendorView';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import VerifcationView from './VerificationView';
 
 
 let finalStatus;
@@ -102,13 +104,13 @@ const MyICardView = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="My ICard Page"
+        name="My ICard"
         component={MyICard}
         options={{headerShown: false}}
       />
       <Stack.Screen
         name="Verification"
-        component={VerificationView}
+        component={VerifcationView}
         options={{headerShown: false}}
       />
       <Stack.Screen

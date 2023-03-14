@@ -15,12 +15,16 @@ import {CLIENT_ID, API_ROUTE, API_KEY} from '@env';
 import MyICardPage from '../components/shared/ICardPage';
 import { storeDate } from '../utilites/StoreDate';
 import { storeUser } from '../utilites/StoreUser';
+import VerificationView from './VerificationView';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const expoClientId = CLIENT_ID;
 const authRoute = API_ROUTE;
 const apiKey = API_KEY;
 
-const RegistrationView = () => {
+const Stack = createNativeStackNavigator();
+
+const Registration = ({navigation}) => {
   const {_, setUser} = useContext(AuthContext);
 
   // Google Use Auth Request Hook
@@ -52,6 +56,7 @@ const RegistrationView = () => {
           });
       };
       fetchData();
+      navigation.navigate('Verification')
     }
   }, [response]);
 
@@ -75,6 +80,24 @@ const RegistrationView = () => {
         </TouchableOpacity>
       </View>
     </MyICardPage>
+  );
+};
+
+
+const RegistrationView = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Registration"
+        component={Registration}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Verification"
+        component={VerificationView}
+        options={{headerShown: false}}
+      />
+    </Stack.Navigator>
   );
 };
 

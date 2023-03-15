@@ -148,7 +148,7 @@ const popUpStyles = StyleSheet.create({
 
     title: {
         color: colors.primary,
-        fontSize: 25,
+        fontSize: 16,
         fontWeight: 'bold',
         marginBottom: 10,
         marginLeft: 10
@@ -163,7 +163,7 @@ const popUpStyles = StyleSheet.create({
 
     location: {
         color: colors.primary,
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 10,
         marginLeft: 10
@@ -172,7 +172,7 @@ const popUpStyles = StyleSheet.create({
     description: {
         textAlign:'center',
         fontWeight: '300',
-        fontSize: 20,
+        fontSize: 12,
         width: 250,
         marginBottom: 10
     },

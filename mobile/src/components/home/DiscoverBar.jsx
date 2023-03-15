@@ -76,15 +76,14 @@ const styles = StyleSheet.create({
     marginLeft: 24,
     marginRight: 8,
     justifyContent: 'space-between',
-    
   },
   row: {
     flexDirection: 'row',
+    marginBotton: 12,
     marginTop: 8,
-    
   },
   image: {
-    marginTop: 7,
+    marginTop: 6.5,
     marginLeft: 4.2,
   },
 });

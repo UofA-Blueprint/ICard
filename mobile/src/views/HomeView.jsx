@@ -10,6 +10,7 @@ import {options, url} from '../data/vendorMockData';
 import {shuffle} from '../utilites/Shuffle';
 import {getData} from '../data/vendorMockData';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {ScrollView} from 'react-native-virtualized-view'
 
 const HomeView = ({navigation}) => {
   const [searchPhrase, setSearchPhrase] = useState('');
@@ -31,6 +32,7 @@ const HomeView = ({navigation}) => {
       resizeMode="cover"
       style={styles.backgroundImage}>
       <SafeAreaView style={{flex: 1}} edges={['top']}>
+        <ScrollView>
         <Image
           source={require('../../assets/Sign-Out.png')}
           style={styles.signOut}
@@ -56,9 +58,10 @@ const HomeView = ({navigation}) => {
 
         <VendorList
           searchPhrase={searchPhrase}
-          data={vendorData}
+          data={vendorData.slice(0,3)}
           setClicked={setClicked}
         />
+        </ScrollView>
       </SafeAreaView>
     </ImageBackground>
   );

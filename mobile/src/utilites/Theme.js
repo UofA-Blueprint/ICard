@@ -8,7 +8,7 @@ const colors = {
   lightGray: '#F8F8F8',
   darkGray: '#737373',
   black: '#000000',
-  red: '#AF0000',
+  red: '#EF6464',
   yellow: '#FAD233',
   mediumGray: '#CBCBCB',
 };
@@ -32,13 +32,19 @@ const globalStyleSheet = StyleSheet.create({
   },
   tabBar: {
     borderTopWidth: 1,
-    borderTopColor: colors.primary,
     justifyContent: 'center',
-    padding: 8,
+    padding: 5,
+    shadowColor: "#000000",
+    shadowOffset: {
+	    width: 4,
+	    height: 4,
+      },
+    shadowOpacity: 0.25,
+    elevation: 5,
   },
   tabBarHidden: {display: 'none'},
   tabBarLabel: {
-    fontSize: 8,
+    fontSize: 12,
   },
   listContentContainer: {marginBottom: 20, paddingVertical: 40},
 });

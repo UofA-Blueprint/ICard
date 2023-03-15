@@ -23,10 +23,13 @@ module.exports = {
       '|jest-runtime' +
       '|expo-asset' +
       '|expo-constants' +
+      '|expo-web-browser' +
+      
       ')/)',
   ],
   transform: {
-    '^.+\\.(js|jsx)?$': 'babel-jest',
+    
+    "^.+\\.(js|jsx)$": "babel-jest"
   },
   setupFiles: [
     './jest-setup.js',

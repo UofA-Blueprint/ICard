@@ -51,7 +51,7 @@ const MyICardPage = (props) => {
   };
 
 
-  const Card = ({status}) => {
+  const Card = ({status, msg}) => {
     let content
     let color = props.status
  
@@ -60,7 +60,7 @@ const MyICardPage = (props) => {
         <View style={styles.notification}>
           <Image source={require('../../../assets/x.png')} style={styles.notificationPic} />
           <View justifyContent={'center'}>
-            <Text style={styles.notificationText}>Please pay your ISAF fees to{'\n'}activate account</Text>
+            <Text style={styles.notificationText}>{msg}</Text>
           </View>
         </View>
       )}
@@ -79,6 +79,15 @@ const MyICardPage = (props) => {
             <Image source={require('../../../assets/Link.png')} style={styles.notificationPic} />
             <View justifyContent={'center'}>
               <Text style={styles.notificationText}>Link to your University of Alberta{'\n'}email to gain access to My ICard</Text>
+            </View>
+          </View>
+        )}
+      else if (status == 'verifying account') {
+        content = (
+          <View style={styles.notification}>
+            <Image source={require('../../../assets/Link.png')} style={styles.notificationPic} />
+            <View justifyContent={'center'}>
+              <Text style={styles.notificationText}>{msg}</Text>
             </View>
           </View>
         )}
@@ -107,14 +116,14 @@ const MyICardPage = (props) => {
 
   const marginTopValue = props.status == 'inactive' || props.status == 'stale' 
         || props.status == 'Unlinked'||props.status =='inactive, verify' 
-        || props.status == 'inactive, reverify' 
+        || props.status == 'inactive, reverify' || props.status == 'verifying account'
         ? 109 : 235;
  
   return (
     <ImageBackground source={require('../../../assets/Background.png')} resizeMode="cover" style={styles.backgroundImage}>
  
      
-      <Card status={props.status} />
+      <Card status={props.status} msg = {props.msg} />
      
  
       <View style={styles.container} backgroundColor={statusColors[props.status]} marginTop={marginTopValue}>
@@ -206,7 +215,8 @@ const styles = StyleSheet.create({
   notification: {
     flexDirection: 'row',
     borderRadius: 30,
-    width: 312,
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
     height: 66,
     backgroundColor: colors.white,
     marginTop: 60,
@@ -216,17 +226,21 @@ const styles = StyleSheet.create({
       },
     shadowOpacity: 0.25,
     elevation: 5,
+    paddingLeft: 10,
+    paddingRight: 10
   },
   notificationPic: {
     width: 34,
     height: 34,
-    marginTop: 16,
-    marginLeft: 16,
+    
   },
   notificationText: {
-    marginLeft: 24,
-    fontSize: 12,
+    marginLeft: 5,
+    height: '100%',
+    textAlignVertical: 'center',
+    fontSize: 10,
     fontWeight: '400',
+    flexWrap: 'wrap'
   },
   verificationbutton: {
     backgroundColor: colors.white,

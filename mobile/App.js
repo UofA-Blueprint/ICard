@@ -135,11 +135,11 @@ const App = () => {
             {user == null ? (
               <>
                 <Stack.Screen name="Title" component={TitleView} />
-                <Stack.Screen name="Home" component={Tabs} />
+                <Stack.Screen name="Tabs" component={Tabs} />
               </>
             ) : (
               <>
-                <Stack.Screen name="Home" component={Tabs} />
+                <Stack.Screen name="Tabs" component={Tabs} />
               </>
             )}
           </Stack.Navigator>

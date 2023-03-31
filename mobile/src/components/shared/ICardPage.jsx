@@ -235,6 +235,7 @@ const styles = StyleSheet.create({
     
   },
   notificationText: {
+    marginTop: 76,
     marginLeft: 5,
     height: '100%',
     textAlignVertical: 'center',
@@ -249,7 +250,7 @@ const styles = StyleSheet.create({
     width: 312, 
     height: 54,
     borderRadius: 50,
-    marginTop: 12,
+    marginTop: 25,
     shadowColor: "#000",
     shadowOffset: {
 	    width: 4,

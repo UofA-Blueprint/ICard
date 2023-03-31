@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import {FontAwesome5} from '@expo/vector-icons';
 
 import {colors} from '../utilites/Theme';
@@ -76,14 +76,16 @@ const Registration = ({navigation}) => {
   return (
     <MyICardPage user={null} status={'Unlinked'}>
       <View style={styles.bodyContainer}>
-        <TouchableOpacity
+      <TouchableOpacity
           disabled={!request}
           onPress={() => {
             promptAsync();
           }}
           style={styles.signInButton}
           activeOpacity={0.5}>
-          <FontAwesome5 name="google" size={16} color={colors.primary} />
+          <Image
+            source={require('../../assets/google.png')}
+            style={styles.google}/>
           <Text style={styles.promptMessage}>Sign In with Google</Text>
         </TouchableOpacity>
       </View>
@@ -117,16 +119,25 @@ const styles = StyleSheet.create({
     zIndex: 1,
   },
   signInButton: {
+    marginTop: 25,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    width: '100%',
+    alignSelf: 'center',
+    width: 250,
     paddingHorizontal: 24,
     paddingVertical: 8,
-    borderWidth: 1,
-    borderRadius: 8,
-    borderColor: colors.primary,
-  },
+    backgroundColor: 'white',
+    borderRadius: 50,
+    shadowColor: "#000000",
+    shadowOffset: {
+    width: 0,
+    height: 1,
+    },
+    shadowOpacity:  0.15,
+    shadowRadius: 1.00,
+    elevation: 1
+    },
   promptMessage: {
     color: colors.primary,
   },

@@ -1,6 +1,13 @@
 import React from 'react';
 import axios from 'axios';
-import {StyleSheet, View, Text, Image, ImageBackground} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  ImageBackground,
+  TouchableOpacity,
+} from 'react-native';
 import DiscoverBar from '../components/home/DiscoverBar';
 import {globalStyleSheet, colors} from '../utilites/Theme';
 import VendorList from '../components/shared/VendorList';
@@ -12,7 +19,6 @@ import {getData} from '../data/vendorMockData';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {ScrollView} from 'react-native-virtualized-view';
 import AuthContext from '../context/AuthContext';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const HomeView = ({navigation}) => {
   const [searchPhrase, setSearchPhrase] = useState('');

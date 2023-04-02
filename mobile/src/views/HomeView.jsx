@@ -19,7 +19,7 @@ const HomeView = ({navigation}) => {
   const [clicked, setClicked] = useState(false);
   const [vendorData, setList] = useState([]);
 
-  const {_, setUser} = useContext(AuthContext);
+  const {user, setUser} = useContext(AuthContext);
 
   React.useEffect(() => {
     axios
@@ -37,15 +37,17 @@ const HomeView = ({navigation}) => {
       style={styles.backgroundImage}>
       <SafeAreaView style={{flex: 1}} edges={['top']}>
         <ScrollView>
-          <TouchableOpacity
-            onPress={() => {
-              setUser(null);
-            }}>
-            <Image
-              source={require('../../assets/Sign-Out.png')}
-              style={styles.signOut}
-            />
-          </TouchableOpacity>
+          {user == null ? null : (
+            <TouchableOpacity
+              onPress={() => {
+                setUser(null);
+              }}>
+              <Image
+                source={require('../../assets/Sign-Out.png')}
+                style={styles.signOut}
+              />
+            </TouchableOpacity>
+          )}
 
           <Image
             source={require('../../assets/ISA-logo.png')}

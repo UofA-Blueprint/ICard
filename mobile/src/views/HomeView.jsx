@@ -5,17 +5,21 @@ import DiscoverBar from '../components/home/DiscoverBar';
 import {globalStyleSheet, colors} from '../utilites/Theme';
 import VendorList from '../components/shared/VendorList';
 import VendorView from './VendorView';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import {options, url} from '../data/vendorMockData';
 import {shuffle} from '../utilites/Shuffle';
 import {getData} from '../data/vendorMockData';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {ScrollView} from 'react-native-virtualized-view'
+import {ScrollView} from 'react-native-virtualized-view';
+import AuthContext from '../context/AuthContext';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const HomeView = ({navigation}) => {
   const [searchPhrase, setSearchPhrase] = useState('');
   const [clicked, setClicked] = useState(false);
   const [vendorData, setList] = useState([]);
+
+  const {_, setUser} = useContext(AuthContext);
 
   React.useEffect(() => {
     axios
@@ -33,34 +37,40 @@ const HomeView = ({navigation}) => {
       style={styles.backgroundImage}>
       <SafeAreaView style={{flex: 1}} edges={['top']}>
         <ScrollView>
-        <Image
-          source={require('../../assets/Sign-Out.png')}
-          style={styles.signOut}
-        />
-        <Image
-          source={require('../../assets/ISA-logo.png')}
-          style={styles.logo}
-        />
-        <Text style={styles.title}>
-          Welcome{'\n'}to ISA's{'\n'}mobile app
-        </Text>
-        <Text style={styles.headingDiscoverDiscover}>Discover</Text>
-        <DiscoverBar />
-        <View style={styles.row}>
-          <Text style={styles.headingVendor}>Vendors</Text>
+          <TouchableOpacity
+            onPress={() => {
+              setUser(null);
+            }}>
+            <Image
+              source={require('../../assets/Sign-Out.png')}
+              style={styles.signOut}
+            />
+          </TouchableOpacity>
 
-          <Text
-            style={styles.vendorText}
-            onPress={() => navigation.navigate('Vendors')}>
-            See All
+          <Image
+            source={require('../../assets/ISA-logo.png')}
+            style={styles.logo}
+          />
+          <Text style={styles.title}>
+            Welcome{'\n'}to ISA's{'\n'}mobile app
           </Text>
-        </View>
+          <Text style={styles.headingDiscoverDiscover}>Discover</Text>
+          <DiscoverBar />
+          <View style={styles.row}>
+            <Text style={styles.headingVendor}>Vendors</Text>
 
-        <VendorList
-          searchPhrase={searchPhrase}
-          data={vendorData.slice(0,3)}
-          setClicked={setClicked}
-        />
+            <Text
+              style={styles.vendorText}
+              onPress={() => navigation.navigate('Vendors')}>
+              See All
+            </Text>
+          </View>
+
+          <VendorList
+            searchPhrase={searchPhrase}
+            data={vendorData.slice(0, 3)}
+            setClicked={setClicked}
+          />
         </ScrollView>
       </SafeAreaView>
     </ImageBackground>

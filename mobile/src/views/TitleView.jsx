@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, View, Text, Image, ImageBackground, TouchableOpacity} from 'react-native';
 import {globalStyleSheet, colors} from '../utilites/Theme';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -6,6 +6,9 @@ import * as Google from 'expo-auth-session/providers/google';
 import {CLIENT_ID, API_ROUTE, API_KEY} from '@env';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import VerificationView from './VerificationView';
+import { storeDate } from '../utilites/StoreDate';
+import { storeUser } from '../utilites/StoreUser';
+import AuthContext from '../context/AuthContext';
 
 
 const expoClientId = CLIENT_ID;
@@ -19,7 +22,7 @@ const Stack = createNativeStackNavigator();
 
 
 const Title = ({navigation}) => {
-
+    const {_, setUser} = useContext(AuthContext);
 
     const [request, response, promptAsync] = Google.useAuthRequest({
         responseType: 'id_token',
@@ -39,6 +42,9 @@ const Title = ({navigation}) => {
                 return result.json();
               })
               .then(data => {
+                data["verification_image"] == ""  || data["verification_image"] == undefined ? data["verification_image"] = "" : null;
+                data["id"] = data["_id"];
+                delete data["_id"];
                 setUser(data);
                 storeDate();
                 storeUser(data);
@@ -85,8 +91,7 @@ const Title = ({navigation}) => {
 
 
         <Text style={styles.skip} onPress={() => {
-            navigation.navigate('Home')
-            navigation.navigate('My ICard');
+            navigation.navigate('Tabs')
         }}>Skip for now</Text>
                
       </SafeAreaView>
@@ -101,7 +106,7 @@ const TitleView = () => {
     return (
       <Stack.Navigator>
         <Stack.Screen
-          name="Title"
+          name="Title Page"
           component={Title}
           options={{headerShown: false}}
         />

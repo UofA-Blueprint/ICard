@@ -20,10 +20,6 @@ import {_, API_ROUTE, API_KEY} from '@env';
 import AuthContext from '../context/AuthContext';
 import Step from '../components/shared/Step';
 
-
-
-
-
 const VerifcationView = ({navigation}) => {
   const [image, setImage] = useState(null);
   const [filename, setFilename] = useState(null);
@@ -44,7 +40,11 @@ const VerifcationView = ({navigation}) => {
 
     if (!result.cancelled) {
       let address = result.uri.split('/');
-      setImage(result.uri);
+      setImage({
+        uri: result.uri,
+        type: result.type,
+        name: address[address.length - 1],
+      });
       setFilename(address[address.length - 1]);
     }
   };
@@ -222,8 +222,6 @@ const VerifcationView = ({navigation}) => {
     </ImageBackground>
   );
 };
-
-
 
 const styles = StyleSheet.create({
   backgroundImage: {

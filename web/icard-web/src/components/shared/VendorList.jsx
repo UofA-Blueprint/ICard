@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, FlatList, Text} from 'react-native';
 import VendorCard from './VendorCard';
-import {colors} from '../utilites/Theme';
+import {colors} from '../../utilites/Theme';
 
 const Item = ({itemData}) => (
     <VendorCard

@@ -1,10 +1,17 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, Modal, Dimensions} from 'react-native';
-import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
+import {View, 
+        Text, 
+        StyleSheet, 
+        Image, 
+        Modal, 
+        Dimensions, 
+        Pressable,
+        ScrollView} from 'react-native';
+//import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import {colors} from '../../utilites/Theme';
 import { useState } from 'react';
 import { Feather } from '@expo/vector-icons'; 
-import { ScrollView } from 'react-native-gesture-handler';
+//import { ScrollView } from 'react-native-gesture-handler';
 
 const VendorCard = ({vendorName, location, description, vendorImage, contact}) => {
     const [popupOpen, setPopupOpen] = useState(false);

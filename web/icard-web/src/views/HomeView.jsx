@@ -10,7 +10,8 @@ import {
 } from 'react-native';
 import DiscoverBar from '../components/home/DiscoverBar';
 import {globalStyleSheet, colors} from '../utilites/Theme';
-
+import VendorList from '../components/shared/VendorList'
+import {useState, useEffect, useContext} from 'react';
 //import VendorList from '../components/shared/VendorList';
 //import VendorView from './VendorView';
 //import {useState, useEffect, useContext} from 'react';
@@ -23,11 +24,11 @@ import {globalStyleSheet, colors} from '../utilites/Theme';
 //import {storeUser} from '../utilites/StoreUser';
 
 const HomeView = ({navigation}) => {
-  /*
+  
   const [searchPhrase, setSearchPhrase] = useState('');
   const [clicked, setClicked] = useState(false);
   const [vendorData, setList] = useState([]);
-
+  /*
   const {user, setUser} = useContext(AuthContext);
 
   React.useEffect(() => {
@@ -74,6 +75,11 @@ const HomeView = ({navigation}) => {
               See All
             </Text>
           </View>
+          <VendorList
+            searchPhrase={searchPhrase}
+            data={vendorData.slice(0, 3)}
+            setClicked={setClicked}
+          />
       </ScrollView>    
       </SafeAreaView>
       </ImageBackground>

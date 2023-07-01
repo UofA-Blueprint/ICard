@@ -1,15 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
-import HomeView from './src/views/HomeView';
-import {
-  StyleSheet,
-  View,
-} from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View } from "react-native";
+import Home from "./src/views/Home";
 
 export default function App() {
-  return (
-      <View>
-        <HomeView />
-      </View>
-  );
+  return <Home />;
 }
-

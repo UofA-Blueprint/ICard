@@ -146,6 +146,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeView;
-
-
+export default Home;

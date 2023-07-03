@@ -23,11 +23,11 @@ import {useState, useEffect, useContext} from 'react';
 //import AuthContext from '../context/AuthContext';
 //import {storeUser} from '../utilites/StoreUser';
 
-const HomeView = ({navigation}) => {
+const Home = ({navigation}) => {
   
   const [searchPhrase, setSearchPhrase] = useState('');
   const [clicked, setClicked] = useState(false);
-  const [vendorData, setList] = useState([]);
+  const [vendorData, setList] = useState(require('./../data/vendorMockData.json'));
   /*
   const {user, setUser} = useContext(AuthContext);
 

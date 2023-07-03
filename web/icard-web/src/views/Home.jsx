@@ -27,7 +27,7 @@ const Home = ({navigation}) => {
   
   const [searchPhrase, setSearchPhrase] = useState('');
   const [clicked, setClicked] = useState(false);
-  const [vendorData, setList] = useState([]);
+  const [vendorData, setList] = useState(require('./../data/vendorMockData.json'));
   /*
   const {user, setUser} = useContext(AuthContext);
 

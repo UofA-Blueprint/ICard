@@ -5,6 +5,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import ScreenOption from './src/utilites/ScreenOption';
 
 import Home from "./src/views/Home";
+import MyICardView from "./src/views/MyICardView";
 import PageNotFound from "./src/views/PageNotFound";
 
 const Stack = createNativeStackNavigator();
@@ -15,7 +16,7 @@ export default function App() {
       <Tab.Navigator screenOptions={ScreenOption}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Vendors" component={PageNotFound} />
-        <Stack.Screen name="My ICard" component={PageNotFound} />
+        <Stack.Screen name="My ICard" component={MyICardView} />
       </Tab.Navigator>
   )};
 

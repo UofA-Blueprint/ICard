@@ -6,7 +6,7 @@ import {View,
         Modal, 
         Dimensions, 
         Pressable,
-        ScrollView} from 'react-native';
+        ScrollView} from 'react-native-web';
 //import Pressable from 'react-native/Libraries/Components/Pressable/Pressable';
 import {colors} from '../../utilites/Theme';
 import { useState } from 'react';

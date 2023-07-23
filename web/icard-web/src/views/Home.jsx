@@ -68,9 +68,9 @@ const Home = ({navigation}) => {
       <View style={styles.row}>
             <Text style={styles.headingVendor}>Vendors</Text>
 
-            {/* TODO: Restore navigation functionality */}
             <Text
               style={styles.vendorText}
+              onPress={() => navigation.navigate('Vendors')}
               >
               See All
             </Text>

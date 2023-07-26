@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, FlatList, Text} from 'react-native';
+import {StyleSheet, View, FlatList, Text} from 'react-native-web';
 import VendorCard from './VendorCard';
 import {colors} from '../../utilites/Theme';
 

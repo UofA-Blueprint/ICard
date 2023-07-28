@@ -6,3 +6,4 @@ mobile/.env
 .DS_Store
 web/icard-web/web-build/
 web/icard-web/secrets/
+web/icard-web/.env

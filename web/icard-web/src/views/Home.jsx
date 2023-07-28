@@ -12,23 +12,25 @@ import DiscoverBar from '../components/home/DiscoverBar';
 import {globalStyleSheet, colors} from '../utilites/Theme';
 import VendorList from '../components/shared/VendorList'
 import {useState, useEffect, useContext} from 'react';
+import React from 'react';
+import axios from 'axios';
 //import VendorList from '../components/shared/VendorList';
 //import VendorView from './VendorView';
 //import {useState, useEffect, useContext} from 'react';
-//import {options, url} from '../data/vendorMockData';
+import {options, url} from '../data/vendorMockData';
 //import {shuffle} from '../utilites/Shuffle';
 //import {getData} from '../data/vendorMockData';
 //import {SafeAreaView} from 'react-native-safe-area-context';
-//import {ScrollView} from 'react-native-virtualized-view';
-//import AuthContext from '../context/AuthContext';
+//import {ScrollView} from 'react-native-virtualize-view';
+import AuthContext from '../context/AuthContext';
 //import {storeUser} from '../utilites/StoreUser';
 
 const Home = ({navigation}) => {
   
   const [searchPhrase, setSearchPhrase] = useState('');
   const [clicked, setClicked] = useState(false);
-  const [vendorData, setList] = useState(require('./../data/vendorMockData.json'));
-  /*
+  const [vendorData, setList] = useState(require("../data/vendorMockDataOffline.json"));
+  
   const {user, setUser} = useContext(AuthContext);
 
   React.useEffect(() => {
@@ -39,7 +41,7 @@ const Home = ({navigation}) => {
       })
       .catch(error => console.log(error));
   }, []);
-  */
+  
 
   return (
       <ImageBackground

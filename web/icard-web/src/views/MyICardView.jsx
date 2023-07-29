@@ -6,7 +6,7 @@ import {
   ScrollView,
   ActivityIndicator,
 } from "react-native";
-// import AuthContext from "../context/AuthContext";
+import AuthContext from "../context/AuthContext";
 import MyICardPage from "../components/shared/ICardPage";
 // import SubmittedView from "./SubmittedView";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -18,12 +18,12 @@ const Stack = createNativeStackNavigator();
 
 
 const MyICard = () => {
-  // const { user, setUser } = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   
-  const user = {
-    name: "Stephanie Jones",
-    picture: require("../../assets/temp/pfp.png")
-  }
+  // const user = {
+  //   name: "Stephanie Jones",
+  //   picture: require("../../assets/temp/pfp.png")
+  // }
   const [checkStatus, setCheckStatus] = useState(true);
   const [status, setStatus] = useState()
   const [verbose, setVerbose] = useState()

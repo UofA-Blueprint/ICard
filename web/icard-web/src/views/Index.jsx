@@ -31,10 +31,10 @@ export default function Index() {
 
   const LogIn = () => {
     return (
-      <Tab.Navigator screenOptions={ScreenOption} initialRouteName="Registration">
+      <Tab.Navigator screenOptions={ScreenOption} initialRouteName="My ICard">
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Vendors" component={PageNotFound} />
-        <Stack.Screen name="Registration" component={RegistrationView} />
+        <Stack.Screen name="My ICard" component={RegistrationView} />
       </Tab.Navigator>
     )
   }

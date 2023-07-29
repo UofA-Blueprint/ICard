@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 
@@ -8,6 +8,9 @@ import * as WebBrowser from "expo-web-browser";
 import * as Google from "expo-auth-session/providers/google";
 
 import AuthContext from "../context/AuthContext";
+import axios from "axios";
+
+import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 
 WebBrowser.maybeCompleteAuthSession();
 
@@ -26,6 +29,38 @@ const Stack = createNativeStackNavigator();
 
 const Registration = ({ navigation }) => {
   const { user, setUser } = useContext(AuthContext);
+  const [response, setResponse] = useState(false)
+  const login = useGoogleLogin({
+    onSuccess: (codeResponse) =>{ console.log(codeResponse);setResponse(codeResponse)},
+    onError: (error) => console.log("Login Failed:", error),
+  });
+
+  useEffect(() => {
+    console.log("USER",response)
+    if (response) {
+      axios
+        .get(
+          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${response.access_token}`,
+          {
+            headers: {
+              Authorization: `Bearer ${response.access_token}`,
+              Accept: "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          console.log("Profile",res.data)
+          setUser(res.data);
+        })
+        .catch((err) => console.log("ERROR",err));
+    }
+  }, [response]);
+
+  const logOut = () => {
+    googleLogout();
+    setUser(null);
+    setResponse(null);
+  };
   // setUser("Hello")
   // Google Use Auth Request Hook
 
@@ -79,7 +114,7 @@ const Registration = ({ navigation }) => {
         <TouchableOpacity
           // disabled={!request}
           onPress={() => {
-            promptAsync();
+            login();
           }}
           style={styles.signInButton}
           activeOpacity={0.5}
@@ -130,7 +165,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: 250,
     paddingHorizontal: 24,
-    paddingVertical: 8,
+    paddingVertical: 15,
     backgroundColor: "white",
     borderRadius: 50,
     shadowColor: "#000000",
@@ -141,10 +176,16 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 1.0,
     elevation: 1,
+    boxShadow: "0px 2px 3px 0px rgba(0, 0, 0, 0.17), 0px 0px 3px 0px rgba(0, 0, 0, 0.08)",
+    elevation: 5
   },
   promptMessage: {
     color: colors.primary,
   },
+  google:{
+    width: 25,
+    height: 25,
+  }
 });
 
 export default RegistrationView;

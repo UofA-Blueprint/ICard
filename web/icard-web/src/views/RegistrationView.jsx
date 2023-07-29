@@ -25,8 +25,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 const Stack = createNativeStackNavigator();
 
 const Registration = ({ navigation }) => {
-  const { _, setUser } = useContext(AuthContext);
-
+  const { user, setUser } = useContext(AuthContext);
+  // setUser("Hello")
   // Google Use Auth Request Hook
 
   // const [request, response, promptAsync] = Google.useAuthRequest({

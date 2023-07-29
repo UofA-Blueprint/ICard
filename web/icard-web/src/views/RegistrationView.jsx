@@ -1,22 +1,22 @@
-import React, {useContext} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
-import {FontAwesome5} from '@expo/vector-icons';
+import React, { useContext } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { FontAwesome5 } from "@expo/vector-icons";
 
-import {colors} from '../utilites/Theme';
+import { colors } from "../utilites/Theme";
 
-import * as WebBrowser from 'expo-web-browser';
-import * as Google from 'expo-auth-session/providers/google';
+import * as WebBrowser from "expo-web-browser";
+import * as Google from "expo-auth-session/providers/google";
 
-import AuthContext from '../context/AuthContext';
+import AuthContext from "../context/AuthContext";
 
 WebBrowser.maybeCompleteAuthSession();
 
 // import {CLIENT_ID, API_ROUTE, API_KEY} from '@env';
-import MyICardPage from '../components/shared/ICardPage';
-import { storeDate } from '../utilites/StoreDate';
-import { storeUser } from '../utilites/StoreUser';
+import MyICardPage from "../components/shared/ICardPage";
+import { storeDate } from "../utilites/StoreDate";
+import { storeUser } from "../utilites/StoreUser";
 // import VerificationView from './VerificationView';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // const expoClientId = CLIENT_ID;
 // const authRoute = API_ROUTE;
@@ -24,8 +24,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 
-const Registration = ({navigation}) => {
-  const {_, setUser} = useContext(AuthContext);
+const Registration = ({ navigation }) => {
+  const { _, setUser } = useContext(AuthContext);
 
   // Google Use Auth Request Hook
 
@@ -74,18 +74,20 @@ const Registration = ({navigation}) => {
 
   //status defines button condition
   return (
-    <MyICardPage user={null} status={'Unlinked'}>
+    <MyICardPage user={null} status={"Unlinked"}>
       <View style={styles.bodyContainer}>
-      <TouchableOpacity
+        <TouchableOpacity
           // disabled={!request}
           onPress={() => {
             promptAsync();
           }}
           style={styles.signInButton}
-          activeOpacity={0.5}>
+          activeOpacity={0.5}
+        >
           <Image
-            source={require('../../assets/google.png')}
-            style={styles.google}/>
+            source={require("../../assets/google.png")}
+            style={styles.google}
+          />
           <Text style={styles.promptMessage}>Sign In with Google</Text>
         </TouchableOpacity>
       </View>
@@ -93,11 +95,10 @@ const Registration = ({navigation}) => {
   );
 };
 
-
 const RegistrationView = () => {
   return (
     //Added:
-    <Registration/>
+    <Registration />
 
     // <Stack.Navigator>
     //   <Stack.Screen
@@ -116,31 +117,31 @@ const RegistrationView = () => {
 
 const styles = StyleSheet.create({
   bodyContainer: {
-    width: '60%',
-    justifyContent: 'center',
+    width: "60%",
+    justifyContent: "center",
     marginTop: 5,
     zIndex: 1,
   },
   signInButton: {
     marginTop: 25,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    alignSelf: 'center',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    alignSelf: "center",
     width: 250,
     paddingHorizontal: 24,
     paddingVertical: 8,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 50,
     shadowColor: "#000000",
     shadowOffset: {
-    width: 0,
-    height: 1,
+      width: 0,
+      height: 1,
     },
-    shadowOpacity:  0.15,
-    shadowRadius: 1.00,
-    elevation: 1
-    },
+    shadowOpacity: 0.15,
+    shadowRadius: 1.0,
+    elevation: 1,
+  },
   promptMessage: {
     color: colors.primary,
   },

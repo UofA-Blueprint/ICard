@@ -9,7 +9,6 @@ import MyICardView from "./src/views/MyICardView";
 import PageNotFound from "./src/views/PageNotFound";
 import RegistrationView from "./src/views/RegistrationView";
 import React from "react";
-import VerificationView from "./src/views/VerificationView";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const Stack = createNativeStackNavigator();

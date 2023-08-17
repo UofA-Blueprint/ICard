@@ -1,7 +1,10 @@
 import React, {useState, useContext} from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import Dropzone from 'react-dropzone';
+import * as ImagePicker from 'expo-image-picker';
 
 import {
+  Button,
   View,
   StyleSheet,
   Pressable,
@@ -29,7 +32,6 @@ const VerifcationView = ({navigation}) => {
   const [Progress, setProgress] = useState(0);
 
   const pickImage = async () => {
-    // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
@@ -39,16 +41,33 @@ const VerifcationView = ({navigation}) => {
 
     console.log(result);
 
-    if (!result.cancelled) {
-      let address = result.uri.split('/');
-      setImage({
-        uri: result.uri,
-        type: result.type,
-        name: address[address.length - 1],
-      });
-      setFilename(address[address.length - 1]);
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
     }
   };
+
+
+  // const pickImage = async () => {
+  //   // No permissions request is necessary for launching the image library
+  //   let result = await ImagePicker.launchImageLibraryAsync({
+  //     mediaTypes: ImagePicker.MediaTypeOptions.All,
+  //     allowsEditing: true,
+  //     aspect: [4, 3],
+  //     quality: 1,
+  //   });
+
+  //   console.log(result);
+
+  //   if (!result.cancelled) {
+  //     let address = result.uri.split('/');
+  //     setImage({
+  //       uri: result.uri,
+  //       type: result.type,
+  //       name: address[address.length - 1],
+  //     });
+  //     setFilename(address[address.length - 1]);
+  //   }
+  // };
 
   const submitImage = async () => {
     let formData = new FormData();
@@ -104,17 +123,18 @@ const VerifcationView = ({navigation}) => {
         </View>
         <ScrollView style={styles.body}>
           <Text style={styles.instruction}>
-            An email from ISA was sent to your University of Alberta email.
-            Please upload a screenshot to verify your account.{' '}
-            <FontAwesome5
+          {' The new verification process: Open bear tracks -> Go to "Profile"-> Take a screenshot of "Personal Details" Tab and submit the screenshot.'}
+
+            {/* Commented out the question mark with the circle around it since we are no longer verifying via email. */}
+            {/* <FontAwesome5
               name="question-circle"
               size={20}
               color={colors.primary}
               backgroundColor="transparent"
-              onPress={() => setModalVisible(true)}></FontAwesome5>
+              onPress={() => setModalVisible(true)}></FontAwesome5> */}
           </Text>
 
-          <Modal transparent={true} visible={modalVisible}>
+          {/* <Modal transparent={true} visible={modalVisible}>
             <View
               style={{
                 backgroundColor: '#000000aa',
@@ -163,7 +183,7 @@ const VerifcationView = ({navigation}) => {
                 </ScrollView>
               </View>
             </View>
-          </Modal>
+          </Modal> */}
 
           <Text style={styles.example}>Example</Text>
           <View style={styles.exampleImage}>
@@ -173,6 +193,7 @@ const VerifcationView = ({navigation}) => {
           </View>
           <View style={{alignItems: 'center', justifyContent: 'center'}}>
             <View style={image ? styles.uploaded : styles.uploadSection}>
+
               {image ? (
                 <FontAwesome5
                   name="file-alt"
@@ -186,6 +207,11 @@ const VerifcationView = ({navigation}) => {
                   color={colors.primary}
                   backgroundColor="transparent"></FontAwesome5>
               )}
+
+              {image && (
+                <Image source={{ uri: image }} style={{ width: '100%', aspectRatio: 4 / 3 }} />
+              )}
+
               {image ? (
                 <Text style={styles.filename}>{filename}</Text>
               ) : (
@@ -213,7 +239,7 @@ const VerifcationView = ({navigation}) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                navigation.navigate('My ICard');
+                navigation.navigate('Home');
               }}>
               <Text style={styles.skipButtonText}>Skip for now</Text>
             </Pressable>

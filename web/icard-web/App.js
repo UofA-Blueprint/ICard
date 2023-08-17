@@ -8,17 +8,20 @@ import Home from "./src/views/Home";
 import MyICardView from "./src/views/MyICardView";
 import PageNotFound from "./src/views/PageNotFound";
 import RegistrationView from "./src/views/RegistrationView";
+import VerifcationView from "./src/views/VerificationView";
 import React from "react";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 export default function App() {
+
   const [user, setUser] = useState(null);
   const Tabs = () => {return (
       <Tab.Navigator screenOptions={ScreenOption}>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Vendors" component={PageNotFound} />
+        <Stack.Screen name="Verification" component={VerifcationView} />
         {user == null ? (
         <Stack.Screen name="My ICard" component={RegistrationView} />
         ) : (

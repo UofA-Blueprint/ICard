@@ -23,6 +23,7 @@
     "expo-web-browser": "~12.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-dropzone": "^14.2.3",
     "react-native": "0.71.8",
     "react-native-dotenv": "^3.4.9",
     "react-native-gesture-handler": "~2.9.0",
@@ -33,7 +34,8 @@
     "react-native-web": "~0.18.10"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "electron": "^25.5.0"
   },
   "private": true
 }

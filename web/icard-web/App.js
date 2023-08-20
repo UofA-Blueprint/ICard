@@ -12,23 +12,20 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { GoogleLogin } from "@react-oauth/google";
 
-import secret from "./secrets/client_secrets.json";
+// import secret from "./secrets/client_secrets.json";
+import {CLIENT_ID} from '@env';
 export default function App() {
-  console.log(secret)
   const [user, setUser] = useState(null);
-  const value = {user, setUser};
-  
-//   return (
-//     <GoogleOAuthProvider clientId={secret.web.client_id}>
-//       <AuthContext.Provider value={value}>
-//         <Index />
-//       </AuthContext.Provider>
-//     </GoogleOAuthProvider>
-//   )
-// }
+  const value = { user, setUser };
+
   return (
-    <SafeAreaProvider>
-      <VerificationView />
-    </SafeAreaProvider>
-  );
+    <GoogleOAuthProvider clientId={CLIENT_ID}>
+      <AuthContext.Provider value={value}>
+        <SafeAreaProvider>
+          {/* <VerificationView /> */}
+          <Index />
+        </SafeAreaProvider>
+      </AuthContext.Provider>
+    </GoogleOAuthProvider>
+  )
 }

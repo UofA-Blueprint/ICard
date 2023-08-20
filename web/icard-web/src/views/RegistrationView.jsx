@@ -14,7 +14,11 @@ import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 
 WebBrowser.maybeCompleteAuthSession();
 
-// import {CLIENT_ID, API_ROUTE, API_KEY} from '@env';
+// const {
+//   OAuth2Client,
+// } = require('google-auth-library');
+
+import { CLIENT_ID, CLIENT_SECRET, API_ROUTE, API_KEY } from "@env";
 import MyICardPage from "../components/shared/ICardPage";
 import { storeDate } from "../utilites/StoreDate";
 import { storeUser } from "../utilites/StoreUser";
@@ -24,35 +28,44 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // const expoClientId = CLIENT_ID;
 // const authRoute = API_ROUTE;
 // const apiKey = API_KEY;
-
+// console.log("API_ROUTE", API_ROUTE);
+// console.log("API_KEY", API_KEY);
 const Stack = createNativeStackNavigator();
+
+// import {CLIENT_ID} from '@env';
+// const oAuth2Client = new OAuth2Client(
+//   CLIENT_ID,
+//   CLIENT_SECRET,
+//   'postmessage',
+// );
 
 const Registration = ({ navigation }) => {
   const { user, setUser } = useContext(AuthContext);
-  const [response, setResponse] = useState(false)
+  const [response, setResponse] = useState(false);
   const login = useGoogleLogin({
-    onSuccess: (codeResponse) =>{ console.log(codeResponse);setResponse(codeResponse)},
+    flow: "auth-code",
+    onSuccess: (codeResponse) => {
+      console.log(codeResponse);
+      setResponse(codeResponse);
+    },
     onError: (error) => console.log("Login Failed:", error),
   });
 
   useEffect(() => {
-    console.log("USER",response)
+    console.log("USER", response);
     if (response) {
       axios
-        .get(
-          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${response.access_token}`,
-          {
-            headers: {
-              Authorization: `Bearer ${response.access_token}`,
-              Accept: "application/json",
-            },
-          }
-        )
+        .post(`${API_ROUTE}api/auth/login`, {}, {
+          headers: {
+            "session-token": response.code,
+            "x-api-key": API_KEY,
+          },
+        })
         .then((res) => {
-          console.log("Profile",res.data)
+          console.log("Profile", res.data);
           setUser(res.data);
         })
-        .catch((err) => console.log("ERROR",err));
+        .catch((err) => console.log("ERROR", err));
     }
   }, [response]);
 
@@ -176,16 +189,17 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 1.0,
     elevation: 1,
-    boxShadow: "0px 2px 3px 0px rgba(0, 0, 0, 0.17), 0px 0px 3px 0px rgba(0, 0, 0, 0.08)",
-    elevation: 5
+    boxShadow:
+      "0px 2px 3px 0px rgba(0, 0, 0, 0.17), 0px 0px 3px 0px rgba(0, 0, 0, 0.08)",
+    elevation: 5,
   },
   promptMessage: {
     color: colors.primary,
   },
-  google:{
+  google: {
     width: 25,
     height: 25,
-  }
+  },
 });
 
 export default RegistrationView;

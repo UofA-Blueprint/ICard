@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderStyle: "solid",
     borderTopWidth: 10,
-    borderWidth: "10px 0px",
+    // borderWidth: "10px 0px",
     borderBottomWidth: 10,
     padding: 20,
     filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",

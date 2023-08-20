@@ -24,7 +24,7 @@ const Stack = createNativeStackNavigator();
 
 import { CLIENT_ID, CLIENT_SECRET, API_ROUTE, API_KEY } from "@env";
 
-const MyICard = ({navigation}) => {
+const MyICard = ({ navigation }) => {
   const { user, setUser } = useContext(AuthContext);
 
   // const user = {
@@ -44,7 +44,7 @@ const MyICard = ({navigation}) => {
   const loadUserData = async () => {
     setRefreshing(true);
     axios
-      .get(`${API_ROUTE}api/students/${user.id}`, {
+      .get(`${API_ROUTE}api/students/${user._id}`, {
         headers: { "x-api-key": API_KEY, "jwt-token": user.key },
       })
       .then((result) => result.json())
@@ -83,14 +83,24 @@ const MyICard = ({navigation}) => {
     if (!user.isaf_status && user.verify_status)
       setStatus("inactive, reverify"); //reverify
 
-    if (!user.isaf_status && !user.verify_status && !user.verification_image)
+    if (
+      !user.isaf_status &&
+      !user.verify_status &&
+      !user.verification_image
+    )
       setStatus("inactive, verify"); //verify
-    if (!user.isaf_status && !user.verify_status && user.verification_image)
+    if (
+      !user.isaf_status &&
+      !user.verify_status &&
+      user.verification_image
+    )
       setStatus("verifying account");
-    setVerbose("Verification in progress, may take up to 1-3 business days");
+    setVerbose(
+      "Verification in progress, may take up to 1-3 business days"
+    );
   };
 
-  useEffect( () => {
+  useEffect(() => {
     if (checkStatus) {
       statusCheck();
       setCheckStatus(false);
@@ -102,7 +112,12 @@ const MyICard = ({navigation}) => {
     <View style={styles.container}>
       <ScrollView
         data-testid={"refreshControl"}
-        refreshControl={<RefreshControl refreshing={refreshing} onRefresh = {loadUserData} />}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={loadUserData}
+          />
+        }
         contentContainerStyle={styles.contentContainer}
       >
         <MyICardPage
@@ -113,7 +128,7 @@ const MyICard = ({navigation}) => {
           verify={() => {
             navigation.navigate("Verification");
           }}
-          refresh={async ()=> {
+          refresh={async () => {
             await loadUserData();
           }}
         />
@@ -127,24 +142,24 @@ const MyICardView = () => {
     // <View>
     //   <MyICard></MyICard>
     // </View>
-      <Stack.Navigator initialRouteName="My ICard">
-        <Stack.Screen
-          name="My ICard"
-          component={MyICard}
-          options={{ headerShown: false }}
-        />
-        {/* TODO: Add verification page */}
-        <Stack.Screen
-          name="Verification"
-          component={VerificationView}
-          options={{ headerShown: false }}
-        />
-        {/* // <Stack.Screen
+    <Stack.Navigator initialRouteName="My ICard">
+      <Stack.Screen
+        name="My ICard Main"
+        component={MyICard}
+        options={{ headerShown: false }}
+      />
+      {/* TODO: Add verification page */}
+      <Stack.Screen
+        name="Verification"
+        component={VerificationView}
+        options={{ headerShown: false }}
+      />
+      {/* // <Stack.Screen
       //   name="Submitted"
       //   component={SubmittedPage}
       //   options={{ headerShown: false }}
       // /> */}
-      </Stack.Navigator>
+    </Stack.Navigator>
   );
 };
 

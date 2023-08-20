@@ -1,5 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 import VerificationView from "./VerificationView";
@@ -54,17 +60,19 @@ const Registration = ({ navigation }) => {
   });
 
   useEffect(() => {
-    console.log("USER", response);
     if (response) {
       axios
-        .post(`${API_ROUTE}api/auth/login`, {}, {
-          headers: {
-            "session-token": response.code,
-            "x-api-key": API_KEY,
-          },
-        })
+        .post(
+          `${API_ROUTE}api/auth/login`,
+          {},
+          {
+            headers: {
+              "session-token": response.code,
+              "x-api-key": API_KEY,
+            },
+          }
+        )
         .then((res) => {
-          console.log("Profile", res.data);
           setUser(res.data);
           storeUser(res.data);
         })
@@ -99,16 +107,16 @@ const Registration = ({ navigation }) => {
   //           return result.json();
   //         })
   //         .then(data => {
-            //Data being retrieved from backend is weird. If completely new user logs in
-            //then verification image is undefined and does not show up in the fetched user data obj
-            //If verifcation image was added to user at somepoint and then erased (so field is blank now), suddenly
-            //verification image field is not undefined and is just recognised as a blank space in
-            //the fetched user obj
-            //Line below is a work around
-            //if verification field is blank space or undefined, label it as empty/blank space
-            // data["verification_image"] == ""  || data["verification_image"] == undefined ? data["verification_image"] = "" : null;
-            // data["id"] = data["_id"];
-            // delete data["_id"];
+  //Data being retrieved from backend is weird. If completely new user logs in
+  //then verification image is undefined and does not show up in the fetched user data obj
+  //If verifcation image was added to user at somepoint and then erased (so field is blank now), suddenly
+  //verification image field is not undefined and is just recognised as a blank space in
+  //the fetched user obj
+  //Line below is a work around
+  //if verification field is blank space or undefined, label it as empty/blank space
+  // data["verification_image"] == ""  || data["verification_image"] == undefined ? data["verification_image"] = "" : null;
+  // data["id"] = data["_id"];
+  // delete data["_id"];
   //           setUser(data);
   //           storeDate();
   //           storeUser(data);
@@ -139,7 +147,9 @@ const Registration = ({ navigation }) => {
             source={require("../../assets/google.png")}
             style={styles.google}
           />
-          <Text style={styles.promptMessage}>Sign In with Google</Text>
+          <Text style={styles.promptMessage}>
+            Sign In with Google
+          </Text>
         </TouchableOpacity>
       </View>
     </MyICardPage>
@@ -149,18 +159,17 @@ const Registration = ({ navigation }) => {
 const RegistrationView = () => {
   return (
     <Stack.Navigator>
-       <Stack.Screen
-         name="Registration"
-         component={Registration}
-         options={{headerShown: false}}
-       />
-       <Stack.Screen
-         name="Verification"
-         component={VerificationView}
-         options={{headerShown: false}}
-       />
+      <Stack.Screen
+        name="Registration"
+        component={Registration}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Verification"
+        component={VerificationView}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
-
   );
 };
 

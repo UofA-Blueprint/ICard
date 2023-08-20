@@ -88,4 +88,9 @@ app.use('/api/vendors', vendorsRouter); // vendor routes
 app.use('/api/auth', authRouter); // auth routes
 app.use('/api/images', imageRouter); // image routes
 
+if (process.env.NODE_ENV === 'dev') {
+    app.set('port', process.env.PORT || 8080);
+    app.listen(app.get('port'));
+}
+
 module.exports = app; // export the app for testing

@@ -3,7 +3,12 @@ const { OAuth2Client } = require('google-auth-library');
 require('dotenv').config();
 
 // create OAuth client for google authentication
-const client = new OAuth2Client(process.env.CLIENT_ID, process.env.CLIENT_SECRET, 'postmessage',CLOCK_SKEW_SECS_=0);
+const client = new OAuth2Client(
+    process.env.CLIENT_ID,
+    process.env.CLIENT_SECRET,
+    'postmessage',
+    (CLOCK_SKEW_SECS_ = 0)
+);
 function verifyToken(req, res, next) {
     // Verifies the auth-token passed in the request header and returns the user if valid
     const token = req.header('auth-token'); // get the token from the header
@@ -24,6 +29,7 @@ function verifyToken(req, res, next) {
 // verifies the api token before accessing the route
 function verifyApiKey(req, res, next) {
     const apiKey = req.header('x-api-key');
+    console.log(req.header('x-api-key'));
     if (!apiKey) return res.status(401).json({ message: 'Access denied. No api-key provided.' });
 
     if (apiKey !== process.env.API_KEY) {
@@ -36,7 +42,7 @@ function verifyApiKey(req, res, next) {
 // verifies the google token and returns the user if valid
 async function checkAuthenticated(req, res, next) {
     let code = req.header('session-token'); // get the token from the header
-    const {tokens} = await client.getToken(code)
+    const { tokens } = await client.getToken(code);
     // console.log("We got this token",tokens);
     let user = {}; // create an empty user object
     async function verify() {
@@ -56,7 +62,7 @@ async function checkAuthenticated(req, res, next) {
             next(); // call next() to continue
         })
         .catch((error) => {
-            console.log(error)
+            console.log(error);
             res.status(401).json({ message: 'Invalid token.' });
         });
 }

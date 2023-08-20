@@ -118,6 +118,7 @@ const MyICardPage = (props) => {
                   ? { uri: user.picture }
                   : require("../../../assets/account.png")
               }
+              referrerPolicy="no-referrer" // Google rate-limits localhost requests. the bug might not be reproducible in production.
               style={[{ ...styles.avatar, borderColor: theme }]}
             />
             <Text style={styles.userName}>

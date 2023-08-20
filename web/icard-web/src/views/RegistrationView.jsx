@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { FontAwesome5 } from "@expo/vector-icons";
 
+import VerificationView from "./VerificationView";
+
 import { colors } from "../utilites/Theme";
 
 import * as WebBrowser from "expo-web-browser";
@@ -146,21 +148,19 @@ const Registration = ({ navigation }) => {
 
 const RegistrationView = () => {
   return (
-    //Added:
-    <Registration />
+    <Stack.Navigator>
+       <Stack.Screen
+         name="Registration"
+         component={Registration}
+         options={{headerShown: false}}
+       />
+       <Stack.Screen
+         name="Verification"
+         component={VerificationView}
+         options={{headerShown: false}}
+       />
+    </Stack.Navigator>
 
-    // <Stack.Navigator>
-    //   <Stack.Screen
-    //     name="Registration"
-    //     component={Registration}
-    //     options={{headerShown: false}}
-    //   />
-    //   <Stack.Screen
-    //     name="Verification"
-    //     component={VerificationView}
-    //     options={{headerShown: false}}
-    //   />
-    // </Stack.Navigator>
   );
 };
 

@@ -1,13 +1,23 @@
 import { StatusBar } from "expo-status-bar";
+
 import { StyleSheet, Text, View } from "react-native";
 import AuthContext from "./src/context/AuthContext";
 import { useEffect, useState } from "react";
 import Index from "./src/views/Index";
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import ScreenOption from './src/utilites/ScreenOption';
+
 import Home from "./src/views/Home";
+import MyICardView from "./src/views/MyICardView";
+import PageNotFound from "./src/views/PageNotFound";
 import RegistrationView from "./src/views/RegistrationView";
-import VerificationView from "./src/views/VerificationView";
+import React from "react";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 import {
   storeDateKey,
@@ -42,10 +52,10 @@ export default function App() {
     <GoogleOAuthProvider clientId={CLIENT_ID}>
       <AuthContext.Provider value={value}>
         <SafeAreaProvider>
-          {/* <VerificationView /> */}
           <Index />
         </SafeAreaProvider>
       </AuthContext.Provider>
     </GoogleOAuthProvider>
   )
+
 }

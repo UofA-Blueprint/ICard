@@ -6,50 +6,45 @@ import {
   ImageBackground,
   TouchableOpacity,
   ScrollView,
-
   SafeAreaView,
 } from "react-native";
 
-import DiscoverBar from '../components/home/DiscoverBar';
-import {globalStyleSheet, colors} from '../utilites/Theme';
-import VendorList from '../components/shared/VendorList'
-import {useState, useEffect, useContext} from 'react';
-import React from 'react';
-import axios from 'axios';
+import DiscoverBar from "../components/home/DiscoverBar";
+import { globalStyleSheet, colors } from "../utilites/Theme";
+import VendorList from "../components/shared/VendorList";
+import { useState, useEffect, useContext } from "react";
+import React from "react";
+import axios from "axios";
 
 //import VendorList from '../components/shared/VendorList';
 //import VendorView from './VendorView';
 //import {useState, useEffect, useContext} from 'react';
-import {options, url} from '../data/vendorMockData';
+import { options, url } from "../data/vendorMockData";
 //import {shuffle} from '../utilites/Shuffle';
 //import {getData} from '../data/vendorMockData';
 //import {SafeAreaView} from 'react-native-safe-area-context';
 //import {ScrollView} from 'react-native-virtualized-view';
 //import AuthContext from '../context/AuthContext';
-import {storeUser} from '../utilites/StoreUser';
+import { storeUser } from "../utilites/StoreUser";
 //import {ScrollView} from 'react-native-virtualize-view';
-import AuthContext from '../context/AuthContext';
+import AuthContext from "../context/AuthContext";
 //import {storeUser} from '../utilites/StoreUser';
-
 
 const Home = ({ navigation }) => {
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
 
-  const [vendorData, setList] = useState(
-    require("./../data/vendorMockData.json")
-  );
-  const {user, setUser} = useContext(AuthContext);
+  const [vendorData, setList] = useState([]);
+  const { user, setUser } = useContext(AuthContext);
 
   useEffect(() => {
     axios
       .get(url, options)
-      .then(res => {
+      .then((res) => {
         setList(res.data);
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   }, []);
-  
 
   return (
     <ImageBackground
@@ -63,10 +58,11 @@ const Home = ({ navigation }) => {
             // TODO: User == null logic and relevant functions missing
           }
           <TouchableOpacity
-            onPress={async () =>{
+            onPress={async () => {
               await storeUser(null);
               setUser(null);
-            }}>
+            }}
+          >
             <Image
               source={require("../../assets/Sign-Out.png")}
               style={styles.signOut}

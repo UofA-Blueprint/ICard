@@ -14,14 +14,14 @@ import {
   FlatList,
 } from 'react-native';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-// import * as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from 'expo-image-picker';
 import {colors} from '../utilites/Theme';
 // import * as Progress from 'react-native-progress';
-// import {_, API_ROUTE, API_KEY} from '@env';
+import {API_ROUTE, API_KEY} from '@env';
 import AuthContext from '../context/AuthContext';
 import Step from '../components/shared/Step';
 
-const VerifcationView = ({navigation}) => {
+const VerificationView = ({navigation}) => {
   const [image, setImage] = useState(null);
   const [filename, setFilename] = useState(null);
   const {user, setUser} = useContext(AuthContext);
@@ -356,4 +356,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default VerifcationView;
+export default VerificationView;

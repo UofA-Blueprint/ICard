@@ -1,33 +1,83 @@
-import React, {useContext} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
-import {FontAwesome5} from '@expo/vector-icons';
+import React, { useContext, useEffect, useState } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { FontAwesome5 } from "@expo/vector-icons";
+
 import VerificationView from "./VerificationView";
 
-import {colors} from '../utilites/Theme';
+import { colors } from "../utilites/Theme";
 
-import * as WebBrowser from 'expo-web-browser';
-import * as Google from 'expo-auth-session/providers/google';
+import * as WebBrowser from "expo-web-browser";
+import * as Google from "expo-auth-session/providers/google";
 
-import AuthContext from '../context/AuthContext';
+import AuthContext from "../context/AuthContext";
+import axios from "axios";
+
+import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 
 WebBrowser.maybeCompleteAuthSession();
 
-// import {CLIENT_ID, API_ROUTE, API_KEY} from '@env';
-import MyICardPage from '../components/shared/ICardPage';
-import { storeDate } from '../utilites/StoreDate';
-import { storeUser } from '../utilites/StoreUser';
+// const {
+//   OAuth2Client,
+// } = require('google-auth-library');
+
+import { CLIENT_ID, CLIENT_SECRET, API_ROUTE, API_KEY } from "@env";
+import MyICardPage from "../components/shared/ICardPage";
+import { storeDate } from "../utilites/StoreDate";
+import { storeUser } from "../utilites/StoreUser";
 // import VerificationView from './VerificationView';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // const expoClientId = CLIENT_ID;
 // const authRoute = API_ROUTE;
 // const apiKey = API_KEY;
-
+// console.log("API_ROUTE", API_ROUTE);
+// console.log("API_KEY", API_KEY);
 const Stack = createNativeStackNavigator();
 
-const Registration = ({navigation}) => {
-  const {_, setUser} = useContext(AuthContext);
+// import {CLIENT_ID} from '@env';
+// const oAuth2Client = new OAuth2Client(
+//   CLIENT_ID,
+//   CLIENT_SECRET,
+//   'postmessage',
+// );
 
+const Registration = ({ navigation }) => {
+  const { user, setUser } = useContext(AuthContext);
+  const [response, setResponse] = useState(false);
+  const login = useGoogleLogin({
+    flow: "auth-code",
+    onSuccess: (codeResponse) => {
+      console.log(codeResponse);
+      setResponse(codeResponse);
+    },
+    onError: (error) => console.log("Login Failed:", error),
+  });
+
+  useEffect(() => {
+    console.log("USER", response);
+    if (response) {
+      axios
+        .post(`${API_ROUTE}api/auth/login`, {}, {
+          headers: {
+            "session-token": response.code,
+            "x-api-key": API_KEY,
+          },
+        })
+        .then((res) => {
+          console.log("Profile", res.data);
+          setUser(res.data);
+          storeUser(res.data);
+        })
+        .catch((err) => console.log("ERROR", err));
+    }
+  }, [response]);
+
+  const logOut = () => {
+    googleLogout();
+    setUser(null);
+    setResponse(null);
+  };
+  // setUser("Hello")
   // Google Use Auth Request Hook
 
   // const [request, response, promptAsync] = Google.useAuthRequest({
@@ -49,16 +99,16 @@ const Registration = ({navigation}) => {
   //           return result.json();
   //         })
   //         .then(data => {
-  //           //Data being retrieved from backend is weird. If completely new user logs in
-  //           //then verification image is undefined and does not show up in the fetched user data obj
-  //           //If verifcation image was added to user at somepoint and then erased (so field is blank now), suddenly
-  //           //verification image field is not undefined and is just recognised as a blank space in
-  //           //the fetched user obj
-  //           //Line below is a work around
-  //           //if verification field is blank space or undefined, label it as empty/blank space
-  //           data["verification_image"] == ""  || data["verification_image"] == undefined ? data["verification_image"] = "" : null;
-  //           data["id"] = data["_id"];
-  //           delete data["_id"];
+            //Data being retrieved from backend is weird. If completely new user logs in
+            //then verification image is undefined and does not show up in the fetched user data obj
+            //If verifcation image was added to user at somepoint and then erased (so field is blank now), suddenly
+            //verification image field is not undefined and is just recognised as a blank space in
+            //the fetched user obj
+            //Line below is a work around
+            //if verification field is blank space or undefined, label it as empty/blank space
+            // data["verification_image"] == ""  || data["verification_image"] == undefined ? data["verification_image"] = "" : null;
+            // data["id"] = data["_id"];
+            // delete data["_id"];
   //           setUser(data);
   //           storeDate();
   //           storeUser(data);
@@ -75,18 +125,20 @@ const Registration = ({navigation}) => {
 
   //status defines button condition
   return (
-    <MyICardPage user={null} status={'Unlinked'}>
+    <MyICardPage user={null} status={"Unlinked"}>
       <View style={styles.bodyContainer}>
-      <TouchableOpacity
+        <TouchableOpacity
           // disabled={!request}
           onPress={() => {
-            promptAsync();
+            login();
           }}
           style={styles.signInButton}
-          activeOpacity={0.5}>
+          activeOpacity={0.5}
+        >
           <Image
-            source={require('../../assets/google.png')}
-            style={styles.google}/>
+            source={require("../../assets/google.png")}
+            style={styles.google}
+          />
           <Text style={styles.promptMessage}>Sign In with Google</Text>
         </TouchableOpacity>
       </View>
@@ -94,10 +146,8 @@ const Registration = ({navigation}) => {
   );
 };
 
-
 const RegistrationView = () => {
   return (
-
     <Stack.Navigator>
        <Stack.Screen
          name="Registration"
@@ -110,38 +160,46 @@ const RegistrationView = () => {
          options={{headerShown: false}}
        />
     </Stack.Navigator>
+
   );
 };
 
 const styles = StyleSheet.create({
   bodyContainer: {
-    width: '60%',
-    justifyContent: 'center',
+    width: "60%",
+    justifyContent: "center",
     marginTop: 5,
     zIndex: 1,
   },
   signInButton: {
     marginTop: 25,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    alignSelf: 'center',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    alignSelf: "center",
     width: 250,
     paddingHorizontal: 24,
-    paddingVertical: 8,
-    backgroundColor: 'white',
+    paddingVertical: 15,
+    backgroundColor: "white",
     borderRadius: 50,
     shadowColor: "#000000",
     shadowOffset: {
-    width: 0,
-    height: 1,
+      width: 0,
+      height: 1,
     },
-    shadowOpacity:  0.15,
-    shadowRadius: 1.00,
-    elevation: 1
-    },
+    shadowOpacity: 0.15,
+    shadowRadius: 1.0,
+    elevation: 1,
+    boxShadow:
+      "0px 2px 3px 0px rgba(0, 0, 0, 0.17), 0px 0px 3px 0px rgba(0, 0, 0, 0.08)",
+    elevation: 5,
+  },
   promptMessage: {
     color: colors.primary,
+  },
+  google: {
+    width: 25,
+    height: 25,
   },
 });
 

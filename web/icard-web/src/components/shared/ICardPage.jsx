@@ -53,6 +53,21 @@ const MyICardPage = (props) => {
     }
     return content1;
   };
+  const RefreshButton = ({ status, onPress }) => {
+    let content1 = null;
+    {
+      content1 = (
+        <View>
+          <TouchableOpacity style={styles.verificationbutton} onPress={onPress}>
+            <Text style={styles.buttonText}>
+              Refresh
+            </Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+    return content1;
+  };
 
   const Card = ({ status, msg }) => {
     let color = props.status;
@@ -145,7 +160,7 @@ const MyICardPage = (props) => {
         ) : (
           <></>
         )}
-
+        <RefreshButton onPress={props.refresh} />
         {props.status == "Unlinked" ? props.children : <></>}
       </View>
     </ImageBackground>

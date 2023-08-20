@@ -3,8 +3,7 @@ const { OAuth2Client } = require('google-auth-library');
 require('dotenv').config();
 
 // create OAuth client for google authentication
-const client = new OAuth2Client(process.env.CLIENT_ID, process.env.CLIENT_SECRET, 'postmessage');
-
+const client = new OAuth2Client(process.env.CLIENT_ID, process.env.CLIENT_SECRET, 'postmessage',CLOCK_SKEW_SECS_=0);
 function verifyToken(req, res, next) {
     // Verifies the auth-token passed in the request header and returns the user if valid
     const token = req.header('auth-token'); // get the token from the header
@@ -56,7 +55,8 @@ async function checkAuthenticated(req, res, next) {
             req.user = user; // set the user object to the request
             next(); // call next() to continue
         })
-        .catch(() => {
+        .catch((error) => {
+            console.log(error)
             res.status(401).json({ message: 'Invalid token.' });
         });
 }

@@ -33,19 +33,7 @@ import { storeUser } from "../utilites/StoreUser";
 // import VerificationView from './VerificationView';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-// const expoClientId = CLIENT_ID;
-// const authRoute = API_ROUTE;
-// const apiKey = API_KEY;
-// console.log("API_ROUTE", API_ROUTE);
-// console.log("API_KEY", API_KEY);
 const Stack = createNativeStackNavigator();
-
-// import {CLIENT_ID} from '@env';
-// const oAuth2Client = new OAuth2Client(
-//   CLIENT_ID,
-//   CLIENT_SECRET,
-//   'postmessage',
-// );
 
 const Registration = ({ navigation }) => {
   const { user, setUser } = useContext(AuthContext);
@@ -53,7 +41,6 @@ const Registration = ({ navigation }) => {
   const login = useGoogleLogin({
     flow: "auth-code",
     onSuccess: (codeResponse) => {
-      console.log(codeResponse);
       setResponse(codeResponse);
     },
     onError: (error) => console.log("Login Failed:", error),

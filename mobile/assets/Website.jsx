@@ -3,8 +3,7 @@ import Svg, { Path } from "react-native-svg"
 
 function Website() {
     return (
-        
-        <Svg marginTop={16}
+        <Svg
         width={48}
         height={45}
         xmlns="http://www.w3.org/2000/svg">

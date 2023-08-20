@@ -5,6 +5,7 @@ import {colors} from '../utilites/Theme';
 
 const Item = ({itemData}) => (
     <VendorCard
+        key={itemData.id}
       vendorName={itemData.name}
       location={itemData.address}
       discount={itemData.discount}
@@ -16,7 +17,7 @@ const Item = ({itemData}) => (
 
 const VendorList = ({searchPhrase, setClicked, data}) => {
     const renderItem = ({item}) => {
-        
+        console.log("ITEM", item)
         if (searchPhrase === '') {
             return (
                 <Item itemData={item}/>
@@ -55,7 +56,7 @@ const VendorList = ({searchPhrase, setClicked, data}) => {
           data={data}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
-          contentContainerStyle={styles.contentContainer}
+                contentContainerStyle={styles.contentContainer}
         />
       </View>
     );

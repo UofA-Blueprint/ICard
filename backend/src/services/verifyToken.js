@@ -29,7 +29,6 @@ function verifyToken(req, res, next) {
 // verifies the api token before accessing the route
 function verifyApiKey(req, res, next) {
     const apiKey = req.header('x-api-key');
-    console.log(req.header('x-api-key'));
     if (!apiKey) return res.status(401).json({ message: 'Access denied. No api-key provided.' });
 
     if (apiKey !== process.env.API_KEY) {

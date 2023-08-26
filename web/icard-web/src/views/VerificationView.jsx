@@ -1,5 +1,5 @@
-import React, {useState, useContext} from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import React, { useState, useContext } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 import {
   View,
@@ -12,19 +12,19 @@ import {
   ImageBackground,
   ScrollView,
   FlatList,
-} from 'react-native';
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import * as ImagePicker from 'expo-image-picker';
-import {colors} from '../utilites/Theme';
+} from "react-native";
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
+import * as ImagePicker from "expo-image-picker";
+import { colors } from "../utilites/Theme";
 // import * as Progress from 'react-native-progress';
-import {API_ROUTE, API_KEY} from '@env';
-import AuthContext from '../context/AuthContext';
-import Step from '../components/shared/Step';
+import { API_ROUTE, API_KEY } from "@env";
+import AuthContext from "../context/AuthContext";
+import Step from "../components/shared/Step";
 
-const VerificationView = ({navigation}) => {
+const VerificationView = ({ navigation }) => {
   const [image, setImage] = useState(null);
   const [filename, setFilename] = useState(null);
-  const {user, setUser} = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const [modalVisible, setModalVisible] = useState(false);
   const [Progress, setProgress] = useState(0);
 
@@ -37,58 +37,65 @@ const VerificationView = ({navigation}) => {
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
-      let address = result.uri.split('/');
+      let address = result.uri.split("/");
+      let type = result.assets[0].uri.split(";")[0].split(":")[1];
+      let extension = type.split("/")[1];
       setImage({
-        uri: result.uri,
-        type: result.type,
-        name: address[address.length - 1],
+        uri: result.assets[0].uri,
+        type: type,
+        name: `${address[address.length - 1]}.${extension}`,
       });
-      setFilename(address[address.length - 1]);
+      setFilename(`${address[address.length - 1]}.${extension}`);
     }
   };
 
   const submitImage = async () => {
-    let formData = new FormData();
-    formData.append('image', image);
-    fetch(API_ROUTE + 'api/images/upload', {
-      method: 'post',
-      headers: {
-        'jwt-token': user['key'],
-        'x-api-key': API_KEY,
-        'Content-Type': 'multipart/form-data',
-      },
-      body: formData,
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(data => {
-        fetch(API_ROUTE + 'api/students/' + user.id, {
-          method: 'get',
+    fetch(image.uri)
+      .then((result) => result.blob())
+      .then((blob) => {
+        const fd = new FormData();
+        const file = new File([blob], image.name);
+        fd.append("image", file);
+        fetch(API_ROUTE + "api/images/upload", {
+          method: "post",
           headers: {
-            'jwt-token': user['key'],
-            'x-api-key': API_KEY,
-            'Content-Type': 'multipart/form-data',
+            "jwt-token": user["key"],
+            "x-api-key": API_KEY,
           },
+          body: fd,
         })
-          .then(result => result.json())
-          .then(data => {
-            setUser(data);
+          .then((response) => {
+            return response.json();
           })
-          .catch(console.error);
+          .then(() => {
+            fetch(API_ROUTE + "api/students/" + user._id, {
+              method: "get",
+              headers: {
+                "jwt-token": user["key"],
+                "x-api-key": API_KEY,
+              },
+            })
+              .then((result) => result.json())
+              .then((data) => {
+                setUser({ ...user, ...data });
+                navigation.navigate("Home");
+              })
+              .catch(console.error);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       });
-    navigation.navigate('Submitted');
   };
 
   return (
     <ImageBackground
-      source={require('../../assets/Background.png')}
+      source={require("../../assets/Background.png")}
       resizeMode="cover"
-      style={styles.backgroundImage}>
-      <SafeAreaView style={styles.container} edges={['top']}>
+      style={styles.backgroundImage}
+    >
+      <SafeAreaView style={styles.container} edges={["top"]}>
         <View style={styles.header}>
           <View style={styles.backButton}>
             <FontAwesome5.Button
@@ -97,68 +104,76 @@ const VerificationView = ({navigation}) => {
               color={colors.primary}
               backgroundColor="transparent"
               onPress={() => {
-                navigation.navigate('My ICard');
-              }}></FontAwesome5.Button>
+                navigation.navigate("My ICard");
+              }}
+            ></FontAwesome5.Button>
           </View>
           <Text style={styles.viewTitle}>Verify Account</Text>
         </View>
         <ScrollView style={styles.body}>
           <Text style={styles.instruction}>
-            An email from ISA was sent to your University of Alberta email.
-            Please upload a screenshot to verify your account.{' '}
+            An email from ISA was sent to your University of Alberta
+            email. Please upload a screenshot to verify your account.{" "}
             <FontAwesome5
               name="question-circle"
               size={20}
               color={colors.primary}
               backgroundColor="transparent"
-              onPress={() => setModalVisible(true)}></FontAwesome5>
+              onPress={() => setModalVisible(true)}
+            ></FontAwesome5>
           </Text>
 
           <Modal transparent={true} visible={modalVisible}>
             <View
               style={{
-                backgroundColor: '#000000aa',
+                backgroundColor: "#000000aa",
                 flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}>
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <View style={styles.popup}>
-                <TouchableOpacity onPress={() => setModalVisible(false)}>
+                <TouchableOpacity
+                  onPress={() => setModalVisible(false)}
+                >
                   <Image
-                    source={require('../../assets/x2.png')}
+                    source={require("../../assets/x2.png")}
                     style={styles.notificationPic}
                   />
                 </TouchableOpacity>
-                <Text style={styles.title}>How to upload your email?</Text>
+                <Text style={styles.title}>
+                  How to upload your email?
+                </Text>
 
                 <ScrollView
                   pagingEnabled={true}
                   decelerationRate="fast"
                   onMomentumScrollEnd={() => setModalVisible(true)}
-                  horizontal>
+                  horizontal
+                >
                   <Step
                     text="Open your UAlberta Gmail account."
                     step="Step: 1"
-                    screen={require('../../assets/step1.png')}
-                    bubbles={require('../../assets/Bubbles1.png')}
+                    screen={require("../../assets/step1.png")}
+                    bubbles={require("../../assets/Bubbles1.png")}
                   />
                   <Step
                     text="Search “The Wait is Over! Pick-up Your Free I-Card Now!” in the search bar and find the email sent by “isa.communication s@ualberta.ca”."
                     step="Step: 2"
-                    screen={require('../../assets/step2.png')}
-                    bubbles={require('../../assets/Bubbles2.png')}
+                    screen={require("../../assets/step2.png")}
+                    bubbles={require("../../assets/Bubbles2.png")}
                   />
                   <Step
                     text="Take a screenshot of the email including the recipient’s email address."
                     step="Step: 3"
-                    screen={require('../../assets/step3.png')}
-                    bubbles={require('../../assets/Bubbles3.png')}
+                    screen={require("../../assets/step3.png")}
+                    bubbles={require("../../assets/Bubbles3.png")}
                   />
                   <Step
                     text="Submit the screenshot into the ISA mobile application."
                     step="Step: 4"
-                    screen={require('../../assets/step4.png')}
-                    bubbles={require('../../assets/Bubbles4.png')}
+                    screen={require("../../assets/step4.png")}
+                    bubbles={require("../../assets/Bubbles4.png")}
                   />
                 </ScrollView>
               </View>
@@ -168,29 +183,41 @@ const VerificationView = ({navigation}) => {
           <Text style={styles.example}>Example</Text>
           <View style={styles.exampleImage}>
             <Image
-              source={require('../../assets/example.png')}
-              resizeMode="contain"></Image>
+              source={require("../../assets/example.png")}
+              resizeMode="contain"
+            ></Image>
           </View>
-          <View style={{alignItems: 'center', justifyContent: 'center'}}>
-            <View style={image ? styles.uploaded : styles.uploadSection}>
+          <View
+            style={{ alignItems: "center", justifyContent: "center" }}
+          >
+            <View
+              style={image ? styles.uploaded : styles.uploadSection}
+            >
               {image ? (
                 <FontAwesome5
                   name="file-alt"
                   size={64}
                   color={colors.primary}
-                  backgroundColor="transparent"></FontAwesome5>
+                  backgroundColor="transparent"
+                ></FontAwesome5>
               ) : (
                 <FontAwesome5
                   name="image"
                   size={64}
                   color={colors.primary}
-                  backgroundColor="transparent"></FontAwesome5>
+                  backgroundColor="transparent"
+                ></FontAwesome5>
               )}
               {image ? (
                 <Text style={styles.filename}>{filename}</Text>
               ) : (
-                <Pressable onPress={pickImage} style={styles.uploadButton}>
-                  <Text style={styles.uploadButtonText}>Upload Photo</Text>
+                <Pressable
+                  onPress={pickImage}
+                  style={styles.uploadButton}
+                >
+                  <Text style={styles.uploadButtonText}>
+                    Upload Photo
+                  </Text>
                 </Pressable>
               )}
               {image && (
@@ -207,14 +234,20 @@ const VerificationView = ({navigation}) => {
               )}
             </View>
             <Pressable
-              style={image ? styles.submitButton : styles.inactiveSubmitButton}
-              onPress={image ? submitImage : () => {}}>
+              style={
+                image
+                  ? styles.submitButton
+                  : styles.inactiveSubmitButton
+              }
+              onPress={image ? submitImage : () => {}}
+            >
               <Text style={styles.submitButtonText}>Submit</Text>
             </Pressable>
             <Pressable
               onPress={() => {
-                navigation.navigate('My ICard');
-              }}>
+                navigation.navigate("My ICard");
+              }}
+            >
               <Text style={styles.skipButtonText}>Skip for now</Text>
             </Pressable>
           </View>
@@ -227,18 +260,18 @@ const VerificationView = ({navigation}) => {
 const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
-  container: {flex: 1, paddingHorizontal: 36},
+  container: { flex: 1, paddingHorizontal: 36 },
   header: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
+    justifyContent: "center",
+    alignItems: "center",
+    position: "relative",
     marginBottom: 16,
     padding: 16,
   },
   backButton: {
-    position: 'absolute',
+    position: "absolute",
     left: -20,
   },
   instruction: {
@@ -246,30 +279,30 @@ const styles = StyleSheet.create({
     color: colors.darkGray,
     letterSpacing: 0.5,
     lineHeight: 23,
-    textAlign: 'center',
+    textAlign: "center",
   },
   example: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 18,
     paddingTop: 16,
   },
   exampleImage: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: 8,
     marginBottom: 20,
   },
-  viewTitle: {fontWeight: 'bold', fontSize: 20},
-  body: {flex: 1},
+  viewTitle: { fontWeight: "bold", fontSize: 20 },
+  body: { flex: 1 },
   uploadSection: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
     borderRadius: 16,
-    borderStyle: 'dashed',
+    borderStyle: "dashed",
     borderWidth: 1,
     borderColor: colors.primary,
-    width: '100%',
+    width: "100%",
     padding: 6,
     marginBottom: 5,
   },
@@ -278,34 +311,34 @@ const styles = StyleSheet.create({
     padding: 12,
     flex: 2,
     borderRadius: 99,
-    justifyContent: 'center',
-    alignItems: 'center',
-    maxWidth: '60%',
+    justifyContent: "center",
+    alignItems: "center",
+    maxWidth: "60%",
     // height: '30%'
   },
   uploadButtonText: {
     color: colors.white,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 16,
   },
   filename: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: colors.primary,
-    width: '60%',
+    width: "60%",
   },
   uploaded: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
     borderRadius: 16,
     borderWidth: 1,
     borderColor: colors.primary,
-    width: '100%',
+    width: "100%",
     padding: 16,
     backgroundColor: colors.white,
   },
   cancelButton: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     right: 0,
   },
@@ -313,25 +346,29 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     backgroundColor: colors.primary,
     padding: 16,
-    width: '90%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: "90%",
+    justifyContent: "center",
+    alignItems: "center",
     marginVertical: 16,
   },
   inactiveSubmitButton: {
     borderRadius: 20,
     backgroundColor: colors.mediumGray,
     padding: 16,
-    width: '90%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: "90%",
+    justifyContent: "center",
+    alignItems: "center",
     marginVertical: 16,
   },
-  submitButtonText: {color: colors.white, fontWeight: 'bold', fontSize: 16},
-  skipButtonText: {color: colors.primary, fontSize: 16},
+  submitButtonText: {
+    color: colors.white,
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+  skipButtonText: { color: colors.primary, fontSize: 16 },
   popup: {
     borderRadius: 10,
-    backgroundColor: '#ffffff',
+    backgroundColor: "#ffffff",
     width: 294,
     maxHeight: 536,
     flex: 1,
@@ -344,9 +381,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    alignSelf: 'center',
+    alignSelf: "center",
     marginTop: 21,
-    fontWeight: '700',
+    fontWeight: "700",
   },
   background: {
     width: 288,

@@ -41,6 +41,7 @@ const MyICard = ({ navigation }) => {
   // })
   // Note: The function to find the status of a user is already implemented in the old code.
   // Examples
+
   const loadUserData = async () => {
     setRefreshing(true);
     axios
@@ -106,7 +107,6 @@ const MyICard = ({ navigation }) => {
       setCheckStatus(false);
     }
   }, [checkStatus]);
-
   //verify button below is a todo. Just have a console.log in it for now
   return (
     <View style={styles.container}>

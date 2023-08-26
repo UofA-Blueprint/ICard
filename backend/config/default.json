@@ -1,13 +1,11 @@
 {
-    "errror_code": {
-        
-    },
+    "errror_code": {},
     "gcp": {
-        "bucket_name": "isa-icard",
-        "project_id": "isa-icard"
+        "bucket_name": "icard-test-image-bucket",
+        "project_id": "icard-web-dev"
     },
     "flags": {
-        "vendors" : {
+        "vendors": {
             "get": true,
             "create": false,
             "update": false,

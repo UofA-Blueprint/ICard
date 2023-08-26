@@ -49,9 +49,10 @@ ImgUpload.uploadToGCS = async (req, res, next) => {
             message: 'Student does not exist',
         });
     }
-
+    console.log(JSON.stringify(req.body));
     // check if the request has a file
     if (!req.file) {
+        console.log('No file! But there is a image here in the form', req.files);
         return next();
     }
 

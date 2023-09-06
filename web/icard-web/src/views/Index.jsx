@@ -21,28 +21,31 @@ import ScreenOption from "../utilites/ScreenOption";
 import AuthContext from "../context/AuthContext";
 import { useContext } from "react";
 import RegistrationView from "./RegistrationView";
+import VendorView from "./VendorView";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function Index() {
-  const {user,setUser} = useContext(AuthContext);
-
+  const { user, setUser } = useContext(AuthContext);
 
   const LogIn = () => {
     return (
-      <Tab.Navigator screenOptions={ScreenOption} initialRouteName="My ICard">
+      <Tab.Navigator
+        screenOptions={ScreenOption}
+        initialRouteName="My ICard"
+      >
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Vendors" component={PageNotFound} />
+        <Stack.Screen name="Vendors" component={VendorView} />
         <Stack.Screen name="My ICard" component={RegistrationView} />
       </Tab.Navigator>
-    )
-  }
+    );
+  };
   const Tabs = () => {
     return (
       <Tab.Navigator screenOptions={ScreenOption}>
         <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Vendors" component={PageNotFound} />
+        <Stack.Screen name="Vendors" component={VendorView} />
         <Stack.Screen name="My ICard" component={MyICardView} />
       </Tab.Navigator>
     );
@@ -51,7 +54,7 @@ export default function Index() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={ScreenOption}>
-        <Stack.Screen name="Tabs" component={user?Tabs:LogIn} />
+        <Stack.Screen name="Tabs" component={user ? Tabs : LogIn} />
       </Stack.Navigator>
     </NavigationContainer>
   );

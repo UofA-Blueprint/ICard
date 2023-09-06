@@ -1,7 +1,6 @@
 import React from "react";
-import { StyleSheet, View, FlatList, Text } from "react-native-web";
+import { StyleSheet, View, FlatList } from "react-native-web";
 import VendorCard from "./VendorCard";
-import { colors } from "../../utilites/Theme";
 
 const Item = ({ itemData }) => (
   <VendorCard
@@ -14,7 +13,7 @@ const Item = ({ itemData }) => (
   />
 );
 
-const VendorList = ({ searchPhrase, setClicked, data }) => {
+const VendorList = ({ searchPhrase, data }) => {
   const renderItem = ({ item }) => {
     if (searchPhrase === "") {
       return <Item itemData={item} />;

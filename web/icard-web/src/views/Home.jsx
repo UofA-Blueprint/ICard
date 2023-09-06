@@ -32,8 +32,6 @@ import AuthContext from "../context/AuthContext";
 
 const Home = ({ navigation }) => {
   const [searchPhrase, setSearchPhrase] = useState("");
-  const [clicked, setClicked] = useState(false);
-
   const [vendorData, setList] = useState([]);
   const { user, setUser } = useContext(AuthContext);
 
@@ -90,7 +88,6 @@ const Home = ({ navigation }) => {
           <VendorList
             searchPhrase={searchPhrase}
             data={vendorData.slice(0, 3)}
-            setClicked={setClicked}
           />
         </ScrollView>
       </SafeAreaView>

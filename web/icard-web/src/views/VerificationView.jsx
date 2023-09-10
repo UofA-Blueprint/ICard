@@ -112,8 +112,8 @@ const VerificationView = ({ navigation }) => {
         </View>
         <ScrollView style={styles.body}>
           <Text style={styles.instruction}>
-            An email from ISA was sent to your University of Alberta
-            email. Please upload a screenshot to verify your account.{" "}
+            Open Bear Tracks and go to "Profile" to take a screenshot
+            of "Personal Details" Tab and submit the screenshot.{" "}
             <FontAwesome5
               name="question-circle"
               size={20}

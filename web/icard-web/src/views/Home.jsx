@@ -12,28 +12,49 @@ import {
 import DiscoverBar from "../components/home/DiscoverBar";
 import { globalStyleSheet, colors } from "../utilites/Theme";
 import VendorList from "../components/shared/VendorList";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 import React from "react";
 import axios from "axios";
-
-//import VendorList from '../components/shared/VendorList';
-//import VendorView from './VendorView';
-//import {useState, useEffect, useContext} from 'react';
 import { options, url } from "../data/vendorMockData";
-//import {shuffle} from '../utilites/Shuffle';
-//import {getData} from '../data/vendorMockData';
-//import {SafeAreaView} from 'react-native-safe-area-context';
-//import {ScrollView} from 'react-native-virtualized-view';
-//import AuthContext from '../context/AuthContext';
-import { storeUser } from "../utilites/StoreUser";
-//import {ScrollView} from 'react-native-virtualize-view';
+import { getUser, storeUser } from "../utilites/StoreUser";
 import AuthContext from "../context/AuthContext";
-//import {storeUser} from '../utilites/StoreUser';
+import {
+  useFocusEffect,
+  useNavigationState,
+} from "@react-navigation/native";
+import { storeDate, getDate } from "../utilites/StoreDate";
+import {
+  getNavigationCache,
+  setNavigationCache,
+} from "../utilites/NavigationCache";
 
 const Home = ({ navigation }) => {
-  const [searchPhrase, setSearchPhrase] = useState("");
+  const [searchPhrase] = useState("");
   const [vendorData, setList] = useState([]);
-  const { user, setUser } = useContext(AuthContext);
+  const { _, setUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    const caching = async () => {
+      let navigationCache = await getNavigationCache();
+      let user = await getUser();
+      if (navigationCache.lastVisitedPage === "My ICard") {
+        navigation.navigate(
+          user === null ? "Registration" : "My ICard"
+        );
+      } else if (Date.now() - navigationCache.lastTime > 3 * 1000)
+        navigation.navigate(navigationCache.lastVisitedPage);
+    };
+    caching();
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      setNavigationCache({
+        lastVisitedPage: "Home",
+        lastTime: Date.now(),
+      });
+    }, [])
+  );
 
   useEffect(() => {
     axios

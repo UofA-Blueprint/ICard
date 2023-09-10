@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons";
 
 import VerificationView from "./VerificationView";
 
@@ -22,22 +21,28 @@ import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 
 WebBrowser.maybeCompleteAuthSession();
 
-// const {
-//   OAuth2Client,
-// } = require('google-auth-library');
-
-import { CLIENT_ID, CLIENT_SECRET, API_ROUTE, API_KEY } from "@env";
+import { API_ROUTE, API_KEY } from "@env";
 import MyICardPage from "../components/shared/ICardPage";
-import { storeDate } from "../utilites/StoreDate";
 import { storeUser } from "../utilites/StoreUser";
-// import VerificationView from './VerificationView';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useFocusEffect } from "@react-navigation/native";
+import { setNavigationCache } from "../utilites/NavigationCache";
 
 const Stack = createNativeStackNavigator();
 
 const Registration = ({ navigation }) => {
-  const { user, setUser } = useContext(AuthContext);
+  const { _, setUser } = useContext(AuthContext);
   const [response, setResponse] = useState(false);
+
+  useFocusEffect(
+    useCallback(() => {
+      setNavigationCache({
+        lastVisitedPage: "Registration",
+        lastTime: Date.now(),
+      });
+    }, [])
+  );
+
   const login = useGoogleLogin({
     flow: "auth-code",
     onSuccess: (codeResponse) => {
@@ -72,53 +77,7 @@ const Registration = ({ navigation }) => {
     setUser(null);
     setResponse(null);
   };
-  // setUser("Hello")
-  // Google Use Auth Request Hook
 
-  // const [request, response, promptAsync] = Google.useAuthRequest({
-  //   responseType: 'id_token',
-  //   expoClientId: expoClientId,
-  //   scopes: ['email', 'profile'],
-  // });
-
-  // Effect Hook to save the access token and then fetch user data
-  // React.useEffect(() => {
-  //   if (response?.type === 'success') {
-  //     const token = response.params.id_token;
-  //     const fetchData = async () => {
-  //       fetch(authRoute + 'api/auth/login', {
-  //         method: 'POST',
-  //         headers: {'session-token': token, 'x-api-key': apiKey},
-  //       })
-  //         .then(result => {
-  //           return result.json();
-  //         })
-  //         .then(data => {
-  //Data being retrieved from backend is weird. If completely new user logs in
-  //then verification image is undefined and does not show up in the fetched user data obj
-  //If verifcation image was added to user at somepoint and then erased (so field is blank now), suddenly
-  //verification image field is not undefined and is just recognised as a blank space in
-  //the fetched user obj
-  //Line below is a work around
-  //if verification field is blank space or undefined, label it as empty/blank space
-  // data["verification_image"] == ""  || data["verification_image"] == undefined ? data["verification_image"] = "" : null;
-  // data["id"] = data["_id"];
-  // delete data["_id"];
-  //           setUser(data);
-  //           storeDate();
-  //           storeUser(data);
-  //         });
-  //     };
-  //     fetchData();
-  //     navigation.navigate('Verification')
-  //   }
-  // }, [response]);
-
-  /*
-  Render a Google Sign In Button
-  */
-
-  //status defines button condition
   return (
     <MyICardPage user={null} status={"Unlinked"}>
       <View style={styles.bodyContainer}>
@@ -147,12 +106,12 @@ const RegistrationView = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Registration"
+        name="ICard Registration"
         component={Registration}
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="Verification"
+        name="ICard Verification"
         component={VerificationView}
         options={{ headerShown: false }}
       />

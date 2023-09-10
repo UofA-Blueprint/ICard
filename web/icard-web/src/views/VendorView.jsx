@@ -1,19 +1,27 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { options, url } from "../data/vendorMockData";
 import VendorList from "../components/shared/VendorList";
-import {
-  ImageBackground,
-  Text,
-  StyleSheet,
-  Pressable,
-} from "react-native";
+import { ImageBackground, Text, StyleSheet } from "react-native";
 import { colors } from "../utilites/Theme";
 import SearchBar from "../components/shared/SearchBar";
+import { useFocusEffect } from "@react-navigation/native";
+import { setNavigationCache } from "../utilites/NavigationCache";
+
 const VendorView = () => {
   const [list, setList] = useState([]);
   const [searchPhrase, setSearchPhrase] = useState("");
   const [clicked, setClicked] = useState(false);
+
+  useFocusEffect(
+    useCallback(() => {
+      setNavigationCache({
+        lastVisitedPage: "Vendors",
+        lastTime: Date.now(),
+      });
+    }, [])
+  );
+
   useEffect(() => {
     axios
       .get(url, options)
@@ -22,6 +30,7 @@ const VendorView = () => {
       })
       .catch((error) => console.log(error));
   }, []);
+
   return (
     <ImageBackground
       style={styles.backgroundImage}

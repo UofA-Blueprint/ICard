@@ -41,7 +41,10 @@ const MyICardPage = (props) => {
     {
       content1 = (
         <View>
-          <TouchableOpacity style={styles.verificationbutton} onPress={onPress}>
+          <TouchableOpacity
+            style={styles.verificationbutton}
+            onPress={onPress}
+          >
             <Text style={styles.buttonText}>
               {status === "inactive, verify"
                 ? "Verify Account"
@@ -53,20 +56,39 @@ const MyICardPage = (props) => {
     }
     return content1;
   };
+
   const RefreshButton = ({ status, onPress }) => {
     let content1 = null;
     {
       content1 = (
         <View>
-          <TouchableOpacity style={styles.verificationbutton} onPress={onPress}>
-            <Text style={styles.buttonText}>
-              Refresh
-            </Text>
+          <TouchableOpacity
+            style={styles.verificationbutton}
+            onPress={onPress}
+          >
+            <Text style={styles.buttonText}>Refresh</Text>
           </TouchableOpacity>
         </View>
       );
     }
     return content1;
+  };
+
+  const LogOutButton = ({ status, onPress }) => {
+    let content = null;
+    {
+      content = (
+        <View>
+          <TouchableOpacity
+            style={styles.verificationbutton}
+            onPress={onPress}
+          >
+            <Text style={styles.buttonText}>Log Out</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
+    return content;
   };
 
   const Card = ({ status, msg }) => {
@@ -99,7 +121,10 @@ const MyICardPage = (props) => {
       return (
         <View>
           <View style={styles.notification}>
-            <Image source={icon_source} style={styles.notificationPic} />
+            <Image
+              source={icon_source}
+              style={styles.notificationPic}
+            />
             <View justifyContent={"center"} style={[{ flex: 1 }]}>
               <Text style={styles.notificationText}>{message}</Text>
             </View>
@@ -111,7 +136,6 @@ const MyICardPage = (props) => {
       return <View></View>;
     }
   };
-
 
   const theme = statusColors[props.status];
   return (
@@ -142,7 +166,11 @@ const MyICardPage = (props) => {
             <Text style={styles.statusHeader}>ISAF status</Text>
             <Text
               style={[
-                { ...styles.ISAFStatus, color: theme, borderColor: theme },
+                {
+                  ...styles.ISAFStatus,
+                  color: theme,
+                  borderColor: theme,
+                },
               ]}
             >
               {props.status === "inactive, reverify" ||
@@ -156,11 +184,15 @@ const MyICardPage = (props) => {
         </View>
         {props.status == "inactive, verify" ||
         props.status == "inactive, reverify" ? (
-          <VerificationButton onPress={props.verify} status={props.status} />
+          <VerificationButton
+            onPress={props.verify}
+            status={props.status}
+          />
         ) : (
           <></>
         )}
         <RefreshButton onPress={props.refresh} />
+        {user !== null && <LogOutButton onPress={props.logOut} />}
         {props.status == "Unlinked" ? props.children : <></>}
       </View>
     </ImageBackground>

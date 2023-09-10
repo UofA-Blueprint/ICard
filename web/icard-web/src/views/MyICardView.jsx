@@ -1,4 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useState,
+  useCallback,
+} from "react";
 import {
   View,
   RefreshControl,
@@ -14,6 +19,9 @@ import MyICardPage from "../components/shared/ICardPage";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import axios from "axios";
 import VerificationView from "../views/VerificationView";
+import { useFocusEffect } from "@react-navigation/native";
+import { setNavigationCache } from "../utilites/NavigationCache";
+import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 
 // import import VerificationView from "../../views/VerificationView";
 // from "./VerificationView";
@@ -23,6 +31,7 @@ let message;
 const Stack = createNativeStackNavigator();
 
 import { CLIENT_ID, CLIENT_SECRET, API_ROUTE, API_KEY } from "@env";
+import { getUser, storeUser } from "../utilites/StoreUser";
 
 const MyICard = ({ navigation }) => {
   const { user, setUser } = useContext(AuthContext);
@@ -41,6 +50,15 @@ const MyICard = ({ navigation }) => {
   // })
   // Note: The function to find the status of a user is already implemented in the old code.
   // Examples
+
+  useFocusEffect(
+    useCallback(() => {
+      setNavigationCache({
+        lastVisitedPage: "My ICard",
+        lastTime: Date.now(),
+      });
+    }, [])
+  );
 
   const loadUserData = async () => {
     setRefreshing(true);
@@ -107,7 +125,6 @@ const MyICard = ({ navigation }) => {
       setCheckStatus(false);
     }
   }, [checkStatus]);
-  //verify button below is a todo. Just have a console.log in it for now
   return (
     <View style={styles.container}>
       <ScrollView
@@ -124,12 +141,16 @@ const MyICard = ({ navigation }) => {
           user={user}
           status={status}
           msg={verbose}
-          // TODO: Uncomment this once the verification page is ready
           verify={() => {
             navigation.navigate("Verification");
           }}
           refresh={async () => {
             await loadUserData();
+          }}
+          logOut={async () => {
+            setUser(null);
+            storeUser(null);
+            googleLogout();
           }}
         />
       </ScrollView>
@@ -139,9 +160,6 @@ const MyICard = ({ navigation }) => {
 
 const MyICardView = () => {
   return (
-    // <View>
-    //   <MyICard></MyICard>
-    // </View>
     <Stack.Navigator initialRouteName="My ICard">
       <Stack.Screen
         name="My ICard Main"
@@ -154,11 +172,6 @@ const MyICardView = () => {
         component={VerificationView}
         options={{ headerShown: false }}
       />
-      {/* // <Stack.Screen
-      //   name="Submitted"
-      //   component={SubmittedPage}
-      //   options={{ headerShown: false }}
-      // /> */}
     </Stack.Navigator>
   );
 };

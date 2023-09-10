@@ -105,8 +105,8 @@ ImgUpload.uploadVendorToGCS = async (req, res, next) => {
     const stream = file.createWriteStream({
         metadata: {},
     });
-
     stream.on('error', (err) => {
+        console.log('error');
         req.file.cloudStorageError = err;
         next(err);
     });

@@ -42,7 +42,7 @@ const MyICardPage = (props) => {
       content1 = (
         <View>
           <TouchableOpacity
-            style={styles.verificationbutton}
+            style={styles.functionButton}
             onPress={onPress}
           >
             <Text style={styles.buttonText}>
@@ -63,7 +63,7 @@ const MyICardPage = (props) => {
       content1 = (
         <View>
           <TouchableOpacity
-            style={styles.verificationbutton}
+            style={styles.functionButton}
             onPress={onPress}
           >
             <Text style={styles.buttonText}>Refresh</Text>
@@ -80,7 +80,7 @@ const MyICardPage = (props) => {
       content = (
         <View>
           <TouchableOpacity
-            style={styles.verificationbutton}
+            style={styles.functionButton}
             onPress={onPress}
           >
             <Text style={styles.buttonText}>Log Out</Text>
@@ -104,7 +104,7 @@ const MyICardPage = (props) => {
     } else if (status == "Unlinked") {
       icon_source = require("../../../assets/Link.png");
       message =
-        "Link to your University of Alberta\nemail to gain access to My ICard";
+        "Link to your University of Alberta email to gain access to My ICard";
     } else if (status == "verifying account") {
       icon_source = require("../../../assets/Link.png");
       message = msg;
@@ -119,16 +119,12 @@ const MyICardPage = (props) => {
     }
     if (message) {
       return (
-        <View>
-          <View style={styles.notification}>
-            <Image
-              source={icon_source}
-              style={styles.notificationPic}
-            />
-            <View justifyContent={"center"} style={[{ flex: 1 }]}>
-              <Text style={styles.notificationText}>{message}</Text>
-            </View>
-          </View>
+        <View style={styles.notification}>
+          <Image
+            source={icon_source}
+            style={styles.notificationPic}
+          />
+          <Text style={styles.notificationText}>{message}</Text>
         </View>
       );
     } else {
@@ -182,18 +178,20 @@ const MyICardPage = (props) => {
             </Text>
           </View>
         </View>
-        {props.status == "inactive, verify" ||
-        props.status == "inactive, reverify" ? (
-          <VerificationButton
-            onPress={props.verify}
-            status={props.status}
-          />
-        ) : (
-          <></>
-        )}
-        <RefreshButton onPress={props.refresh} />
-        {user !== null && <LogOutButton onPress={props.logOut} />}
-        {props.status == "Unlinked" ? props.children : <></>}
+        <View style={styles.buttonsContainer}>
+          {props.status == "inactive, verify" ||
+          props.status == "inactive, reverify" ? (
+            <VerificationButton
+              onPress={props.verify}
+              status={props.status}
+            />
+          ) : (
+            <></>
+          )}
+          <RefreshButton onPress={props.refresh} />
+          {user !== null && <LogOutButton onPress={props.logOut} />}
+          {props.status == "Unlinked" ? props.children : <></>}
+        </View>
       </View>
     </ImageBackground>
   );
@@ -202,24 +200,24 @@ const MyICardPage = (props) => {
 const styles = StyleSheet.create({
   fitContent: {
     display: "flex",
-    alignItems: "center",
+    flexDirection: "column",
     justifyContent: "center",
+    alignItems: "center",
     height: "100%",
     width: "100%",
+    gap: "4rem",
   },
   containerInside: {
     alignItems: "center",
+    width: "100%",
   },
   container: {
     borderRadius: 15,
     backgroundColor: colors.white,
-    flexGrow: 1,
     alignItems: "center",
-    flex: 1,
     color: "#EF6464",
     width: "80%",
     maxWidth: "500px",
-    maxHeight: 266,
     borderRadius: 25,
     borderWidth: 0,
     borderStyle: "solid",
@@ -232,24 +230,24 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    alignItems: "center",
   },
   avatar: {
-    width: 128,
-    height: 128,
+    aspectRatio: "1/1",
+    maxWidth: 128,
+    minWidth: 72,
     borderWidth: 3,
     borderRadius: 64,
     position: "absolute",
-    top: -80,
+    top: "-50%",
     backgroundColor: colors.white,
   },
   userName: {
-    marginTop: 72,
-    fontSize: 26,
+    marginTop: "2rem",
+    fontSize: 24,
     fontWeight: "700",
   },
   statusHeader: {
-    marginTop: 24,
+    marginTop: 12,
     fontSize: 16,
     fontWeight: "600",
   },
@@ -261,64 +259,60 @@ const styles = StyleSheet.create({
   },
   notification: {
     filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))",
-    top: "10px",
-    left: "50%",
-    position: "fixed",
-    transform: "translate(-50%, 0);",
     flexDirection: "row",
     borderRadius: 30,
     alignItems: "center",
-    justifyContent: "space-evenly",
-    minHeight: 66,
-    backgroundColor: colors.white,
-    marginTop: 60,
-    maxWidth: 350,
+    justifyContent: "center",
     shadowOpacity: 0.25,
     elevation: 5,
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    gap: 24,
+    maxWidth: "80%",
+    backgroundColor: colors.white,
   },
   notificationPic: {
-    width: 34,
-    height: 34,
-    marginRight: 10,
+    width: 32,
+    height: 32,
   },
   notificationText: {
-    minWidth: "200px",
     flex: 1,
-    marginLeft: 5,
-    height: "100%",
-    textAlignVertical: "center",
     fontFamily: "Poppins_600SemiBold",
-    fontSize: 13,
+    fontSize: 12,
     color: "#737373",
     flexWrap: "wrap",
   },
-  verificationbutton: {
-    backgroundColor: colors.white,
-    padding: 16,
-    alignSelf: "center",
-    width: 312,
-    height: 54,
-    borderRadius: 50,
+  functionButton: {
     marginTop: 25,
-    fontFamily: Poppins_600SemiBold,
-    boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
-    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
     alignItems: "center",
-    justifyContent: "center",
-    border: "solid 0.1px #efefef",
+    alignSelf: "center",
+    width: 250,
+    paddingHorizontal: 24,
+    paddingVertical: 15,
+    backgroundColor: "white",
+    borderRadius: 50,
+    shadowColor: "#000000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 1.0,
+    elevation: 1,
+    boxShadow:
+      "0px 2px 3px 0px rgba(0, 0, 0, 0.17), 0px 0px 3px 0px rgba(0, 0, 0, 0.08)",
+    elevation: 5,
   },
   buttonText: {
-    textAlign: "center",
-    fontWeight: 500,
-    fontStyle: "normal",
-    fontSize: 20,
-    lineHeight: "normal",
-    color: colors.darkGray,
+    color: colors.primary,
+  },
+  buttonsContainer: {
     display: "flex",
-    alignItems: "center",
+    flexDirection: "column",
     justifyContent: "center",
+    alignItems: "center",
   },
 });
 

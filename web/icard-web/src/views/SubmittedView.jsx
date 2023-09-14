@@ -1,5 +1,5 @@
-import React, {useState, useContext} from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import React, { useState, useContext } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 import {
   View,
   StyleSheet,
@@ -11,18 +11,19 @@ import {
   ImageBackground,
   ScrollView,
   FlatList,
-} from 'react-native';
-import {colors} from '../utilites/Theme';
-import {Ionicons} from '@expo/vector-icons';
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+} from "react-native";
+import { colors } from "../utilites/Theme";
+import { Ionicons } from "@expo/vector-icons";
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 
-const SubmittedView = ({navigation}) => {
+const SubmittedView = ({ navigation }) => {
   return (
     <ImageBackground
-      source={require('../../assets/Background.png')}
+      source={require("../../assets/Background.png")}
       resizeMode="cover"
-      style={styles.backgroundImage}>
-      <SafeAreaView style={styles.container} edges={['top']}>
+      style={styles.backgroundImage}
+    >
+      <SafeAreaView style={styles.container} edges={["top"]}>
         <View style={styles.header}>
           <View style={styles.backButton}>
             <FontAwesome5.Button
@@ -31,33 +32,41 @@ const SubmittedView = ({navigation}) => {
               color={colors.primary}
               backgroundColor="transparent"
               onPress={() => {
-                navigation.navigate('My ICard Page');
-              }}></FontAwesome5.Button>
+                navigation.navigate("My ICard Page");
+              }}
+            ></FontAwesome5.Button>
           </View>
           <Text style={styles.viewTitle}>Verify Account</Text>
         </View>
         <View style={styles.body}>
           <Text style={styles.instruction}>
-            Your email has been submitted! Please allow 3-5 business days for
-            ISA to verify your account.
+            Your email has been submitted! Please allow 3-5 business
+            days for ISA to verify your account.
           </Text>
           <View>
-            <Ionicons name="checkmark-circle-outline" style={styles.ionicon} />
+            <Ionicons
+              name="checkmark-circle-outline"
+              style={styles.ionicon}
+            />
 
             <Text
               style={{
                 color: colors.darkGray,
                 fontSize: 20,
-                fontWeight: 'bold',
-                textAlign: 'center',
-              }}>
+                fontWeight: "bold",
+                textAlign: "center",
+              }}
+            >
               Submitted!
             </Text>
           </View>
           <Pressable
             style={styles.submitButton}
-            onPress={() => navigation.navigate('Vendors')}>
-            <Text style={styles.submitButtonText}>Discover ISAF Deals</Text>
+            onPress={() => navigation.navigate("Vendors")}
+          >
+            <Text style={styles.submitButtonText}>
+              Discover ISAF Deals
+            </Text>
           </Pressable>
         </View>
       </SafeAreaView>
@@ -68,17 +77,17 @@ const SubmittedView = ({navigation}) => {
 const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
   },
-  container: {flex: 1, paddingHorizontal: 36},
+  container: { flex: 1, paddingHorizontal: 36 },
   header: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
+    justifyContent: "center",
+    alignItems: "center",
+    position: "relative",
     paddingTop: 16,
   },
   backButton: {
-    position: 'absolute',
+    position: "absolute",
     left: -20,
   },
   instruction: {
@@ -87,26 +96,26 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
     lineHeight: 23,
   },
-  viewTitle: {fontWeight: 'bold', fontSize: 20},
+  viewTitle: { fontWeight: "bold", fontSize: 20 },
   body: {
     flex: 1,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
     marginVertical: 40,
     paddingBottom: 32,
-    alignItems: 'center',
+    alignItems: "center",
   },
   submitButton: {
     borderRadius: 20,
     backgroundColor: colors.primary,
     padding: 16,
-    width: '90%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    width: "90%",
+    justifyContent: "center",
+    alignItems: "center",
     marginVertical: 16,
   },
   submitButtonText: {
     color: colors.white,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 16,
   },
   ionicon: {

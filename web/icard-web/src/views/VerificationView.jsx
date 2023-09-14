@@ -20,6 +20,9 @@ import { colors } from "../utilites/Theme";
 import { API_ROUTE, API_KEY } from "@env";
 import AuthContext from "../context/AuthContext";
 import Step from "../components/shared/Step";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationContainer } from "@react-navigation/native";
+import SubmittedView from "./SubmittedView";
 
 const VerificationView = ({ navigation }) => {
   const [image, setImage] = useState(null);
@@ -146,32 +149,28 @@ const VerificationView = ({ navigation }) => {
                 </Text>
 
                 <ScrollView
+                  style={styles.steps}
                   pagingEnabled={true}
                   decelerationRate="fast"
                   onMomentumScrollEnd={() => setModalVisible(true)}
                   horizontal
+                  centerContent
                 >
                   <Step
-                    text="Open your UAlberta Gmail account."
+                    text="Open Bear Tracks and log in with your CCID."
                     step="Step: 1"
-                    screen={require("../../assets/step1.png")}
+                    screen={require("../../assets/step1.jpg")}
                     bubbles={require("../../assets/Bubbles1.png")}
                   />
                   <Step
-                    text="Search “The Wait is Over! Pick-up Your Free I-Card Now!” in the search bar and find the email sent by “isa.communication s@ualberta.ca”."
+                    text="Go to Profile and take a Screenshot of Personal Details"
                     step="Step: 2"
-                    screen={require("../../assets/step2.png")}
-                    bubbles={require("../../assets/Bubbles2.png")}
-                  />
-                  <Step
-                    text="Take a screenshot of the email including the recipient’s email address."
-                    step="Step: 3"
-                    screen={require("../../assets/step3.png")}
+                    screen={require("../../assets/step2.jpg")}
                     bubbles={require("../../assets/Bubbles3.png")}
                   />
                   <Step
                     text="Submit the screenshot into the ISA mobile application."
-                    step="Step: 4"
+                    step="Step: 3"
                     screen={require("../../assets/step4.png")}
                     bubbles={require("../../assets/Bubbles4.png")}
                   />
@@ -254,6 +253,25 @@ const VerificationView = ({ navigation }) => {
         </ScrollView>
       </SafeAreaView>
     </ImageBackground>
+  );
+};
+
+const VerificationStack = createNativeStackNavigator();
+
+export const VerificationNavigator = () => {
+  return (
+    <VerificationStack.Navigator>
+      <VerificationStack.Screen
+        name="Verification Verify"
+        component={VerificationView}
+        options={{ headerShown: false }}
+      />
+      <VerificationStack.Screen
+        name="Verification Submit"
+        component={SubmittedView}
+        options={{ headerShown: false }}
+      />
+    </VerificationStack.Navigator>
   );
 };
 
@@ -369,9 +387,11 @@ const styles = StyleSheet.create({
   popup: {
     borderRadius: 10,
     backgroundColor: "#ffffff",
-    width: 294,
-    maxHeight: 536,
-    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 16,
   },
   notificationPic: {
     width: 15,
@@ -390,6 +410,10 @@ const styles = StyleSheet.create({
     height: 328,
     marginTop: 32,
     marginLeft: 3,
+  },
+  steps: {
+    width: 288,
+    paddingVertical: 24,
   },
 });
 

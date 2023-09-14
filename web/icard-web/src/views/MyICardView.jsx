@@ -18,7 +18,9 @@ import MyICardPage from "../components/shared/ICardPage";
 // import SubmittedView from "./SubmittedView";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import axios from "axios";
-import VerificationView from "../views/VerificationView";
+import VerificationView, {
+  VerificationNavigator,
+} from "../views/VerificationView";
 import { useFocusEffect } from "@react-navigation/native";
 import { setNavigationCache } from "../utilites/NavigationCache";
 import { googleLogout, useGoogleLogin } from "@react-oauth/google";
@@ -169,7 +171,7 @@ const MyICardView = () => {
       {/* TODO: Add verification page */}
       <Stack.Screen
         name="Verification"
-        component={VerificationView}
+        component={VerificationNavigator}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

@@ -66,10 +66,10 @@ const MyICard = ({ navigation }) => {
       .get(`${API_ROUTE}api/students/${user._id}`, {
         headers: { "x-api-key": API_KEY, "jwt-token": user.key },
       })
-      .then((result) => result.json())
+      .then((response) => {
+        return response.data;
+      })
       .then((data) => {
-        data["key"] = user.key;
-        data["id"] = data["_id"];
         //Data being retrieved from backend is weird. If completely new user logs in
         //then verification image is undefined and does not show up in the fetched user data obj
         //If verifcation image was added to user at somepoint and then erased (so field is blank now), suddenly
@@ -83,8 +83,8 @@ const MyICard = ({ navigation }) => {
           : null;
         delete data["_id"];
         setRefreshing(false);
-        setUser(data);
-        storeUser(data);
+        setUser({ ...user, ...data });
+        storeUser({ ...user, ...data });
         setCheckStatus(true);
       })
       .catch((error) => {

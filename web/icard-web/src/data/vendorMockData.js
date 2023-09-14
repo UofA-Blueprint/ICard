@@ -6,5 +6,4 @@ const options = {
   },
 };
 const url = API_ROUTE + "api/vendors";
-console.log(API_KEY)
 export { options, url };

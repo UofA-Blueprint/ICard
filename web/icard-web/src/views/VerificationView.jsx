@@ -244,7 +244,8 @@ const VerificationView = ({ navigation }) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                navigation.navigate("My ICard");
+                console.log("Haha");
+                navigation.navigate("My ICard Main");
               }}
             >
               <Text style={styles.skipButtonText}>Skip for now</Text>

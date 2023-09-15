@@ -33,20 +33,6 @@ const Home = ({ navigation }) => {
   const [vendorData, setList] = useState([]);
   const { _, setUser } = useContext(AuthContext);
 
-  useEffect(() => {
-    const caching = async () => {
-      let navigationCache = await getNavigationCache();
-      let user = await getUser();
-      if (navigationCache.lastVisitedPage === "My ICard") {
-        navigation.navigate(
-          user === null ? "Registration" : "My ICard"
-        );
-      } else if (Date.now() - navigationCache.lastTime > 3 * 1000)
-        navigation.navigate(navigationCache.lastVisitedPage);
-    };
-    caching();
-  }, []);
-
   useFocusEffect(
     useCallback(() => {
       setNavigationCache({

@@ -15,6 +15,7 @@ import {
 } from "@expo-google-fonts/poppins";
 
 import { colors } from "../../utilites/Theme";
+import AuthContext from "../../context/AuthContext";
 
 const statusColors = {
   active: colors.primary,
@@ -26,8 +27,102 @@ const statusColors = {
   "inactive, reverify": colors.red,
 };
 
+const VerificationButton = ({ status, onPress }) => {
+  let content1 = null;
+  {
+    content1 = (
+      <View>
+        <TouchableOpacity
+          style={styles.functionButton}
+          onPress={onPress}
+        >
+          <Text style={styles.buttonText}>
+            {status === "inactive, verify"
+              ? "Verify Account"
+              : "Reverify account"}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+  return content1;
+};
+
+const RefreshButton = ({ status, onPress }) => {
+  let content1 = null;
+  {
+    content1 = (
+      <View>
+        <TouchableOpacity
+          style={styles.functionButton}
+          onPress={onPress}
+        >
+          <Text style={styles.buttonText}>Refresh</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+  return content1;
+};
+
+const LogOutButton = ({ status, onPress }) => {
+  let content = null;
+  {
+    content = (
+      <View>
+        <TouchableOpacity
+          style={styles.functionButton}
+          onPress={onPress}
+        >
+          <Text style={styles.buttonText}>Log Out</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+  return content;
+};
+
+const Card = ({ status, msg }) => {
+  let message;
+  let icon_source;
+  if (status == "inactive") {
+    icon_source = require("../../../assets/x.png");
+    message = msg;
+  } else if (status == "stale") {
+    icon_source = require("../../../assets/Refresh.png");
+    message = "Refresh page to update status";
+  } else if (status == "Unlinked") {
+    icon_source = require("../../../assets/Link.png");
+    message =
+      "Link to your University of Alberta email to gain access to My ICard";
+  } else if (status == "verifying account") {
+    icon_source = require("../../../assets/Link.png");
+    message =
+      "Verification in progress, may take up to 1-3 business days";
+  } else if (status == "inactive, verify") {
+    icon_source = require("../../../assets/x.png");
+    message =
+      "Your account is unverified. Please go through the verification process";
+  } else if (status == "inactive, reverify") {
+    icon_source = require("../../../assets/x.png");
+    message =
+      "Something went wrong, please reverify account or contact ISA at isa.general@ualberta.ca";
+  }
+  if (message) {
+    return (
+      <View style={styles.notification}>
+        <Image source={icon_source} style={styles.notificationPic} />
+        <Text style={styles.notificationText}>{message}</Text>
+      </View>
+    );
+  } else {
+    // Active Status
+    return <View></View>;
+  }
+};
+
 const MyICardPage = (props) => {
-  const { user } = props;
+  const { user } = useContext(AuthContext);
   let [fontsLoaded] = useFonts({
     Poppins_600SemiBold,
     Poppins_700Bold,
@@ -35,103 +130,6 @@ const MyICardPage = (props) => {
   if (!fontsLoaded) {
     return <Text>Loading...</Text>;
   }
-
-  const VerificationButton = ({ status, onPress }) => {
-    let content1 = null;
-    {
-      content1 = (
-        <View>
-          <TouchableOpacity
-            style={styles.functionButton}
-            onPress={onPress}
-          >
-            <Text style={styles.buttonText}>
-              {status === "inactive, verify"
-                ? "Verify Account"
-                : "Reverify account"}
-            </Text>
-          </TouchableOpacity>
-        </View>
-      );
-    }
-    return content1;
-  };
-
-  const RefreshButton = ({ status, onPress }) => {
-    let content1 = null;
-    {
-      content1 = (
-        <View>
-          <TouchableOpacity
-            style={styles.functionButton}
-            onPress={onPress}
-          >
-            <Text style={styles.buttonText}>Refresh</Text>
-          </TouchableOpacity>
-        </View>
-      );
-    }
-    return content1;
-  };
-
-  const LogOutButton = ({ status, onPress }) => {
-    let content = null;
-    {
-      content = (
-        <View>
-          <TouchableOpacity
-            style={styles.functionButton}
-            onPress={onPress}
-          >
-            <Text style={styles.buttonText}>Log Out</Text>
-          </TouchableOpacity>
-        </View>
-      );
-    }
-    return content;
-  };
-
-  const Card = ({ status, msg }) => {
-    let color = props.status;
-    let message;
-    let icon_source;
-    if (status == "inactive") {
-      icon_source = require("../../../assets/x.png");
-      message = msg;
-    } else if (status == "stale") {
-      icon_source = require("../../../assets/Refresh.png");
-      message = "Refresh page to update status";
-    } else if (status == "Unlinked") {
-      icon_source = require("../../../assets/Link.png");
-      message =
-        "Link to your University of Alberta email to gain access to My ICard";
-    } else if (status == "verifying account") {
-      icon_source = require("../../../assets/Link.png");
-      message = msg;
-    } else if (status == "inactive, verify") {
-      icon_source = require("../../../assets/x.png");
-      message =
-        "Your account is unverified. Please go through the verification process";
-    } else if (status == "inactive, reverify") {
-      icon_source = require("../../../assets/x.png");
-      message =
-        "Something went wrong, please reverify account or contact ISA at isa.general@ualberta.ca";
-    }
-    if (message) {
-      return (
-        <View style={styles.notification}>
-          <Image
-            source={icon_source}
-            style={styles.notificationPic}
-          />
-          <Text style={styles.notificationText}>{message}</Text>
-        </View>
-      );
-    } else {
-      // Active Status
-      return <View></View>;
-    }
-  };
 
   const theme = statusColors[props.status];
   return (
@@ -188,7 +186,7 @@ const MyICardPage = (props) => {
           ) : (
             <></>
           )}
-          <RefreshButton onPress={props.refresh} />
+          {user !== null && <RefreshButton onPress={props.refresh} />}
           {user !== null && <LogOutButton onPress={props.logOut} />}
           {props.status == "Unlinked" ? props.children : <></>}
         </View>

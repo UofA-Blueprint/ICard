@@ -12,12 +12,9 @@ import {
   Image,
 } from "react-native";
 
-import VerificationView from "./VerificationView";
-
 import { colors } from "../utilites/Theme";
 
 import * as WebBrowser from "expo-web-browser";
-import * as Google from "expo-auth-session/providers/google";
 
 import AuthContext from "../context/AuthContext";
 import axios from "axios";
@@ -35,14 +32,14 @@ import { setNavigationCache } from "../utilites/NavigationCache";
 
 const Stack = createNativeStackNavigator();
 
-const Registration = ({ navigation }) => {
+const Registration = ({}) => {
   const { _, setUser } = useContext(AuthContext);
   const [response, setResponse] = useState(false);
 
   useFocusEffect(
     useCallback(() => {
       setNavigationCache({
-        lastVisitedPage: "Registration",
+        lastVisitedPage: "My ICard",
         lastTime: Date.now(),
       });
     }, [])
@@ -77,17 +74,10 @@ const Registration = ({ navigation }) => {
     }
   }, [response]);
 
-  const logOut = () => {
-    googleLogout();
-    setUser(null);
-    setResponse(null);
-  };
-
   return (
     <MyICardPage user={null} status={"Unlinked"}>
       <View style={styles.bodyContainer}>
         <TouchableOpacity
-          // disabled={!request}
           onPress={() => {
             login();
           }}
@@ -113,11 +103,6 @@ const RegistrationView = () => {
       <Stack.Screen
         name="ICard Registration"
         component={Registration}
-        options={{ headerShown: false }}
-      />
-      <Stack.Screen
-        name="ICard Verification"
-        component={VerificationView}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

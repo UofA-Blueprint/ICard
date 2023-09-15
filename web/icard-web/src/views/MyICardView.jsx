@@ -9,49 +9,28 @@ import {
   RefreshControl,
   StyleSheet,
   ScrollView,
-  ActivityIndicator,
 } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
 
 import AuthContext from "../context/AuthContext";
 import MyICardPage from "../components/shared/ICardPage";
-// import SubmittedView from "./SubmittedView";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import axios from "axios";
-import VerificationView, {
-  VerificationNavigator,
-} from "../views/VerificationView";
+import VerificationView from "../views/VerificationView";
 import { useFocusEffect } from "@react-navigation/native";
 import { setNavigationCache } from "../utilites/NavigationCache";
-import { googleLogout, useGoogleLogin } from "@react-oauth/google";
-
-// import import VerificationView from "../../views/VerificationView";
-// from "./VerificationView";
-
-let message;
+import { googleLogout } from "@react-oauth/google";
 
 const Stack = createNativeStackNavigator();
 
-import { CLIENT_ID, CLIENT_SECRET, API_ROUTE, API_KEY } from "@env";
-import { getUser, storeUser } from "../utilites/StoreUser";
+import { API_ROUTE, API_KEY } from "@env";
+import { storeUser } from "../utilites/StoreUser";
+import SubmittedView from "./SubmittedView";
 
 const MyICard = ({ navigation }) => {
   const { user, setUser } = useContext(AuthContext);
-
-  // const user = {
-  //   name: "Stephanie Jones",
-  //   picture: require("../../assets/temp/pfp.png")
-  // }
-  const [checkStatus, setCheckStatus] = useState(true);
-  const [status, setStatus] = useState();
-  const [verbose, setVerbose] = useState();
+  const [status, setStatus] = useState("");
+  const [verbose, setVerbose] = useState("");
   const [refreshing, setRefreshing] = useState(false);
-  // useEffect(()=>{
-  //   setStatus("active")
-  //   setVerbose("Please pay your ISAF fees to activate account.")
-  // })
-  // Note: The function to find the status of a user is already implemented in the old code.
-  // Examples
 
   useFocusEffect(
     useCallback(() => {
@@ -59,6 +38,7 @@ const MyICard = ({ navigation }) => {
         lastVisitedPage: "My ICard",
         lastTime: Date.now(),
       });
+      loadUserData();
     }, [])
   );
 
@@ -72,22 +52,13 @@ const MyICard = ({ navigation }) => {
         return response.data;
       })
       .then((data) => {
-        //Data being retrieved from backend is weird. If completely new user logs in
-        //then verification image is undefined and does not show up in the fetched user data obj
-        //If verifcation image was added to user at somepoint and then erased (so field is blank now), suddenly
-        //verification image field is not undefined and is just recognised as a blank space in
-        //the fetched user obj
-        //Line below is a work around
-        //if verification field is blank space or undefined, label it as empty/blank space
         data["verification_image"] == "" ||
         data["verification_image"] == undefined
           ? (data["verification_image"] = "")
           : null;
-        delete data["_id"];
         setRefreshing(false);
         setUser({ ...user, ...data });
         storeUser({ ...user, ...data });
-        setCheckStatus(true);
       })
       .catch((error) => {
         console.error(error);
@@ -97,36 +68,38 @@ const MyICard = ({ navigation }) => {
   if (user == null) return <></>;
 
   const statusCheck = () => {
-    setStatus("active");
+    let userStatus = "active";
+    let userVerbose = "";
     if (user == null) return <></>;
-    if (user.verify) setStatus("inactive");
-    if (user.isaf_status && user.verify_status) setStatus("active");
+    if (user.verify) userStatus = "inactive";
+    if (user.isaf_status && user.verify_status) userStatus = "active";
     if (!user.isaf_status && user.verify_status)
-      setStatus("inactive, reverify"); //reverify
-
+      userStatus = "inactive, reverify";
     if (
       !user.isaf_status &&
       !user.verify_status &&
       !user.verification_image
     )
-      setStatus("inactive, verify"); //verify
+      userStatus = "inactive, verify";
     if (
       !user.isaf_status &&
       !user.verify_status &&
       user.verification_image
-    )
-      setStatus("verifying account");
-    setVerbose(
-      "Verification in progress, may take up to 1-3 business days"
-    );
+    ) {
+      userStatus = "verifying account";
+      userVerbose =
+        "Verification in progress, may take up to 1-3 business days";
+    }
+    return { userStatus, userVerbose };
   };
 
   useEffect(() => {
-    if (checkStatus) {
-      statusCheck();
-      setCheckStatus(false);
+    if (refreshing === false) {
+      let { userStatus, userVerbose } = statusCheck();
+      setStatus(userStatus);
+      setVerbose(userVerbose);
     }
-  }, [checkStatus]);
+  }, [status, verbose, refreshing]);
   return (
     <View style={styles.container}>
       <ScrollView
@@ -134,17 +107,18 @@ const MyICard = ({ navigation }) => {
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
-            onRefresh={loadUserData}
+            onRefresh={() => {
+              loadUserData();
+            }}
           />
         }
         contentContainerStyle={styles.contentContainer}
       >
         <MyICardPage
-          user={user}
           status={status}
           msg={verbose}
-          verify={() => {
-            navigation.navigate("Verification");
+          verify={({}) => {
+            navigation.navigate("Verification Navigator");
           }}
           refresh={async () => {
             await loadUserData();
@@ -160,17 +134,35 @@ const MyICard = ({ navigation }) => {
   );
 };
 
+const VerificationStack = createNativeStackNavigator();
+
+const VerificationNavigator = ({}) => {
+  return (
+    <VerificationStack.Navigator>
+      <VerificationStack.Screen
+        name="Verification"
+        component={VerificationView}
+        options={{ headerShown: false }}
+      />
+      <VerificationStack.Screen
+        name="Submitted"
+        component={SubmittedView}
+        options={{ headerShown: false }}
+      />
+    </VerificationStack.Navigator>
+  );
+};
+
 const MyICardView = () => {
   return (
-    <Stack.Navigator initialRouteName="My ICard">
+    <Stack.Navigator>
       <Stack.Screen
         name="My ICard Main"
         component={MyICard}
         options={{ headerShown: false }}
       />
-      {/* TODO: Add verification page */}
       <Stack.Screen
-        name="Verification"
+        name="Verification Navigator"
         component={VerificationNavigator}
         options={{ headerShown: false }}
       />

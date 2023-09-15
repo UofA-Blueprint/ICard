@@ -11,25 +11,19 @@ import {
   TouchableOpacity,
   ImageBackground,
   ScrollView,
-  FlatList,
 } from "react-native";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import * as ImagePicker from "expo-image-picker";
 import { colors } from "../utilites/Theme";
-// import * as Progress from 'react-native-progress';
 import { API_ROUTE, API_KEY } from "@env";
 import AuthContext from "../context/AuthContext";
 import Step from "../components/shared/Step";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
-import SubmittedView from "./SubmittedView";
 
 const VerificationView = ({ navigation }) => {
   const [image, setImage] = useState(null);
   const [filename, setFilename] = useState(null);
-  const { user, setUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [modalVisible, setModalVisible] = useState(false);
-  const [Progress, setProgress] = useState(0);
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -40,8 +34,8 @@ const VerificationView = ({ navigation }) => {
       quality: 1,
     });
 
-    if (!result.cancelled) {
-      let address = result.uri.split("/");
+    if (!result.canceled) {
+      let address = result.assets[0].uri.split("/");
       let type = result.assets[0].uri.split(";")[0].split(":")[1];
       let extension = type.split("/")[1];
       setImage({
@@ -53,7 +47,7 @@ const VerificationView = ({ navigation }) => {
     }
   };
 
-  const submitImage = async () => {
+  const submitImage = () => {
     fetch(image.uri)
       .then((result) => result.blob())
       .then((blob) => {
@@ -71,23 +65,9 @@ const VerificationView = ({ navigation }) => {
           .then((response) => {
             return response.json();
           })
-          .then(() => {
-            fetch(API_ROUTE + "api/students/" + user._id, {
-              method: "get",
-              headers: {
-                "jwt-token": user["key"],
-                "x-api-key": API_KEY,
-              },
-            })
-              .then((result) => result.json())
-              .then((data) => {
-                setUser({ ...user, ...data });
-                navigation.navigate("Home");
-              })
-              .catch(console.error);
-          })
-          .catch((error) => {
-            console.log(error);
+          .then((result) => {
+            if (result.message === "Image uploaded successfully")
+              navigation.navigate("Submitted");
           });
       });
   };
@@ -107,7 +87,7 @@ const VerificationView = ({ navigation }) => {
               color={colors.primary}
               backgroundColor="transparent"
               onPress={() => {
-                navigation.navigate("My ICard");
+                navigation.navigate("My ICard Main");
               }}
             ></FontAwesome5.Button>
           </View>
@@ -244,7 +224,6 @@ const VerificationView = ({ navigation }) => {
             </Pressable>
             <Pressable
               onPress={() => {
-                console.log("Haha");
                 navigation.navigate("My ICard Main");
               }}
             >
@@ -254,25 +233,6 @@ const VerificationView = ({ navigation }) => {
         </ScrollView>
       </SafeAreaView>
     </ImageBackground>
-  );
-};
-
-const VerificationStack = createNativeStackNavigator();
-
-export const VerificationNavigator = () => {
-  return (
-    <VerificationStack.Navigator>
-      <VerificationStack.Screen
-        name="Verification Verify"
-        component={VerificationView}
-        options={{ headerShown: false }}
-      />
-      <VerificationStack.Screen
-        name="Verification Submit"
-        component={SubmittedView}
-        options={{ headerShown: false }}
-      />
-    </VerificationStack.Navigator>
   );
 };
 

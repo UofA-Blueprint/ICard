@@ -1,22 +1,35 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
   View,
   StyleSheet,
   Pressable,
   Text,
-  Image,
-  Modal,
-  TouchableOpacity,
   ImageBackground,
-  ScrollView,
-  FlatList,
 } from "react-native";
 import { colors } from "../utilites/Theme";
 import { Ionicons } from "@expo/vector-icons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
+import AuthContext from "../context/AuthContext";
+
+import { API_ROUTE, API_KEY } from "@env";
 
 const SubmittedView = ({ navigation }) => {
+  const { user, setUser } = useContext(AuthContext);
+  useEffect(() => {
+    fetch(API_ROUTE + "api/students/" + user._id, {
+      method: "get",
+      headers: {
+        "jwt-token": user["key"],
+        "x-api-key": API_KEY,
+      },
+    })
+      .then((result) => result.json())
+      .then((data) => {
+        setUser({ ...user, ...data });
+      })
+      .catch(console.error);
+  }, []);
   return (
     <ImageBackground
       source={require("../../assets/Background.png")}
@@ -32,7 +45,7 @@ const SubmittedView = ({ navigation }) => {
               color={colors.primary}
               backgroundColor="transparent"
               onPress={() => {
-                navigation.navigate("My ICard Page");
+                navigation.navigate("My ICard Main");
               }}
             ></FontAwesome5.Button>
           </View>
@@ -60,14 +73,35 @@ const SubmittedView = ({ navigation }) => {
               Submitted!
             </Text>
           </View>
-          <Pressable
-            style={styles.submitButton}
-            onPress={() => navigation.navigate("Vendors")}
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 12,
+              width: "60%",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
           >
-            <Text style={styles.submitButtonText}>
-              Discover ISAF Deals
-            </Text>
-          </Pressable>
+            <Pressable
+              style={styles.submitButton}
+              onPress={() => navigation.navigate("Vendors")}
+            >
+              <Text style={styles.submitButtonText}>
+                Discover ISAF Deals
+              </Text>
+            </Pressable>
+            <Pressable
+              style={styles.submitButton}
+              onPress={() => {
+                navigation.navigate("My ICard Main");
+              }}
+            >
+              <Text style={styles.submitButtonText}>
+                Go to My ICard Page
+              </Text>
+            </Pressable>
+          </View>
         </View>
       </SafeAreaView>
     </ImageBackground>
@@ -111,10 +145,11 @@ const styles = StyleSheet.create({
     width: "90%",
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 16,
+    marginVertical: 0,
   },
   submitButtonText: {
     color: colors.white,
+    textAlign: "center",
     fontWeight: "bold",
     fontSize: 16,
   },
